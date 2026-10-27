@@ -1,0 +1,290 @@
+{
+  "name": "纯 HTML 工具箱",
+  "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
+  "count": 21,
+  "generatedAt": "2026-10-27T04:34:58.806Z",
+  "categories": [
+    {
+      "id": "text",
+      "name": "文本处理",
+      "count": 5
+    },
+    {
+      "id": "dev",
+      "name": "开发者",
+      "count": 8
+    },
+    {
+      "id": "design",
+      "name": "设计",
+      "count": 4
+    },
+    {
+      "id": "image",
+      "name": "图片",
+      "count": 2
+    },
+    {
+      "id": "calc",
+      "name": "计算",
+      "count": 2
+    }
+  ],
+  "tools": [
+    {
+      "slug": "text-counter",
+      "title": "字数统计",
+      "desc": "实时统计字符、汉字、单词、行数、段落和阅读时长，写稿与提交前自查很方便。",
+      "category": "text",
+      "tags": [
+        "字数",
+        "统计",
+        "写作"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-counter.html"
+    },
+    {
+      "slug": "text-case",
+      "title": "文本格式转换",
+      "desc": "大小写、驼峰、下划线、中划线等命名风格一键互转，输入即转换，适合写代码和整理文案。",
+      "category": "text",
+      "tags": [
+        "大小写",
+        "命名",
+        "camelCase"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-case.html"
+    },
+    {
+      "slug": "html-entities",
+      "title": "HTML 实体转义",
+      "desc": "转义 HTML 特殊字符、把中文转成数字实体，或把 &amp;amp; 这类实体还原成可读文本。",
+      "category": "text",
+      "tags": [
+        "html",
+        "转义",
+        "实体"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/html-entities.html"
+    },
+    {
+      "slug": "text-diff",
+      "title": "文本对比 Diff",
+      "desc": "逐行比较两段文本的差异，标出新增与删除行，支持忽略空白和大小写，可直接导出 diff 文件。",
+      "category": "text",
+      "tags": [
+        "diff",
+        "对比",
+        "版本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-diff.html"
+    },
+    {
+      "slug": "text-lines",
+      "title": "文本行处理",
+      "desc": "去重、排序、去空行、加行号与前后缀、关键词筛选，一次性整理粘贴来的列表和日志。",
+      "category": "text",
+      "tags": [
+        "去重",
+        "排序",
+        "行号"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-lines.html"
+    },
+    {
+      "slug": "json-formatter",
+      "title": "JSON 格式化",
+      "desc": "格式化、压缩并校验 JSON，语法错误会精确提示行号和列号，支持键排序与缩进选择。",
+      "category": "dev",
+      "tags": [
+        "json",
+        "格式化",
+        "校验"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-formatter.html"
+    },
+    {
+      "slug": "base64",
+      "title": "Base64 编码解码",
+      "desc": "文本与文件的 Base64 互转，中文不乱码，支持 URL 安全字符集与 Data URL 输出。",
+      "category": "dev",
+      "tags": [
+        "base64",
+        "编码",
+        "dataurl"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/base64.html"
+    },
+    {
+      "slug": "url-codec",
+      "title": "URL 编码解码",
+      "desc": "百分号编码与解码，兼容中文和特殊字符，附带 URL 结构拆解与查询参数表格。",
+      "category": "dev",
+      "tags": [
+        "url",
+        "编码",
+        "查询参数"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/url-codec.html"
+    },
+    {
+      "slug": "hash",
+      "title": "哈希计算",
+      "desc": "一次算出 MD5、SHA-1、SHA-256、SHA-512 与 CRC32，支持 HMAC 密钥和文件校验，用于校验下载文件或生成签名。",
+      "category": "dev",
+      "tags": [
+        "md5",
+        "sha256",
+        "hmac",
+        "校验"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/hash.html"
+    },
+    {
+      "slug": "regex-tester",
+      "title": "正则测试",
+      "desc": "实时高亮匹配、查看分组与命名分组、预览替换结果，内置邮箱、手机号等常用表达式。",
+      "category": "dev",
+      "tags": [
+        "正则",
+        "regex",
+        "匹配"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/regex-tester.html"
+    },
+    {
+      "slug": "uuid",
+      "title": "UUID 生成器",
+      "desc": "批量生成随机 UUID v4 和按时间有序的 UUID v7，加密级随机数，支持大写、去连字符与导出。",
+      "category": "dev",
+      "tags": [
+        "uuid",
+        "随机",
+        "主键"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/uuid.html"
+    },
+    {
+      "slug": "timestamp",
+      "title": "时间戳转换",
+      "desc": "Unix 时间戳与日期互转，秒/毫秒自动识别，同时展示本地时间、UTC、ISO 8601 与相对时间。",
+      "category": "dev",
+      "tags": [
+        "时间戳",
+        "unix",
+        "日期"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/timestamp.html"
+    },
+    {
+      "slug": "jwt-decoder",
+      "title": "JWT 解析",
+      "desc": "解开 JWT 的 Header 与 Payload，查看 exp/iat 等声明与过期状态，并支持 HMAC 密钥验签。",
+      "category": "dev",
+      "tags": [
+        "jwt",
+        "token",
+        "验签"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/jwt-decoder.html"
+    },
+    {
+      "slug": "color-converter",
+      "title": "颜色格式转换",
+      "desc": "HEX、RGB、HSL、HSV、CMYK 互转，附 WCAG 对比度检测与深浅配色建议，做无障碍设计很方便。",
+      "category": "design",
+      "tags": [
+        "颜色",
+        "hex",
+        "rgb",
+        "对比度"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-converter.html"
+    },
+    {
+      "slug": "color-palette",
+      "title": "调色板生成器",
+      "desc": "从主色生成 11 级明暗梯度和 4 组和谐配色，点击色块即可复制，支持导出 CSS 变量。",
+      "category": "design",
+      "tags": [
+        "调色板",
+        "配色",
+        "css变量"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-palette.html"
+    },
+    {
+      "slug": "gradient",
+      "title": "CSS 渐变生成器",
+      "desc": "拖动角度、增删颜色节点，实时预览线性/径向/圆锥渐变并复制现成的 CSS 代码。",
+      "category": "design",
+      "tags": [
+        "css",
+        "渐变",
+        "background"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient.html"
+    },
+    {
+      "slug": "box-shadow",
+      "title": "阴影生成器",
+      "desc": "拖动滑块调节 box-shadow 的偏移、模糊、扩散和颜色，实时预览并复制 CSS，内置 5 组常用预设。",
+      "category": "design",
+      "tags": [
+        "阴影",
+        "box-shadow",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/box-shadow.html"
+    },
+    {
+      "slug": "image-compress",
+      "title": "图片压缩",
+      "desc": "本地压缩 JPEG/PNG/WebP，可调质量、限制最大宽高，实时对比体积与尺寸并下载，图片不上传。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "压缩",
+        "webp"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-compress.html"
+    },
+    {
+      "slug": "image-base64",
+      "title": "图片 Base64",
+      "desc": "图片与 Base64 Data URL 双向转换，支持复制、下载文本，以及把 Base64 还原成图片，全部本地处理。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "base64",
+        "dataurl"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-base64.html"
+    },
+    {
+      "slug": "percentage-calculator",
+      "title": "百分比计算器",
+      "desc": "求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。",
+      "category": "calc",
+      "tags": [
+        "百分比",
+        "计算",
+        "增长率"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/percentage-calculator.html"
+    },
+    {
+      "slug": "unit-converter",
+      "title": "单位换算",
+      "desc": "长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。",
+      "category": "calc",
+      "tags": [
+        "单位换算",
+        "长度",
+        "温度",
+        "存储"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html"
+    }
+  ]
+}

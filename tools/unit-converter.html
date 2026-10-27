@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单位换算 - 纯 HTML 工具箱</title>
+<meta name="description" content="长度、质量、面积、体积、速度、数据存储、时间与温度的单位互换，一键查看同类单位换算表，全部在本地计算。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">
+{"title":"单位换算","desc":"长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。","category":"calc","tags":["单位换算","长度","温度","存储"],"order":2}
+</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style>
+/* inline:assets/tool-base.css:start */
+/* 工具页公共皮肤：构建时内联进每个工具，保证工具是单文件 */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f2f0ea;
+  --text: #101418;
+  --muted: #5b6570;
+  --border: #e2e0d8;
+  --accent: #0f766e;
+  --accent-2: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --shadow: 0 1px 2px rgba(16, 20, 24, 0.04), 0 10px 30px rgba(16, 20, 24, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0e12;
+  --surface: #12161d;
+  --surface-2: #182029;
+  --text: #e9eef5;
+  --muted: #93a1b0;
+  --border: #232c37;
+  --accent: #2dd4bf;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --danger: #f87171;
+  --ok: #4ade80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 460px at 8% -12%, var(--accent-soft), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 顶栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.brand img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+html[data-theme="light"] .i-moon,
+html[data-theme="dark"] .i-sun {
+  display: none;
+}
+
+/* 页面骨架 */
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 34px 20px 70px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 10px 0 8px;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 58em;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 面板 */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel > :first-child {
+  margin-top: 0;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span,
+.field > label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"] {
+  font-family: var(--mono);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+textarea.code,
+pre.code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+textarea.code {
+  min-height: 260px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201d;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+  color: #06201d;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* 输出 */
+pre.out {
+  margin: 0;
+  min-height: 90px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre.out:empty::before {
+  content: "输出会显示在这里";
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* 统计块 */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.stat dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* 分段选择 */
+.segmented {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented label {
+  position: relative;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented input:checked + span {
+  color: var(--text);
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+}
+
+/* 文件拖放 */
+.drop {
+  display: block;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.drop:hover,
+.drop.is-over {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* 页脚 */
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .shell {
+    padding: 24px 16px 56px;
+  }
+  .toolbar-inner {
+    padding: 0 16px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+/* inline:assets/tool-base.css:end */
+  .converter { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
+  .converter .field { min-width: 0; }
+  .converter .swap { align-self: end; margin-bottom: 1px; }
+  .result-panel { margin-top: 16px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+  .result-value { font-family: var(--mono); font-size: clamp(1.3rem, 3.4vw, 1.9rem); font-weight: 600; word-break: break-all; }
+  .result-note { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); font-family: var(--mono); }
+  .unit-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.86rem; }
+  .unit-table th, .unit-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .unit-table th { font-size: 0.74rem; color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
+  .unit-table td:last-child { text-align: right; font-family: var(--mono); }
+  .unit-table tr:last-child td { border-bottom: 0; }
+  .unit-table tr.is-source td { background: var(--accent-soft); }
+  .table-wrap { overflow-x: auto; }
+  @media (max-width: 680px) {
+    .converter { grid-template-columns: 1fr; }
+    .converter .swap { justify-self: stretch; }
+  }
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>单位换算</h1>
+    <p>长度、质量、面积、体积、速度、数据存储、时间和温度八类常用单位互换。输入数值后立刻得到结果，并附带同类单位的完整换算表，方便横向比较。</p>
+  </div>
+
+  <section class="panel">
+    <div class="field" style="max-width: 260px;">
+      <span>换算类型</span>
+      <select id="category"></select>
+    </div>
+
+    <div class="converter" style="margin-top: 14px;">
+      <div class="field">
+        <span>从</span>
+        <input type="number" id="fromValue" value="1" step="any" inputmode="decimal" aria-label="待换算数值">
+        <select id="fromUnit" aria-label="原单位"></select>
+      </div>
+      <button class="btn swap" id="swapBtn" type="button" title="交换单位">⇄ 交换</button>
+      <div class="field">
+        <span>到</span>
+        <input type="text" id="toValue" class="code" readonly aria-label="换算结果" aria-live="polite">
+        <select id="toUnit" aria-label="目标单位"></select>
+      </div>
+    </div>
+
+    <div class="result-panel">
+      <div class="result-value" id="resultMain">-</div>
+      <p class="result-note" id="resultNote"></p>
+    </div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">同类单位换算表</p>
+    <div class="table-wrap">
+      <table class="unit-table">
+        <thead>
+          <tr><th scope="col">单位</th><th scope="col">换算结果</th></tr>
+        </thead>
+        <tbody id="unitBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>所有计算都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script>
+/* inline:assets/tool-base.js:start */
+/* 工具页公共脚本：构建时内联进每个工具 */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var KEY = "pht-theme";
+
+  function readStored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme, persist) {
+    root.setAttribute("data-theme", theme);
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      btn.setAttribute("aria-label", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+      btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(KEY, theme);
+      } catch (e) {
+        /* 忽略私有模式写入失败 */
+      }
+    }
+  }
+
+  setTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  if (window.matchMedia) {
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) {
+      if (!readStored()) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () {
+          return true;
+        },
+        function () {
+          return legacyCopy(text);
+        }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function flash(btn, label) {
+    if (!btn) return;
+    if (!btn.__label) btn.__label = btn.innerHTML;
+    btn.textContent = label || "已复制";
+    clearTimeout(btn.__flashTimer);
+    btn.__flashTimer = setTimeout(function () {
+      btn.innerHTML = btn.__label;
+    }, 1400);
+  }
+
+  function setStatus(el, text, type) {
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("error", "ok");
+    if (type === "error" || type === "ok") el.classList.add(type);
+  }
+
+  function download(filename, data, mime) {
+    var blob = data instanceof Blob ? data : new Blob([data], { type: mime || "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function bytes(n) {
+    if (!isFinite(n) || n < 0) return "-";
+    var units = ["B", "KB", "MB", "GB"];
+    var i = 0;
+    while (n >= 1024 && i < units.length - 1) {
+      n /= 1024;
+      i++;
+    }
+    return (i === 0 ? n : n.toFixed(n >= 100 ? 0 : 1)) + " " + units[i];
+  }
+
+  function debounce(fn, wait) {
+    var t;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  }
+
+  window.PHT = {
+    $: function (sel, scope) {
+      return (scope || document).querySelector(sel);
+    },
+    $$: function (sel, scope) {
+      return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
+    },
+    copy: copyText,
+    flash: flash,
+    status: setStatus,
+    download: download,
+    bytes: bytes,
+    debounce: debounce,
+    setTheme: setTheme
+  };
+})();
+/* inline:assets/tool-base.js:end */
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = PHT.$;
+
+  var DATA = [
+    {
+      id: "length",
+      name: "长度",
+      units: [
+        { id: "mm", name: "毫米 (mm)", factor: 0.001 },
+        { id: "cm", name: "厘米 (cm)", factor: 0.01 },
+        { id: "m", name: "米 (m)", factor: 1 },
+        { id: "km", name: "千米 (km)", factor: 1000 },
+        { id: "in", name: "英寸 (in)", factor: 0.0254 },
+        { id: "ft", name: "英尺 (ft)", factor: 0.3048 },
+        { id: "yd", name: "码 (yd)", factor: 0.9144 },
+        { id: "mi", name: "英里 (mi)", factor: 1609.344 },
+        { id: "nmi", name: "海里 (nmi)", factor: 1852 }
+      ],
+      defFrom: "m",
+      defTo: "km"
+    },
+    {
+      id: "mass",
+      name: "质量",
+      units: [
+        { id: "mg", name: "毫克 (mg)", factor: 0.000001 },
+        { id: "g", name: "克 (g)", factor: 0.001 },
+        { id: "kg", name: "千克 (kg)", factor: 1 },
+        { id: "t", name: "吨 (t)", factor: 1000 },
+        { id: "jin", name: "斤", factor: 0.5 },
+        { id: "lb", name: "磅 (lb)", factor: 0.45359237 },
+        { id: "oz", name: "盎司 (oz)", factor: 0.028349523125 }
+      ],
+      defFrom: "kg",
+      defTo: "jin"
+    },
+    {
+      id: "area",
+      name: "面积",
+      units: [
+        { id: "cm2", name: "平方厘米 (cm²)", factor: 0.0001 },
+        { id: "m2", name: "平方米 (m²)", factor: 1 },
+        { id: "km2", name: "平方千米 (km²)", factor: 1000000 },
+        { id: "ha", name: "公顷 (ha)", factor: 10000 },
+        { id: "mu", name: "亩", factor: 666.6666666667 },
+        { id: "ft2", name: "平方英尺 (ft²)", factor: 0.09290304 },
+        { id: "acre", name: "英亩 (acre)", factor: 4046.8564224 }
+      ],
+      defFrom: "m2",
+      defTo: "mu"
+    },
+    {
+      id: "volume",
+      name: "体积",
+      units: [
+        { id: "ml", name: "毫升 (mL)", factor: 0.001 },
+        { id: "l", name: "升 (L)", factor: 1 },
+        { id: "m3", name: "立方米 (m³)", factor: 1000 },
+        { id: "cup", name: "杯（美制）", factor: 0.2365882365 },
+        { id: "floz", name: "液量盎司（美制）", factor: 0.0295735295625 },
+        { id: "qt", name: "夸脱（美制）", factor: 0.946352946 },
+        { id: "gal", name: "加仑（美制）", factor: 3.785411784 }
+      ],
+      defFrom: "l",
+      defTo: "ml"
+    },
+    {
+      id: "speed",
+      name: "速度",
+      units: [
+        { id: "ms", name: "米每秒 (m/s)", factor: 1 },
+        { id: "kmh", name: "千米每小时 (km/h)", factor: 0.2777777777778 },
+        { id: "mph", name: "英里每小时 (mph)", factor: 0.44704 },
+        { id: "knot", name: "节 (kn)", factor: 0.5144444444444 }
+      ],
+      defFrom: "kmh",
+      defTo: "ms"
+    },
+    {
+      id: "data",
+      name: "数据存储",
+      units: [
+        { id: "bit", name: "比特 (bit)", factor: 0.125 },
+        { id: "b", name: "字节 (B)", factor: 1 },
+        { id: "kb", name: "千字节 (KB)", factor: 1024 },
+        { id: "mb", name: "兆字节 (MB)", factor: 1048576 },
+        { id: "gb", name: "吉字节 (GB)", factor: 1073741824 },
+        { id: "tb", name: "太字节 (TB)", factor: 1099511627776 }
+      ],
+      defFrom: "gb",
+      defTo: "mb"
+    },
+    {
+      id: "time",
+      name: "时间",
+      units: [
+        { id: "ms", name: "毫秒 (ms)", factor: 0.001 },
+        { id: "s", name: "秒 (s)", factor: 1 },
+        { id: "min", name: "分钟 (min)", factor: 60 },
+        { id: "h", name: "小时 (h)", factor: 3600 },
+        { id: "day", name: "天 (d)", factor: 86400 },
+        { id: "week", name: "周", factor: 604800 },
+        { id: "year", name: "年（365.25 天）", factor: 31557600 }
+      ],
+      defFrom: "h",
+      defTo: "min"
+    },
+    {
+      id: "temperature",
+      name: "温度",
+      units: [
+        { id: "c", name: "摄氏度 (°C)" },
+        { id: "f", name: "华氏度 (°F)" },
+        { id: "k", name: "开尔文 (K)" }
+      ],
+      defFrom: "c",
+      defTo: "f"
+    }
+  ];
+
+  var catSel = $("#category");
+  var fromUnit = $("#fromUnit");
+  var toUnit = $("#toUnit");
+  var fromValue = $("#fromValue");
+  var toValue = $("#toValue");
+  var body = $("#unitBody");
+  var status = $("#status");
+
+  DATA.forEach(function (cat) {
+    var opt = document.createElement("option");
+    opt.value = cat.id;
+    opt.textContent = cat.name;
+    catSel.appendChild(opt);
+  });
+
+  function current() {
+    return DATA.filter(function (c) { return c.id === catSel.value; })[0];
+  }
+
+  function unitName(cat, id) {
+    var u = cat.units.filter(function (x) { return x.id === id; })[0];
+    return u ? u.name : id;
+  }
+
+  // 温度用显式公式，其余按基准单位比例换算
+  function toCelsius(value, id) {
+    if (id === "c") return value;
+    if (id === "f") return (value - 32) * 5 / 9;
+    return value - 273.15;
+  }
+
+  function fromCelsius(value, id) {
+    if (id === "c") return value;
+    if (id === "f") return value * 9 / 5 + 32;
+    return value + 273.15;
+  }
+
+  function convert(cat, value, fromId, toId) {
+    if (cat.id === "temperature") return fromCelsius(toCelsius(value, fromId), toId);
+    var from = cat.units.filter(function (u) { return u.id === fromId; })[0];
+    var to = cat.units.filter(function (u) { return u.id === toId; })[0];
+    if (!from || !to) return NaN;
+    return (value * from.factor) / to.factor;
+  }
+
+  function fmt(n) {
+    if (!isFinite(n)) return "-";
+    if (n === 0) return "0";
+    var abs = Math.abs(n);
+    if (abs >= 1e12 || abs < 1e-6) return n.toExponential(6).replace(/e([+-])(\\d)$/, "e$10$1");
+    var digits = abs >= 1000 ? 2 : abs >= 1 ? 4 : 6;
+    return Number(n.toFixed(digits)).toLocaleString("en-US", { maximumFractionDigits: digits });
+  }
+
+  function fillUnits(cat) {
+    [fromUnit, toUnit].forEach(function (sel) {
+      sel.textContent = "";
+      cat.units.forEach(function (u) {
+        var opt = document.createElement("option");
+        opt.value = u.id;
+        opt.textContent = u.name;
+        sel.appendChild(opt);
+      });
+    });
+    fromUnit.value = cat.defFrom;
+    toUnit.value = cat.defTo;
+  }
+
+  function renderTable(cat, value, fromId, toId) {
+    body.textContent = "";
+    cat.units.forEach(function (u) {
+      var tr = document.createElement("tr");
+      if (u.id === fromId) tr.className = "is-source";
+      var th = document.createElement("td");
+      th.textContent = u.name;
+      var td = document.createElement("td");
+      var converted = convert(cat, value, fromId, u.id);
+      td.textContent = fmt(converted) + (u.id === toId ? "  ←" : "");
+      tr.appendChild(th);
+      tr.appendChild(td);
+      body.appendChild(tr);
+    });
+  }
+
+  function update() {
+    PHT.status(status, "");
+    var cat = current();
+    var raw = fromValue.value.trim();
+    var value = Number(raw);
+    if (raw === "" || !isFinite(value)) {
+      toValue.value = "";
+      $("#resultMain").textContent = "-";
+      $("#resultNote").textContent = "请输入一个有效数字";
+      body.textContent = "";
+      return;
+    }
+    var fromId = fromUnit.value;
+    var toId = toUnit.value;
+    if (fromId === toId) {
+      toValue.value = fmt(value) + "";
+      $("#resultMain").textContent = fmt(value) + " " + unitName(cat, toId);
+      $("#resultNote").textContent = "原单位与目标单位相同";
+    } else {
+      var out = convert(cat, value, fromId, toId);
+      toValue.value = fmt(out);
+      $("#resultMain").textContent = fmt(out) + " " + unitName(cat, toId);
+      $("#resultNote").textContent = fmt(value) + " " + unitName(cat, fromId) + " = " + fmt(out) + " " + unitName(cat, toId);
+      if (cat.id === "temperature") {
+        var kelvin = toCelsius(value, fromId) + 273.15;
+        if (kelvin < 0) PHT.status(status, "低于绝对零度（0 K），现实中不存在这样的温度", "error");
+      }
+    }
+    renderTable(cat, value, fromId, toId);
+  }
+
+  catSel.addEventListener("change", function () {
+    var cat = current();
+    fillUnits(cat);
+    update();
+  });
+
+  fromUnit.addEventListener("change", update);
+  toUnit.addEventListener("change", update);
+  fromValue.addEventListener("input", update);
+
+  $("#swapBtn").addEventListener("click", function () {
+    var a = fromUnit.value;
+    fromUnit.value = toUnit.value;
+    toUnit.value = a;
+    // 交换后把上一次的结果作为新的输入，方便连续换算
+    var out = toValue.value;
+    var parsed = Number(String(out).replace(/,/g, ""));
+    if (out && isFinite(parsed)) fromValue.value = String(parsed);
+    update();
+    PHT.status(status, "已交换单位", "ok");
+  });
+
+  fillUnits(DATA[0]);
+  update();
+})();
+</script>
+</body>
+</html>

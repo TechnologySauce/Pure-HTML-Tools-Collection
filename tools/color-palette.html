@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>调色板生成器 - 纯 HTML 工具箱</title>
+<meta name="description" content="根据一个主色自动生成明暗梯度与互补色、类似色、三角色、分裂互补配色，可一键复制色值和 CSS 变量。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">
+{"title":"调色板生成器","desc":"从主色生成 11 级明暗梯度和 4 组和谐配色，点击色块即可复制，支持导出 CSS 变量。","category":"design","tags":["调色板","配色","css变量"],"order":2}
+</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style>
+/* inline:assets/tool-base.css:start */
+/* 工具页公共皮肤：构建时内联进每个工具，保证工具是单文件 */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f2f0ea;
+  --text: #101418;
+  --muted: #5b6570;
+  --border: #e2e0d8;
+  --accent: #0f766e;
+  --accent-2: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --shadow: 0 1px 2px rgba(16, 20, 24, 0.04), 0 10px 30px rgba(16, 20, 24, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0e12;
+  --surface: #12161d;
+  --surface-2: #182029;
+  --text: #e9eef5;
+  --muted: #93a1b0;
+  --border: #232c37;
+  --accent: #2dd4bf;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --danger: #f87171;
+  --ok: #4ade80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 460px at 8% -12%, var(--accent-soft), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 顶栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.brand img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+html[data-theme="light"] .i-moon,
+html[data-theme="dark"] .i-sun {
+  display: none;
+}
+
+/* 页面骨架 */
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 34px 20px 70px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 10px 0 8px;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 58em;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 面板 */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel > :first-child {
+  margin-top: 0;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span,
+.field > label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"] {
+  font-family: var(--mono);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+textarea.code,
+pre.code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+textarea.code {
+  min-height: 260px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201d;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+  color: #06201d;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* 输出 */
+pre.out {
+  margin: 0;
+  min-height: 90px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre.out:empty::before {
+  content: "输出会显示在这里";
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* 统计块 */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.stat dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* 分段选择 */
+.segmented {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented label {
+  position: relative;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented input:checked + span {
+  color: var(--text);
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+}
+
+/* 文件拖放 */
+.drop {
+  display: block;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.drop:hover,
+.drop.is-over {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* 页脚 */
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .shell {
+    padding: 24px 16px 56px;
+  }
+  .toolbar-inner {
+    padding: 0 16px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+/* inline:assets/tool-base.css:end */
+</style>
+<style>
+  .base-row { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; }
+  .base-row .field { flex: 1 1 240px; }
+  .tone-strip { display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; margin-top: 14px; }
+  .tone { border-radius: 8px; height: 78px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.08); position: relative; transition: transform 0.12s ease; }
+  .tone:hover { transform: translateY(-2px); }
+  .tone-label { margin-top: 6px; font-family: var(--mono); font-size: 0.62rem; color: var(--muted); text-align: center; word-break: break-all; }
+  .harmony { display: flex; flex-direction: column; gap: 10px; }
+  .harmony-row { display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: center; }
+  .harmony-row .name { font-size: 0.82rem; color: var(--muted); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip-color { display: flex; align-items: center; gap: 8px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-2); cursor: pointer; font-family: var(--mono); font-size: 0.74rem; color: var(--text); }
+  .chip-color i { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.12); }
+  .chip-color:hover { border-color: var(--accent); }
+  #cssOut { min-height: 200px; }
+  .copy-hint { font-size: 0.78rem; color: var(--muted); margin: 6px 0 0; }
+  @media (max-width: 720px) {
+    .tone-strip { grid-template-columns: repeat(6, 1fr); }
+    .harmony-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">设计 · 本地处理</span>
+    <h1>调色板生成器</h1>
+    <p>选定一个主色，自动得到浅色到深色的 11 级梯度，以及互补色、类似色、三角色和分裂互补四组和谐配色。点击任意色块即可复制色值。</p>
+  </div>
+
+  <section class="panel">
+    <div class="base-row">
+      <label class="field">
+        <span>主色</span>
+        <input type="color" id="picker" value="#0f766e" aria-label="选择主色">
+      </label>
+      <label class="field">
+        <span>HEX 色值</span>
+        <input type="text" id="baseHex" spellcheck="false" value="#0f766e">
+      </label>
+      <button class="btn" id="randomBtn" type="button">随机主色</button>
+    </div>
+
+    <div class="tone-strip" id="toneStrip"></div>
+    <p class="status" id="status" aria-live="polite">点击色块可以复制 HEX 色值。</p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">和谐配色</p>
+    <div class="harmony" id="harmony"></div>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">导出 CSS 变量</p>
+    <textarea id="cssOut" class="code" readonly spellcheck="false"></textarea>
+    <div class="actions">
+      <button class="btn primary" id="copyCss" type="button">复制 CSS 变量</button>
+      <button class="btn" id="downloadCss" type="button">下载 .css</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>所有计算都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script>
+/* inline:assets/tool-base.js:start */
+/* 工具页公共脚本：构建时内联进每个工具 */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var KEY = "pht-theme";
+
+  function readStored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme, persist) {
+    root.setAttribute("data-theme", theme);
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      btn.setAttribute("aria-label", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+      btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(KEY, theme);
+      } catch (e) {
+        /* 忽略私有模式写入失败 */
+      }
+    }
+  }
+
+  setTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  if (window.matchMedia) {
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) {
+      if (!readStored()) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () {
+          return true;
+        },
+        function () {
+          return legacyCopy(text);
+        }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function flash(btn, label) {
+    if (!btn) return;
+    if (!btn.__label) btn.__label = btn.innerHTML;
+    btn.textContent = label || "已复制";
+    clearTimeout(btn.__flashTimer);
+    btn.__flashTimer = setTimeout(function () {
+      btn.innerHTML = btn.__label;
+    }, 1400);
+  }
+
+  function setStatus(el, text, type) {
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("error", "ok");
+    if (type === "error" || type === "ok") el.classList.add(type);
+  }
+
+  function download(filename, data, mime) {
+    var blob = data instanceof Blob ? data : new Blob([data], { type: mime || "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function bytes(n) {
+    if (!isFinite(n) || n < 0) return "-";
+    var units = ["B", "KB", "MB", "GB"];
+    var i = 0;
+    while (n >= 1024 && i < units.length - 1) {
+      n /= 1024;
+      i++;
+    }
+    return (i === 0 ? n : n.toFixed(n >= 100 ? 0 : 1)) + " " + units[i];
+  }
+
+  function debounce(fn, wait) {
+    var t;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  }
+
+  window.PHT = {
+    $: function (sel, scope) {
+      return (scope || document).querySelector(sel);
+    },
+    $$: function (sel, scope) {
+      return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
+    },
+    copy: copyText,
+    flash: flash,
+    status: setStatus,
+    download: download,
+    bytes: bytes,
+    debounce: debounce,
+    setTheme: setTheme
+  };
+})();
+/* inline:assets/tool-base.js:end */
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = PHT.$;
+  var picker = $("#picker");
+  var baseHex = $("#baseHex");
+  var toneStrip = $("#toneStrip");
+  var harmony = $("#harmony");
+  var cssOut = $("#cssOut");
+  var statusEl = $("#status");
+  var base = { r: 15, g: 118, b: 110 };
+
+  function clamp(v, a, b) {
+    return Math.min(b, Math.max(a, v));
+  }
+
+  function toHex(rgb) {
+    return "#" + [rgb.r, rgb.g, rgb.b].map(function (v) {
+      return clamp(Math.round(v), 0, 255).toString(16).padStart(2, "0");
+    }).join("");
+  }
+
+  function parseHex(value) {
+    var s = String(value).trim().toLowerCase();
+    if (/^#?[0-9a-f]{3}$/.test(s)) {
+      s = s.replace("#", "");
+      return { r: parseInt(s[0] + s[0], 16), g: parseInt(s[1] + s[1], 16), b: parseInt(s[2] + s[2], 16) };
+    }
+    if (/^#?[0-9a-f]{6}$/.test(s)) {
+      s = s.replace("#", "");
+      return { r: parseInt(s.slice(0, 2), 16), g: parseInt(s.slice(2, 4), 16), b: parseInt(s.slice(4, 6), 16) };
+    }
+    return null;
+  }
+
+  function mix(a, b, t) {
+    return {
+      r: a.r + (b.r - a.r) * t,
+      g: a.g + (b.g - a.g) * t,
+      b: a.b + (b.b - a.b) * t
+    };
+  }
+
+  function rgbToHsl(rgb) {
+    var r = rgb.r / 255;
+    var g = rgb.g / 255;
+    var b = rgb.b / 255;
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
+    var h = 0;
+    var s = 0;
+    var l = (max + min) / 2;
+    var d = max - min;
+    if (d !== 0) {
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+      else if (max === g) h = ((b - r) / d + 2) / 6;
+      else h = ((r - g) / d + 4) / 6;
+    }
+    return { h: h * 360, s: s * 100, l: l * 100 };
+  }
+
+  function hslToHex(h, s, l) {
+    h = ((h % 360) + 360) % 360 / 360;
+    s = clamp(s, 0, 100) / 100;
+    l = clamp(l, 0, 100) / 100;
+    function hue(t) {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    }
+    var q;
+    var p;
+    if (s === 0) {
+      var v = Math.round(l * 255);
+      return toHex({ r: v, g: v, b: v });
+    }
+    q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    p = 2 * l - q;
+    return toHex({
+      r: Math.round(hue(h + 1 / 3) * 255),
+      g: Math.round(hue(h) * 255),
+      b: Math.round(hue(h - 1 / 3) * 255)
+    });
+  }
+
+  function tones() {
+    var list = [];
+    var white = { r: 255, g: 255, b: 255 };
+    var black = { r: 0, g: 0, b: 0 };
+    for (var i = 5; i >= 1; i--) list.push(toHex(mix(base, white, i * 0.16)));
+    list.push(toHex(base));
+    for (var j = 1; j <= 5; j++) list.push(toHex(mix(base, black, j * 0.14)));
+    return list;
+  }
+
+  function harmonyGroups() {
+    var hsl = rgbToHsl(base);
+    var h = hsl.h;
+    var s = Math.max(hsl.s, 18);
+    var l = hsl.l;
+    function at(offset) {
+      return hslToHex(h + offset, s, l);
+    }
+    return [
+      { name: "主色 + 互补", colors: [at(0), at(180)] },
+      { name: "类似色", colors: [at(-30), at(0), at(30)] },
+      { name: "三角配色", colors: [at(0), at(120), at(240)] },
+      { name: "分裂互补", colors: [at(0), at(150), at(210)] }
+    ];
+  }
+
+  function copyColor(hex, source) {
+    PHT.copy(hex).then(function (ok) {
+      if (ok) {
+        PHT.status(statusEl, "已复制 " + hex.toUpperCase(), "ok");
+      } else {
+        PHT.status(statusEl, "复制失败，请手动记录 " + hex.toUpperCase(), "error");
+      }
+      if (source) {
+        source.style.outline = "2px solid var(--accent)";
+        setTimeout(function () {
+          source.style.outline = "";
+        }, 900);
+      }
+    });
+  }
+
+  function render() {
+    var hex = toHex(base);
+    picker.value = hex;
+    // 正在输入时不要回写，避免 3 位简写被立即展开导致光标错乱
+    if (document.activeElement !== baseHex) baseHex.value = hex;
+
+    toneStrip.textContent = "";
+    var list = tones();
+    list.forEach(function (color, i) {
+      var item = document.createElement("div");
+      var swatch = document.createElement("div");
+      swatch.className = "tone";
+      swatch.style.background = color;
+      swatch.setAttribute("role", "button");
+      swatch.setAttribute("tabindex", "0");
+      swatch.setAttribute("aria-label", "复制色值 " + color);
+      swatch.title = color;
+      swatch.addEventListener("click", function () {
+        copyColor(color, swatch);
+      });
+      swatch.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          copyColor(color, swatch);
+        }
+      });
+      var label = document.createElement("div");
+      label.className = "tone-label";
+      label.textContent = color;
+      item.appendChild(swatch);
+      item.appendChild(label);
+      toneStrip.appendChild(item);
+    });
+
+    harmony.textContent = "";
+    harmonyGroups().forEach(function (group) {
+      var row = document.createElement("div");
+      row.className = "harmony-row";
+      var name = document.createElement("span");
+      name.className = "name";
+      name.textContent = group.name;
+      var chips = document.createElement("div");
+      chips.className = "chips";
+      group.colors.forEach(function (color) {
+        var chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "chip-color";
+        var dot = document.createElement("i");
+        dot.style.background = color;
+        chip.appendChild(dot);
+        var text = document.createElement("span");
+        text.textContent = color;
+        chip.appendChild(text);
+        chip.addEventListener("click", function () {
+          copyColor(color, chip);
+        });
+        chips.appendChild(chip);
+      });
+      row.appendChild(name);
+      row.appendChild(chips);
+      harmony.appendChild(row);
+    });
+
+    var css = [":root {"];
+    list.forEach(function (color, i) {
+      css.push("  --color-" + (i + 1) + ": " + color + ";");
+    });
+    var groups = harmonyGroups();
+    css.push("  --color-complement: " + groups[0].colors[1] + ";");
+    css.push("  --color-analog-1: " + groups[1].colors[0] + ";");
+    css.push("  --color-analog-2: " + groups[1].colors[2] + ";");
+    css.push("}");
+    cssOut.value = css.join("\n");
+    PHT.status(statusEl, "主色 " + hex.toUpperCase() + " 的调色板已生成，点击色块可复制。", "ok");
+  }
+
+  picker.addEventListener("input", function () {
+    var rgb = parseHex(picker.value);
+    if (rgb) {
+      base = rgb;
+      render();
+    }
+  });
+
+  baseHex.addEventListener("input", function () {
+    var rgb = parseHex(baseHex.value);
+    if (rgb) {
+      base = rgb;
+      render();
+    }
+  });
+
+  baseHex.addEventListener("blur", function () {
+    if (!parseHex(baseHex.value)) {
+      baseHex.value = toHex(base);
+      PHT.status(statusEl, "色值格式不正确，已恢复为 " + toHex(base), "error");
+    }
+  });
+
+  $("#randomBtn").addEventListener("click", function () {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    base = { r: r, g: g, b: b };
+    render();
+  });
+
+  $("#copyCss").addEventListener("click", function () {
+    PHT.copy(cssOut.value).then(function (ok) {
+      if (ok) PHT.flash($("#copyCss"), "已复制");
+      PHT.status(statusEl, ok ? "CSS 变量已复制" : "复制失败，请手动选择", ok ? "ok" : "error");
+    });
+  });
+
+  $("#downloadCss").addEventListener("click", function () {
+    PHT.download("palette.css", cssOut.value + "\n", "text/css;charset=utf-8");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

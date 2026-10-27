@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正则表达式测试 - 纯 HTML 工具箱</title>
+<meta name="description" content="在线正则表达式测试工具，实时高亮匹配结果、列出分组与命名分组、预览替换效果，支持 i g m s u y 标志。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">
+{"title":"正则测试","desc":"实时高亮匹配、查看分组与命名分组、预览替换结果，内置邮箱、手机号等常用表达式。","category":"dev","tags":["正则","regex","匹配"],"order":5}
+</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style>
+/* inline:assets/tool-base.css:start */
+/* 工具页公共皮肤：构建时内联进每个工具，保证工具是单文件 */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f2f0ea;
+  --text: #101418;
+  --muted: #5b6570;
+  --border: #e2e0d8;
+  --accent: #0f766e;
+  --accent-2: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --shadow: 0 1px 2px rgba(16, 20, 24, 0.04), 0 10px 30px rgba(16, 20, 24, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0e12;
+  --surface: #12161d;
+  --surface-2: #182029;
+  --text: #e9eef5;
+  --muted: #93a1b0;
+  --border: #232c37;
+  --accent: #2dd4bf;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --danger: #f87171;
+  --ok: #4ade80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 460px at 8% -12%, var(--accent-soft), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 顶栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.brand img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+html[data-theme="light"] .i-moon,
+html[data-theme="dark"] .i-sun {
+  display: none;
+}
+
+/* 页面骨架 */
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 34px 20px 70px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 10px 0 8px;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 58em;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 面板 */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel > :first-child {
+  margin-top: 0;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span,
+.field > label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"] {
+  font-family: var(--mono);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+textarea.code,
+pre.code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+textarea.code {
+  min-height: 260px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201d;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+  color: #06201d;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* 输出 */
+pre.out {
+  margin: 0;
+  min-height: 90px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre.out:empty::before {
+  content: "输出会显示在这里";
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* 统计块 */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.stat dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* 分段选择 */
+.segmented {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented label {
+  position: relative;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented input:checked + span {
+  color: var(--text);
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+}
+
+/* 文件拖放 */
+.drop {
+  display: block;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.drop:hover,
+.drop.is-over {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* 页脚 */
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .shell {
+    padding: 24px 16px 56px;
+  }
+  .toolbar-inner {
+    padding: 0 16px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+/* inline:assets/tool-base.css:end */
+</style>
+<style>
+  .pattern-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .pattern-wrap { display: flex; align-items: center; gap: 0; flex: 1 1 340px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 9px; padding: 0 10px; font-family: var(--mono); }
+  .pattern-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .pattern-wrap span { color: var(--muted); }
+  .pattern-wrap input { border: 0; background: transparent; box-shadow: none; padding: 9px 4px; font-family: var(--mono); }
+  .pattern-wrap input:focus { box-shadow: none; }
+  .flags { display: flex; gap: 10px; flex-wrap: wrap; }
+  .flags label { display: inline-flex; align-items: center; gap: 4px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+  .flags input { accent-color: var(--accent); }
+  .presets { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .presets button { font-size: 0.75rem; padding: 3px 9px; }
+  .preview {
+    font-family: var(--mono);
+    font-size: 0.87rem;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    min-height: 120px;
+    max-height: 300px;
+    overflow: auto;
+  }
+  mark { background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--text); border-radius: 3px; padding: 0 1px; }
+  mark.zero { display: inline-block; width: 2px; height: 1em; background: var(--accent-2); vertical-align: text-bottom; }
+  .match-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .match-table th, .match-table td { text-align: left; padding: 6px 9px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .match-table th { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .match-table td { font-family: var(--mono); overflow-wrap: anywhere; }
+  .match-table td:first-child, .match-table td:nth-child(2) { color: var(--muted); white-space: nowrap; width: 1%; }
+  .match-table .group { color: var(--accent); }
+  #regexText { min-height: 150px; }
+  #replaceOut { min-height: 90px; }
+  .table-wrap { overflow-x: auto; max-height: 300px; }
+  .count { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">开发者 · 本地处理</span>
+    <h1>正则表达式测试</h1>
+    <p>输入表达式和文本，实时查看匹配位置、捕获分组和替换结果。所有计算在本地完成，不会发送正则或文本。</p>
+  </div>
+
+  <section class="panel">
+    <div class="pattern-row">
+      <div class="pattern-wrap">
+        <span>/</span>
+        <label class="sr-only" for="pattern">正则表达式</label>
+        <input type="text" id="pattern" spellcheck="false" autocomplete="off" placeholder="\b\w+@\w+\.\w+\b" value="\b\w+@\w+\.\w+\b">
+        <span>/</span>
+      </div>
+      <div class="flags" id="flags">
+        <label><input type="checkbox" value="g" checked> g</label>
+        <label><input type="checkbox" value="i"> i</label>
+        <label><input type="checkbox" value="m"> m</label>
+        <label><input type="checkbox" value="s"> s</label>
+        <label><input type="checkbox" value="u"> u</label>
+        <label><input type="checkbox" value="y"> y</label>
+      </div>
+    </div>
+
+    <div class="presets" id="presets">
+      <button class="btn ghost" type="button" data-pattern="\b\w+@\w+\.\w+\b" data-flags="g">邮箱</button>
+      <button class="btn ghost" type="button" data-pattern="1[3-9]\d{9}" data-flags="g">手机号</button>
+      <button class="btn ghost" type="button" data-pattern="https?://[^\s]+" data-flags="g">URL</button>
+      <button class="btn ghost" type="button" data-pattern="(\d{4})-(\d{2})-(\d{2})" data-flags="g">日期分组</button>
+      <button class="btn ghost" type="button" data-pattern="^(?<key>[\w-]+)=(?<value>.*)$" data-flags="gm">键值对（命名分组）</button>
+      <button class="btn ghost" type="button" data-pattern="\s+" data-flags="g">连续空白</button>
+    </div>
+
+    <div class="split">
+      <div class="field">
+        <label for="regexText">测试文本</label>
+        <textarea id="regexText" class="code" spellcheck="false">联系人：zhang@example.com，备用 li.si@demo.org
+电话 13800138000，日期 2026-10-25</textarea>
+      </div>
+      <div class="field">
+        <span>匹配预览 <span class="count" id="matchCount">0 处匹配</span></span>
+        <div class="preview" id="preview" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">匹配详情</p>
+    <div class="table-wrap" id="matchWrap">
+      <table class="match-table">
+        <thead><tr><th scope="col">#</th><th scope="col">位置</th><th scope="col">匹配内容</th><th scope="col">分组</th></tr></thead>
+        <tbody id="matchBody"></tbody>
+      </table>
+    </div>
+    <p class="hint" id="matchEmpty">还没有匹配结果。修改表达式或文本试试。</p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">替换预览</p>
+    <div class="field" style="margin-bottom:10px">
+      <span>替换为（支持 $1、$&lt;name&gt; 等语法）</span>
+      <input type="text" id="replacement" aria-label="替换内容" spellcheck="false" placeholder="留空表示删除匹配内容">
+    </div>
+    <pre class="out code" id="replaceOut" aria-live="polite"></pre>
+    <div class="actions">
+      <button class="btn" id="copyReplace" type="button">复制替换结果</button>
+    </div>
+    <p class="hint">提示：关闭 g 标志时只替换第一处匹配。复杂的嵌套量词（如 (a+)+$）可能导致页面卡顿，请谨慎使用。</p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script>
+/* inline:assets/tool-base.js:start */
+/* 工具页公共脚本：构建时内联进每个工具 */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var KEY = "pht-theme";
+
+  function readStored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme, persist) {
+    root.setAttribute("data-theme", theme);
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      btn.setAttribute("aria-label", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+      btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(KEY, theme);
+      } catch (e) {
+        /* 忽略私有模式写入失败 */
+      }
+    }
+  }
+
+  setTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  if (window.matchMedia) {
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) {
+      if (!readStored()) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () {
+          return true;
+        },
+        function () {
+          return legacyCopy(text);
+        }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function flash(btn, label) {
+    if (!btn) return;
+    if (!btn.__label) btn.__label = btn.innerHTML;
+    btn.textContent = label || "已复制";
+    clearTimeout(btn.__flashTimer);
+    btn.__flashTimer = setTimeout(function () {
+      btn.innerHTML = btn.__label;
+    }, 1400);
+  }
+
+  function setStatus(el, text, type) {
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("error", "ok");
+    if (type === "error" || type === "ok") el.classList.add(type);
+  }
+
+  function download(filename, data, mime) {
+    var blob = data instanceof Blob ? data : new Blob([data], { type: mime || "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function bytes(n) {
+    if (!isFinite(n) || n < 0) return "-";
+    var units = ["B", "KB", "MB", "GB"];
+    var i = 0;
+    while (n >= 1024 && i < units.length - 1) {
+      n /= 1024;
+      i++;
+    }
+    return (i === 0 ? n : n.toFixed(n >= 100 ? 0 : 1)) + " " + units[i];
+  }
+
+  function debounce(fn, wait) {
+    var t;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  }
+
+  window.PHT = {
+    $: function (sel, scope) {
+      return (scope || document).querySelector(sel);
+    },
+    $$: function (sel, scope) {
+      return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
+    },
+    copy: copyText,
+    flash: flash,
+    status: setStatus,
+    download: download,
+    bytes: bytes,
+    debounce: debounce,
+    setTheme: setTheme
+  };
+})();
+/* inline:assets/tool-base.js:end */
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = PHT.$;
+  var patternInput = $("#pattern");
+  var textInput = $("#regexText");
+  var flagsWrap = $("#flags");
+  var preview = $("#preview");
+  var matchBody = $("#matchBody");
+  var matchWrap = $("#matchWrap");
+  var matchEmpty = $("#matchEmpty");
+  var matchCount = $("#matchCount");
+  var replaceOut = $("#replaceOut");
+  var replacement = $("#replacement");
+  var statusEl = $("#status");
+  var LIMIT = 5000;
+
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function flags() {
+    return PHT.$$("input:checked", flagsWrap).map(function (i) { return i.value; }).join("");
+  }
+
+  function highlight(text, re) {
+    var html = "";
+    var last = 0;
+    var count = 0;
+    re.lastIndex = 0;
+    var m;
+    while ((m = re.exec(text)) !== null) {
+      if (count++ > LIMIT) break;
+      var start = m.index;
+      var end = start + m[0].length;
+      html += esc(text.slice(last, start));
+      if (m[0] === "") {
+        html += '<mark class="zero"></mark>';
+        last = start;
+        if (re.lastIndex === m.index) re.lastIndex = m.index + 1;
+        if (re.lastIndex > text.length) break;
+      } else {
+        html += "<mark>" + esc(m[0]) + "</mark>";
+        last = end;
+      }
+      if (!re.global) break;
+    }
+    return { html: html + esc(text.slice(last)), count: Math.min(count, LIMIT) };
+  }
+
+  function renderMatches(text, re) {
+    var rows = [];
+    re.lastIndex = 0;
+    var m;
+    var guard = 0;
+    while ((m = re.exec(text)) !== null) {
+      if (guard++ > LIMIT) break;
+      var groups = [];
+      for (var i = 1; i < m.length; i++) {
+        groups.push("$" + i + " = " + (m[i] === undefined ? "（未参与匹配）" : m[i]));
+      }
+      if (m.groups) {
+        Object.keys(m.groups).forEach(function (k) {
+          groups.push("$<" + k + "> = " + (m.groups[k] === undefined ? "（未参与匹配）" : m.groups[k]));
+        });
+      }
+      rows.push({ index: m.index, match: m[0], groups: groups });
+      if (m[0] === "") {
+        if (re.lastIndex === m.index) re.lastIndex = m.index + 1;
+        if (re.lastIndex > text.length) break;
+      }
+      if (!re.global) break;
+    }
+    return rows;
+  }
+
+  function render() {
+    var text = textInput.value;
+    var source = patternInput.value;
+    var fl = flags();
+    var re;
+
+    try {
+      re = new RegExp(source, fl);
+    } catch (e) {
+      PHT.status(statusEl, "表达式有误：" + e.message, "error");
+      preview.innerHTML = '<span style="color:var(--muted)">表达式有误</span>';
+      matchBody.textContent = "";
+      matchWrap.hidden = true;
+      matchEmpty.hidden = false;
+      matchCount.textContent = "0 处匹配";
+      replaceOut.textContent = "";
+      return;
+    }
+
+    var hi = highlight(text, re);
+    preview.innerHTML = hi.html;
+    matchCount.textContent = hi.count + " 处匹配" + (hi.count >= LIMIT ? "（已截断）" : "");
+
+    var rows = renderMatches(text, re);
+    matchBody.textContent = "";
+    rows.forEach(function (row, i) {
+      var tr = document.createElement("tr");
+      var tdN = document.createElement("td");
+      tdN.textContent = String(i + 1);
+      var tdPos = document.createElement("td");
+      tdPos.textContent = String(row.index);
+      var tdMatch = document.createElement("td");
+      tdMatch.textContent = row.match === "" ? "（空匹配）" : row.match;
+      var tdGroups = document.createElement("td");
+      if (row.groups.length === 0) {
+        tdGroups.textContent = "—";
+        tdGroups.style.color = "var(--muted)";
+      } else {
+        row.groups.forEach(function (g, idx) {
+          var line = document.createElement("div");
+          line.className = "group";
+          line.textContent = g;
+          tdGroups.appendChild(line);
+        });
+      }
+      tr.appendChild(tdN);
+      tr.appendChild(tdPos);
+      tr.appendChild(tdMatch);
+      tr.appendChild(tdGroups);
+      matchBody.appendChild(tr);
+    });
+
+    matchWrap.hidden = rows.length === 0;
+    matchEmpty.hidden = rows.length > 0;
+
+    try {
+      replaceOut.textContent = text.replace(re, replacement.value);
+    } catch (e) {
+      replaceOut.textContent = "";
+      PHT.status(statusEl, "替换失败：" + e.message, "error");
+      return;
+    }
+
+    if (source === "") {
+      PHT.status(statusEl, "表达式为空：空表达式会匹配每个位置", "error");
+    } else {
+      PHT.status(statusEl, "表达式可用 · 共 " + rows.length + " 处匹配" + (rows.length >= LIMIT ? "（结果过多已截断）" : ""), "ok");
+    }
+  }
+
+  var debounced = PHT.debounce(render, 180);
+  patternInput.addEventListener("input", debounced);
+  textInput.addEventListener("input", debounced);
+  replacement.addEventListener("input", debounced);
+  flagsWrap.addEventListener("change", render);
+
+  $("#presets").addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-pattern]");
+    if (!btn) return;
+    patternInput.value = btn.getAttribute("data-pattern");
+    var wanted = btn.getAttribute("data-flags") || "";
+    PHT.$$("input", flagsWrap).forEach(function (box) {
+      box.checked = wanted.indexOf(box.value) !== -1;
+    });
+    render();
+  });
+
+  $("#copyReplace").addEventListener("click", function () {
+    var value = replaceOut.textContent;
+    if (!value) {
+      PHT.status(statusEl, "没有可复制的内容", "error");
+      return;
+    }
+    PHT.copy(value).then(function (ok) {
+      if (ok) PHT.flash($("#copyReplace"), "已复制");
+      PHT.status(statusEl, ok ? "替换结果已复制" : "复制失败，请手动选择", ok ? "ok" : "error");
+    });
+  });
+
+  render();
+  patternInput.focus();
+  patternInput.select();
+})();
+</script>
+</body>
+</html>

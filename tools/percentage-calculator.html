@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百分比计算器 - 纯 HTML 工具箱</title>
+<meta name="description" content="四种常用百分比计算：求一个数的百分之几、求占比、求增长率、按百分比增减，输入即时出结果并显示计算过程。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">
+{"title":"百分比计算器","desc":"求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。","category":"calc","tags":["百分比","计算","增长率"],"order":1}
+</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style>
+/* inline:assets/tool-base.css:start */
+/* 工具页公共皮肤：构建时内联进每个工具，保证工具是单文件 */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f2f0ea;
+  --text: #101418;
+  --muted: #5b6570;
+  --border: #e2e0d8;
+  --accent: #0f766e;
+  --accent-2: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --shadow: 0 1px 2px rgba(16, 20, 24, 0.04), 0 10px 30px rgba(16, 20, 24, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0e12;
+  --surface: #12161d;
+  --surface-2: #182029;
+  --text: #e9eef5;
+  --muted: #93a1b0;
+  --border: #232c37;
+  --accent: #2dd4bf;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --danger: #f87171;
+  --ok: #4ade80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 460px at 8% -12%, var(--accent-soft), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 顶栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.brand img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+html[data-theme="light"] .i-moon,
+html[data-theme="dark"] .i-sun {
+  display: none;
+}
+
+/* 页面骨架 */
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 34px 20px 70px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 10px 0 8px;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 58em;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 面板 */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel > :first-child {
+  margin-top: 0;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span,
+.field > label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"] {
+  font-family: var(--mono);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+textarea.code,
+pre.code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+textarea.code {
+  min-height: 260px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201d;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+  color: #06201d;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* 输出 */
+pre.out {
+  margin: 0;
+  min-height: 90px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre.out:empty::before {
+  content: "输出会显示在这里";
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* 统计块 */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.stat dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* 分段选择 */
+.segmented {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented label {
+  position: relative;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented input:checked + span {
+  color: var(--text);
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+}
+
+/* 文件拖放 */
+.drop {
+  display: block;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.drop:hover,
+.drop.is-over {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* 页脚 */
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .shell {
+    padding: 24px 16px 56px;
+  }
+  .toolbar-inner {
+    padding: 0 16px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+/* inline:assets/tool-base.css:end */
+  .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .calc-card { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .calc-card h2 { font-size: 0.95rem; margin: 0; }
+  .calc-card .expr { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+  .calc-card .expr input { width: 96px; text-align: right; font-family: var(--mono); }
+  .calc-card .expr .pct { width: 72px; }
+  .result-box { margin-top: auto; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent); }
+  .result-box .label { font-size: 0.74rem; color: var(--muted); }
+  .result-box .value { font-family: var(--mono); font-size: 1.24rem; font-weight: 600; margin-top: 2px; word-break: break-all; }
+  .formula { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); margin: 0; }
+  .sign-toggle { display: inline-flex; gap: 4px; }
+  .sign-toggle .btn { padding: 6px 12px; font-size: 0.8rem; }
+  .sign-toggle .btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (max-width: 620px) { .calc-card .expr input { width: 84px; } }
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>百分比计算器</h1>
+    <p>四种最常见的百分比问题都在这一页：求一个数的百分之几、求占比、算增长率、按比例增减。输入数字即时出结果，同时给出对应的公式，方便核对。</p>
+  </div>
+
+  <section class="panel">
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h2>求一个数的百分之几</h2>
+        <div class="expr">
+          <input type="number" id="p1Num" value="200" step="any" aria-label="基数">
+          <span>的</span>
+          <input type="number" id="p1Pct" class="pct" value="15" step="any" aria-label="百分比">
+          <span>% 是多少</span>
+        </div>
+        <div class="result-box">
+          <div class="label">结果</div>
+          <div class="value" id="p1Out">-</div>
+        </div>
+        <p class="formula" id="p1Formula">基数 × 百分比 ÷ 100</p>
+      </div>
+
+      <div class="calc-card">
+        <h2>求占比</h2>
+        <div class="expr">
+          <input type="number" id="p2Part" value="45" step="any" aria-label="部分">
+          <span>占</span>
+          <input type="number" id="p2Whole" value="60" step="any" aria-label="总量">
+          <span>的百分之几</span>
+        </div>
+        <div class="result-box">
+          <div class="label">结果</div>
+          <div class="value" id="p2Out">-</div>
+        </div>
+        <p class="formula" id="p2Formula">部分 ÷ 总量 × 100%</p>
+      </div>
+
+      <div class="calc-card">
+        <h2>增长率 / 变化率</h2>
+        <div class="expr">
+          <span>从</span>
+          <input type="number" id="p3From" value="80" step="any" aria-label="原值">
+          <span>到</span>
+          <input type="number" id="p3To" value="100" step="any" aria-label="新值">
+        </div>
+        <div class="result-box">
+          <div class="label" id="p3Label">变化</div>
+          <div class="value" id="p3Out">-</div>
+        </div>
+        <p class="formula" id="p3Formula">(新值 − 原值) ÷ |原值| × 100%</p>
+      </div>
+
+      <div class="calc-card">
+        <h2>按百分比增减</h2>
+        <div class="expr">
+          <input type="number" id="p4Num" value="300" step="any" aria-label="原值">
+          <span>增加</span>
+          <input type="number" id="p4Pct" class="pct" value="8" step="any" aria-label="百分比">
+          <span>% 后</span>
+        </div>
+        <div class="sign-toggle" role="group" aria-label="增减方向">
+          <button class="btn" type="button" data-dir="inc" aria-pressed="true">增加</button>
+          <button class="btn" type="button" data-dir="dec" aria-pressed="false">减少</button>
+        </div>
+        <div class="result-box">
+          <div class="label">结果</div>
+          <div class="value" id="p4Out">-</div>
+        </div>
+        <p class="formula" id="p4Formula">原值 × (1 + 百分比 ÷ 100)</p>
+      </div>
+    </div>
+    <p class="status" id="status" aria-live="polite">结果会随输入实时更新。</p>
+  </section>
+
+  <footer class="foot">
+    <span>所有计算都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script>
+/* inline:assets/tool-base.js:start */
+/* 工具页公共脚本：构建时内联进每个工具 */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var KEY = "pht-theme";
+
+  function readStored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme, persist) {
+    root.setAttribute("data-theme", theme);
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      btn.setAttribute("aria-label", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+      btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(KEY, theme);
+      } catch (e) {
+        /* 忽略私有模式写入失败 */
+      }
+    }
+  }
+
+  setTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  if (window.matchMedia) {
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) {
+      if (!readStored()) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () {
+          return true;
+        },
+        function () {
+          return legacyCopy(text);
+        }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function flash(btn, label) {
+    if (!btn) return;
+    if (!btn.__label) btn.__label = btn.innerHTML;
+    btn.textContent = label || "已复制";
+    clearTimeout(btn.__flashTimer);
+    btn.__flashTimer = setTimeout(function () {
+      btn.innerHTML = btn.__label;
+    }, 1400);
+  }
+
+  function setStatus(el, text, type) {
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("error", "ok");
+    if (type === "error" || type === "ok") el.classList.add(type);
+  }
+
+  function download(filename, data, mime) {
+    var blob = data instanceof Blob ? data : new Blob([data], { type: mime || "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function bytes(n) {
+    if (!isFinite(n) || n < 0) return "-";
+    var units = ["B", "KB", "MB", "GB"];
+    var i = 0;
+    while (n >= 1024 && i < units.length - 1) {
+      n /= 1024;
+      i++;
+    }
+    return (i === 0 ? n : n.toFixed(n >= 100 ? 0 : 1)) + " " + units[i];
+  }
+
+  function debounce(fn, wait) {
+    var t;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  }
+
+  window.PHT = {
+    $: function (sel, scope) {
+      return (scope || document).querySelector(sel);
+    },
+    $$: function (sel, scope) {
+      return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
+    },
+    copy: copyText,
+    flash: flash,
+    status: setStatus,
+    download: download,
+    bytes: bytes,
+    debounce: debounce,
+    setTheme: setTheme
+  };
+})();
+/* inline:assets/tool-base.js:end */
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = PHT.$;
+
+  function num(el) {
+    var v = Number(el.value);
+    return el.value.trim() === "" || !isFinite(v) ? null : v;
+  }
+
+  function fmt(n) {
+    if (n === null || !isFinite(n)) return "-";
+    var rounded = Math.round(n * 1e6) / 1e6;
+    return rounded.toLocaleString("en-US", { maximumFractionDigits: 6 });
+  }
+
+  function setOut(el, text) {
+    el.textContent = text;
+  }
+
+  // 1. 基数 × 百分比
+  function calc1() {
+    var base = num($("#p1Num"));
+    var pct = num($("#p1Pct"));
+    var out = $("#p1Out");
+    if (base === null || pct === null) {
+      setOut(out, "-");
+      $("#p1Formula").textContent = "基数 × 百分比 ÷ 100";
+      return;
+    }
+    var value = (base * pct) / 100;
+    setOut(out, fmt(value));
+    $("#p1Formula").textContent = fmt(base) + " × " + fmt(pct) + " ÷ 100 = " + fmt(value);
+  }
+
+  // 2. 部分 ÷ 总量
+  function calc2() {
+    var part = num($("#p2Part"));
+    var whole = num($("#p2Whole"));
+    var out = $("#p2Out");
+    if (part === null || whole === null) {
+      setOut(out, "-");
+      $("#p2Formula").textContent = "部分 ÷ 总量 × 100%";
+      return;
+    }
+    if (whole === 0) {
+      setOut(out, "无法计算");
+      $("#p2Formula").textContent = "总量为 0，占比无意义";
+      return;
+    }
+    var pct = (part / whole) * 100;
+    setOut(out, fmt(pct) + "%");
+    $("#p2Formula").textContent = fmt(part) + " ÷ " + fmt(whole) + " × 100% = " + fmt(pct) + "%";
+  }
+
+  // 3. 变化率
+  function calc3() {
+    var from = num($("#p3From"));
+    var to = num($("#p3To"));
+    var out = $("#p3Out");
+    var label = $("#p3Label");
+    if (from === null || to === null) {
+      setOut(out, "-");
+      label.textContent = "变化";
+      $("#p3Formula").textContent = "(新值 − 原值) ÷ |原值| × 100%";
+      return;
+    }
+    if (from === 0) {
+      setOut(out, "无法计算");
+      label.textContent = "变化";
+      $("#p3Formula").textContent = "原值为 0，变化率无意义（新值为 0 时也未发生变化）";
+      return;
+    }
+    var pct = ((to - from) / Math.abs(from)) * 100;
+    if (pct > 0) label.textContent = "增长";
+    else if (pct < 0) label.textContent = "下降";
+    else label.textContent = "无变化";
+    setOut(out, (pct > 0 ? "+" : "") + fmt(pct) + "%");
+    $("#p3Formula").textContent =
+      "(" + fmt(to) + " − " + fmt(from) + ") ÷ |" + fmt(from) + "| × 100% = " + fmt(pct) + "%";
+  }
+
+  // 4. 按百分比增减
+  var dir = "inc";
+  function calc4() {
+    var base = num($("#p4Num"));
+    var pct = num($("#p4Pct"));
+    var out = $("#p4Out");
+    if (base === null || pct === null) {
+      setOut(out, "-");
+      return;
+    }
+    var factor = dir === "inc" ? 1 + pct / 100 : 1 - pct / 100;
+    var value = base * factor;
+    setOut(out, fmt(value));
+    $("#p4Formula").textContent =
+      fmt(base) + " × (1 " + (dir === "inc" ? "+" : "−") + " " + fmt(pct) + " ÷ 100) = " + fmt(value);
+  }
+
+  function runAll() {
+    calc1();
+    calc2();
+    calc3();
+    calc4();
+  }
+
+  var inputs = ["#p1Num", "#p1Pct", "#p2Part", "#p2Whole", "#p3From", "#p3To", "#p4Num", "#p4Pct"];
+  inputs.forEach(function (sel) {
+    $(sel).addEventListener("input", runAll);
+  });
+
+  PHT.$$("[data-dir]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      dir = btn.getAttribute("data-dir");
+      PHT.$$("[data-dir]").forEach(function (other) {
+        other.setAttribute("aria-pressed", other === btn ? "true" : "false");
+      });
+      var word = dir === "inc" ? "增加" : "减少";
+      PHT.$$("#p4Pct")[0].previousElementSibling.textContent = word;
+      PHT.status($("#status"), "已切换为按百分比" + word, "ok");
+      calc4();
+    });
+  });
+
+  runAll();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>时间戳转换（Unix Timestamp）- 纯 HTML 工具箱</title>
+<meta name="description" content="Unix 时间戳与日期互转工具：秒和毫秒自动识别，同时显示本地时间、UTC 时间和 ISO 8601，并给出相对时间。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">
+{"title":"时间戳转换","desc":"Unix 时间戳与日期互转，秒/毫秒自动识别，同时展示本地时间、UTC、ISO 8601 与相对时间。","category":"dev","tags":["时间戳","unix","日期"],"order":7}
+</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style>
+/* inline:assets/tool-base.css:start */
+/* 工具页公共皮肤：构建时内联进每个工具，保证工具是单文件 */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f2f0ea;
+  --text: #101418;
+  --muted: #5b6570;
+  --border: #e2e0d8;
+  --accent: #0f766e;
+  --accent-2: #c2410c;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --shadow: 0 1px 2px rgba(16, 20, 24, 0.04), 0 10px 30px rgba(16, 20, 24, 0.06);
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0e12;
+  --surface: #12161d;
+  --surface-2: #182029;
+  --text: #e9eef5;
+  --muted: #93a1b0;
+  --border: #232c37;
+  --accent: #2dd4bf;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(45, 212, 191, 0.12);
+  --danger: #f87171;
+  --ok: #4ade80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 460px at 8% -12%, var(--accent-soft), transparent 62%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 顶栏 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.brand img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+html[data-theme="light"] .i-moon,
+html[data-theme="dark"] .i-sun {
+  display: none;
+}
+
+/* 页面骨架 */
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 34px 20px 70px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 10px 0 8px;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 58em;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 面板 */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel > :first-child {
+  margin-top: 0;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span,
+.field > label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"] {
+  font-family: var(--mono);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+textarea.code,
+pre.code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+textarea.code {
+  min-height: 260px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="color"] {
+  width: 54px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201d;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+  color: #06201d;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* 输出 */
+pre.out {
+  margin: 0;
+  min-height: 90px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre.out:empty::before {
+  content: "输出会显示在这里";
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* 统计块 */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.stat dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* 分段选择 */
+.segmented {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.segmented label {
+  position: relative;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  user-select: none;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented input:checked + span {
+  color: var(--text);
+}
+
+.segmented label:has(input:checked) {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.segmented label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+}
+
+/* 文件拖放 */
+.drop {
+  display: block;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.drop:hover,
+.drop.is-over {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.drop input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* 页脚 */
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 760px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .shell {
+    padding: 24px 16px 56px;
+  }
+  .toolbar-inner {
+    padding: 0 16px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+/* inline:assets/tool-base.css:end */
+</style>
+<style>
+  .clock { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .clock .big { font-family: var(--mono); font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; }
+  .clock .ts { font-family: var(--mono); color: var(--accent); font-size: 1rem; }
+  .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-top: 14px; }
+  .result-item { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .result-item .body { flex: 1; min-width: 0; }
+  .result-item .body { display: flex; flex-direction: column; gap: 2px; }
+  .result-item .rlabel { font-size: 0.72rem; color: var(--muted); }
+  .result-item .rvalue { font-family: var(--mono); font-size: 0.88rem; overflow-wrap: anywhere; }
+  .result-item .btn { padding: 4px 8px; font-size: 0.72rem; }
+  .relative { font-weight: 600; }
+  .unit-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; margin-bottom: 12px; }
+  #tsInput { max-width: 320px; font-family: var(--mono); }
+  .date-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; }
+  .date-row .field { flex: 1 1 260px; }
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">开发者 · 本地处理</span>
+    <h1>时间戳转换</h1>
+    <p>Unix 时间戳与可读日期互转。支持 10 位秒级和 13 位毫秒级时间戳，结果显示会使用当前浏览器所在时区。</p>
+  </div>
+
+  <section class="panel">
+    <p class="panel-title">当前时间</p>
+    <div class="clock">
+      <span class="big" id="nowDate">--</span>
+      <span class="ts" id="nowTs">--</span>
+      <button class="btn" id="copyNow" type="button">复制当前时间戳</button>
+    </div>
+    <p class="hint" id="tzNote"></p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">时间戳 → 日期</p>
+    <div class="unit-row">
+      <label class="field">
+        <span>时间戳</span>
+        <input type="text" id="tsInput" inputmode="numeric" spellcheck="false" placeholder="1700000000" value="1700000000">
+      </label>
+      <div class="field">
+        <span>单位</span>
+        <div class="segmented" id="unitGroup">
+          <label><input type="radio" name="unit" value="auto" checked><span>自动</span></label>
+          <label><input type="radio" name="unit" value="s"><span>秒</span></label>
+          <label><input type="radio" name="unit" value="ms"><span>毫秒</span></label>
+        </div>
+      </div>
+      <button class="btn primary" id="toDateBtn" type="button">转换</button>
+      <button class="btn" id="nowBtn" type="button">使用当前时间</button>
+    </div>
+
+    <div class="result-grid" id="resultGrid" hidden>
+      <div class="result-item"><div class="body"><span class="rlabel">本地时间</span><span class="rvalue" id="rLocal">-</span></div><button class="btn ghost" data-copy="rLocal" type="button">复制</button></div>
+      <div class="result-item"><div class="body"><span class="rlabel">UTC 时间</span><span class="rvalue" id="rUtc">-</span></div><button class="btn ghost" data-copy="rUtc" type="button">复制</button></div>
+      <div class="result-item"><div class="body"><span class="rlabel">ISO 8601</span><span class="rvalue" id="rIso">-</span></div><button class="btn ghost" data-copy="rIso" type="button">复制</button></div>
+      <div class="result-item"><div class="body"><span class="rlabel">秒级时间戳</span><span class="rvalue" id="rSec">-</span></div><button class="btn ghost" data-copy="rSec" type="button">复制</button></div>
+      <div class="result-item"><div class="body"><span class="rlabel">毫秒级时间戳</span><span class="rvalue" id="rMs">-</span></div><button class="btn ghost" data-copy="rMs" type="button">复制</button></div>
+      <div class="result-item"><div class="body"><span class="rlabel">相对现在</span><span class="rvalue relative" id="rRel">-</span></div><button class="btn ghost" data-copy="rRel" type="button">复制</button></div>
+    </div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel">
+    <p class="panel-title">日期 → 时间戳</p>
+    <div class="date-row">
+      <label class="field">
+        <span>选择本地日期时间</span>
+        <input type="datetime-local" id="dateInput" step="1">
+      </label>
+      <button class="btn primary" id="toTsBtn" type="button">转换</button>
+      <button class="btn" id="fillNowBtn" type="button">填入当前时间</button>
+    </div>
+    <p class="hint" id="dateHint">datetime-local 按浏览器本地时区解释。</p>
+    <p class="status" id="dateStatus" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script>
+/* inline:assets/tool-base.js:start */
+/* 工具页公共脚本：构建时内联进每个工具 */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var KEY = "pht-theme";
+
+  function readStored() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme, persist) {
+    root.setAttribute("data-theme", theme);
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      btn.setAttribute("aria-label", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+      btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(KEY, theme);
+      } catch (e) {
+        /* 忽略私有模式写入失败 */
+      }
+    }
+  }
+
+  setTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  if (window.matchMedia) {
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) {
+      if (!readStored()) setTheme(e.matches ? "dark" : "light", false);
+    };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () {
+          return true;
+        },
+        function () {
+          return legacyCopy(text);
+        }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function flash(btn, label) {
+    if (!btn) return;
+    if (!btn.__label) btn.__label = btn.innerHTML;
+    btn.textContent = label || "已复制";
+    clearTimeout(btn.__flashTimer);
+    btn.__flashTimer = setTimeout(function () {
+      btn.innerHTML = btn.__label;
+    }, 1400);
+  }
+
+  function setStatus(el, text, type) {
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("error", "ok");
+    if (type === "error" || type === "ok") el.classList.add(type);
+  }
+
+  function download(filename, data, mime) {
+    var blob = data instanceof Blob ? data : new Blob([data], { type: mime || "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
+  function bytes(n) {
+    if (!isFinite(n) || n < 0) return "-";
+    var units = ["B", "KB", "MB", "GB"];
+    var i = 0;
+    while (n >= 1024 && i < units.length - 1) {
+      n /= 1024;
+      i++;
+    }
+    return (i === 0 ? n : n.toFixed(n >= 100 ? 0 : 1)) + " " + units[i];
+  }
+
+  function debounce(fn, wait) {
+    var t;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  }
+
+  window.PHT = {
+    $: function (sel, scope) {
+      return (scope || document).querySelector(sel);
+    },
+    $$: function (sel, scope) {
+      return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
+    },
+    copy: copyText,
+    flash: flash,
+    status: setStatus,
+    download: download,
+    bytes: bytes,
+    debounce: debounce,
+    setTheme: setTheme
+  };
+})();
+/* inline:assets/tool-base.js:end */
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = PHT.$;
+  var tsInput = $("#tsInput");
+  var resultGrid = $("#resultGrid");
+  var statusEl = $("#status");
+  var dateInput = $("#dateInput");
+  var dateStatus = $("#dateStatus");
+  var WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+
+  function pad(n, len) {
+    return String(n).padStart(len || 2, "0");
+  }
+
+  function fmtLocal(d) {
+    return (
+      d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " +
+      pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds()) + " " + WEEK[d.getDay()]
+    );
+  }
+
+  function fmtUtc(d) {
+    return (
+      d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()) + " " +
+      pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + " UTC"
+    );
+  }
+
+  function relative(d) {
+    var diff = d.getTime() - Date.now();
+    var abs = Math.abs(diff);
+    var future = diff > 0;
+    var units = [
+      [31536000000, "年"],
+      [2592000000, "个月"],
+      [604800000, "周"],
+      [86400000, "天"],
+      [3600000, "小时"],
+      [60000, "分钟"],
+      [1000, "秒"]
+    ];
+    if (abs < 3000) return "刚刚";
+    for (var i = 0; i < units.length; i++) {
+      var size = units[i][0];
+      if (abs >= size) {
+        var value = Math.floor(abs / size);
+        return value + " " + units[i][1] + (future ? "后" : "前");
+      }
+    }
+    return future ? "即将" : "刚刚";
+  }
+
+  function unitOf(value) {
+    var mode = document.querySelector('input[name="unit"]:checked').value;
+    if (mode === "s") return "s";
+    if (mode === "ms") return "ms";
+    return Math.abs(value) >= 100000000000 ? "ms" : "s";
+  }
+
+  function convert() {
+    var raw = tsInput.value.trim();
+    if (raw === "") {
+      resultGrid.hidden = true;
+      PHT.status(statusEl, "请输入时间戳", "error");
+      return;
+    }
+    if (!/^-?\d+$/.test(raw)) {
+      resultGrid.hidden = true;
+      PHT.status(statusEl, "时间戳必须是整数，可以带负号", "error");
+      return;
+    }
+    var value = Number(raw);
+    if (!isFinite(value)) {
+      resultGrid.hidden = true;
+      PHT.status(statusEl, "数值超出范围", "error");
+      return;
+    }
+    var unit = unitOf(value);
+    var ms = unit === "ms" ? value : value * 1000;
+    var d = new Date(ms);
+    if (isNaN(d.getTime())) {
+      resultGrid.hidden = true;
+      PHT.status(statusEl, "这个时间戳超出了 JavaScript 支持的日期范围", "error");
+      return;
+    }
+
+    $("#rLocal").textContent = fmtLocal(d);
+    $("#rUtc").textContent = fmtUtc(d);
+    $("#rIso").textContent = d.toISOString();
+    $("#rSec").textContent = String(Math.floor(ms / 1000));
+    $("#rMs").textContent = String(ms);
+    $("#rRel").textContent = relative(d);
+    resultGrid.hidden = false;
+    PHT.status(statusEl, "已按" + (unit === "ms" ? "毫秒" : "秒") + "解析", "ok");
+  }
+
+  function updateNow() {
+    var now = new Date();
+    $("#nowDate").textContent = fmtLocal(now);
+    $("#nowTs").textContent = String(Math.floor(now.getTime() / 1000)) + " / " + now.getTime();
+  }
+
+  function toLocalInputValue(d) {
+    return (
+      d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + "T" +
+      pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds())
+    );
+  }
+
+  function convertDate() {
+    if (!dateInput.value) {
+      PHT.status(dateStatus, "请选择日期时间", "error");
+      return;
+    }
+    var d = new Date(dateInput.value);
+    if (isNaN(d.getTime())) {
+      PHT.status(dateStatus, "无法解析这个日期", "error");
+      return;
+    }
+    PHT.status(
+      dateStatus,
+      "秒：" + Math.floor(d.getTime() / 1000) + "　毫秒：" + d.getTime() + "　ISO：" + d.toISOString(),
+      "ok"
+    );
+  }
+
+  $("#toDateBtn").addEventListener("click", convert);
+  tsInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      convert();
+    }
+  });
+  $("#unitGroup").addEventListener("change", convert);
+  $("#nowBtn").addEventListener("click", function () {
+    tsInput.value = String(Math.floor(Date.now() / 1000));
+    document.querySelector('input[name="unit"][value="auto"]').checked = true;
+    convert();
+  });
+  $("#copyNow").addEventListener("click", function () {
+    var text = String(Math.floor(Date.now() / 1000));
+    PHT.copy(text).then(function (ok) {
+      if (ok) PHT.flash($("#copyNow"));
+      PHT.status(statusEl, ok ? "当前秒级时间戳已复制" : "复制失败，请手动复制", ok ? "ok" : "error");
+    });
+  });
+
+  resultGrid.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-copy]");
+    if (!btn) return;
+    var text = document.getElementById(btn.getAttribute("data-copy")).textContent;
+    PHT.copy(text).then(function (ok) {
+      if (ok) PHT.flash(btn);
+      PHT.status(statusEl, ok ? "已复制：" + text : "复制失败，请手动选择", ok ? "ok" : "error");
+    });
+  });
+
+  $("#toTsBtn").addEventListener("click", convertDate);
+  $("#fillNowBtn").addEventListener("click", function () {
+    dateInput.value = toLocalInputValue(new Date());
+    convertDate();
+  });
+  dateInput.addEventListener("change", convertDate);
+
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "本地时区";
+    var offset = -new Date().getTimezoneOffset();
+    var sign = offset >= 0 ? "+" : "-";
+    var absOffset = Math.abs(offset);
+    $("#tzNote").textContent = "当前时区：" + tz + "（UTC" + sign + pad(Math.floor(absOffset / 60)) + ":" + pad(absOffset % 60) + "）";
+  } catch (e) {
+    $("#tzNote").textContent = "当前时区由浏览器决定。";
+  }
+
+  updateNow();
+  setInterval(updateNow, 1000);
+  dateInput.value = toLocalInputValue(new Date());
+  convert();
+  tsInput.focus();
+  tsInput.select();
+})();
+</script>
+</body>
+</html>
