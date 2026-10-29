@@ -827,6 +827,60 @@ const tests = {
     eq(doc.querySelectorAll("#unitBody tr").length, 0, `${name}: 空输入时换算表应为空`);
   },
 
+  "password-generator.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const output = doc.querySelector("#passwords");
+    const lines = () => output.value.split("\n");
+    const setLen = (v) => {
+      const el = doc.querySelector("#length");
+      el.value = String(v);
+      el.dispatchEvent(new window.Event("input", { bubbles: true }));
+    };
+
+    eq(lines().length, 5, `${name}: 默认应生成 5 条密码`);
+    ok(lines().every((l) => l.length === 16), `${name}: 默认长度应为 16`);
+    ok(/[a-z]/.test(output.value) && /[A-Z]/.test(output.value) && /[0-9]/.test(output.value), `${name}: 默认字符集未覆盖大小写与数字`);
+    ok(/^[\x21-\x7e]+$/.test(output.value.replace(/\n/g, "")), `${name}: 生成了非 ASCII 可见字符`);
+
+    setLen(32);
+    eq(doc.querySelector("#lengthOut").textContent, "32", `${name}: 长度读数未更新`);
+    doc.querySelector("#generateBtn").click();
+    ok(lines().every((l) => l.length === 32), `${name}: 调整长度后未生效`);
+
+    // 关闭全部字符集
+    ["lower", "upper", "digits", "symbols"].forEach((id) => {
+      const box = doc.querySelector("#" + id);
+      box.checked = false;
+      box.dispatchEvent(new window.Event("change", { bubbles: true }));
+    });
+    doc.querySelector("#generateBtn").click();
+    eq(output.value, "", `${name}: 未选字符集时不应生成密码`);
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: 未选字符集未提示`);
+
+    // 仅小写 + 排除易混淆 + 每类至少一个
+    const lower = doc.querySelector("#lower");
+    lower.checked = true;
+    lower.dispatchEvent(new window.Event("change", { bubbles: true }));
+    doc.querySelector("#noAmbiguous").checked = true;
+    doc.querySelector("#noAmbiguous").dispatchEvent(new window.Event("change", { bubbles: true }));
+    setLen(10);
+    doc.querySelector("#generateBtn").click();
+    ok(/^[a-km-np-z]+$/.test(output.value.replace(/\n/g, "")), `${name}: 排除易混淆字符未生效 -> ${output.value}`);
+    ok(doc.querySelector("#strengthMeta").textContent.includes("24 个字符"), `${name}: 排除后字符集数量不正确 -> ${doc.querySelector("#strengthMeta").textContent}`);
+
+    doc.querySelector("#digits").checked = true;
+    doc.querySelector("#generateBtn").click();
+    ok(lines().every((l) => /[0-9]/.test(l) && /[a-z]/.test(l)), `${name}: 数字优先规则未生效`);
+
+    const count = doc.querySelector("#count");
+    count.value = "99";
+    count.dispatchEvent(new window.Event("change", { bubbles: true }));
+    eq(count.value, "20", `${name}: 生成条数未限制为 20`);
+
+    doc.querySelector("#clearBtn").click();
+    eq(output.value, "", `${name}: 清空未生效`);
+  },
+
   "image-base64.html": async (name, ctx) => {
     const { doc, window } = ctx;
     const input = doc.querySelector("#fileInput");

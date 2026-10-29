@@ -47,7 +47,7 @@
 <main class="wrap" id="tools">
   <section class="hero">
     <p class="eyebrow">Pure HTML · Zero Dependency</p>
-    <h1>浏览器里的<em><!-- build:count:start -->21<!-- build:count:end --></em>个纯 HTML 小工具</h1>
+    <h1>浏览器里的<em><!-- build:count:start -->22<!-- build:count:end --></em>个纯 HTML 小工具</h1>
     <p class="lede">每个工具都是独立的单个 HTML 文件：不装依赖、不连后端、不收集数据。断网可用，也可以直接下载到本地长期使用。全部源码开放，欢迎按同一套结构继续添加新工具。</p>
 
     <div class="search-row">
@@ -60,7 +60,7 @@
     </div>
 
     <ul class="stats">
-      <li><b><!-- build:count:start -->21<!-- build:count:end --></b> 个工具</li>
+      <li><b><!-- build:count:start -->22<!-- build:count:end --></b> 个工具</li>
       <li><b>0</b> 个外部依赖</li>
       <li><b>100%</b> 浏览器本地处理</li>
       <li><b>MIT</b> 开源协议</li>
@@ -69,12 +69,13 @@
 
   <div class="chips" role="group" aria-label="按分类筛选">
     <!-- build:chips:start -->
-    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>21</span></button>
+    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>22</span></button>
     <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>5</span></button>
     <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>8</span></button>
     <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>4</span></button>
     <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>2</span></button>
     <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>2</span></button>
+    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>1</span></button>
     <!-- build:chips:end -->
     <button class="clear-btn" id="clearSearch" type="button" hidden>清除筛选</button>
   </div>
@@ -271,6 +272,15 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。</span>
       <span class="card-tags"><i>单位换算</i><i>长度</i><i>温度</i><i>存储</i></span>
+    </a>
+    <a class="card" href="tools/password-generator.html" data-cat="util" data-search="密码生成器 加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。 小工具 password-generator 密码 随机 安全">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">密码生成器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。</span>
+      <span class="card-tags"><i>密码</i><i>随机</i><i>安全</i></span>
     </a>
     <!-- build:tools:end -->
   </div>

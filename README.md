@@ -40,6 +40,12 @@
 | [CSS 渐变生成器](tools/gradient.html) | 线性/径向/圆锥渐变可视化调节与复制 |
 | [阴影生成器](tools/box-shadow.html) | box-shadow 可视化调节、预设与代码复制 |
 
+### 小工具
+
+| 工具 | 说明 |
+| --- | --- |
+| [密码生成器](tools/password-generator.html) | 加密级随机密码，可调长度与字符集并估算熵值 |
+
 ### 图片
 
 | 工具 | 说明 |

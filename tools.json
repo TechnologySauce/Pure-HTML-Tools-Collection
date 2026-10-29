@@ -1,7 +1,7 @@
 {
   "name": "纯 HTML 工具箱",
   "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
-  "count": 21,
+  "count": 22,
   "categories": [
     {
       "id": "text",
@@ -27,6 +27,11 @@
       "id": "calc",
       "name": "计算",
       "count": 2
+    },
+    {
+      "id": "util",
+      "name": "小工具",
+      "count": 1
     }
   ],
   "tools": [
@@ -284,6 +289,18 @@
         "存储"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html"
+    },
+    {
+      "slug": "password-generator",
+      "title": "密码生成器",
+      "desc": "加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。",
+      "category": "util",
+      "tags": [
+        "密码",
+        "随机",
+        "安全"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-generator.html"
     }
   ]
 }
