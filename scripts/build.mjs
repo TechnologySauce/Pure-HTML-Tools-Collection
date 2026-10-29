@@ -242,7 +242,7 @@ const manifest = {
   name: "纯 HTML 工具箱",
   url: SITE_URL + "/",
   count: tools.length,
-  generatedAt: new Date().toISOString(),
+
   categories: CATEGORIES.filter((c) => counts.get(c.id)).map((c) => ({ id: c.id, name: c.name, count: counts.get(c.id) })),
   tools: ordered.map((t) => ({
     slug: t.slug,
@@ -255,19 +255,11 @@ const manifest = {
 };
 fs.writeFileSync(path.join(ROOT, "tools.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
 
-// sitemap.xml
-const today = new Date().toISOString().slice(0, 10);
+// sitemap.xml（不写 lastmod，避免每次构建都产生无意义的时间戳 diff）
 const urls = [`${SITE_URL}/`, ...ordered.map((t) => `${SITE_URL}/tools/${t.slug}.html`)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (u) => `  <url>
-    <loc>${u}</loc>
-    <lastmod>${today}</lastmod>
-  </url>`
-  )
-  .join("\n")}
+${urls.map((u) => `  <url>\n    <loc>${u}</loc>\n  </url>`).join("\n")}
 </urlset>
 `;
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap, "utf8");
