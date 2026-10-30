@@ -47,7 +47,7 @@
 <main class="wrap" id="tools">
   <section class="hero">
     <p class="eyebrow">Pure HTML · Zero Dependency</p>
-    <h1>浏览器里的<em><!-- build:count:start -->36<!-- build:count:end --></em>个纯 HTML 小工具</h1>
+    <h1>浏览器里的<em><!-- build:count:start -->100<!-- build:count:end --></em>个纯 HTML 小工具</h1>
     <p class="lede">每个工具都是独立的单个 HTML 文件：不装依赖、不连后端、不收集数据。断网可用，也可以直接下载到本地长期使用。全部源码开放，欢迎按同一套结构继续添加新工具。</p>
 
     <div class="search-row">
@@ -60,7 +60,7 @@
     </div>
 
     <ul class="stats">
-      <li><b><!-- build:count:start -->36<!-- build:count:end --></b> 个工具</li>
+      <li><b><!-- build:count:start -->100<!-- build:count:end --></b> 个工具</li>
       <li><b>0</b> 个外部依赖</li>
       <li><b>100%</b> 浏览器本地处理</li>
       <li><b>MIT</b> 开源协议</li>
@@ -69,13 +69,13 @@
 
   <div class="chips" role="group" aria-label="按分类筛选">
     <!-- build:chips:start -->
-    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>36</span></button>
-    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>7</span></button>
-    <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>13</span></button>
-    <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>5</span></button>
-    <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>2</span></button>
-    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>5</span></button>
-    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>4</span></button>
+    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>100</span></button>
+    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>17</span></button>
+    <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>29</span></button>
+    <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>15</span></button>
+    <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>6</span></button>
+    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>15</span></button>
+    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>18</span></button>
     <!-- build:chips:end -->
     <button class="clear-btn" id="clearSearch" type="button" hidden>清除筛选</button>
   </div>
@@ -146,6 +146,96 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">本地实时预览 Markdown，支持标题、加粗、斜体、代码块、列表、链接、引用与分割线。</span>
       <span class="card-tags"><i>markdown</i><i>预览</i><i>md</i></span>
+    </a>
+    <a class="card" href="tools/text-replace.html" data-cat="text" data-search="查找替换 在文本中按字面或正则查找并替换，支持全局与忽略大小写，结果可复制。 文本处理 text-replace 查找 替换 正则 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">查找替换</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在文本中按字面或正则查找并替换，支持全局与忽略大小写，结果可复制。</span>
+      <span class="card-tags"><i>查找</i><i>替换</i><i>正则</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/text-trim.html" data-cat="text" data-search="空白整理 按行清理文本：去除首尾空格、删除空行、合并连续空行或压缩多余空格。 文本处理 text-trim 空白 空行 整理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">空白整理</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按行清理文本：去除首尾空格、删除空行、合并连续空行或压缩多余空格。</span>
+      <span class="card-tags"><i>空白</i><i>空行</i><i>整理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/text-reverse.html" data-cat="text" data-search="文本反转 按字符、单词或行反向排列文本，常用于调试与趣味玩法。 文本处理 text-reverse 反转 字符 单词 行">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">文本反转</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按字符、单词或行反向排列文本，常用于调试与趣味玩法。</span>
+      <span class="card-tags"><i>反转</i><i>字符</i><i>单词</i><i>行</i></span>
+    </a>
+    <a class="card" href="tools/text-title-case.html" data-cat="text" data-search="标题大小写 将文本转为标题大小写（首字母大写），可跳过常见虚词并保留已有大写。 文本处理 text-title-case title 大小写 标题 命名">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">标题大小写</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将文本转为标题大小写（首字母大写），可跳过常见虚词并保留已有大写。</span>
+      <span class="card-tags"><i>title</i><i>大小写</i><i>标题</i><i>命名</i></span>
+    </a>
+    <a class="card" href="tools/text-tts.html" data-cat="text" data-search="文本转语音 调用浏览器内置语音合成朗读文本，可调语速与音调、选择语音，全程本地。 文本处理 text-tts tts 语音 朗读 speech">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">文本转语音</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">调用浏览器内置语音合成朗读文本，可调语速与音调、选择语音，全程本地。</span>
+      <span class="card-tags"><i>tts</i><i>语音</i><i>朗读</i><i>speech</i></span>
+    </a>
+    <a class="card" href="tools/unicode-inspector.html" data-cat="text" data-search="unicode 查看器 逐字符显示码点（u+xxxx）、utf-16 与 javascript 转义，排查乱码与不可见字符。 文本处理 unicode-inspector unicode 码点 utf16 乱码">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">Unicode 查看器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">逐字符显示码点（U+XXXX）、UTF-16 与 JavaScript 转义，排查乱码与不可见字符。</span>
+      <span class="card-tags"><i>unicode</i><i>码点</i><i>utf16</i><i>乱码</i></span>
+    </a>
+    <a class="card" href="tools/morse-code.html" data-cat="text" data-search="摩斯电码 在文本与摩斯电码之间互转，支持字母、数字与单词分隔，离线可用。 文本处理 morse-code morse 摩斯 编码 电报">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">摩斯电码</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在文本与摩斯电码之间互转，支持字母、数字与单词分隔，离线可用。</span>
+      <span class="card-tags"><i>morse</i><i>摩斯</i><i>编码</i><i>电报</i></span>
+    </a>
+    <a class="card" href="tools/word-frequency.html" data-cat="text" data-search="词频统计 统计文本中词语出现次数并降序排列，支持忽略大小写、中文逐字与最短长度过滤。 文本处理 word-frequency 词频 统计 分词 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">词频统计</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">统计文本中词语出现次数并降序排列，支持忽略大小写、中文逐字与最短长度过滤。</span>
+      <span class="card-tags"><i>词频</i><i>统计</i><i>分词</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/text-pad.html" data-cat="text" data-search="行首尾填充 给每行文本添加前缀/后缀，并可补齐到固定宽度（左/右/居中）。 文本处理 text-pad 填充 前缀 后缀 对齐">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行首尾填充</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">给每行文本添加前缀/后缀，并可补齐到固定宽度（左/右/居中）。</span>
+      <span class="card-tags"><i>填充</i><i>前缀</i><i>后缀</i><i>对齐</i></span>
+    </a>
+    <a class="card" href="tools/text-wrap.html" data-cat="text" data-search="智能换行 按指定宽度对文本自动换行，可选长单词强制断行，适合整理代码注释与邮件。 文本处理 text-wrap 换行 宽度 排版 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">智能换行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按指定宽度对文本自动换行，可选长单词强制断行，适合整理代码注释与邮件。</span>
+      <span class="card-tags"><i>换行</i><i>宽度</i><i>排版</i><i>文本</i></span>
     </a>
     <a class="card" href="tools/json-formatter.html" data-cat="dev" data-search="json 格式化 格式化、压缩并校验 json，语法错误会精确提示行号和列号，支持键排序与缩进选择。 开发者 json-formatter json 格式化 校验">
       <span class="card-head">
@@ -264,6 +354,150 @@
       <span class="card-desc">使用 Intl 将数字格式化为千分位、货币、百分比、紧凑与不同语言区域，离线可用。</span>
       <span class="card-tags"><i>number</i><i>format</i><i>intl</i><i>格式化</i></span>
     </a>
+    <a class="card" href="tools/slug-generator.html" data-cat="dev" data-search="slug 生成器 把标题、文章名转成 url 友好的 slug，支持分隔符与保留中文，常用于博客与文件命名。 开发者 slug-generator slug url 命名 链接">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">Slug 生成器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把标题、文章名转成 URL 友好的 Slug，支持分隔符与保留中文，常用于博客与文件命名。</span>
+      <span class="card-tags"><i>slug</i><i>url</i><i>命名</i><i>链接</i></span>
+    </a>
+    <a class="card" href="tools/mime-lookup.html" data-cat="dev" data-search="mime 类型查询 根据文件扩展名查 mime，或根据 mime 反查扩展名，内置常见类型对照表。 开发者 mime-lookup mime 类型 扩展名 对照">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">MIME 类型查询</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">根据文件扩展名查 MIME，或根据 MIME 反查扩展名，内置常见类型对照表。</span>
+      <span class="card-tags"><i>mime</i><i>类型</i><i>扩展名</i><i>对照</i></span>
+    </a>
+    <a class="card" href="tools/ua-parser.html" data-cat="dev" data-search="user-agent 解析 从浏览器的 user-agent 字符串中识别浏览器、操作系统与设备类型，便于排查兼容问题。 开发者 ua-parser ua user-agent 浏览器 解析">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">User-Agent 解析</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从浏览器的 User-Agent 字符串中识别浏览器、操作系统与设备类型，便于排查兼容问题。</span>
+      <span class="card-tags"><i>ua</i><i>user-agent</i><i>浏览器</i><i>解析</i></span>
+    </a>
+    <a class="card" href="tools/cron-parser.html" data-cat="dev" data-search="cron 表达式解析 解析标准 5 字段 cron 表达式，展开各字段取值并推算接下来数次执行时间。 开发者 cron-parser cron 定时 调度 解析">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">Cron 表达式解析</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">解析标准 5 字段 Cron 表达式，展开各字段取值并推算接下来数次执行时间。</span>
+      <span class="card-tags"><i>cron</i><i>定时</i><i>调度</i><i>解析</i></span>
+    </a>
+    <a class="card" href="tools/sql-formatter.html" data-cat="dev" data-search="sql 格式化 为常用 sql 关键字换行并转为大写，快速整理挤在一行的查询语句。 开发者 sql-formatter sql 格式化 查询 数据库">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">SQL 格式化</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">为常用 SQL 关键字换行并转为大写，快速整理挤在一行的查询语句。</span>
+      <span class="card-tags"><i>sql</i><i>格式化</i><i>查询</i><i>数据库</i></span>
+    </a>
+    <a class="card" href="tools/html-formatter.html" data-cat="dev" data-search="html 格式化 按标签层级缩进美化 html，自动跳过 script/style/pre 内部内容。 开发者 html-formatter html 格式化 缩进 美化">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">HTML 格式化</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按标签层级缩进美化 HTML，自动跳过 script/style/pre 内部内容。</span>
+      <span class="card-tags"><i>html</i><i>格式化</i><i>缩进</i><i>美化</i></span>
+    </a>
+    <a class="card" href="tools/css-formatter.html" data-cat="dev" data-search="css 格式化 为压缩的 css 重新换行与缩进，规则与声明各占一行，方便阅读修改。 开发者 css-formatter css 格式化 缩进 美化">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">CSS 格式化</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">为压缩的 CSS 重新换行与缩进，规则与声明各占一行，方便阅读修改。</span>
+      <span class="card-tags"><i>css</i><i>格式化</i><i>缩进</i><i>美化</i></span>
+    </a>
+    <a class="card" href="tools/regex-extract.html" data-cat="dev" data-search="正则提取 用正则表达式在文本中提取所有匹配与分组，支持全局、忽略大小写与多行。 开发者 regex-extract regex 提取 匹配 分组">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">正则提取</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">用正则表达式在文本中提取所有匹配与分组，支持全局、忽略大小写与多行。</span>
+      <span class="card-tags"><i>regex</i><i>提取</i><i>匹配</i><i>分组</i></span>
+    </a>
+    <a class="card" href="tools/hash-compare.html" data-cat="dev" data-search="哈希比对 比较两个哈希值是否一致（忽略大小写与空格），并据长度提示可能使用的算法。 开发者 hash-compare hash 比对 校验 md5">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">哈希比对</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">比较两个哈希值是否一致（忽略大小写与空格），并据长度提示可能使用的算法。</span>
+      <span class="card-tags"><i>hash</i><i>比对</i><i>校验</i><i>md5</i></span>
+    </a>
+    <a class="card" href="tools/aes-encrypt.html" data-cat="dev" data-search="aes 加密 使用 aes-gcm 与口令（pbkdf2）加解密文本，结果以 base64 输出，全程本地。 开发者 aes-encrypt aes 加密 gcm 密码">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">AES 加密</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">使用 AES-GCM 与口令（PBKDF2）加解密文本，结果以 Base64 输出，全程本地。</span>
+      <span class="card-tags"><i>aes</i><i>加密</i><i>gcm</i><i>密码</i></span>
+    </a>
+    <a class="card" href="tools/rot13.html" data-cat="dev" data-search="rot13 编码 对字母进行 rot13 替换（加密与解密相同），常用于论坛隐藏剧透。 开发者 rot13 rot13 替换 编码 密码">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">ROT13 编码</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">对字母进行 ROT13 替换（加密与解密相同），常用于论坛隐藏剧透。</span>
+      <span class="card-tags"><i>rot13</i><i>替换</i><i>编码</i><i>密码</i></span>
+    </a>
+    <a class="card" href="tools/json-query.html" data-cat="dev" data-search="json 路径提取 用 a.b.c 或 a.b[0].c 这样的路径从 json 中提取子节点并格式化输出。 开发者 json-query json path 提取 查询">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">JSON 路径提取</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">用 a.b.c 或 a.b[0].c 这样的路径从 JSON 中提取子节点并格式化输出。</span>
+      <span class="card-tags"><i>json</i><i>path</i><i>提取</i><i>查询</i></span>
+    </a>
+    <a class="card" href="tools/num-to-chinese.html" data-cat="dev" data-search="数字转中文 把整数转换为中文数字，支持简体与人民币大写（壹贰叁），最高到兆级。 开发者 num-to-chinese 中文数字 大写 转换 人民币">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">数字转中文</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把整数转换为中文数字，支持简体与人民币大写（壹贰叁），最高到兆级。</span>
+      <span class="card-tags"><i>中文数字</i><i>大写</i><i>转换</i><i>人民币</i></span>
+    </a>
+    <a class="card" href="tools/http-status-lookup.html" data-cat="dev" data-search="http 状态码查询 输入 http 状态码，返回原因短语、所属类别与常见说明。 开发者 http-status-lookup http status 状态码 对照">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">HTTP 状态码查询</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入 HTTP 状态码，返回原因短语、所属类别与常见说明。</span>
+      <span class="card-tags"><i>http</i><i>status</i><i>状态码</i><i>对照</i></span>
+    </a>
+    <a class="card" href="tools/semver-compare.html" data-cat="dev" data-search="版本号比较 比较两个语义化版本号（semver）的大小，支持预发布标识。 开发者 semver-compare semver 版本 比较 npm">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">版本号比较</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">比较两个语义化版本号（SemVer）的大小，支持预发布标识。</span>
+      <span class="card-tags"><i>semver</i><i>版本</i><i>比较</i><i>npm</i></span>
+    </a>
+    <a class="card" href="tools/json-diff.html" data-cat="dev" data-search="json 差异 递归比较两个 json 对象，列出新增、删除与变更的字段路径。 开发者 json-diff json diff 对比 变更">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">JSON 差异</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">递归比较两个 JSON 对象，列出新增、删除与变更的字段路径。</span>
+      <span class="card-tags"><i>json</i><i>diff</i><i>对比</i><i>变更</i></span>
+    </a>
     <a class="card" href="tools/color-converter.html" data-cat="design" data-search="颜色格式转换 hex、rgb、hsl、hsv、cmyk 互转，附 wcag 对比度检测与深浅配色建议，做无障碍设计很方便。 设计 color-converter 颜色 hex rgb 对比度">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
@@ -309,6 +543,105 @@
       <span class="card-desc">取色与格式转换，支持系统取色器（Eyedropper）、HEX/RGB/HSL 互转与一键复制。</span>
       <span class="card-tags"><i>color</i><i>取色</i><i>eyedropper</i><i>颜色</i></span>
     </a>
+    <a class="card" href="tools/contrast-checker.html" data-cat="design" data-search="对比度检查 计算前景与背景色的 wcag 对比度，判断普通/大文本是否达到 aa、aaa 标准。 设计 contrast-checker 对比度 wcag 无障碍 颜色">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">对比度检查</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算前景与背景色的 WCAG 对比度，判断普通/大文本是否达到 AA、AAA 标准。</span>
+      <span class="card-tags"><i>对比度</i><i>wcag</i><i>无障碍</i><i>颜色</i></span>
+    </a>
+    <a class="card" href="tools/font-stack.html" data-cat="design" data-search="字体栈生成 一键生成各平台与场景的 font-family 字体栈，含中文与等宽字体，复制即用。 设计 font-stack 字体 font-family 字体栈 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">字体栈生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">一键生成各平台与场景的 font-family 字体栈，含中文与等宽字体，复制即用。</span>
+      <span class="card-tags"><i>字体</i><i>font-family</i><i>字体栈</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/border-radius.html" data-cat="design" data-search="圆角生成器 分别调节四个角的圆角半径，实时预览并复制 css，适合卡片与头像。 设计 border-radius border-radius 圆角 css 卡片">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">圆角生成器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">分别调节四个角的圆角半径，实时预览并复制 CSS，适合卡片与头像。</span>
+      <span class="card-tags"><i>border-radius</i><i>圆角</i><i>css</i><i>卡片</i></span>
+    </a>
+    <a class="card" href="tools/text-shadow.html" data-cat="design" data-search="文字阴影生成 调节偏移、模糊与颜色，实时预览文字阴影并复制 css。 设计 text-shadow text-shadow 阴影 文字 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">文字阴影生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">调节偏移、模糊与颜色，实时预览文字阴影并复制 CSS。</span>
+      <span class="card-tags"><i>text-shadow</i><i>阴影</i><i>文字</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/css-filter.html" data-cat="design" data-search="css 滤镜生成 调节模糊、亮度、对比度、灰度、褐色与色相，实时预览并复制 filter css。 设计 css-filter filter 滤镜 css 图片">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">CSS 滤镜生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">调节模糊、亮度、对比度、灰度、褐色与色相，实时预览并复制 filter CSS。</span>
+      <span class="card-tags"><i>filter</i><i>滤镜</i><i>css</i><i>图片</i></span>
+    </a>
+    <a class="card" href="tools/button-generator.html" data-cat="design" data-search="按钮样式生成 调节背景、文字、圆角与内边距，实时预览按钮并复制可复用 css。 设计 button-generator button 按钮 css 样式">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">按钮样式生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">调节背景、文字、圆角与内边距，实时预览按钮并复制可复用 CSS。</span>
+      <span class="card-tags"><i>button</i><i>按钮</i><i>css</i><i>样式</i></span>
+    </a>
+    <a class="card" href="tools/glassmorphism.html" data-cat="design" data-search="毛玻璃效果 调节模糊、透明度、描边与圆角，生成玻璃拟态（glassmorphism）卡片 css。 设计 glassmorphism glassmorphism 毛玻璃 css 卡片">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">毛玻璃效果</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">调节模糊、透明度、描边与圆角，生成玻璃拟态（Glassmorphism）卡片 CSS。</span>
+      <span class="card-tags"><i>glassmorphism</i><i>毛玻璃</i><i>css</i><i>卡片</i></span>
+    </a>
+    <a class="card" href="tools/flexbox-generator.html" data-cat="design" data-search="flexbox 生成 可视化选择主轴对齐、交叉轴对齐、方向与换行，实时预览并复制 flex 布局 css。 设计 flexbox-generator flexbox flex 布局 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">Flexbox 生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">可视化选择主轴对齐、交叉轴对齐、方向与换行，实时预览并复制 flex 布局 CSS。</span>
+      <span class="card-tags"><i>flexbox</i><i>flex</i><i>布局</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/gradient-text.html" data-cat="design" data-search="渐变文字 把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 css。 设计 gradient-text gradient 渐变 文字 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">渐变文字</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。</span>
+      <span class="card-tags"><i>gradient</i><i>渐变</i><i>文字</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/css-grid-pattern.html" data-cat="design" data-search="网格背景图案 生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 css 背景代码。 设计 css-grid-pattern grid 背景 图案 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">网格背景图案</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 CSS 背景代码。</span>
+      <span class="card-tags"><i>grid</i><i>背景</i><i>图案</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/image-resize.html" data-cat="image" data-search="图片尺寸调整 上传图片后按目标宽度等比缩放（或指定高宽），导出为 png/jpeg/webp，全部在本地完成。 图片 image-resize 图片 缩放 尺寸 导出">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">图片尺寸调整</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后按目标宽度等比缩放（或指定高宽），导出为 PNG/JPEG/WebP，全部在本地完成。</span>
+      <span class="card-tags"><i>图片</i><i>缩放</i><i>尺寸</i><i>导出</i></span>
+    </a>
     <a class="card" href="tools/image-compress.html" data-cat="image" data-search="图片压缩 本地压缩 jpeg/png/webp，可调质量、限制最大宽高，实时对比体积与尺寸并下载，图片不上传。 图片 image-compress 图片 压缩 webp">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
@@ -327,6 +660,33 @@
       <span class="card-desc">图片与 Base64 Data URL 双向转换，支持复制、下载文本，以及把 Base64 还原成图片，全部本地处理。</span>
       <span class="card-tags"><i>图片</i><i>base64</i><i>dataurl</i></span>
     </a>
+    <a class="card" href="tools/image-metadata.html" data-cat="image" data-search="图片信息查看 选择本地图片，读取文件名、类型、体积与像素尺寸，无需上传，所有信息在本地读取。 图片 image-metadata 图片 元数据 尺寸 体积">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">图片信息查看</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">选择本地图片，读取文件名、类型、体积与像素尺寸，无需上传，所有信息在本地读取。</span>
+      <span class="card-tags"><i>图片</i><i>元数据</i><i>尺寸</i><i>体积</i></span>
+    </a>
+    <a class="card" href="tools/image-pixelate.html" data-cat="image" data-search="像素化马赛克 上传图片并调节马赛克块大小，实时预览像素化效果，导出为本地图片。 图片 image-pixelate 像素化 马赛克 图片 隐私">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">像素化马赛克</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片并调节马赛克块大小，实时预览像素化效果，导出为本地图片。</span>
+      <span class="card-tags"><i>像素化</i><i>马赛克</i><i>图片</i><i>隐私</i></span>
+    </a>
+    <a class="card" href="tools/image-flip-rotate.html" data-cat="image" data-search="图片翻转旋转 上传图片后水平 / 垂直翻转，或顺时针 / 逆时针旋转 90 度，本地处理并导出。 图片 image-flip-rotate 图片 翻转 旋转 编辑">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">图片翻转旋转</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后水平 / 垂直翻转，或顺时针 / 逆时针旋转 90 度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>翻转</i><i>旋转</i><i>编辑</i></span>
+    </a>
     <a class="card" href="tools/percentage-calculator.html" data-cat="calc" data-search="百分比计算器 求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。 计算 percentage-calculator 百分比 计算 增长率">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
@@ -336,6 +696,24 @@
       <span class="card-desc">求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。</span>
       <span class="card-tags"><i>百分比</i><i>计算</i><i>增长率</i></span>
     </a>
+    <a class="card" href="tools/bmi-calculator.html" data-cat="calc" data-search="bmi 计算器 输入身高与体重，立即算出 bmi 与对应分类（偏瘦 / 正常 / 超重 / 肥胖），帮助你了解体重状况。 计算 bmi-calculator bmi 体重 身高 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">BMI 计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入身高与体重，立即算出 BMI 与对应分类（偏瘦 / 正常 / 超重 / 肥胖），帮助你了解体重状况。</span>
+      <span class="card-tags"><i>BMI</i><i>体重</i><i>身高</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/loan-calculator.html" data-cat="calc" data-search="贷款计算器 按等额本息或等额本金估算每月还款、总利息与还款总额，输入年利率与期限即可。 计算 loan-calculator 贷款 月供 利息 房贷">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">贷款计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按等额本息或等额本金估算每月还款、总利息与还款总额，输入年利率与期限即可。</span>
+      <span class="card-tags"><i>贷款</i><i>月供</i><i>利息</i><i>房贷</i></span>
+    </a>
     <a class="card" href="tools/unit-converter.html" data-cat="calc" data-search="单位换算 长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。 计算 unit-converter 单位换算 长度 温度 存储">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
@@ -344,6 +722,78 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。</span>
       <span class="card-tags"><i>单位换算</i><i>长度</i><i>温度</i><i>存储</i></span>
+    </a>
+    <a class="card" href="tools/tip-calculator.html" data-cat="calc" data-search="小费计算器 输入账单金额、小费率与人数，自动拆分每人应付的小费与总额，聚会 aa 不再算错。 计算 tip-calculator 小费 分摊 aa 聚餐">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">小费计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入账单金额、小费率与人数，自动拆分每人应付的小费与总额，聚会 AA 不再算错。</span>
+      <span class="card-tags"><i>小费</i><i>分摊</i><i>AA</i><i>聚餐</i></span>
+    </a>
+    <a class="card" href="tools/discount-calculator.html" data-cat="calc" data-search="折扣计算器 输入原价与折扣力度，算出折后价、省下的金额，以及相当于打了几折，网购比价好帮手。 计算 discount-calculator 折扣 打折 比价 省钱">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">折扣计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入原价与折扣力度，算出折后价、省下的金额，以及相当于打了几折，网购比价好帮手。</span>
+      <span class="card-tags"><i>折扣</i><i>打折</i><i>比价</i><i>省钱</i></span>
+    </a>
+    <a class="card" href="tools/compound-interest.html" data-cat="calc" data-search="复利计算器 输入本金、年利率、年限与复利频率，估算复利终值与累计利息，看清时间带来的增长。 计算 compound-interest 复利 利息 理财 投资">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">复利计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入本金、年利率、年限与复利频率，估算复利终值与累计利息，看清时间带来的增长。</span>
+      <span class="card-tags"><i>复利</i><i>利息</i><i>理财</i><i>投资</i></span>
+    </a>
+    <a class="card" href="tools/fuel-calculator.html" data-cat="calc" data-search="油耗油费计算 根据里程、百公里油耗与油价，估算本次出行的用油量与油费，长途自驾提前算账。 计算 fuel-calculator 油耗 油费 里程 自驾">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">油耗油费计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">根据里程、百公里油耗与油价，估算本次出行的用油量与油费，长途自驾提前算账。</span>
+      <span class="card-tags"><i>油耗</i><i>油费</i><i>里程</i><i>自驾</i></span>
+    </a>
+    <a class="card" href="tools/age-calculator.html" data-cat="calc" data-search="年龄与日期差 选择出生日期与目标日期，计算周岁、精确到天的总天数，以及距离目标日期还有多少天。 计算 age-calculator 年龄 生日 日期差 倒计时">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">年龄与日期差</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">选择出生日期与目标日期，计算周岁、精确到天的总天数，以及距离目标日期还有多少天。</span>
+      <span class="card-tags"><i>年龄</i><i>生日</i><i>日期差</i><i>倒计时</i></span>
+    </a>
+    <a class="card" href="tools/salary-calculator.html" data-cat="calc" data-search="税后工资估算 按常见五险一金个人比例与个税累进税率，粗略估算每月到手工资，仅供参考。 计算 salary-calculator 工资 个税 五险一金 到手">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">税后工资估算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按常见五险一金个人比例与个税累进税率，粗略估算每月到手工资，仅供参考。</span>
+      <span class="card-tags"><i>工资</i><i>个税</i><i>五险一金</i><i>到手</i></span>
+    </a>
+    <a class="card" href="tools/vat-calculator.html" data-cat="calc" data-search="含税价换算 在含税金额与不含税金额之间互相换算，输入税率即可得到税额、不含税价与含税价。 计算 vat-calculator 增值税 含税价 不含税价 税额">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">含税价换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在含税金额与不含税金额之间互相换算，输入税率即可得到税额、不含税价与含税价。</span>
+      <span class="card-tags"><i>增值税</i><i>含税价</i><i>不含税价</i><i>税额</i></span>
+    </a>
+    <a class="card" href="tools/grade-calculator.html" data-cat="calc" data-search="加权平均分 每行填写「分数,权重」，自动计算加权平均分、总权重与科目数，适合成绩与绩效汇总。 计算 grade-calculator 平均分 加权 成绩 gpa">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">加权平均分</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">每行填写「分数,权重」，自动计算加权平均分、总权重与科目数，适合成绩与绩效汇总。</span>
+      <span class="card-tags"><i>平均分</i><i>加权</i><i>成绩</i><i>GPA</i></span>
     </a>
     <a class="card" href="tools/roman-numeral.html" data-cat="calc" data-search="罗马数字转换 在阿拉伯数字与罗马数字之间互转，支持范围校验，结果可复制。 计算 roman-numeral 罗马数字 roman 进制 转换">
       <span class="card-head">
@@ -407,6 +857,132 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">分析密码的长度、字符种类与熵值，给出强度评级与改进建议。</span>
       <span class="card-tags"><i>password</i><i>strength</i><i>密码</i><i>熵</i></span>
+    </a>
+    <a class="card" href="tools/stopwatch.html" data-cat="util" data-search="秒表 本地秒表，支持开始、暂停与重置，精确到百分之一秒。 小工具 stopwatch 秒表 计时 stopwatch">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">秒表</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">本地秒表，支持开始、暂停与重置，精确到百分之一秒。</span>
+      <span class="card-tags"><i>秒表</i><i>计时</i><i>stopwatch</i></span>
+    </a>
+    <a class="card" href="tools/countdown.html" data-cat="util" data-search="倒计时 设定一个目标时间，实时显示剩余的天、时、分、秒，到点提示。 小工具 countdown 倒计时 countdown 提醒">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">倒计时</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">设定一个目标时间，实时显示剩余的天、时、分、秒，到点提示。</span>
+      <span class="card-tags"><i>倒计时</i><i>countdown</i><i>提醒</i></span>
+    </a>
+    <a class="card" href="tools/world-clock.html" data-cat="util" data-search="世界时钟 同时显示多个时区的当前时间，使用本地 intl 计算，无需联网。 小工具 world-clock 时钟 时区 world 时间">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">世界时钟</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">同时显示多个时区的当前时间，使用本地 Intl 计算，无需联网。</span>
+      <span class="card-tags"><i>时钟</i><i>时区</i><i>world</i><i>时间</i></span>
+    </a>
+    <a class="card" href="tools/pomodoro.html" data-cat="util" data-search="番茄钟 经典的 25 分钟专注 + 5 分钟休息计时，可开始、暂停与重置。 小工具 pomodoro 番茄钟 pomodoro 专注 计时">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">番茄钟</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">经典的 25 分钟专注 + 5 分钟休息计时，可开始、暂停与重置。</span>
+      <span class="card-tags"><i>番茄钟</i><i>pomodoro</i><i>专注</i><i>计时</i></span>
+    </a>
+    <a class="card" href="tools/notepad.html" data-cat="util" data-search="草稿本 简单便签，内容自动保存到浏览器本地（localstorage），刷新不丢失。 小工具 notepad 便签 草稿 notepad 本地">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">草稿本</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">简单便签，内容自动保存到浏览器本地（localStorage），刷新不丢失。</span>
+      <span class="card-tags"><i>便签</i><i>草稿</i><i>notepad</i><i>本地</i></span>
+    </a>
+    <a class="card" href="tools/fake-data.html" data-cat="util" data-search="假数据生成 一键生成姓名、用户名、邮箱、电话等示例数据，方便填充表单与演示。 小工具 fake-data 假数据 mock 示例 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">假数据生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">一键生成姓名、用户名、邮箱、电话等示例数据，方便填充表单与演示。</span>
+      <span class="card-tags"><i>假数据</i><i>mock</i><i>示例</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/username-generator.html" data-cat="util" data-search="用户名生成 组合形容词、名词与数字生成可用用户名，支持分隔符与大小写。 小工具 username-generator 用户名 username 生成 昵称">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">用户名生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">组合形容词、名词与数字生成可用用户名，支持分隔符与大小写。</span>
+      <span class="card-tags"><i>用户名</i><i>username</i><i>生成</i><i>昵称</i></span>
+    </a>
+    <a class="card" href="tools/decision-wheel.html" data-cat="util" data-search="决策转盘 把选项一行一个填进去，转盘随机帮你做决定，适合吃饭、抽签等场景。 小工具 decision-wheel 转盘 决策 随机 抽签">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">决策转盘</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把选项一行一个填进去，转盘随机帮你做决定，适合吃饭、抽签等场景。</span>
+      <span class="card-tags"><i>转盘</i><i>决策</i><i>随机</i><i>抽签</i></span>
+    </a>
+    <a class="card" href="tools/list-picker.html" data-cat="util" data-search="随机挑选 从一列选项中随机抽取一个，可选抽取后自动移除（不重复）。 小工具 list-picker 随机 挑选 picker 抽取">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机挑选</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从一列选项中随机抽取一个，可选抽取后自动移除（不重复）。</span>
+      <span class="card-tags"><i>随机</i><i>挑选</i><i>picker</i><i>抽取</i></span>
+    </a>
+    <a class="card" href="tools/timezone-converter.html" data-cat="util" data-search="时区转换 将某时区的时间换算到另一时区，基于本地 intl，支持常见城市时区。 小工具 timezone-converter 时区 timezone 转换 时间">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">时区转换</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将某时区的时间换算到另一时区，基于本地 Intl，支持常见城市时区。</span>
+      <span class="card-tags"><i>时区</i><i>timezone</i><i>转换</i><i>时间</i></span>
+    </a>
+    <a class="card" href="tools/random-color.html" data-cat="util" data-search="随机颜色 生成随机 hex 颜色并预览，可复制 hex / rgb，方便做配色灵感。 小工具 random-color 颜色 随机 hex 配色">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机颜色</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机 HEX 颜色并预览，可复制 HEX / RGB，方便做配色灵感。</span>
+      <span class="card-tags"><i>颜色</i><i>随机</i><i>hex</i><i>配色</i></span>
+    </a>
+    <a class="card" href="tools/passphrase.html" data-cat="util" data-search="密码短语生成 用随机单词拼出易记又强壮的密码短语（类 diceware），可设词数与分隔符。 小工具 passphrase 密码短语 passphrase diceware 密码">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">密码短语生成</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">用随机单词拼出易记又强壮的密码短语（类 Diceware），可设词数与分隔符。</span>
+      <span class="card-tags"><i>密码短语</i><i>passphrase</i><i>diceware</i><i>密码</i></span>
+    </a>
+    <a class="card" href="tools/team-splitter.html" data-cat="util" data-search="随机分组 把一份名单随机分成若干组，适合课堂、活动与团建分队。 小工具 team-splitter 分组 随机 名单 团队">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机分组</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把一份名单随机分成若干组，适合课堂、活动与团建分队。</span>
+      <span class="card-tags"><i>分组</i><i>随机</i><i>名单</i><i>团队</i></span>
+    </a>
+    <a class="card" href="tools/lottery-draw.html" data-cat="util" data-search="抽奖抽签 从名单中随机抽取若干名中奖者，自动去重不重复，适合活动抽奖。 小工具 lottery-draw 抽奖 抽签 随机 中奖">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">抽奖抽签</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从名单中随机抽取若干名中奖者，自动去重不重复，适合活动抽奖。</span>
+      <span class="card-tags"><i>抽奖</i><i>抽签</i><i>随机</i><i>中奖</i></span>
     </a>
     <!-- build:tools:end -->
   </div>

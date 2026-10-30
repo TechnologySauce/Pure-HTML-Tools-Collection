@@ -25,6 +25,36 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/markdown-preview.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-replace.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-trim.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-reverse.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-title-case.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-tts.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unicode-inspector.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/morse-code.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/word-frequency.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-pad.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-wrap.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-formatter.html</loc>
   </url>
   <url>
@@ -64,6 +94,54 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/number-formatter.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/slug-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/mime-lookup.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/ua-parser.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/cron-parser.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sql-formatter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/html-formatter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-formatter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/regex-extract.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/hash-compare.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/aes-encrypt.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/rot13.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-query.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/num-to-chinese.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/http-status-lookup.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/semver-compare.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-diff.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-converter.html</loc>
   </url>
   <url>
@@ -79,16 +157,88 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-picker.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/contrast-checker.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/font-stack.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/border-radius.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-shadow.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-filter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/button-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/glassmorphism.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/flexbox-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-text.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-grid-pattern.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-resize.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-compress.html</loc>
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-base64.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-pixelate.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-flip-rotate.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/percentage-calculator.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/bmi-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/loan-calculator.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tip-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/discount-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/compound-interest.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fuel-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/age-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/salary-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/vat-calculator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/grade-calculator.html</loc>
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/roman-numeral.html</loc>
@@ -110,5 +260,47 @@
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-strength.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/stopwatch.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/countdown.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/world-clock.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pomodoro.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/notepad.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fake-data.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/username-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/decision-wheel.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/list-picker.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/timezone-converter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-color.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/passphrase.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/team-splitter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lottery-draw.html</loc>
   </url>
 </urlset>

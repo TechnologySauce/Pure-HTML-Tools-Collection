@@ -1,37 +1,37 @@
 {
   "name": "纯 HTML 工具箱",
   "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
-  "count": 36,
+  "count": 100,
   "categories": [
     {
       "id": "text",
       "name": "文本处理",
-      "count": 7
+      "count": 17
     },
     {
       "id": "dev",
       "name": "开发者",
-      "count": 13
+      "count": 29
     },
     {
       "id": "design",
       "name": "设计",
-      "count": 5
+      "count": 15
     },
     {
       "id": "image",
       "name": "图片",
-      "count": 2
+      "count": 6
     },
     {
       "id": "calc",
       "name": "计算",
-      "count": 5
+      "count": 15
     },
     {
       "id": "util",
       "name": "小工具",
-      "count": 4
+      "count": 18
     }
   ],
   "tools": [
@@ -119,6 +119,136 @@
         "md"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/markdown-preview.html"
+    },
+    {
+      "slug": "text-replace",
+      "title": "查找替换",
+      "desc": "在文本中按字面或正则查找并替换，支持全局与忽略大小写，结果可复制。",
+      "category": "text",
+      "tags": [
+        "查找",
+        "替换",
+        "正则",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-replace.html"
+    },
+    {
+      "slug": "text-trim",
+      "title": "空白整理",
+      "desc": "按行清理文本：去除首尾空格、删除空行、合并连续空行或压缩多余空格。",
+      "category": "text",
+      "tags": [
+        "空白",
+        "空行",
+        "整理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-trim.html"
+    },
+    {
+      "slug": "text-reverse",
+      "title": "文本反转",
+      "desc": "按字符、单词或行反向排列文本，常用于调试与趣味玩法。",
+      "category": "text",
+      "tags": [
+        "反转",
+        "字符",
+        "单词",
+        "行"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-reverse.html"
+    },
+    {
+      "slug": "text-title-case",
+      "title": "标题大小写",
+      "desc": "将文本转为标题大小写（首字母大写），可跳过常见虚词并保留已有大写。",
+      "category": "text",
+      "tags": [
+        "title",
+        "大小写",
+        "标题",
+        "命名"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-title-case.html"
+    },
+    {
+      "slug": "text-tts",
+      "title": "文本转语音",
+      "desc": "调用浏览器内置语音合成朗读文本，可调语速与音调、选择语音，全程本地。",
+      "category": "text",
+      "tags": [
+        "tts",
+        "语音",
+        "朗读",
+        "speech"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-tts.html"
+    },
+    {
+      "slug": "unicode-inspector",
+      "title": "Unicode 查看器",
+      "desc": "逐字符显示码点（U+XXXX）、UTF-16 与 JavaScript 转义，排查乱码与不可见字符。",
+      "category": "text",
+      "tags": [
+        "unicode",
+        "码点",
+        "utf16",
+        "乱码"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unicode-inspector.html"
+    },
+    {
+      "slug": "morse-code",
+      "title": "摩斯电码",
+      "desc": "在文本与摩斯电码之间互转，支持字母、数字与单词分隔，离线可用。",
+      "category": "text",
+      "tags": [
+        "morse",
+        "摩斯",
+        "编码",
+        "电报"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/morse-code.html"
+    },
+    {
+      "slug": "word-frequency",
+      "title": "词频统计",
+      "desc": "统计文本中词语出现次数并降序排列，支持忽略大小写、中文逐字与最短长度过滤。",
+      "category": "text",
+      "tags": [
+        "词频",
+        "统计",
+        "分词",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/word-frequency.html"
+    },
+    {
+      "slug": "text-pad",
+      "title": "行首尾填充",
+      "desc": "给每行文本添加前缀/后缀，并可补齐到固定宽度（左/右/居中）。",
+      "category": "text",
+      "tags": [
+        "填充",
+        "前缀",
+        "后缀",
+        "对齐"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-pad.html"
+    },
+    {
+      "slug": "text-wrap",
+      "title": "智能换行",
+      "desc": "按指定宽度对文本自动换行，可选长单词强制断行，适合整理代码注释与邮件。",
+      "category": "text",
+      "tags": [
+        "换行",
+        "宽度",
+        "排版",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-wrap.html"
     },
     {
       "slug": "json-formatter",
@@ -282,6 +412,214 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/number-formatter.html"
     },
     {
+      "slug": "slug-generator",
+      "title": "Slug 生成器",
+      "desc": "把标题、文章名转成 URL 友好的 Slug，支持分隔符与保留中文，常用于博客与文件命名。",
+      "category": "dev",
+      "tags": [
+        "slug",
+        "url",
+        "命名",
+        "链接"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/slug-generator.html"
+    },
+    {
+      "slug": "mime-lookup",
+      "title": "MIME 类型查询",
+      "desc": "根据文件扩展名查 MIME，或根据 MIME 反查扩展名，内置常见类型对照表。",
+      "category": "dev",
+      "tags": [
+        "mime",
+        "类型",
+        "扩展名",
+        "对照"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/mime-lookup.html"
+    },
+    {
+      "slug": "ua-parser",
+      "title": "User-Agent 解析",
+      "desc": "从浏览器的 User-Agent 字符串中识别浏览器、操作系统与设备类型，便于排查兼容问题。",
+      "category": "dev",
+      "tags": [
+        "ua",
+        "user-agent",
+        "浏览器",
+        "解析"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/ua-parser.html"
+    },
+    {
+      "slug": "cron-parser",
+      "title": "Cron 表达式解析",
+      "desc": "解析标准 5 字段 Cron 表达式，展开各字段取值并推算接下来数次执行时间。",
+      "category": "dev",
+      "tags": [
+        "cron",
+        "定时",
+        "调度",
+        "解析"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/cron-parser.html"
+    },
+    {
+      "slug": "sql-formatter",
+      "title": "SQL 格式化",
+      "desc": "为常用 SQL 关键字换行并转为大写，快速整理挤在一行的查询语句。",
+      "category": "dev",
+      "tags": [
+        "sql",
+        "格式化",
+        "查询",
+        "数据库"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sql-formatter.html"
+    },
+    {
+      "slug": "html-formatter",
+      "title": "HTML 格式化",
+      "desc": "按标签层级缩进美化 HTML，自动跳过 script/style/pre 内部内容。",
+      "category": "dev",
+      "tags": [
+        "html",
+        "格式化",
+        "缩进",
+        "美化"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/html-formatter.html"
+    },
+    {
+      "slug": "css-formatter",
+      "title": "CSS 格式化",
+      "desc": "为压缩的 CSS 重新换行与缩进，规则与声明各占一行，方便阅读修改。",
+      "category": "dev",
+      "tags": [
+        "css",
+        "格式化",
+        "缩进",
+        "美化"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-formatter.html"
+    },
+    {
+      "slug": "regex-extract",
+      "title": "正则提取",
+      "desc": "用正则表达式在文本中提取所有匹配与分组，支持全局、忽略大小写与多行。",
+      "category": "dev",
+      "tags": [
+        "regex",
+        "提取",
+        "匹配",
+        "分组"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/regex-extract.html"
+    },
+    {
+      "slug": "hash-compare",
+      "title": "哈希比对",
+      "desc": "比较两个哈希值是否一致（忽略大小写与空格），并据长度提示可能使用的算法。",
+      "category": "dev",
+      "tags": [
+        "hash",
+        "比对",
+        "校验",
+        "md5"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/hash-compare.html"
+    },
+    {
+      "slug": "aes-encrypt",
+      "title": "AES 加密",
+      "desc": "使用 AES-GCM 与口令（PBKDF2）加解密文本，结果以 Base64 输出，全程本地。",
+      "category": "dev",
+      "tags": [
+        "aes",
+        "加密",
+        "gcm",
+        "密码"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/aes-encrypt.html"
+    },
+    {
+      "slug": "rot13",
+      "title": "ROT13 编码",
+      "desc": "对字母进行 ROT13 替换（加密与解密相同），常用于论坛隐藏剧透。",
+      "category": "dev",
+      "tags": [
+        "rot13",
+        "替换",
+        "编码",
+        "密码"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/rot13.html"
+    },
+    {
+      "slug": "json-query",
+      "title": "JSON 路径提取",
+      "desc": "用 a.b.c 或 a.b[0].c 这样的路径从 JSON 中提取子节点并格式化输出。",
+      "category": "dev",
+      "tags": [
+        "json",
+        "path",
+        "提取",
+        "查询"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-query.html"
+    },
+    {
+      "slug": "num-to-chinese",
+      "title": "数字转中文",
+      "desc": "把整数转换为中文数字，支持简体与人民币大写（壹贰叁），最高到兆级。",
+      "category": "dev",
+      "tags": [
+        "中文数字",
+        "大写",
+        "转换",
+        "人民币"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/num-to-chinese.html"
+    },
+    {
+      "slug": "http-status-lookup",
+      "title": "HTTP 状态码查询",
+      "desc": "输入 HTTP 状态码，返回原因短语、所属类别与常见说明。",
+      "category": "dev",
+      "tags": [
+        "http",
+        "status",
+        "状态码",
+        "对照"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/http-status-lookup.html"
+    },
+    {
+      "slug": "semver-compare",
+      "title": "版本号比较",
+      "desc": "比较两个语义化版本号（SemVer）的大小，支持预发布标识。",
+      "category": "dev",
+      "tags": [
+        "semver",
+        "版本",
+        "比较",
+        "npm"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/semver-compare.html"
+    },
+    {
+      "slug": "json-diff",
+      "title": "JSON 差异",
+      "desc": "递归比较两个 JSON 对象，列出新增、删除与变更的字段路径。",
+      "category": "dev",
+      "tags": [
+        "json",
+        "diff",
+        "对比",
+        "变更"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-diff.html"
+    },
+    {
       "slug": "color-converter",
       "title": "颜色格式转换",
       "desc": "HEX、RGB、HSL、HSV、CMYK 互转，附 WCAG 对比度检测与深浅配色建议，做无障碍设计很方便。",
@@ -344,6 +682,149 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-picker.html"
     },
     {
+      "slug": "contrast-checker",
+      "title": "对比度检查",
+      "desc": "计算前景与背景色的 WCAG 对比度，判断普通/大文本是否达到 AA、AAA 标准。",
+      "category": "design",
+      "tags": [
+        "对比度",
+        "wcag",
+        "无障碍",
+        "颜色"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/contrast-checker.html"
+    },
+    {
+      "slug": "font-stack",
+      "title": "字体栈生成",
+      "desc": "一键生成各平台与场景的 font-family 字体栈，含中文与等宽字体，复制即用。",
+      "category": "design",
+      "tags": [
+        "字体",
+        "font-family",
+        "字体栈",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/font-stack.html"
+    },
+    {
+      "slug": "border-radius",
+      "title": "圆角生成器",
+      "desc": "分别调节四个角的圆角半径，实时预览并复制 CSS，适合卡片与头像。",
+      "category": "design",
+      "tags": [
+        "border-radius",
+        "圆角",
+        "css",
+        "卡片"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/border-radius.html"
+    },
+    {
+      "slug": "text-shadow",
+      "title": "文字阴影生成",
+      "desc": "调节偏移、模糊与颜色，实时预览文字阴影并复制 CSS。",
+      "category": "design",
+      "tags": [
+        "text-shadow",
+        "阴影",
+        "文字",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-shadow.html"
+    },
+    {
+      "slug": "css-filter",
+      "title": "CSS 滤镜生成",
+      "desc": "调节模糊、亮度、对比度、灰度、褐色与色相，实时预览并复制 filter CSS。",
+      "category": "design",
+      "tags": [
+        "filter",
+        "滤镜",
+        "css",
+        "图片"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-filter.html"
+    },
+    {
+      "slug": "button-generator",
+      "title": "按钮样式生成",
+      "desc": "调节背景、文字、圆角与内边距，实时预览按钮并复制可复用 CSS。",
+      "category": "design",
+      "tags": [
+        "button",
+        "按钮",
+        "css",
+        "样式"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/button-generator.html"
+    },
+    {
+      "slug": "glassmorphism",
+      "title": "毛玻璃效果",
+      "desc": "调节模糊、透明度、描边与圆角，生成玻璃拟态（Glassmorphism）卡片 CSS。",
+      "category": "design",
+      "tags": [
+        "glassmorphism",
+        "毛玻璃",
+        "css",
+        "卡片"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/glassmorphism.html"
+    },
+    {
+      "slug": "flexbox-generator",
+      "title": "Flexbox 生成",
+      "desc": "可视化选择主轴对齐、交叉轴对齐、方向与换行，实时预览并复制 flex 布局 CSS。",
+      "category": "design",
+      "tags": [
+        "flexbox",
+        "flex",
+        "布局",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/flexbox-generator.html"
+    },
+    {
+      "slug": "gradient-text",
+      "title": "渐变文字",
+      "desc": "把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。",
+      "category": "design",
+      "tags": [
+        "gradient",
+        "渐变",
+        "文字",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-text.html"
+    },
+    {
+      "slug": "css-grid-pattern",
+      "title": "网格背景图案",
+      "desc": "生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 CSS 背景代码。",
+      "category": "design",
+      "tags": [
+        "grid",
+        "背景",
+        "图案",
+        "css"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-grid-pattern.html"
+    },
+    {
+      "slug": "image-resize",
+      "title": "图片尺寸调整",
+      "desc": "上传图片后按目标宽度等比缩放（或指定高宽），导出为 PNG/JPEG/WebP，全部在本地完成。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "缩放",
+        "尺寸",
+        "导出"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-resize.html"
+    },
+    {
       "slug": "image-compress",
       "title": "图片压缩",
       "desc": "本地压缩 JPEG/PNG/WebP，可调质量、限制最大宽高，实时对比体积与尺寸并下载，图片不上传。",
@@ -368,6 +849,45 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-base64.html"
     },
     {
+      "slug": "image-metadata",
+      "title": "图片信息查看",
+      "desc": "选择本地图片，读取文件名、类型、体积与像素尺寸，无需上传，所有信息在本地读取。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "元数据",
+        "尺寸",
+        "体积"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-metadata.html"
+    },
+    {
+      "slug": "image-pixelate",
+      "title": "像素化马赛克",
+      "desc": "上传图片并调节马赛克块大小，实时预览像素化效果，导出为本地图片。",
+      "category": "image",
+      "tags": [
+        "像素化",
+        "马赛克",
+        "图片",
+        "隐私"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-pixelate.html"
+    },
+    {
+      "slug": "image-flip-rotate",
+      "title": "图片翻转旋转",
+      "desc": "上传图片后水平 / 垂直翻转，或顺时针 / 逆时针旋转 90 度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "翻转",
+        "旋转",
+        "编辑"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-flip-rotate.html"
+    },
+    {
       "slug": "percentage-calculator",
       "title": "百分比计算器",
       "desc": "求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。",
@@ -378,6 +898,32 @@
         "增长率"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/percentage-calculator.html"
+    },
+    {
+      "slug": "bmi-calculator",
+      "title": "BMI 计算器",
+      "desc": "输入身高与体重，立即算出 BMI 与对应分类（偏瘦 / 正常 / 超重 / 肥胖），帮助你了解体重状况。",
+      "category": "calc",
+      "tags": [
+        "BMI",
+        "体重",
+        "身高",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/bmi-calculator.html"
+    },
+    {
+      "slug": "loan-calculator",
+      "title": "贷款计算器",
+      "desc": "按等额本息或等额本金估算每月还款、总利息与还款总额，输入年利率与期限即可。",
+      "category": "calc",
+      "tags": [
+        "贷款",
+        "月供",
+        "利息",
+        "房贷"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/loan-calculator.html"
     },
     {
       "slug": "unit-converter",
@@ -391,6 +937,110 @@
         "存储"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html"
+    },
+    {
+      "slug": "tip-calculator",
+      "title": "小费计算器",
+      "desc": "输入账单金额、小费率与人数，自动拆分每人应付的小费与总额，聚会 AA 不再算错。",
+      "category": "calc",
+      "tags": [
+        "小费",
+        "分摊",
+        "AA",
+        "聚餐"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tip-calculator.html"
+    },
+    {
+      "slug": "discount-calculator",
+      "title": "折扣计算器",
+      "desc": "输入原价与折扣力度，算出折后价、省下的金额，以及相当于打了几折，网购比价好帮手。",
+      "category": "calc",
+      "tags": [
+        "折扣",
+        "打折",
+        "比价",
+        "省钱"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/discount-calculator.html"
+    },
+    {
+      "slug": "compound-interest",
+      "title": "复利计算器",
+      "desc": "输入本金、年利率、年限与复利频率，估算复利终值与累计利息，看清时间带来的增长。",
+      "category": "calc",
+      "tags": [
+        "复利",
+        "利息",
+        "理财",
+        "投资"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/compound-interest.html"
+    },
+    {
+      "slug": "fuel-calculator",
+      "title": "油耗油费计算",
+      "desc": "根据里程、百公里油耗与油价，估算本次出行的用油量与油费，长途自驾提前算账。",
+      "category": "calc",
+      "tags": [
+        "油耗",
+        "油费",
+        "里程",
+        "自驾"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fuel-calculator.html"
+    },
+    {
+      "slug": "age-calculator",
+      "title": "年龄与日期差",
+      "desc": "选择出生日期与目标日期，计算周岁、精确到天的总天数，以及距离目标日期还有多少天。",
+      "category": "calc",
+      "tags": [
+        "年龄",
+        "生日",
+        "日期差",
+        "倒计时"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/age-calculator.html"
+    },
+    {
+      "slug": "salary-calculator",
+      "title": "税后工资估算",
+      "desc": "按常见五险一金个人比例与个税累进税率，粗略估算每月到手工资，仅供参考。",
+      "category": "calc",
+      "tags": [
+        "工资",
+        "个税",
+        "五险一金",
+        "到手"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/salary-calculator.html"
+    },
+    {
+      "slug": "vat-calculator",
+      "title": "含税价换算",
+      "desc": "在含税金额与不含税金额之间互相换算，输入税率即可得到税额、不含税价与含税价。",
+      "category": "calc",
+      "tags": [
+        "增值税",
+        "含税价",
+        "不含税价",
+        "税额"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/vat-calculator.html"
+    },
+    {
+      "slug": "grade-calculator",
+      "title": "加权平均分",
+      "desc": "每行填写「分数,权重」，自动计算加权平均分、总权重与科目数，适合成绩与绩效汇总。",
+      "category": "calc",
+      "tags": [
+        "平均分",
+        "加权",
+        "成绩",
+        "GPA"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/grade-calculator.html"
     },
     {
       "slug": "roman-numeral",
@@ -480,6 +1130,186 @@
         "熵"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-strength.html"
+    },
+    {
+      "slug": "stopwatch",
+      "title": "秒表",
+      "desc": "本地秒表，支持开始、暂停与重置，精确到百分之一秒。",
+      "category": "util",
+      "tags": [
+        "秒表",
+        "计时",
+        "stopwatch"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/stopwatch.html"
+    },
+    {
+      "slug": "countdown",
+      "title": "倒计时",
+      "desc": "设定一个目标时间，实时显示剩余的天、时、分、秒，到点提示。",
+      "category": "util",
+      "tags": [
+        "倒计时",
+        "countdown",
+        "提醒"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/countdown.html"
+    },
+    {
+      "slug": "world-clock",
+      "title": "世界时钟",
+      "desc": "同时显示多个时区的当前时间，使用本地 Intl 计算，无需联网。",
+      "category": "util",
+      "tags": [
+        "时钟",
+        "时区",
+        "world",
+        "时间"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/world-clock.html"
+    },
+    {
+      "slug": "pomodoro",
+      "title": "番茄钟",
+      "desc": "经典的 25 分钟专注 + 5 分钟休息计时，可开始、暂停与重置。",
+      "category": "util",
+      "tags": [
+        "番茄钟",
+        "pomodoro",
+        "专注",
+        "计时"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pomodoro.html"
+    },
+    {
+      "slug": "notepad",
+      "title": "草稿本",
+      "desc": "简单便签，内容自动保存到浏览器本地（localStorage），刷新不丢失。",
+      "category": "util",
+      "tags": [
+        "便签",
+        "草稿",
+        "notepad",
+        "本地"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/notepad.html"
+    },
+    {
+      "slug": "fake-data",
+      "title": "假数据生成",
+      "desc": "一键生成姓名、用户名、邮箱、电话等示例数据，方便填充表单与演示。",
+      "category": "util",
+      "tags": [
+        "假数据",
+        "mock",
+        "示例",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fake-data.html"
+    },
+    {
+      "slug": "username-generator",
+      "title": "用户名生成",
+      "desc": "组合形容词、名词与数字生成可用用户名，支持分隔符与大小写。",
+      "category": "util",
+      "tags": [
+        "用户名",
+        "username",
+        "生成",
+        "昵称"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/username-generator.html"
+    },
+    {
+      "slug": "decision-wheel",
+      "title": "决策转盘",
+      "desc": "把选项一行一个填进去，转盘随机帮你做决定，适合吃饭、抽签等场景。",
+      "category": "util",
+      "tags": [
+        "转盘",
+        "决策",
+        "随机",
+        "抽签"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/decision-wheel.html"
+    },
+    {
+      "slug": "list-picker",
+      "title": "随机挑选",
+      "desc": "从一列选项中随机抽取一个，可选抽取后自动移除（不重复）。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "挑选",
+        "picker",
+        "抽取"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/list-picker.html"
+    },
+    {
+      "slug": "timezone-converter",
+      "title": "时区转换",
+      "desc": "将某时区的时间换算到另一时区，基于本地 Intl，支持常见城市时区。",
+      "category": "util",
+      "tags": [
+        "时区",
+        "timezone",
+        "转换",
+        "时间"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/timezone-converter.html"
+    },
+    {
+      "slug": "random-color",
+      "title": "随机颜色",
+      "desc": "生成随机 HEX 颜色并预览，可复制 HEX / RGB，方便做配色灵感。",
+      "category": "util",
+      "tags": [
+        "颜色",
+        "随机",
+        "hex",
+        "配色"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-color.html"
+    },
+    {
+      "slug": "passphrase",
+      "title": "密码短语生成",
+      "desc": "用随机单词拼出易记又强壮的密码短语（类 Diceware），可设词数与分隔符。",
+      "category": "util",
+      "tags": [
+        "密码短语",
+        "passphrase",
+        "diceware",
+        "密码"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/passphrase.html"
+    },
+    {
+      "slug": "team-splitter",
+      "title": "随机分组",
+      "desc": "把一份名单随机分成若干组，适合课堂、活动与团建分队。",
+      "category": "util",
+      "tags": [
+        "分组",
+        "随机",
+        "名单",
+        "团队"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/team-splitter.html"
+    },
+    {
+      "slug": "lottery-draw",
+      "title": "抽奖抽签",
+      "desc": "从名单中随机抽取若干名中奖者，自动去重不重复，适合活动抽奖。",
+      "category": "util",
+      "tags": [
+        "抽奖",
+        "抽签",
+        "随机",
+        "中奖"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lottery-draw.html"
     }
   ]
 }
