@@ -17,6 +17,7 @@
 | [HTML 实体转义](tools/html-entities.html) | 转义特殊字符、中文转数字实体、实体还原 |
 | [文本对比 Diff](tools/text-diff.html) | 逐行比较差异，支持忽略空白与大小写 |
 | [文本行处理](tools/text-lines.html) | 去重、排序、去空行、加行号、关键词筛选 |
+| [Lorem Ipsum 生成器](tools/lorem-ipsum.html) | 生成占位假文，可设段落数与词数，支持经典开头 |
 
 ### 开发者
 
@@ -30,6 +31,8 @@
 | [UUID 生成器](tools/uuid.html) | 批量生成 UUID v4 与时间有序的 v7 |
 | [时间戳转换](tools/timestamp.html) | 秒/毫秒自动识别，本地时间与 UTC 对照 |
 | [JWT 解析](tools/jwt-decoder.html) | 解析 Header/Payload、检查过期、HMAC 验签 |
+| [进制转换](tools/base-converter.html) | 2~36 任意进制互转，支持大整数与常用进制对照 |
+| [CSV ↔ JSON 互转](tools/csv-json.html) | CSV 与 JSON 双向转换，支持自定义分隔符、表头与带引号字段 |
 
 ### 设计
 
@@ -45,6 +48,7 @@
 | 工具 | 说明 |
 | --- | --- |
 | [密码生成器](tools/password-generator.html) | 加密级随机密码，可调长度与字符集并估算熵值 |
+| [Emoji 表情复制](tools/emoji-picker.html) | 按分类浏览 Emoji，支持关键词搜索并一键复制 |
 
 ### 图片
 
@@ -59,6 +63,8 @@
 | --- | --- |
 | [百分比计算器](tools/percentage-calculator.html) | 求百分之几、求占比、增长率、按比例增减 |
 | [单位换算](tools/unit-converter.html) | 长度、质量、面积、体积、速度、存储、时间、温度 |
+| [罗马数字转换](tools/roman-numeral.html) | 阿拉伯数字与罗马数字互转，支持 1–3999 范围校验 |
+| [数学表达式计算器](tools/math-calc.html) | 本地安全计算表达式，支持函数与 π、e 常量 |
 
 ## 本地使用
 

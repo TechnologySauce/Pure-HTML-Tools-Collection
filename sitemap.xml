@@ -19,6 +19,9 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-lines.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lorem-ipsum.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-formatter.html</loc>
   </url>
   <url>
@@ -41,6 +44,12 @@
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/jwt-decoder.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/base-converter.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/csv-json.html</loc>
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-converter.html</loc>
@@ -67,6 +76,15 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/roman-numeral.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/math-calc.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/emoji-picker.html</loc>
   </url>
 </urlset>

@@ -921,6 +921,147 @@ const tests = {
     doc.querySelector("#clearBtn").click();
     ok(doc.querySelector("#downloadImg").disabled, `${name}: 清空后下载按钮应禁用`);
     eq(area.value, "", `${name}: 清空未生效`);
+  },
+
+  "base-converter.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const num = doc.querySelector("#numInput");
+    const from = doc.querySelector("#fromBase");
+    const to = doc.querySelector("#toBase");
+    const result = doc.querySelector("#result");
+    const setSel = (el, v) => { el.value = v; el.dispatchEvent(new window.Event("change", { bubbles: true })); };
+    num.value = "255";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(result.value, "ff", `${name}: 255 dec->hex`);
+    setSel(to, "2");
+    eq(result.value, "11111111", `${name}: 255 dec->bin`);
+    setSel(from, "2"); setSel(to, "10");
+    num.value = "11111111";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(result.value, "255", `${name}: bin->dec`);
+    setSel(from, "16"); setSel(to, "10");
+    num.value = "ff";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(result.value, "255", `${name}: hex->dec`);
+    setSel(from, "36"); setSel(to, "10");
+    num.value = "z";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(result.value, "35", `${name}: base36->dec`);
+    setSel(from, "2"); setSel(to, "10");
+    num.value = "2";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: 非法字符未提示`);
+    setSel(from, "10"); setSel(to, "16");
+    doc.querySelector("#upper").checked = true;
+    doc.querySelector("#upper").dispatchEvent(new window.Event("change", { bubbles: true }));
+    num.value = "255";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(result.value, "FF", `${name}: 大写输出`);
+  },
+
+  "roman-numeral.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const input = doc.querySelector("#valueIn");
+    const output = doc.querySelector("#valueOut");
+    const setDir = (v) => { const el = doc.querySelector('input[name="dir"][value="' + v + '"]'); el.checked = true; el.dispatchEvent(new window.Event("change", { bubbles: true })); };
+    input.value = "1984";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(output.value, "MCMLXXXIV", `${name}: 1984->roman`);
+    setDir("toArabic");
+    input.value = "MCMLXXXIV";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(output.value, "1984", `${name}: roman->1984`);
+    input.value = "MCQ";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: 非法字符未提示`);
+    setDir("toRoman");
+    input.value = "4000";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: 超出范围未提示`);
+    input.value = "";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(output.value, "", `${name}: 清空`);
+    setDir("toArabic");
+    input.value = "IX";
+    input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(output.value, "9", `${name}: IX->9`);
+  },
+
+  "csv-json.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const source = doc.querySelector("#source");
+    const output = doc.querySelector("#output");
+    const setDir = (v) => { const el = doc.querySelector('input[name="dir"][value="' + v + '"]'); el.checked = true; el.dispatchEvent(new window.Event("change", { bubbles: true })); };
+    source.value = "name,age\nAlice,30\nBob,25";
+    source.dispatchEvent(new window.Event("input", { bubbles: true }));
+    let arr = JSON.parse(output.value);
+    eq(JSON.stringify(arr), JSON.stringify([{ name: "Alice", age: "30" }, { name: "Bob", age: "25" }]), `${name}: csv->json`);
+    source.value = 'name,note\nAlice,"hello, world"';
+    source.dispatchEvent(new window.Event("input", { bubbles: true }));
+    arr = JSON.parse(output.value);
+    eq(arr[0].note, "hello, world", `${name}: 带逗号引号字段`);
+    setDir("toCsv");
+    source.value = JSON.stringify([{ a: "1", b: "2" }, { a: "3", b: "4" }]);
+    source.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(output.value, "a,b\n1,2\n3,4", `${name}: json->csv`);
+    source.value = "{not json";
+    source.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: 非法 JSON 未提示`);
+  },
+
+  "lorem-ipsum.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const count = doc.querySelector("#count");
+    const words = doc.querySelector("#words");
+    const output = doc.querySelector("#output");
+    const setN = (el, v) => { el.value = String(v); el.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    setN(count, 3); setN(words, 20);
+    const paras = output.value.split("\n\n").filter(Boolean);
+    eq(paras.length, 3, `${name}: 段落数`);
+    const total = output.value.trim().split(/\s+/).filter(Boolean).length;
+    eq(total, 60, `${name}: 总词数`);
+    ok(output.value.startsWith("Lorem ipsum dolor sit amet"), `${name}: 经典开头`);
+    setN(count, 2); setN(words, 10);
+    eq(output.value.split("\n\n").filter(Boolean).length, 2, `${name}: 2 段`);
+  },
+
+  "emoji-picker.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const grid = doc.querySelector("#grid");
+    ok(grid.querySelectorAll("button").length > 0, `${name}: 初始有表情`);
+    const first = grid.querySelector("button");
+    const ch = first.getAttribute("data-ch");
+    first.click();
+    eq(doc.querySelector("#selected").value, ch, `${name}: 点击选中`);
+    const search = doc.querySelector("#emojiSearch");
+    search.value = "zzz";
+    search.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(grid.querySelectorAll("button").length, 0, `${name}: 无匹配`);
+    search.value = "";
+    search.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(grid.querySelectorAll("button").length > 0, `${name}: 清空后恢复`);
+    const catBtn = doc.querySelector('[data-cat="animal"]');
+    catBtn.click();
+    const allAnimal = Array.from(grid.querySelectorAll("button")).every((b) => b.getAttribute("data-cat") === "animal");
+    ok(allAnimal, `${name}: 分类筛选`);
+  },
+
+  "math-calc.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const expr = doc.querySelector("#expr");
+    const result = doc.querySelector("#result");
+    const setE = (v) => { expr.value = v; expr.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    setE("2+3*4"); eq(result.value, "14", `${name}: 优先级`);
+    setE("(2+3)*4"); eq(result.value, "20", `${name}: 括号`);
+    setE("2^10"); eq(result.value, "1024", `${name}: 幂`);
+    setE("sqrt(16)"); eq(result.value, "4", `${name}: sqrt`);
+    setE("max(1,2,3)"); eq(result.value, "3", `${name}: max`);
+    setE("10%3"); eq(result.value, "1", `${name}: 取模`);
+    setE("pi"); ok(Math.abs(parseFloat(result.value) - Math.PI) < 1e-9, `${name}: pi`);
+    setE("2+"); ok(doc.querySelector("#status").classList.contains("error"), `${name}: 不完整未提示`);
+    setE("1/0"); ok(doc.querySelector("#status").classList.contains("error"), `${name}: 除以零未提示`);
+    setE("2*(3+4)"); eq(result.value, "14", `${name}: 嵌套`);
+    setE("-5+8"); eq(result.value, "3", `${name}: 一元负号`);
   }
 };
 

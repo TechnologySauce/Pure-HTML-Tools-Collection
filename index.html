@@ -47,7 +47,7 @@
 <main class="wrap" id="tools">
   <section class="hero">
     <p class="eyebrow">Pure HTML · Zero Dependency</p>
-    <h1>浏览器里的<em><!-- build:count:start -->22<!-- build:count:end --></em>个纯 HTML 小工具</h1>
+    <h1>浏览器里的<em><!-- build:count:start -->28<!-- build:count:end --></em>个纯 HTML 小工具</h1>
     <p class="lede">每个工具都是独立的单个 HTML 文件：不装依赖、不连后端、不收集数据。断网可用，也可以直接下载到本地长期使用。全部源码开放，欢迎按同一套结构继续添加新工具。</p>
 
     <div class="search-row">
@@ -60,7 +60,7 @@
     </div>
 
     <ul class="stats">
-      <li><b><!-- build:count:start -->22<!-- build:count:end --></b> 个工具</li>
+      <li><b><!-- build:count:start -->28<!-- build:count:end --></b> 个工具</li>
       <li><b>0</b> 个外部依赖</li>
       <li><b>100%</b> 浏览器本地处理</li>
       <li><b>MIT</b> 开源协议</li>
@@ -69,13 +69,13 @@
 
   <div class="chips" role="group" aria-label="按分类筛选">
     <!-- build:chips:start -->
-    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>22</span></button>
-    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>5</span></button>
-    <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>8</span></button>
+    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>28</span></button>
+    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>6</span></button>
+    <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>10</span></button>
     <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>4</span></button>
     <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>2</span></button>
-    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>2</span></button>
-    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>1</span></button>
+    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>4</span></button>
+    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>2</span></button>
     <!-- build:chips:end -->
     <button class="clear-btn" id="clearSearch" type="button" hidden>清除筛选</button>
   </div>
@@ -128,6 +128,15 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">去重、排序、去空行、加行号与前后缀、关键词筛选，一次性整理粘贴来的列表和日志。</span>
       <span class="card-tags"><i>去重</i><i>排序</i><i>行号</i></span>
+    </a>
+    <a class="card" href="tools/lorem-ipsum.html" data-cat="text" data-search="lorem ipsum 生成器 生成占位用的 lorem ipsum 假文，可设置段落数与每段词数，支持经典开头。 文本处理 lorem-ipsum lorem 占位文本 假文 排版">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">Lorem Ipsum 生成器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成占位用的 Lorem Ipsum 假文，可设置段落数与每段词数，支持经典开头。</span>
+      <span class="card-tags"><i>lorem</i><i>占位文本</i><i>假文</i><i>排版</i></span>
     </a>
     <a class="card" href="tools/json-formatter.html" data-cat="dev" data-search="json 格式化 格式化、压缩并校验 json，语法错误会精确提示行号和列号，支持键排序与缩进选择。 开发者 json-formatter json 格式化 校验">
       <span class="card-head">
@@ -201,6 +210,24 @@
       <span class="card-desc">解开 JWT 的 Header 与 Payload，查看 exp/iat 等声明与过期状态，并支持 HMAC 密钥验签。</span>
       <span class="card-tags"><i>jwt</i><i>token</i><i>验签</i></span>
     </a>
+    <a class="card" href="tools/base-converter.html" data-cat="dev" data-search="进制转换 在二进制、八进制、十进制、十六进制与 2~36 任意进制之间互转，支持大整数，结果可复制。 开发者 base-converter 进制 base 二进制 十六进制">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">进制转换</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在二进制、八进制、十进制、十六进制与 2~36 任意进制之间互转，支持大整数，结果可复制。</span>
+      <span class="card-tags"><i>进制</i><i>base</i><i>二进制</i><i>十六进制</i></span>
+    </a>
+    <a class="card" href="tools/csv-json.html" data-cat="dev" data-search="csv ↔ json 互转 在 csv 表格与 json 数组之间双向转换，支持自定义分隔符、首行表头与带引号字段。 开发者 csv-json csv json 转换 表格">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg></span>
+        <span class="card-title">CSV ↔ JSON 互转</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在 CSV 表格与 JSON 数组之间双向转换，支持自定义分隔符、首行表头与带引号字段。</span>
+      <span class="card-tags"><i>csv</i><i>json</i><i>转换</i><i>表格</i></span>
+    </a>
     <a class="card" href="tools/color-converter.html" data-cat="design" data-search="颜色格式转换 hex、rgb、hsl、hsv、cmyk 互转，附 wcag 对比度检测与深浅配色建议，做无障碍设计很方便。 设计 color-converter 颜色 hex rgb 对比度">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
@@ -273,6 +300,24 @@
       <span class="card-desc">长度、质量、面积、体积、速度、存储、时间与温度的常用单位互换，同时列出同类单位的换算结果。</span>
       <span class="card-tags"><i>单位换算</i><i>长度</i><i>温度</i><i>存储</i></span>
     </a>
+    <a class="card" href="tools/roman-numeral.html" data-cat="calc" data-search="罗马数字转换 在阿拉伯数字与罗马数字之间互转，支持范围校验，结果可复制。 计算 roman-numeral 罗马数字 roman 进制 转换">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">罗马数字转换</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在阿拉伯数字与罗马数字之间互转，支持范围校验，结果可复制。</span>
+      <span class="card-tags"><i>罗马数字</i><i>roman</i><i>进制</i><i>转换</i></span>
+    </a>
+    <a class="card" href="tools/math-calc.html" data-cat="calc" data-search="数学表达式计算器 本地计算加减乘除、幂、取模与常用函数，支持括号与 π、e 常量。 计算 math-calc 计算器 数学 表达式 eval">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">数学表达式计算器</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">本地计算加减乘除、幂、取模与常用函数，支持括号与 π、e 常量。</span>
+      <span class="card-tags"><i>计算器</i><i>数学</i><i>表达式</i><i>eval</i></span>
+    </a>
     <a class="card" href="tools/password-generator.html" data-cat="util" data-search="密码生成器 加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。 小工具 password-generator 密码 随机 安全">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
@@ -281,6 +326,15 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。</span>
       <span class="card-tags"><i>密码</i><i>随机</i><i>安全</i></span>
+    </a>
+    <a class="card" href="tools/emoji-picker.html" data-cat="util" data-search="emoji 表情复制 按分类浏览常用 emoji，支持关键词搜索，点击即可复制。 小工具 emoji-picker emoji 表情 符号 复制">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">Emoji 表情复制</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按分类浏览常用 Emoji，支持关键词搜索，点击即可复制。</span>
+      <span class="card-tags"><i>emoji</i><i>表情</i><i>符号</i><i>复制</i></span>
     </a>
     <!-- build:tools:end -->
   </div>

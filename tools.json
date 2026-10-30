@@ -1,17 +1,17 @@
 {
   "name": "纯 HTML 工具箱",
   "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
-  "count": 22,
+  "count": 28,
   "categories": [
     {
       "id": "text",
       "name": "文本处理",
-      "count": 5
+      "count": 6
     },
     {
       "id": "dev",
       "name": "开发者",
-      "count": 8
+      "count": 10
     },
     {
       "id": "design",
@@ -26,12 +26,12 @@
     {
       "id": "calc",
       "name": "计算",
-      "count": 2
+      "count": 4
     },
     {
       "id": "util",
       "name": "小工具",
-      "count": 1
+      "count": 2
     }
   ],
   "tools": [
@@ -94,6 +94,19 @@
         "行号"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-lines.html"
+    },
+    {
+      "slug": "lorem-ipsum",
+      "title": "Lorem Ipsum 生成器",
+      "desc": "生成占位用的 Lorem Ipsum 假文，可设置段落数与每段词数，支持经典开头。",
+      "category": "text",
+      "tags": [
+        "lorem",
+        "占位文本",
+        "假文",
+        "排版"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lorem-ipsum.html"
     },
     {
       "slug": "json-formatter",
@@ -191,6 +204,32 @@
         "验签"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/jwt-decoder.html"
+    },
+    {
+      "slug": "base-converter",
+      "title": "进制转换",
+      "desc": "在二进制、八进制、十进制、十六进制与 2~36 任意进制之间互转，支持大整数，结果可复制。",
+      "category": "dev",
+      "tags": [
+        "进制",
+        "base",
+        "二进制",
+        "十六进制"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/base-converter.html"
+    },
+    {
+      "slug": "csv-json",
+      "title": "CSV ↔ JSON 互转",
+      "desc": "在 CSV 表格与 JSON 数组之间双向转换，支持自定义分隔符、首行表头与带引号字段。",
+      "category": "dev",
+      "tags": [
+        "csv",
+        "json",
+        "转换",
+        "表格"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/csv-json.html"
     },
     {
       "slug": "color-converter",
@@ -291,6 +330,32 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-converter.html"
     },
     {
+      "slug": "roman-numeral",
+      "title": "罗马数字转换",
+      "desc": "在阿拉伯数字与罗马数字之间互转，支持范围校验，结果可复制。",
+      "category": "calc",
+      "tags": [
+        "罗马数字",
+        "roman",
+        "进制",
+        "转换"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/roman-numeral.html"
+    },
+    {
+      "slug": "math-calc",
+      "title": "数学表达式计算器",
+      "desc": "本地计算加减乘除、幂、取模与常用函数，支持括号与 π、e 常量。",
+      "category": "calc",
+      "tags": [
+        "计算器",
+        "数学",
+        "表达式",
+        "eval"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/math-calc.html"
+    },
+    {
       "slug": "password-generator",
       "title": "密码生成器",
       "desc": "加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。",
@@ -301,6 +366,19 @@
         "安全"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-generator.html"
+    },
+    {
+      "slug": "emoji-picker",
+      "title": "Emoji 表情复制",
+      "desc": "按分类浏览常用 Emoji，支持关键词搜索，点击即可复制。",
+      "category": "util",
+      "tags": [
+        "emoji",
+        "表情",
+        "符号",
+        "复制"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/emoji-picker.html"
     }
   ]
 }
