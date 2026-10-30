@@ -18,6 +18,7 @@
 | [文本对比 Diff](tools/text-diff.html) | 逐行比较差异，支持忽略空白与大小写 |
 | [文本行处理](tools/text-lines.html) | 去重、排序、去空行、加行号、关键词筛选 |
 | [Lorem Ipsum 生成器](tools/lorem-ipsum.html) | 生成占位假文，可设段落数与词数，支持经典开头 |
+| [Markdown 预览](tools/markdown-preview.html) | 本地实时预览 Markdown，支持标题、加粗、列表、链接、代码块 |
 
 ### 开发者
 
@@ -33,6 +34,9 @@
 | [JWT 解析](tools/jwt-decoder.html) | 解析 Header/Payload、检查过期、HMAC 验签 |
 | [进制转换](tools/base-converter.html) | 2~36 任意进制互转，支持大整数与常用进制对照 |
 | [CSV ↔ JSON 互转](tools/csv-json.html) | CSV 与 JSON 双向转换，支持自定义分隔符、表头与带引号字段 |
+| [URL 解析器](tools/url-parser.html) | 拆解 URL 为协议/主机/端口/路径/参数，可重新拼接 |
+| [凯撒密码](tools/caesar-cipher.html) | 凯撒移位加密/解密，自定义偏移量 |
+| [数字格式化](tools/number-formatter.html) | 用 Intl 格式化为千分位、货币、百分比、紧凑 |
 
 ### 设计
 
@@ -40,6 +44,7 @@
 | --- | --- |
 | [颜色格式转换](tools/color-converter.html) | HEX/RGB/HSL/HSV/CMYK 互转与 WCAG 对比度 |
 | [调色板生成器](tools/color-palette.html) | 主色生成 11 级梯度与 4 组和谐配色 |
+| [颜色拾取器](tools/color-picker.html) | 系统取色（Eyedropper）+ HEX/RGB/HSL 互转与复制 |
 | [CSS 渐变生成器](tools/gradient.html) | 线性/径向/圆锥渐变可视化调节与复制 |
 | [阴影生成器](tools/box-shadow.html) | box-shadow 可视化调节、预设与代码复制 |
 
@@ -49,6 +54,8 @@
 | --- | --- |
 | [密码生成器](tools/password-generator.html) | 加密级随机密码，可调长度与字符集并估算熵值 |
 | [Emoji 表情复制](tools/emoji-picker.html) | 按分类浏览 Emoji，支持关键词搜索并一键复制 |
+| [随机数 / 掷骰子](tools/random-dice.html) | 随机整数、掷骰子、抛硬币与随机 HEX |
+| [密码强度检测](tools/password-strength.html) | 分析长度、字符种类与熵值，给出评级 |
 
 ### 图片
 
@@ -64,6 +71,7 @@
 | [百分比计算器](tools/percentage-calculator.html) | 求百分之几、求占比、增长率、按比例增减 |
 | [单位换算](tools/unit-converter.html) | 长度、质量、面积、体积、速度、存储、时间、温度 |
 | [罗马数字转换](tools/roman-numeral.html) | 阿拉伯数字与罗马数字互转，支持 1–3999 范围校验 |
+| [日期计算器](tools/date-calculator.html) | 两日期相差天数，或在日期上加减天数（含星期） |
 | [数学表达式计算器](tools/math-calc.html) | 本地安全计算表达式，支持函数与 π、e 常量 |
 
 ## 本地使用

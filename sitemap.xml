@@ -22,6 +22,9 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lorem-ipsum.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/markdown-preview.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-formatter.html</loc>
   </url>
   <url>
@@ -52,6 +55,15 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/csv-json.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/url-parser.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/caesar-cipher.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/number-formatter.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-converter.html</loc>
   </url>
   <url>
@@ -62,6 +74,9 @@
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/box-shadow.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-picker.html</loc>
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-compress.html</loc>
@@ -82,9 +97,18 @@
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/math-calc.html</loc>
   </url>
   <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/date-calculator.html</loc>
+  </url>
+  <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-generator.html</loc>
   </url>
   <url>
     <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/emoji-picker.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-dice.html</loc>
+  </url>
+  <url>
+    <loc>https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-strength.html</loc>
   </url>
 </urlset>

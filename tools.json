@@ -1,22 +1,22 @@
 {
   "name": "纯 HTML 工具箱",
   "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
-  "count": 28,
+  "count": 36,
   "categories": [
     {
       "id": "text",
       "name": "文本处理",
-      "count": 6
+      "count": 7
     },
     {
       "id": "dev",
       "name": "开发者",
-      "count": 10
+      "count": 13
     },
     {
       "id": "design",
       "name": "设计",
-      "count": 4
+      "count": 5
     },
     {
       "id": "image",
@@ -26,12 +26,12 @@
     {
       "id": "calc",
       "name": "计算",
-      "count": 4
+      "count": 5
     },
     {
       "id": "util",
       "name": "小工具",
-      "count": 2
+      "count": 4
     }
   ],
   "tools": [
@@ -107,6 +107,18 @@
         "排版"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lorem-ipsum.html"
+    },
+    {
+      "slug": "markdown-preview",
+      "title": "Markdown 预览",
+      "desc": "本地实时预览 Markdown，支持标题、加粗、斜体、代码块、列表、链接、引用与分割线。",
+      "category": "text",
+      "tags": [
+        "markdown",
+        "预览",
+        "md"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/markdown-preview.html"
     },
     {
       "slug": "json-formatter",
@@ -232,6 +244,44 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/csv-json.html"
     },
     {
+      "slug": "url-parser",
+      "title": "URL 解析器",
+      "desc": "解析 URL 为协议、主机、端口、路径、查询参数与哈希，可编辑并重新拼接。",
+      "category": "dev",
+      "tags": [
+        "url",
+        "解析",
+        "链接"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/url-parser.html"
+    },
+    {
+      "slug": "caesar-cipher",
+      "title": "凯撒密码",
+      "desc": "对文本进行凯撒移位加密/解密，支持字母与自定义偏移量，全程本地处理。",
+      "category": "dev",
+      "tags": [
+        "caesar",
+        "cipher",
+        "加密",
+        "凯撒"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/caesar-cipher.html"
+    },
+    {
+      "slug": "number-formatter",
+      "title": "数字格式化",
+      "desc": "使用 Intl 将数字格式化为千分位、货币、百分比、紧凑与不同语言区域，离线可用。",
+      "category": "dev",
+      "tags": [
+        "number",
+        "format",
+        "intl",
+        "格式化"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/number-formatter.html"
+    },
+    {
       "slug": "color-converter",
       "title": "颜色格式转换",
       "desc": "HEX、RGB、HSL、HSV、CMYK 互转，附 WCAG 对比度检测与深浅配色建议，做无障碍设计很方便。",
@@ -279,6 +329,19 @@
         "css"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/box-shadow.html"
+    },
+    {
+      "slug": "color-picker",
+      "title": "颜色拾取器",
+      "desc": "取色与格式转换，支持系统取色器（Eyedropper）、HEX/RGB/HSL 互转与一键复制。",
+      "category": "design",
+      "tags": [
+        "color",
+        "取色",
+        "eyedropper",
+        "颜色"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/color-picker.html"
     },
     {
       "slug": "image-compress",
@@ -356,6 +419,18 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/math-calc.html"
     },
     {
+      "slug": "date-calculator",
+      "title": "日期计算器",
+      "desc": "计算两个日期相差的天数，或在某日期上加减天数，结果含星期。",
+      "category": "calc",
+      "tags": [
+        "date",
+        "日期",
+        "天数"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/date-calculator.html"
+    },
+    {
       "slug": "password-generator",
       "title": "密码生成器",
       "desc": "加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。",
@@ -379,6 +454,32 @@
         "复制"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/emoji-picker.html"
+    },
+    {
+      "slug": "random-dice",
+      "title": "随机数 / 掷骰子",
+      "desc": "生成指定范围的随机整数、掷骰子、抛硬币与随机十六进制，结果可复制。",
+      "category": "util",
+      "tags": [
+        "random",
+        "随机",
+        "骰子",
+        "概率"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-dice.html"
+    },
+    {
+      "slug": "password-strength",
+      "title": "密码强度检测",
+      "desc": "分析密码的长度、字符种类与熵值，给出强度评级与改进建议。",
+      "category": "util",
+      "tags": [
+        "password",
+        "strength",
+        "密码",
+        "熵"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/password-strength.html"
     }
   ]
 }

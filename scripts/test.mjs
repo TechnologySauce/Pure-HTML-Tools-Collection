@@ -1062,6 +1062,149 @@ const tests = {
     setE("1/0"); ok(doc.querySelector("#status").classList.contains("error"), `${name}: 除以零未提示`);
     setE("2*(3+4)"); eq(result.value, "14", `${name}: 嵌套`);
     setE("-5+8"); eq(result.value, "3", `${name}: 一元负号`);
+  },
+
+  "url-parser.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const urlInput = doc.querySelector("#urlInput");
+    const fProtocol = doc.querySelector("#fProtocol");
+    const fHost = doc.querySelector("#fHost");
+    const fPort = doc.querySelector("#fPort");
+    const fPath = doc.querySelector("#fPath");
+    const fHash = doc.querySelector("#fHash");
+    const paramsOut = doc.querySelector("#paramsOut");
+    const rebuilt = doc.querySelector("#rebuilt");
+    const set = (el, v) => { el.value = v; el.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    set(urlInput, "https://user:pass@example.com:8080/path/to?a=1&b=2#frag");
+    eq(fProtocol.value, "https:", `${name}: protocol`);
+    eq(fHost.value, "example.com", `${name}: host`);
+    eq(fPort.value, "8080", `${name}: port`);
+    eq(fPath.value, "/path/to", `${name}: path`);
+    eq(fHash.value, "#frag", `${name}: hash`);
+    ok(paramsOut.value.indexOf("a=1") >= 0 && paramsOut.value.indexOf("b=2") >= 0, `${name}: params`);
+    eq(rebuilt.value, "https://user:pass@example.com:8080/path/to?a=1&b=2#frag", `${name}: rebuilt`);
+    set(urlInput, "not a url");
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: invalid flagged`);
+  },
+
+  "color-picker.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const picker = doc.querySelector("#picker");
+    const hex = doc.querySelector("#hex");
+    const vHex = doc.querySelector("#vHex");
+    const vRgb = doc.querySelector("#vRgb");
+    const vHsl = doc.querySelector("#vHsl");
+    const setP = (v) => { picker.value = v; picker.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    const setH = (v) => { hex.value = v; hex.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    setP("#ff0000");
+    eq(vHex.textContent, "#ff0000", `${name}: hex red`);
+    eq(vRgb.textContent, "rgb(255, 0, 0)", `${name}: rgb red`);
+    eq(vHsl.textContent, "hsl(0, 100%, 50%)", `${name}: hsl red`);
+    setH("#0080ff");
+    eq(vHex.textContent, "#0080ff", `${name}: hex`);
+    eq(vRgb.textContent, "rgb(0, 128, 255)", `${name}: rgb`);
+    eq(picker.value, "#0080ff", `${name}: picker synced`);
+    setH("#zzz");
+    ok(doc.querySelector("#status").classList.contains("error"), `${name}: invalid hex`);
+    ok(doc.querySelector("#eyedrop").disabled === true, `${name}: eyedrop disabled`);
+  },
+
+  "markdown-preview.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const md = doc.querySelector("#mdInput");
+    const preview = doc.querySelector("#preview");
+    const set = (v) => { md.value = v; md.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    set("# 标题\n\n这是 **加粗** 和 *斜体* 文本。\n\n- 项目一\n- 项目二");
+    const html = preview.innerHTML;
+    ok(html.indexOf("<h1>标题</h1>") >= 0, `${name}: heading`);
+    ok(html.indexOf("<strong>加粗</strong>") >= 0, `${name}: bold`);
+    ok(html.indexOf("<em>斜体</em>") >= 0, `${name}: italic`);
+    ok(html.indexOf("<ul>") >= 0 && html.indexOf("项目一") >= 0, `${name}: list`);
+    set("```\ncode line\n```");
+    ok(preview.innerHTML.indexOf("<pre><code>code line</code></pre>") >= 0, `${name}: code block`);
+    set("[百度](https://baidu.com)");
+    ok(preview.innerHTML.indexOf('<a href="https://baidu.com"') >= 0, `${name}: link`);
+  },
+
+  "random-dice.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const rMin = doc.querySelector("#rMin"), rMax = doc.querySelector("#rMax");
+    const randOut = doc.querySelector("#randOut");
+    const diceOut = doc.querySelector("#diceOut");
+    const coinOut = doc.querySelector("#coinOut");
+    const hexOut = doc.querySelector("#hexOut");
+    rMin.value = "1"; rMax.value = "6";
+    doc.querySelector("#genRand").click();
+    const x = parseInt(randOut.value, 10);
+    ok(x >= 1 && x <= 6, `${name}: rand range`);
+    doc.querySelector("#rollDice").click();
+    const m = diceOut.value.match(/^\d+/);
+    ok(m && +m[0] >= 1 && +m[0] <= 6, `${name}: dice range`);
+    doc.querySelector("#flipCoin").click();
+    ok(coinOut.textContent === "正面" || coinOut.textContent === "反面", `${name}: coin`);
+    doc.querySelector("#genHex").click();
+    ok(/^[0-9a-f]{8}$/.test(hexOut.textContent), `${name}: hex format`);
+  },
+
+  "date-calculator.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const dateA = doc.querySelector("#dateA"), dateB = doc.querySelector("#dateB");
+    const diffOut = doc.querySelector("#diffOut");
+    const dateBase = doc.querySelector("#dateBase"), dayOffset = doc.querySelector("#dayOffset"), dayDir = doc.querySelector("#dayDir");
+    const dateResult = doc.querySelector("#dateResult"), weekday = doc.querySelector("#weekday");
+    dateA.value = "2024-01-01"; dateB.value = "2024-01-11";
+    doc.querySelector("#diffBtn").click();
+    eq(diffOut.value, "10 天", `${name}: diff`);
+    dateBase.value = "2024-01-01"; dayOffset.value = "30"; dayDir.value = "add";
+    doc.querySelector("#shiftBtn").click();
+    eq(dateResult.value, "2024-01-31", `${name}: add 30`);
+    ok(/星期/.test(weekday.textContent), `${name}: weekday`);
+  },
+
+  "caesar-cipher.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const mode = doc.querySelector("#mode");
+    const shift = doc.querySelector("#shift");
+    const plain = doc.querySelector("#plain");
+    const cipher = doc.querySelector("#cipher");
+    const setMode = (v) => { const el = doc.querySelector('input[name="mode"][value="' + v + '"]'); el.checked = true; el.dispatchEvent(new window.Event("change", { bubbles: true })); };
+    shift.value = "3";
+    plain.value = "ABC xyz"; plain.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(cipher.value, "DEF abc", `${name}: encrypt`);
+    setMode("decrypt");
+    plain.value = "DEF abc"; plain.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(cipher.value, "ABC xyz", `${name}: decrypt`);
+  },
+
+  "number-formatter.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const num = doc.querySelector("#num"), locale = doc.querySelector("#locale"), style = doc.querySelector("#style"), decimals = doc.querySelector("#decimals"), out = doc.querySelector("#out");
+    num.value = "1234567.891"; locale.value = "en-US"; style.value = "decimal"; decimals.value = "2";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(out.value, "1,234,567.89", `${name}: decimal en-US`);
+    num.value = "0.25"; style.value = "percent"; decimals.value = "0";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    eq(out.value, "25%", `${name}: percent`);
+    num.value = "1234.5"; locale.value = "zh-CN"; style.value = "currency"; decimals.value = "2";
+    num.dispatchEvent(new window.Event("input", { bubbles: true }));
+    ok(out.value.indexOf("1,234.50") >= 0, `${name}: currency zh-CN`);
+  },
+
+  "password-strength.html": async (name, ctx) => {
+    const { doc, window } = ctx;
+    const pwd = doc.querySelector("#pwd");
+    const entropy = doc.querySelector("#entropy");
+    const rating = doc.querySelector("#rating");
+    const set = (v) => { pwd.value = v; pwd.dispatchEvent(new window.Event("input", { bubbles: true })); };
+    set("123");
+    const weak = parseFloat(entropy.textContent);
+    ok(weak > 0 && weak < 28, `${name}: weak entropy`);
+    ok(rating.textContent.indexOf("弱") >= 0, `${name}: weak label`);
+    set("K7m#9Qp@2xL!");
+    const strong = parseFloat(entropy.textContent);
+    ok(strong > 40, `${name}: strong entropy`);
+    ok(strong > weak, `${name}: strong > weak`);
+    ok(rating.textContent.indexOf("强") >= 0, `${name}: strong label`);
   }
 };
 
