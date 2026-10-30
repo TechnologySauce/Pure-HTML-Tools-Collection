@@ -7,7 +7,7 @@
 <meta name="description" content="把查询串解析为键值列表。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"Query 解析","desc":"把查询串解析为键值列表。","category":"text","tags":["Query","解析","开发"],"order":704}</script>
+<script type="application/json" id="tool-meta">{"title":"Query 解析","desc":"把查询串解析为键值列表。","category":"dev","tags":["Query","解析","开发"],"order":704}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -593,13 +593,13 @@ pre.out:empty::before {
 
 <main class="shell">
   <div class="page-head">
-    <span class="badge">文本处理 · 本地处理</span>
+    <span class="badge">开发者 · 本地处理</span>
     <h1>Query 解析</h1>
     <p>把查询串解析为键值列表。</p>
   </div>
 
   <section class="panel">
-  <div class="field"><label for="q">查询串</label><textarea id="q" class="code" spellcheck="false" rows="4" placeholder="a=1&amp;b=2"></textarea></div>
+  <div class="field"><label for="q">查询串</label><textarea id="q" class="code" spellcheck="false" rows="4" placeholder="a=1&amp;amp;b=2"></textarea></div>
 <div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制</button>

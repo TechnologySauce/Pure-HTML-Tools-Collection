@@ -1265,7 +1265,7 @@ for (const file of files) {
 {
   const pages = [path.join(ROOT, "index.html"), path.join(ROOT, "404.html"), ...files.map((f) => path.join(TOOLS, f))];
   for (const page of pages) {
-    const html = fs.readFileSync(page, "utf8");
+    const html = fs.readFileSync(page, "utf8").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "");
     const base = path.dirname(page);
     const attrRe = /(?:href|src)="([^"]+)"/g;
     let m;
