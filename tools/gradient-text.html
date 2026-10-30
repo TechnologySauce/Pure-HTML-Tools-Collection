@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>渐变文字 - 纯 HTML 工具箱</title>
-<meta name="description" content="把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。">
+<meta name="description" content="生成渐变填充文字效果 CSS。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"渐变文字","desc":"把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。","category":"design","tags":["gradient","渐变","文字","css"],"order":29}</script>
+<script type="application/json" id="tool-meta">{"title":"渐变文字","desc":"生成渐变填充文字效果 CSS。","category":"design","tags":["渐变","文字","CSS"],"order":611}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -579,7 +579,7 @@ pre.out:empty::before {
 }
 /* inline:assets/tool-base.css:end */
 </style>
-<style>.panel input[type=color]{width:60px;height:60px;padding:4px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);cursor:pointer}</style>
+<style></style>
 </head>
 <body>
 <header class="toolbar">
@@ -595,20 +595,19 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">设计 · 本地处理</span>
     <h1>渐变文字</h1>
-    <p>把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。</p>
+    <p>生成渐变填充文字效果 CSS。</p>
   </div>
 
   <section class="panel">
-<div class="row" style="gap:12px;flex-wrap:wrap;align-items:flex-end">
-  <div class="field" style="max-width:120px"><label>颜色 1</label><input type="color" id="c1" value="#ff6e9c"></div>
-  <div class="field" style="max-width:120px"><label>颜色 2</label><input type="color" id="c2" value="#3a7bd5"></div>
-  <div class="field" style="max-width:150px"><label>角度 <span id="va">90</span>°</label><input type="range" id="angle" min="0" max="360" value="90"></div>
+<div class="grid-2">
+  <div class="field"><label for="dir">方向</label><select id="dir"><option value="90deg">水平</option><option value="0deg">垂直</option></select></div>
+  <div class="field"><label for="c1">颜色 1</label><input type="text" id="c1" value="#0f766e"></div>
+  <div class="field"><label for="c2">颜色 2</label><input type="text" id="c2" value="#fb923c"></div>
 </div>
-<div id="preview" style="font-size:42px;font-weight:800;margin:14px 0">渐变文字效果</div>
-<div class="field"><label for="output">CSS</label><textarea id="output" class="code" readonly></textarea></div>
+<div class="field" style="margin-top:14px"><label for="css">生成的 CSS</label><textarea id="css" class="code" readonly spellcheck="false" placeholder="CSS"></textarea></div>
+<div class="preview-box" style="margin-top:12px"><div id="pv" style="padding:24px;text-align:center">预览效果</div></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制 CSS</button>
-  <button class="btn ghost danger" id="clear" type="button">清空</button>
 </div>
 <p class="status" id="status" aria-live="polite"></p>
   </section>
@@ -781,17 +780,16 @@ pre.out:empty::before {
 </script>
 <script>
 (function(){
-  var $ = PHT.$; var statusEl=$("#status");
-  function run(){
-    var c1=$("#c1").value, c2=$("#c2").value, a=+$("#angle").value;
-    $("#va").textContent=a;
-    var css="background: linear-gradient("+a+"deg, "+c1+", "+c2+"); -webkit-background-clip: text; background-clip: text; color: transparent;";
-    var p=$("#preview"); p.style.background="linear-gradient("+a+"deg, "+c1+", "+c2+")"; p.style.webkitBackgroundClip="text"; p.style.backgroundClip="text"; p.style.color="transparent";
-    $("#output").value=css; PHT.status(statusEl,"已生成","ok");
+  var $=PHT.$; var statusEl=$("#status"); var cssBox=$("#css");
+  function build(args){  return "background:linear-gradient(" + args.dir + "," + args.c1 + "," + args.c2 + "); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:32px; font-weight:800;";  }
+  function run(){ var args={};
+    args["dir"]=$("#dir").value;
+    args["c1"]=$("#c1").value;
+    args["c2"]=$("#c2").value;
+    try { var c=build(args); cssBox.value=c; var pv=$("#pv"); if(pv) pv.style.cssText=c; PHT.status(statusEl,"已生成","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
   }
-  ["c1","c2","angle"].forEach(function(k){ $("#"+k).addEventListener("input",run); });
-  $("#copy").addEventListener("click",function(){ if(!$("#output").value){PHT.status(statusEl,"无内容","error");return;} PHT.copy($("#output").value).then(function(ok){PHT.flash($("#copy"),"已复制");PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error");}); });
-  $("#clear").addEventListener("click",function(){ $("#output").value=""; PHT.status(statusEl,""); });
+  ["dir","c1","c2"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  $("#copy").addEventListener("click",function(){ if(!cssBox.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(cssBox.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });
   run();
 })();
 </script>

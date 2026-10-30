@@ -2339,6 +2339,476 @@ TOOLS.push({
 })();`
 });
 
+// ====================================================================
+// 批量工厂：用紧凑数据生成大量同类工具，避免逐个手写样板
+// ====================================================================
+function unitConvTool(spec) {
+  var opts = spec.units.map(function (u, i) { return '<option value="' + i + '">' + u.name + '</option>'; }).join("");
+  var body = '<div class="grid-2">\n'
+    + '  <div class="field"><label for="value">数值</label><input type="number" id="value" value="1" step="any"></div>\n'
+    + '  <div class="field"><label for="from">从单位</label><select id="from">' + opts + '</select></div>\n'
+    + '  <div class="field"><label for="to">到单位</label><select id="to">' + opts + '</select></div>\n'
+    + '  <div class="field"><button class="btn" type="button" id="swap">交换单位</button></div>\n'
+    + '</div>\n'
+    + '<dl class="stat-row" style="margin-top:16px"><div class="stat"><dt>换算结果</dt><dd id="out">—</dd></div></dl>\n'
+    + '<p class="status" id="status" aria-live="polite"></p>';
+  var script;
+  if (spec.conv) {
+    var convBody = spec.conv.toString().replace(/^function\s*\w*\s*\([^)]*\)\s*\{/, "").replace(/\}\s*$/, "");
+    var names = JSON.stringify(spec.units.map(function (u) { return u.name; }));
+    script = '(function(){ var $=PHT.$; var statusEl=$("#status"); var N=' + names + ';\n'
+      + '  function conv(v,a,b){ ' + convBody + ' }\n'
+      + '  function run(){ var v=parseFloat($("#value").value); var fi=parseInt($("#from").value,10), ti=parseInt($("#to").value,10); if(!(v>=0)){ PHT.status(statusEl,"请输入有效数值"); return; } var res=conv(v,N[fi],N[ti]); $("#out").textContent=(Math.round(res*1e6)/1e6).toLocaleString("zh-CN",{maximumFractionDigits:6})+" "+N[ti]; PHT.status(statusEl,"换算完成","ok"); }\n'
+      + '  $("#swap").addEventListener("click",function(){ var f=$("#from").value; $("#from").value=$("#to").value; $("#to").value=f; run(); });\n'
+      + '  ["value","from","to"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); }); run();\n})();';
+  } else {
+    var factors = JSON.stringify(spec.units.map(function (u) { return u.factor; }));
+    var names2 = JSON.stringify(spec.units.map(function (u) { return u.name; }));
+    script = '(function(){ var $=PHT.$; var statusEl=$("#status"); var F=' + factors + '; var N=' + names2 + ';\n'
+      + '  function run(){ var v=parseFloat($("#value").value); var fi=parseInt($("#from").value,10), ti=parseInt($("#to").value,10); if(!(v>=0)){ PHT.status(statusEl,"请输入有效数值"); return; } var res=v*F[fi]/F[ti]; $("#out").textContent=(Math.round(res*1e6)/1e6).toLocaleString("zh-CN",{maximumFractionDigits:6})+" "+N[ti]; PHT.status(statusEl,"换算完成","ok"); }\n'
+      + '  $("#swap").addEventListener("click",function(){ var f=$("#from").value; $("#from").value=$("#to").value; $("#to").value=f; run(); });\n'
+      + '  ["value","from","to"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); }); run();\n})();';
+  }
+  TOOLS.push({ file: spec.file, meta: { title: spec.title, desc: spec.desc, category: "calc", tags: spec.tags, order: spec.order }, body: body, script: script });
+}
+
+function calcTool(spec) {
+  var fields = spec.fields.map(function (f) {
+    if (f.type === "select") {
+      var o = f.options.map(function (x) { return '<option value="' + x.value + '">' + x.label + '</option>'; }).join("");
+      return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><select id="' + f.id + '">' + o + '</select></div>';
+    }
+    if (f.type === "checkbox") {
+      return '  <label class="chk"><input type="checkbox" id="' + f.id + '"' + (f.checked ? " checked" : "") + '> ' + f.label + '</label>';
+    }
+    var extra = (f.value !== undefined ? ' value="' + f.value + '"' : "") + (f.step !== undefined ? ' step="' + f.step + '"' : "") + (f.min !== undefined ? ' min="' + f.min + '"' : "") + (f.max !== undefined ? ' max="' + f.max + '"' : "");
+    return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><input type="' + (f.type || "number") + '" id="' + f.id + '"' + extra + '></div>';
+  }).join("\n");
+  var outs = spec.outputs.map(function (o) { return '  <div class="stat"><dt>' + o.label + '</dt><dd id="' + o.id + '">—</dd></div>'; }).join("\n");
+  var reads = spec.fields.map(function (f) {
+    if (f.type === "checkbox") return '    args["' + f.id + '"]=$("#' + f.id + '").checked;';
+    if (f.type === "select" || f.type === "date" || f.type === "text") return '    args["' + f.id + '"]=$("#' + f.id + '").value;';
+    return '    args["' + f.id + '"]=parseFloat($("#' + f.id + '").value);';
+  }).join("\n");
+  var writes = spec.outputs.map(function (o) { return '    if(r&&r["' + o.id + '"]!==undefined){ var v=r["' + o.id + '"]; $("#' + o.id + '").textContent=(typeof v==="number")?fnum(v):v; }'; }).join("\n");
+  var ids = spec.fields.map(function (f) { return f.id; }).join('","');
+  var body = '<div class="grid-2">\n' + fields + '\n</div>\n<dl class="stat-row" style="margin-top:16px">\n' + outs + '\n</dl>\n<p class="status" id="status" aria-live="polite"></p>';
+  var computeSrc;
+  if (spec.formulas) {
+    var ret = spec.formulas.map(function (f) { return '"' + f.id + '":(' + f.expr + ')'; }).join(",");
+    computeSrc = "function(args){ return { " + ret + " }; }";
+  } else {
+    var cb = spec.compute.toString().replace(/^function\s*\w*\s*\([^)]*\)\s*\{/, "").replace(/\}\s*$/, "");
+    computeSrc = "function compute(args){ " + cb + " }";
+  }
+  var script = '(function(){\n  var $=PHT.$; var statusEl=$("#status");\n'
+    + '  function fnum(n){ if(n===null||n===undefined||!isFinite(n)) return "—"; var a=Math.round(n*1e6)/1e6; return a.toLocaleString("zh-CN",{maximumFractionDigits:6}); }\n'
+    + '  var compute = ' + computeSrc + ';\n'
+    + '  function run(){ var args={};\n' + reads + '\n    try { var r=compute(args);\n' + writes + '\n      PHT.status(statusEl,(r&&r.__msg)||"计算完成",(r&&r.__type)||"ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }\n  }\n'
+    + '  ["' + ids + '"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });\n  run();\n})();';
+  TOOLS.push({ file: spec.file, meta: { title: spec.title, desc: spec.desc, category: "calc", tags: spec.tags, order: spec.order }, body: body, script: script });
+}
+
+// ---------- 单位换算（18 个）----------
+unitConvTool({ file: "length-converter.html", title: "长度换算", desc: "在毫米、厘米、米、千米、英寸、英尺、码、英里、海里之间即时换算。", tags: ["长度", "换算", "单位"], order: 201,
+  units: [{ name: "毫米 mm", factor: 0.001 }, { name: "厘米 cm", factor: 0.01 }, { name: "米 m", factor: 1 }, { name: "千米 km", factor: 1000 }, { name: "英寸 in", factor: 0.0254 }, { name: "英尺 ft", factor: 0.3048 }, { name: "码 yd", factor: 0.9144 }, { name: "英里 mi", factor: 1609.344 }, { name: "海里 nmi", factor: 1852 }] });
+unitConvTool({ file: "mass-converter.html", title: "质量换算", desc: "在毫克、克、千克、吨、盎司、磅、英石之间即时换算。", tags: ["质量", "换算", "单位"], order: 202,
+  units: [{ name: "毫克 mg", factor: 1e-6 }, { name: "克 g", factor: 0.001 }, { name: "千克 kg", factor: 1 }, { name: "吨 t", factor: 1000 }, { name: "盎司 oz", factor: 0.028349523125 }, { name: "磅 lb", factor: 0.45359237 }, { name: "英石 st", factor: 6.35029318 }] });
+unitConvTool({ file: "area-converter.html", title: "面积换算", desc: "在平方毫米、平方厘米、平方米、公顷、平方公里、平方英寸、平方英尺、英亩、平方英里之间换算。", tags: ["面积", "换算", "单位"], order: 203,
+  units: [{ name: "平方毫米 mm²", factor: 1e-6 }, { name: "平方厘米 cm²", factor: 1e-4 }, { name: "平方米 m²", factor: 1 }, { name: "公顷 ha", factor: 10000 }, { name: "平方千米 km²", factor: 1e6 }, { name: "平方英寸 in²", factor: 0.00064516 }, { name: "平方英尺 ft²", factor: 0.09290304 }, { name: "英亩 ac", factor: 4046.8564224 }, { name: "平方英里 mi²", factor: 2589988.110336 }] });
+unitConvTool({ file: "volume-converter.html", title: "体积换算", desc: "在毫升、升、立方米、加仑、夸脱、品脱、杯、液量盎司、立方英寸、立方英尺之间换算。", tags: ["体积", "换算", "单位"], order: 204,
+  units: [{ name: "毫升 mL", factor: 0.001 }, { name: "升 L", factor: 1 }, { name: "立方米 m³", factor: 1000 }, { name: "加仑(美) gal", factor: 3.785411784 }, { name: "夸脱(美) qt", factor: 0.946352946 }, { name: "品脱(美) pt", factor: 0.473176473 }, { name: "杯(美) cup", factor: 0.2365882365 }, { name: "液量盎司 fl oz", factor: 0.0295735295625 }, { name: "立方英寸 in³", factor: 0.016387064 }, { name: "立方英尺 ft³", factor: 28.316846592 }] });
+unitConvTool({ file: "speed-converter.html", title: "速度换算", desc: "在米/秒、千米/时、英里/时、节、英尺/秒之间即时换算。", tags: ["速度", "换算", "单位"], order: 205,
+  units: [{ name: "米/秒 m/s", factor: 1 }, { name: "千米/时 km/h", factor: 0.27777777778 }, { name: "英里/时 mph", factor: 0.44704 }, { name: "节 knot", factor: 0.51444444444 }, { name: "英尺/秒 ft/s", factor: 0.3048 }] });
+unitConvTool({ file: "time-converter.html", title: "时间换算", desc: "在毫秒、秒、分、时、天、周、年之间换算。", tags: ["时间", "换算", "单位"], order: 206,
+  units: [{ name: "毫秒 ms", factor: 0.001 }, { name: "秒 s", factor: 1 }, { name: "分 min", factor: 60 }, { name: "时 h", factor: 3600 }, { name: "天 day", factor: 86400 }, { name: "周 week", factor: 604800 }, { name: "年 year", factor: 31536000 }] });
+unitConvTool({ file: "data-converter.html", title: "数据存储换算", desc: "在字节、KB、MB、GB、TB、PB 与 KiB、MiB、GiB、TiB 之间换算。", tags: ["数据", "存储", "换算"], order: 207,
+  units: [{ name: "字节 B", factor: 1 }, { name: "KB", factor: 1e3 }, { name: "MB", factor: 1e6 }, { name: "GB", factor: 1e9 }, { name: "TB", factor: 1e12 }, { name: "PB", factor: 1e15 }, { name: "KiB", factor: 1024 }, { name: "MiB", factor: 1048576 }, { name: "GiB", factor: 1073741824 }, { name: "TiB", factor: 1099511627776 }] });
+unitConvTool({ file: "angle-converter.html", title: "角度换算", desc: "在度、弧度、梯度、角分、角秒、圈之间换算。", tags: ["角度", "弧度", "换算"], order: 208,
+  units: [{ name: "度 °", factor: 1 }, { name: "弧度 rad", factor: 57.2957795131 }, { name: "梯度 grad", factor: 0.9 }, { name: "角分 ′", factor: 0.01666666667 }, { name: "角秒 ″", factor: 0.00027777778 }, { name: "圈 turn", factor: 360 }] });
+unitConvTool({ file: "pressure-converter.html", title: "压强换算", desc: "在帕、千帕、兆帕、巴、标准大气压、磅力/平方英寸、毫米汞柱之间换算。", tags: ["压强", "压力", "换算"], order: 209,
+  units: [{ name: "帕 Pa", factor: 1 }, { name: "千帕 kPa", factor: 1000 }, { name: "兆帕 MPa", factor: 1e6 }, { name: "巴 bar", factor: 100000 }, { name: "标准大气压 atm", factor: 101325 }, { name: "磅/英寸² psi", factor: 6894.7572932 }, { name: "毫米汞柱 mmHg", factor: 133.322368 }] });
+unitConvTool({ file: "energy-converter.html", title: "能量换算", desc: "在焦耳、千焦、卡、千卡、瓦时、千瓦时、电子伏特之间换算。", tags: ["能量", "换算", "单位"], order: 210,
+  units: [{ name: "焦耳 J", factor: 1 }, { name: "千焦 kJ", factor: 1000 }, { name: "卡 cal", factor: 4.184 }, { name: "千卡 kcal", factor: 4184 }, { name: "瓦时 Wh", factor: 3600 }, { name: "千瓦时 kWh", factor: 3600000 }, { name: "电子伏 eV", factor: 1.602176634e-19 }] });
+unitConvTool({ file: "power-converter.html", title: "功率换算", desc: "在瓦、千瓦、兆瓦、马力、英尺·磅/秒之间换算。", tags: ["功率", "换算", "单位"], order: 211,
+  units: [{ name: "瓦 W", factor: 1 }, { name: "千瓦 kW", factor: 1000 }, { name: "兆瓦 MW", factor: 1e6 }, { name: "马力 hp", factor: 745.69987158 }, { name: "英尺·磅/秒 ft·lb/s", factor: 1.3558179483 }] });
+unitConvTool({ file: "frequency-converter.html", title: "频率换算", desc: "在赫兹、千赫、兆赫、吉赫、转/分之间换算。", tags: ["频率", "换算", "单位"], order: 212,
+  units: [{ name: "赫兹 Hz", factor: 1 }, { name: "千赫 kHz", factor: 1000 }, { name: "兆赫 MHz", factor: 1e6 }, { name: "吉赫 GHz", factor: 1e9 }, { name: "转/分 rpm", factor: 1 / 60 }] });
+unitConvTool({ file: "force-converter.html", title: "力换算", desc: "在牛、千牛、达因、磅力、千克力之间换算。", tags: ["力", "换算", "单位"], order: 213,
+  units: [{ name: "牛 N", factor: 1 }, { name: "千牛 kN", factor: 1000 }, { name: "达因 dyn", factor: 1e-5 }, { name: "磅力 lbf", factor: 4.4482216153 }, { name: "千克力 kgf", factor: 9.80665 }] });
+unitConvTool({ file: "current-converter.html", title: "电流换算", desc: "在毫安、安、千安之间换算。", tags: ["电流", "换算", "单位"], order: 214,
+  units: [{ name: "毫安 mA", factor: 0.001 }, { name: "安 A", factor: 1 }, { name: "千安 kA", factor: 1000 }] });
+unitConvTool({ file: "voltage-converter.html", title: "电压换算", desc: "在毫伏、伏、千伏之间换算。", tags: ["电压", "换算", "单位"], order: 215,
+  units: [{ name: "毫伏 mV", factor: 0.001 }, { name: "伏 V", factor: 1 }, { name: "千伏 kV", factor: 1000 }] });
+unitConvTool({ file: "resistance-converter.html", title: "电阻换算", desc: "在毫欧、欧、千欧、兆欧之间换算。", tags: ["电阻", "换算", "单位"], order: 216,
+  units: [{ name: "毫欧 mΩ", factor: 0.001 }, { name: "欧 Ω", factor: 1 }, { name: "千欧 kΩ", factor: 1000 }, { name: "兆欧 MΩ", factor: 1e6 }] });
+unitConvTool({ file: "fuel-economy-converter.html", title: "油耗换算", desc: "在升/百公里、公里/升、英里/加仑(美/英)之间换算燃油经济性。", tags: ["油耗", "换算", "汽车"], order: 217,
+  units: [{ name: "升/百公里 L/100km" }, { name: "公里/升 km/L" }, { name: "英里/加仑(美) mpg" }, { name: "英里/加仑(英) mpg" }],
+  conv: function (v, a, b) {
+    var x;
+    if (a === "升/百公里 L/100km") x = v;
+    else if (a === "公里/升 km/L") x = 100 / v;
+    else if (a === "英里/加仑(美) mpg") x = 235.214583 / v;
+    else x = 282.480936 / v;
+    if (b === "升/百公里 L/100km") return x;
+    if (b === "公里/升 km/L") return 100 / x;
+    if (b === "英里/加仑(美) mpg") return 235.214583 / x;
+    return 282.480936 / x;
+  } });
+unitConvTool({ file: "temperature-converter.html", title: "温度换算", desc: "在摄氏度、华氏度、开尔文之间即时换算。", tags: ["温度", "换算", "单位"], order: 218,
+  units: [{ name: "°C" }, { name: "°F" }, { name: "K" }],
+  conv: function (v, a, b) {
+    var c = a === "°C" ? v : a === "°F" ? (v - 32) * 5 / 9 : v - 273.15;
+    if (b === "°C") return c;
+    if (b === "°F") return c * 9 / 5 + 32;
+    return c + 273.15;
+  } });
+
+// ---------- 计算器（抽样验证工厂）----------
+calcTool({ file: "bmi-calc.html", title: "BMI 体重指数", desc: "输入体重与身高，计算 BMI 并给出偏瘦 / 正常 / 超重 / 肥胖分类。", tags: ["BMI", "健康", "体重"], order: 301,
+  fields: [{ id: "weight", label: "体重 (kg)", value: 60 }, { id: "height", label: "身高 (cm)", value: 170 }],
+  outputs: [{ id: "bmi", label: "BMI" }, { id: "cat", label: "分类" }],
+  compute: function (args) { var h = args.height / 100; var b = args.weight / (h * h); return { bmi: fnum(b), cat: (b < 18.5 ? "偏瘦" : b < 24 ? "正常" : b < 28 ? "超重" : "肥胖") }; } });
+calcTool({ file: "body-fat-calc.html", title: "体脂率估算", desc: "用 BMI、年龄与性别粗略估算体脂率，仅供参考。", tags: ["体脂", "健康", "健身"], order: 302,
+  fields: [{ id: "sex", label: "性别", type: "select", options: [{ value: "男", label: "男" }, { value: "女", label: "女" }] }, { id: "weight", label: "体重 (kg)", value: 65 }, { id: "height", label: "身高 (cm)", value: 170 }, { id: "age", label: "年龄", value: 30 }],
+  outputs: [{ id: "bf", label: "体脂率" }],
+  compute: function (args) { var h = args.height / 100; var bmi = args.weight / (h * h); var sex = args.sex === "男" ? 1 : 0; var bf = 1.20 * bmi + 0.23 * args.age - 10.8 * sex - 5.4; return { bf: fnum(bf) + "%" }; } });
+calcTool({ file: "ideal-weight-calc.html", title: "理想体重", desc: "按 Devine 公式根据身高与性别估算理想体重。", tags: ["理想体重", "健康"], order: 303,
+  fields: [{ id: "sex", label: "性别", type: "select", options: [{ value: "男", label: "男" }, { value: "女", label: "女" }] }, { id: "height", label: "身高 (cm)", value: 170 }],
+  outputs: [{ id: "iw", label: "理想体重" }],
+  compute: function (args) { var m = (args.height - 152.4) / 2.54; var base = args.sex === "男" ? 50 : 45.5; return { iw: fnum(base + 2.3 * m) + " kg" }; } });
+calcTool({ file: "bmr-calc.html", title: "基础代谢率", desc: "按 Mifflin-St Jeor 公式估算每日基础代谢（BMR）。", tags: ["BMR", "代谢", "健康"], order: 304,
+  fields: [{ id: "sex", label: "性别", type: "select", options: [{ value: "男", label: "男" }, { value: "女", label: "女" }] }, { id: "weight", label: "体重 (kg)", value: 65 }, { id: "height", label: "身高 (cm)", value: 170 }, { id: "age", label: "年龄", value: 30 }],
+  outputs: [{ id: "bmr", label: "BMR" }],
+  compute: function (args) { var s = args.sex === "男" ? 5 : -161; return { bmr: fnum(10 * args.weight + 6.25 * args.height - 5 * args.age + s) + " kcal" }; } });
+calcTool({ file: "tdee-calc.html", title: "每日消耗估算", desc: "在 BMR 基础上按活动量估算每日总能量消耗（TDEE）。", tags: ["TDEE", "消耗", "健身"], order: 305,
+  fields: [{ id: "sex", label: "性别", type: "select", options: [{ value: "男", label: "男" }, { value: "女", label: "女" }] }, { id: "weight", label: "体重 (kg)", value: 65 }, { id: "height", label: "身高 (cm)", value: 170 }, { id: "age", label: "年龄", value: 30 }, { id: "activity", label: "活动量", type: "select", options: [{ value: "久坐", label: "久坐" }, { value: "轻度", label: "轻度活动" }, { value: "中度", label: "中度活动" }, { value: "高强度", label: "高强度" }, { value: "极高", label: "极高强度" }] }],
+  outputs: [{ id: "bmr", label: "BMR" }, { id: "tdee", label: "TDEE" }],
+  compute: function (args) { var s = args.sex === "男" ? 5 : -161; var bmr = 10 * args.weight + 6.25 * args.height - 5 * args.age + s; var f = { "久坐": 1.2, "轻度": 1.375, "中度": 1.55, "高强度": 1.725, "极高": 1.9 }[args.activity] || 1.2; return { bmr: fnum(bmr) + " kcal", tdee: fnum(bmr * f) + " kcal" }; } });
+calcTool({ file: "water-calc.html", title: "每日饮水量", desc: "按体重粗略估算每日建议饮水量。", tags: ["饮水", "健康"], order: 306,
+  fields: [{ id: "weight", label: "体重 (kg)", value: 65 }],
+  outputs: [{ id: "l", label: "建议饮水" }],
+  compute: function (args) { return { l: fnum(args.weight * 0.033) + " L" }; } });
+calcTool({ file: "margin-calc.html", title: "利润与利润率", desc: "输入成本与售价，计算利润、利润率与加价率。", tags: ["利润", "利润率", "商业"], order: 307,
+  fields: [{ id: "cost", label: "成本 (元)", value: 60 }, { id: "price", label: "售价 (元)", value: 100 }],
+  outputs: [{ id: "profit", label: "利润" }, { id: "margin", label: "利润率" }, { id: "markup", label: "加价率" }],
+  compute: function (args) { if (args.cost <= 0) return { __msg: "成本需大于 0", __type: "error" }; var p = args.price - args.cost; return { profit: fnum(p) + " 元", margin: fnum(p / args.price * 100) + "%", markup: fnum(p / args.cost * 100) + "%" }; } });
+calcTool({ file: "roi-calc.html", title: "投资回报率", desc: "输入收益与成本，计算投资回报率 ROI。", tags: ["ROI", "投资", "回报"], order: 308,
+  fields: [{ id: "gain", label: "总收益 (元)", value: 1200 }, { id: "cost", label: "成本 (元)", value: 1000 }],
+  outputs: [{ id: "roi", label: "ROI" }],
+  compute: function (args) { if (args.cost <= 0) return { __msg: "成本需大于 0", __type: "error" }; return { roi: fnum((args.gain - args.cost) / args.cost * 100) + "%" }; } });
+calcTool({ file: "cagr-calc.html", title: "复合年增长率", desc: "输入期初、期末值与年数，计算复合年均增长率 CAGR。", tags: ["CAGR", "增长率", "投资"], order: 309,
+  fields: [{ id: "begin", label: "期初值", value: 1000 }, { id: "end", label: "期末值", value: 2000 }, { id: "years", label: "年数", value: 5 }],
+  outputs: [{ id: "cagr", label: "CAGR" }],
+  compute: function (args) { if (args.begin <= 0 || args.years <= 0) return { __msg: "请输入有效数值", __type: "error" }; return { cagr: fnum((Math.pow(args.end / args.begin, 1 / args.years) - 1) * 100) + "%" }; } });
+calcTool({ file: "pythagoras-calc.html", title: "勾股定理", desc: "输入直角边 a、b，求斜边 c。", tags: ["勾股", "几何", "数学"], order: 310,
+  fields: [{ id: "a", label: "边 a", value: 3 }, { id: "b", label: "边 b", value: 4 }],
+  outputs: [{ id: "c", label: "斜边 c" }],
+  compute: function (args) { if (args.a < 0 || args.b < 0) return { __msg: "边长需非负", __type: "error" }; return { c: fnum(Math.sqrt(args.a * args.a + args.b * args.b)) }; } });
+calcTool({ file: "kinetic-energy-calc.html", title: "动能计算", desc: "输入质量与速度，计算动能 E = ½mv²。", tags: ["动能", "物理", "能量"], order: 311,
+  fields: [{ id: "m", label: "质量 (kg)", value: 2 }, { id: "v", label: "速度 (m/s)", value: 10 }],
+  outputs: [{ id: "ke", label: "动能" }],
+  compute: function (args) { if (args.m < 0 || args.v < 0) return { __msg: "请输入非负数值", __type: "error" }; return { ke: fnum(0.5 * args.m * args.v * args.v) + " J" }; } });
+calcTool({ file: "factorial-calc.html", title: "阶乘计算", desc: "计算非负整数 n 的阶乘 n!。", tags: ["阶乘", "数学"], order: 312,
+  fields: [{ id: "n", label: "n", value: 10, min: 0 }],
+  outputs: [{ id: "fact", label: "n!" }],
+  compute: function (args) { var n = Math.floor(args.n); if (n < 0) return { __msg: "请输入非负整数", __type: "error" }; if (n > 170) return { __msg: "数值过大", __type: "error" }; var r = 1; for (var i = 2; i <= n; i++) r *= i; return { fact: String(r) }; } });
+
+// ---------- 计算器（批量，formula 规格，78 个）----------
+calcTool({ file: "calorie-burn.html", title: "运动消耗", desc: "按体重、时长与运动强度（MET）估算热量消耗。", tags: ["卡路里", "运动", "健康"], order: 313, fields: [{ id: "weight", label: "体重 (kg)", value: 65 }, { id: "duration", label: "时长 (分钟)", value: 30 }, { id: "met", label: "强度 MET", type: "select", options: [{ value: "3.5", label: "散步 3.5" }, { value: "7", label: "快走 7" }, { value: "8", label: "慢跑 8" }, { value: "10", label: "跑步 10" }] }], outputs: [{ id: "kcal", label: "消耗 (kcal)" }], formulas: [{ id: "kcal", expr: "parseFloat(args.met)*3.5*args.weight/200*args.duration" }] });
+calcTool({ file: "whr.html", title: "腰臀比", desc: "输入腰围与臀围，计算腰臀比 WHR。", tags: ["腰臀比", "健康"], order: 314, fields: [{ id: "waist", label: "腰围 (cm)", value: 80 }, { id: "hip", label: "臀围 (cm)", value: 95 }], outputs: [{ id: "r", label: "WHR" }], formulas: [{ id: "r", expr: "args.waist/args.hip" }] });
+calcTool({ file: "bac.html", title: "血液酒精估算", desc: "按饮酒量、体重、时间与性别粗略估算血液酒精浓度 BAC。", tags: ["BAC", "酒精", "估算"], order: 315, fields: [{ id: "drinks", label: "饮酒量 (标准杯)", value: 2 }, { id: "weight", label: "体重 (kg)", value: 70 }, { id: "hours", label: "经过小时", value: 1 }, { id: "sex", label: "性别", type: "select", options: [{ value: "男", label: "男" }, { value: "女", label: "女" }] }], outputs: [{ id: "bac", label: "BAC (%)" }], formulas: [{ id: "bac", expr: "((args.drinks*14*0.789)/(args.weight*(args.sex==='男'?0.68:0.55))-0.015*args.hours)" }] });
+calcTool({ file: "sleep-needed.html", title: "推荐睡眠", desc: "按年龄粗略给出每日推荐睡眠时长。", tags: ["睡眠", "健康"], order: 316, fields: [{ id: "age", label: "年龄", value: 30 }], outputs: [{ id: "h", label: "推荐 (小时)" }], formulas: [{ id: "h", expr: "args.age<=1?16:args.age<=2?14:args.age<=5?11:args.age<=13?10:args.age<=17?9:args.age<=64?8:7" }] });
+calcTool({ file: "step-distance.html", title: "步数换算距离", desc: "按步数与步幅估算行走距离。", tags: ["步数", "距离", "健身"], order: 317, fields: [{ id: "steps", label: "步数", value: 6000 }, { id: "stride", label: "步幅 (cm)", value: 70 }], outputs: [{ id: "km", label: "距离 (km)" }], formulas: [{ id: "km", expr: "args.steps*args.stride/100000" }] });
+calcTool({ file: "macro-split.html", title: "三大营养素", desc: "按每日热量与目标比例拆分蛋白质、脂肪与碳水的克数。", tags: ["营养", "健身", "饮食"], order: 318, fields: [{ id: "calories", label: "热量 (kcal)", value: 2000 }, { id: "proteinPct", label: "蛋白质 (%)", value: 30 }, { id: "fatPct", label: "脂肪 (%)", value: 25 }], outputs: [{ id: "pg", label: "蛋白质 (g)" }, { id: "fg", label: "脂肪 (g)" }, { id: "cg", label: "碳水 (g)" }], formulas: [{ id: "pg", expr: "args.calories*args.proteinPct/100/4" }, { id: "fg", expr: "args.calories*args.fatPct/100/9" }, { id: "cg", expr: "args.calories*(1-args.proteinPct/100-args.fatPct/100)/4" }] });
+calcTool({ file: "heart-rate-zones.html", title: "心率区间", desc: "按年龄估算最大心率与常见训练区间。", tags: ["心率", "健身", "运动"], order: 319, fields: [{ id: "age", label: "年龄", value: 30 }], outputs: [{ id: "max", label: "最大心率" }, { id: "z1", label: "60%" }, { id: "z2", label: "70%" }, { id: "z3", label: "85%" }], formulas: [{ id: "max", expr: "220-args.age" }, { id: "z1", expr: "(220-args.age)*0.6" }, { id: "z2", expr: "(220-args.age)*0.7" }, { id: "z3", expr: "(220-args.age)*0.85" }] });
+calcTool({ file: "waist-height.html", title: "腰高比", desc: "计算腰围与身高之比，评估中心性肥胖风险。", tags: ["腰高比", "健康"], order: 320, fields: [{ id: "waist", label: "腰围 (cm)", value: 80 }, { id: "height", label: "身高 (cm)", value: 170 }], outputs: [{ id: "r", label: "腰高比" }], formulas: [{ id: "r", expr: "args.waist/args.height" }] });
+calcTool({ file: "simple-interest.html", title: "单利计算", desc: "输入本金、年利率与年限，计算单利与到期总额。", tags: ["单利", "利息", "理财"], order: 321, fields: [{ id: "principal", label: "本金 (元)", value: 10000 }, { id: "rate", label: "年利率 (%)", value: 5 }, { id: "years", label: "年限", value: 3 }], outputs: [{ id: "interest", label: "利息" }, { id: "total", label: "总额" }], formulas: [{ id: "interest", expr: "args.principal*args.rate/100*args.years" }, { id: "total", expr: "args.principal+args.principal*args.rate/100*args.years" }] });
+calcTool({ file: "fv-annuity.html", title: "年金终值", desc: "按每期供款、利率与期限计算年金复利终值。", tags: ["年金", "终值", "理财"], order: 322, fields: [{ id: "pmt", label: "每期供款 (元)", value: 1000 }, { id: "rate", label: "年利率 (%)", value: 5 }, { id: "years", label: "年限", value: 10 }, { id: "freq", label: "每年期数", value: 12 }], outputs: [{ id: "fv", label: "终值" }], formulas: [{ id: "fv", expr: "(function(){var r=args.rate/100/args.freq; return args.pmt*((Math.pow(1+r,args.freq*args.years)-1)/r);})()" }] });
+calcTool({ file: "pv.html", title: "现值计算", desc: "按未来金额、贴现率与年限计算现值 PV。", tags: ["现值", "贴现", "理财"], order: 323, fields: [{ id: "future", label: "未来金额 (元)", value: 20000 }, { id: "rate", label: "贴现率 (%)", value: 5 }, { id: "years", label: "年限", value: 5 }], outputs: [{ id: "pv", label: "现值" }], formulas: [{ id: "pv", expr: "args.future/Math.pow(1+args.rate/100,args.years)" }] });
+calcTool({ file: "savings-goal.html", title: "储蓄目标", desc: "按当前余额、每月存入与利率估算达成目标所需月数。", tags: ["储蓄", "目标", "理财"], order: 324, fields: [{ id: "target", label: "目标金额 (元)", value: 100000 }, { id: "current", label: "当前余额 (元)", value: 10000 }, { id: "monthly", label: "每月存入 (元)", value: 2000 }, { id: "rate", label: "年利率 (%)", value: 3 }], outputs: [{ id: "months", label: "所需月数" }], formulas: [{ id: "months", expr: "(function(){var r=args.rate/100/12; var bal=args.current; var m=0; if(r<=0){return (args.target-args.current)/args.monthly;} while(bal<args.target&&m<1200){bal=bal*(1+r)+args.monthly;m++;} return m;})()" }] });
+calcTool({ file: "net-worth.html", title: "净资产", desc: "输入总资产与总负债，计算净资产。", tags: ["净资产", "资产", "负债"], order: 325, fields: [{ id: "assets", label: "总资产 (元)", value: 500000 }, { id: "liabilities", label: "总负债 (元)", value: 200000 }], outputs: [{ id: "net", label: "净资产" }], formulas: [{ id: "net", expr: "args.assets-args.liabilities" }] });
+calcTool({ file: "split-bill.html", title: "账单分摊", desc: "含税含小费后将账单按人数分摊。", tags: ["分摊", "聚餐", "AA"], order: 326, fields: [{ id: "total", label: "账单总额 (元)", value: 300 }, { id: "people", label: "人数", value: 3 }, { id: "taxPct", label: "税率 (%)", value: 6 }, { id: "tipPct", label: "小费 (%)", value: 10 }], outputs: [{ id: "per", label: "每人应付" }], formulas: [{ id: "per", expr: "args.total*(1+args.taxPct/100)*(1+args.tipPct/100)/args.people" }] });
+calcTool({ file: "commission.html", title: "佣金计算", desc: "按销售额与佣金比例计算佣金。", tags: ["佣金", "销售", "提成"], order: 327, fields: [{ id: "sales", label: "销售额 (元)", value: 50000 }, { id: "ratePct", label: "佣金率 (%)", value: 5 }], outputs: [{ id: "c", label: "佣金" }], formulas: [{ id: "c", expr: "args.sales*args.ratePct/100" }] });
+calcTool({ file: "hourly-to-salary.html", title: "时薪转月薪", desc: "按时薪与每周工时估算年收入和月收入。", tags: ["时薪", "月薪", "工资"], order: 328, fields: [{ id: "wage", label: "时薪 (元)", value: 50 }, { id: "hours", label: "每周工时", value: 40 }], outputs: [{ id: "yearly", label: "年收入" }, { id: "monthly", label: "月收入" }], formulas: [{ id: "yearly", expr: "args.wage*args.hours*52" }, { id: "monthly", expr: "args.wage*args.hours*52/12" }] });
+calcTool({ file: "inflation.html", title: "通胀折算", desc: "按通胀率估算未来 equivalent 金额。", tags: ["通胀", "理财"], order: 329, fields: [{ id: "amount", label: "当前金额 (元)", value: 100 }, { id: "rate", label: "年通胀率 (%)", value: 3 }, { id: "years", label: "年限", value: 10 }], outputs: [{ id: "future", label: "未来等值" }], formulas: [{ id: "future", expr: "args.amount*Math.pow(1+args.rate/100,args.years)" }] });
+calcTool({ file: "rule-of-72.html", title: "72 法则", desc: "估算本金翻倍所需年数：72 ÷ 年利率。", tags: ["72法则", "理财", "翻倍"], order: 330, fields: [{ id: "rate", label: "年利率 (%)", value: 6 }], outputs: [{ id: "y", label: "翻倍年数" }], formulas: [{ id: "y", expr: "72/args.rate" }] });
+calcTool({ file: "dividend-yield.html", title: "股息率", desc: "按每股股息与股价计算股息率。", tags: ["股息", "股票", "理财"], order: 331, fields: [{ id: "dividend", label: "每股股息 (元)", value: 2 }, { id: "price", label: "股价 (元)", value: 40 }], outputs: [{ id: "y", label: "股息率 (%)" }], formulas: [{ id: "y", expr: "args.dividend/args.price*100" }] });
+calcTool({ file: "profit-margin.html", title: "利润率", desc: "按利润与营收计算利润率。", tags: ["利润率", "商业"], order: 332, fields: [{ id: "profit", label: "利润 (元)", value: 200 }, { id: "revenue", label: "营收 (元)", value: 1000 }], outputs: [{ id: "m", label: "利润率 (%)" }], formulas: [{ id: "m", expr: "args.profit/args.revenue*100" }] });
+calcTool({ file: "interest-only.html", title: "仅息月供", desc: "按本金与年利率估算仅还息的每月利息。", tags: ["贷款", "利息"], order: 333, fields: [{ id: "principal", label: "本金 (元)", value: 1000000 }, { id: "rate", label: "年利率 (%)", value: 4.9 }], outputs: [{ id: "m", label: "月利息" }], formulas: [{ id: "m", expr: "args.principal*args.rate/100/12" }] });
+calcTool({ file: "break-even.html", title: "盈亏平衡", desc: "按固定成本、单价与单位变动成本计算盈亏平衡销量与营收。", tags: ["盈亏平衡", "商业"], order: 334, fields: [{ id: "fixed", label: "固定成本 (元)", value: 50000 }, { id: "price", label: "单价 (元)", value: 100 }, { id: "variable", label: "单位变动成本 (元)", value: 60 }], outputs: [{ id: "units", label: "平衡销量" }, { id: "revenue", label: "平衡营收" }], formulas: [{ id: "units", expr: "args.fixed/(args.price-args.variable)" }, { id: "revenue", expr: "args.fixed/(args.price-args.variable)*args.price" }] });
+calcTool({ file: "salary-to-hourly.html", title: "月薪转时薪", desc: "按月薪与每周工时反推时薪。", tags: ["月薪", "时薪", "工资"], order: 335, fields: [{ id: "monthly", label: "月薪 (元)", value: 10000 }, { id: "hours", label: "每周工时", value: 40 }], outputs: [{ id: "h", label: "时薪" }], formulas: [{ id: "h", expr: "args.monthly*12/(52*args.hours)" }] });
+calcTool({ file: "tax-estimate.html", title: "税额估算", desc: "按收入与税率估算税额与税后金额。", tags: ["税", "估算", "工资"], order: 336, fields: [{ id: "income", label: "收入 (元)", value: 20000 }, { id: "ratePct", label: "税率 (%)", value: 10 }], outputs: [{ id: "tax", label: "税额" }, { id: "net", label: "税后" }], formulas: [{ id: "tax", expr: "args.income*args.ratePct/100" }, { id: "net", expr: "args.income-args.income*args.ratePct/100" }] });
+calcTool({ file: "area-rectangle.html", title: "矩形面积", desc: "计算矩形的面积与周长。", tags: ["面积", "矩形", "几何"], order: 337, fields: [{ id: "w", label: "宽", value: 4 }, { id: "h", label: "高", value: 3 }], outputs: [{ id: "area", label: "面积" }, { id: "perim", label: "周长" }], formulas: [{ id: "area", expr: "args.w*args.h" }, { id: "perim", expr: "2*(args.w+args.h)" }] });
+calcTool({ file: "area-triangle.html", title: "三角形面积", desc: "按底与高计算三角形面积。", tags: ["面积", "三角形", "几何"], order: 338, fields: [{ id: "b", label: "底", value: 10 }, { id: "h", label: "高", value: 5 }], outputs: [{ id: "area", label: "面积" }], formulas: [{ id: "area", expr: "args.b*args.h/2" }] });
+calcTool({ file: "volume-cylinder.html", title: "圆柱体积", desc: "按半径与高计算圆柱体积与表面积。", tags: ["圆柱", "体积", "几何"], order: 339, fields: [{ id: "r", label: "半径", value: 3 }, { id: "h", label: "高", value: 10 }], outputs: [{ id: "vol", label: "体积" }, { id: "surf", label: "表面积" }], formulas: [{ id: "vol", expr: "Math.PI*args.r*args.r*args.h" }, { id: "surf", expr: "2*Math.PI*args.r*(args.r+args.h)" }] });
+calcTool({ file: "volume-sphere.html", title: "球体体积", desc: "按半径计算球体体积与表面积。", tags: ["球", "体积", "几何"], order: 340, fields: [{ id: "r", label: "半径", value: 5 }], outputs: [{ id: "vol", label: "体积" }, { id: "surf", label: "表面积" }], formulas: [{ id: "vol", expr: "4/3*Math.PI*Math.pow(args.r,3)" }, { id: "surf", expr: "4*Math.PI*args.r*args.r" }] });
+calcTool({ file: "volume-cube.html", title: "正方体体积", desc: "按边长计算正方体体积与表面积。", tags: ["正方体", "体积", "几何"], order: 341, fields: [{ id: "a", label: "边长", value: 4 }], outputs: [{ id: "vol", label: "体积" }, { id: "surf", label: "表面积" }], formulas: [{ id: "vol", expr: "Math.pow(args.a,3)" }, { id: "surf", expr: "6*args.a*args.a" }] });
+calcTool({ file: "volume-cone.html", title: "圆锥体积", desc: "按半径与高计算圆锥体积。", tags: ["圆锥", "体积", "几何"], order: 342, fields: [{ id: "r", label: "半径", value: 3 }, { id: "h", label: "高", value: 8 }], outputs: [{ id: "vol", label: "体积" }], formulas: [{ id: "vol", expr: "Math.PI*args.r*args.r*args.h/3" }] });
+calcTool({ file: "polygon-area.html", title: "正多边形面积", desc: "按边数与边长计算正多边形面积。", tags: ["多边形", "面积", "几何"], order: 343, fields: [{ id: "n", label: "边数", value: 6, min: 3 }, { id: "s", label: "边长", value: 4 }], outputs: [{ id: "area", label: "面积" }], formulas: [{ id: "area", expr: "args.n*args.s*args.s/(4*Math.tan(Math.PI/args.n))" }] });
+calcTool({ file: "slope.html", title: "斜率与距离", desc: "按两点坐标计算直线斜率与两点间距离。", tags: ["斜率", "坐标", "几何"], order: 344, fields: [{ id: "x1", label: "x1", value: 0 }, { id: "y1", label: "y1", value: 0 }, { id: "x2", label: "x2", value: 4 }, { id: "y2", label: "y2", value: 3 }], outputs: [{ id: "slope", label: "斜率" }, { id: "dist", label: "距离" }], formulas: [{ id: "slope", expr: "(args.y2-args.y1)/(args.x2-args.x1)" }, { id: "dist", expr: "Math.sqrt(Math.pow(args.x2-args.x1,2)+Math.pow(args.y2-args.y1,2))" }] });
+calcTool({ file: "circle-diameter.html", title: "圆（按直径）", desc: "按直径计算圆面积与周长。", tags: ["圆", "面积", "几何"], order: 345, fields: [{ id: "d", label: "直径", value: 10 }], outputs: [{ id: "area", label: "面积" }, { id: "circ", label: "周长" }], formulas: [{ id: "area", expr: "Math.PI*args.d*args.d/4" }, { id: "circ", expr: "Math.PI*args.d" }] });
+calcTool({ file: "triangle-angle.html", title: "三角形第三角", desc: "已知两角求第三个内角。", tags: ["三角形", "角度", "几何"], order: 346, fields: [{ id: "a", label: "角 A (°)", value: 60 }, { id: "b", label: "角 B (°)", value: 60 }], outputs: [{ id: "c", label: "角 C (°)" }], formulas: [{ id: "c", expr: "180-args.a-args.b" }] });
+calcTool({ file: "ellipse-area.html", title: "椭圆面积", desc: "按长半轴与短半轴计算椭圆面积。", tags: ["椭圆", "面积", "几何"], order: 347, fields: [{ id: "a", label: "长半轴", value: 5 }, { id: "b", label: "短半轴", value: 3 }], outputs: [{ id: "area", label: "面积" }], formulas: [{ id: "area", expr: "Math.PI*args.a*args.b" }] });
+calcTool({ file: "trapezoid-area.html", title: "梯形面积", desc: "按上底、下底与高计算梯形面积。", tags: ["梯形", "面积", "几何"], order: 348, fields: [{ id: "a", label: "上底", value: 4 }, { id: "b", label: "下底", value: 8 }, { id: "h", label: "高", value: 5 }], outputs: [{ id: "area", label: "面积" }], formulas: [{ id: "area", expr: "(args.a+args.b)*args.h/2" }] });
+calcTool({ file: "speed.html", title: "速度计算", desc: "按距离与时间计算速度。", tags: ["速度", "物理"], order: 349, fields: [{ id: "distance", label: "距离", value: 100 }, { id: "time", label: "时间", value: 10 }], outputs: [{ id: "v", label: "速度" }], formulas: [{ id: "v", expr: "args.distance/args.time" }] });
+calcTool({ file: "density.html", title: "密度计算", desc: "按质量与体积计算密度。", tags: ["密度", "物理"], order: 350, fields: [{ id: "mass", label: "质量", value: 10 }, { id: "volume", label: "体积", value: 2 }], outputs: [{ id: "d", label: "密度" }], formulas: [{ id: "d", expr: "args.mass/args.volume" }] });
+calcTool({ file: "ohm.html", title: "欧姆定律", desc: "按电压与电流计算电阻与功率。", tags: ["欧姆", "电学", "物理"], order: 351, fields: [{ id: "V", label: "电压 (V)", value: 12 }, { id: "I", label: "电流 (A)", value: 2 }], outputs: [{ id: "R", label: "电阻 (Ω)" }, { id: "P", label: "功率 (W)" }], formulas: [{ id: "R", expr: "args.V/args.I" }, { id: "P", expr: "args.V*args.I" }] });
+calcTool({ file: "potential-energy.html", title: "重力势能", desc: "按质量与高度计算重力势能。", tags: ["势能", "物理"], order: 352, fields: [{ id: "m", label: "质量 (kg)", value: 10 }, { id: "h", label: "高度 (m)", value: 5 }], outputs: [{ id: "pe", label: "势能 (J)" }], formulas: [{ id: "pe", expr: "args.m*9.8*args.h" }] });
+calcTool({ file: "force-newton.html", title: "牛顿第二定律", desc: "按质量与加速度计算合力 F = ma。", tags: ["力", "物理"], order: 353, fields: [{ id: "m", label: "质量 (kg)", value: 10 }, { id: "a", label: "加速度 (m/s²)", value: 2 }], outputs: [{ id: "f", label: "力 (N)" }], formulas: [{ id: "f", expr: "args.m*args.a" }] });
+calcTool({ file: "work-energy.html", title: "功计算", desc: "按力与位移计算做功 W = Fd。", tags: ["功", "物理"], order: 354, fields: [{ id: "F", label: "力 (N)", value: 50 }, { id: "d", label: "位移 (m)", value: 4 }], outputs: [{ id: "w", label: "功 (J)" }], formulas: [{ id: "w", expr: "args.F*args.d" }] });
+calcTool({ file: "wavelength.html", title: "波长计算", desc: "按频率与波速计算波长 λ = v / f。", tags: ["波长", "物理"], order: 355, fields: [{ id: "freq", label: "频率 (Hz)", value: 100 }, { id: "speed", label: "波速 (m/s)", value: 299792458 }], outputs: [{ id: "lam", label: "波长 (m)" }], formulas: [{ id: "lam", expr: "args.speed/args.freq" }] });
+calcTool({ file: "decibel.html", title: "分贝换算", desc: "按功率比计算分贝值 dB = 10·log10(比值)。", tags: ["分贝", "声学", "物理"], order: 356, fields: [{ id: "ratio", label: "功率比", value: 10 }], outputs: [{ id: "db", label: "分贝 (dB)" }], formulas: [{ id: "db", expr: "10*Math.log10(args.ratio)" }] });
+calcTool({ file: "heat-energy.html", title: "热量计算", desc: "按质量、比热容与温差计算热量 Q = mcΔT。", tags: ["热量", "物理"], order: 357, fields: [{ id: "m", label: "质量 (kg)", value: 1 }, { id: "c", label: "比热 (J/kg·K)", value: 4186 }, { id: "dT", label: "温差 (K)", value: 80 }], outputs: [{ id: "q", label: "热量 (J)" }], formulas: [{ id: "q", expr: "args.m*args.c*args.dT" }] });
+calcTool({ file: "pressure-from-force.html", title: "压强计算", desc: "按力与面积计算压强 P = F / A。", tags: ["压强", "物理"], order: 358, fields: [{ id: "F", label: "力 (N)", value: 100 }, { id: "A", label: "面积 (m²)", value: 2 }], outputs: [{ id: "p", label: "压强 (Pa)" }], formulas: [{ id: "p", expr: "args.F/args.A" }] });
+calcTool({ file: "gravity.html", title: "万有引力", desc: "按两物体质量与距离计算引力。", tags: ["引力", "物理"], order: 359, fields: [{ id: "m1", label: "质量 1 (kg)", value: 1000 }, { id: "m2", label: "质量 2 (kg)", value: 1000 }, { id: "r", label: "距离 (m)", value: 5 }], outputs: [{ id: "f", label: "引力 (N)" }], formulas: [{ id: "f", expr: "6.674e-11*args.m1*args.m2/(args.r*args.r)" }] });
+calcTool({ file: "projectile-range.html", title: "抛射射程", desc: "按初速度与仰角计算水平射程。", tags: ["抛体", "物理"], order: 360, fields: [{ id: "v", label: "初速度 (m/s)", value: 20 }, { id: "angle", label: "仰角 (°)", value: 45 }], outputs: [{ id: "r", label: "射程 (m)" }], formulas: [{ id: "r", expr: "Math.pow(args.v,2)*Math.sin(2*args.angle*Math.PI/180)/9.8" }] });
+calcTool({ file: "pendulum.html", title: "单摆周期", desc: "按摆长计算单摆周期 T = 2π√(L/g)。", tags: ["单摆", "物理"], order: 361, fields: [{ id: "L", label: "摆长 (m)", value: 1 }], outputs: [{ id: "t", label: "周期 (s)" }], formulas: [{ id: "t", expr: "2*Math.PI*Math.sqrt(args.L/9.8)" }] });
+calcTool({ file: "spring-force.html", title: "胡克定律", desc: "按劲度系数与形变量计算弹力 F = kx。", tags: ["弹簧", "物理"], order: 362, fields: [{ id: "k", label: "劲度 (N/m)", value: 100 }, { id: "x", label: "形变量 (m)", value: 0.2 }], outputs: [{ id: "f", label: "弹力 (N)" }], formulas: [{ id: "f", expr: "args.k*args.x" }] });
+calcTool({ file: "power-physics.html", title: "功率计算", desc: "按力与速度计算功率 P = Fv。", tags: ["功率", "物理"], order: 363, fields: [{ id: "F", label: "力 (N)", value: 50 }, { id: "v", label: "速度 (m/s)", value: 3 }], outputs: [{ id: "p", label: "功率 (W)" }], formulas: [{ id: "p", expr: "args.F*args.v" }] });
+calcTool({ file: "momentum.html", title: "动量计算", desc: "按质量与速度计算动量 p = mv。", tags: ["动量", "物理"], order: 364, fields: [{ id: "m", label: "质量 (kg)", value: 10 }, { id: "v", label: "速度 (m/s)", value: 5 }], outputs: [{ id: "p", label: "动量 (kg·m/s)" }], formulas: [{ id: "p", expr: "args.m*args.v" }] });
+calcTool({ file: "torque.html", title: "力矩计算", desc: "按力与力臂计算力矩 τ = Fr。", tags: ["力矩", "物理"], order: 365, fields: [{ id: "F", label: "力 (N)", value: 50 }, { id: "r", label: "力臂 (m)", value: 0.5 }], outputs: [{ id: "t", label: "力矩 (N·m)" }], formulas: [{ id: "t", expr: "args.F*args.r" }] });
+calcTool({ file: "centripetal.html", title: "向心力", desc: "按质量、速度与半径计算向心力。", tags: ["向心力", "物理"], order: 366, fields: [{ id: "m", label: "质量 (kg)", value: 2 }, { id: "v", label: "速度 (m/s)", value: 10 }, { id: "r", label: "半径 (m)", value: 5 }], outputs: [{ id: "f", label: "向心力 (N)" }], formulas: [{ id: "f", expr: "args.m*args.v*args.v/args.r" }] });
+calcTool({ file: "percent-change.html", title: "百分比变化", desc: "计算从旧值到新值的百分比增减。", tags: ["百分比", "变化", "数学"], order: 367, fields: [{ id: "old", label: "原值", value: 80 }, { id: "nnew", label: "新值", value: 100 }], outputs: [{ id: "p", label: "变化 (%)" }], formulas: [{ id: "p", expr: "(args.nnew-args.old)/args.old*100" }] });
+calcTool({ file: "log-calc.html", title: "对数计算", desc: "按底数与真数计算对数值。", tags: ["对数", "数学"], order: 368, fields: [{ id: "value", label: "真数", value: 100 }, { id: "base", label: "底数", value: 10 }], outputs: [{ id: "r", label: "结果" }], formulas: [{ id: "r", expr: "Math.log(args.value)/Math.log(args.base)" }] });
+calcTool({ file: "power-calc.html", title: "幂运算", desc: "计算底数的指定次幂。", tags: ["幂", "指数", "数学"], order: 369, fields: [{ id: "base", label: "底数", value: 2 }, { id: "exp", label: "指数", value: 10 }], outputs: [{ id: "r", label: "结果" }], formulas: [{ id: "r", expr: "Math.pow(args.base,args.exp)" }] });
+calcTool({ file: "modulo.html", title: "取模运算", desc: "计算两数相除的余数。", tags: ["取模", "余数", "数学"], order: 370, fields: [{ id: "a", label: "被除数", value: 17 }, { id: "b", label: "除数", value: 5 }], outputs: [{ id: "r", label: "余数" }], formulas: [{ id: "r", expr: "args.a % args.b" }] });
+calcTool({ file: "round-to.html", title: "保留小数", desc: "将数值四舍五入保留指定小数位。", tags: ["四舍五入", "数学"], order: 371, fields: [{ id: "value", label: "数值", value: 3.14159 }, { id: "decimals", label: "小数位", value: 2, min: 0 }], outputs: [{ id: "r", label: "结果" }], formulas: [{ id: "r", expr: "(function(){var f=Math.pow(10,args.decimals); return Math.round(args.value*f)/f;})()" }] });
+calcTool({ file: "scientific-notation.html", title: "科学计数法", desc: "将数值转换为科学计数法表示。", tags: ["科学计数法", "数学"], order: 372, fields: [{ id: "value", label: "数值", value: 123456789 }], outputs: [{ id: "r", label: "结果" }], formulas: [{ id: "r", expr: "args.value.toExponential(3)" }] });
+calcTool({ file: "paint-needed.html", title: "涂料用量", desc: "按面积与单位覆盖率估算涂料升数。", tags: ["涂料", "装修", "家居"], order: 373, fields: [{ id: "area", label: "面积 (m²)", value: 30 }, { id: "coverage", label: "覆盖率 (m²/L)", value: 10 }], outputs: [{ id: "l", label: "用量 (L)" }], formulas: [{ id: "l", expr: "args.area/args.coverage" }] });
+calcTool({ file: "tile-needed.html", title: "瓷砖数量", desc: "按房间面积与瓷砖边长估算所需瓷砖数（含 10% 损耗）。", tags: ["瓷砖", "装修", "家居"], order: 374, fields: [{ id: "area", label: "面积 (m²)", value: 20 }, { id: "tileSize", label: "瓷砖边长 (cm)", value: 60 }], outputs: [{ id: "n", label: "数量 (块)" }], formulas: [{ id: "n", expr: "args.area/(args.tileSize*args.tileSize/10000)*1.1" }] });
+calcTool({ file: "flooring-cost.html", title: "地板费用", desc: "按面积与单价估算地板费用。", tags: ["地板", "装修", "家居"], order: 375, fields: [{ id: "area", label: "面积 (m²)", value: 25 }, { id: "price", label: "单价 (元/m²)", value: 120 }], outputs: [{ id: "c", label: "费用 (元)" }], formulas: [{ id: "c", expr: "args.area*args.price" }] });
+calcTool({ file: "concrete-slab.html", title: "混凝土用量", desc: "按长、宽、厚估算混凝土体积（米制）。", tags: ["混凝土", "装修", "家居"], order: 376, fields: [{ id: "l", label: "长 (m)", value: 4 }, { id: "w", label: "宽 (m)", value: 3 }, { id: "t", label: "厚 (m)", value: 0.1 }], outputs: [{ id: "v", label: "体积 (m³)" }], formulas: [{ id: "v", expr: "args.l*args.w*args.t" }] });
+calcTool({ file: "wallpaper.html", title: "壁纸卷数", desc: "按面积与单卷覆盖率估算所需壁纸卷数。", tags: ["壁纸", "装修", "家居"], order: 377, fields: [{ id: "area", label: "面积 (m²)", value: 40 }, { id: "roll", label: "单卷覆盖 (m²)", value: 5 }], outputs: [{ id: "n", label: "卷数" }], formulas: [{ id: "n", expr: "Math.ceil(args.area/args.roll)" }] });
+calcTool({ file: "cooking-scale.html", title: "配方缩放", desc: "按目标份数缩放食材用量。", tags: ["食谱", "缩放", "厨房"], order: 378, fields: [{ id: "originalServings", label: "原份数", value: 4 }, { id: "targetServings", label: "目标份数", value: 6 }, { id: "amount", label: "原用量", value: 200 }], outputs: [{ id: "r", label: "新用量" }], formulas: [{ id: "r", expr: "args.amount*args.targetServings/args.originalServings" }] });
+calcTool({ file: "unit-price.html", title: "单价计算", desc: "按总价与数量计算单位价格。", tags: ["单价", "比价", "购物"], order: 379, fields: [{ id: "price", label: "总价 (元)", value: 50 }, { id: "quantity", label: "数量", value: 5 }], outputs: [{ id: "up", label: "单价" }], formulas: [{ id: "up", expr: "args.price/args.quantity" }] });
+calcTool({ file: "grade-needed.html", title: "目标均分", desc: "按当前平均分与期末权重，计算期末需拿到的分数。", tags: ["成绩", "均分", "教育"], order: 380, fields: [{ id: "currentAvg", label: "当前平均", value: 80 }, { id: "weightPct", label: "期末权重 (%)", value: 40 }, { id: "desired", label: "目标平均", value: 85 }], outputs: [{ id: "need", label: "期末需得" }], formulas: [{ id: "need", expr: "(args.desired-args.currentAvg*(1-args.weightPct/100))/(args.weightPct/100)" }] });
+calcTool({ file: "exam-score.html", title: "得分率", desc: "按答对题数与总题数计算得分百分比。", tags: ["得分", "考试", "教育"], order: 381, fields: [{ id: "correct", label: "答对", value: 45 }, { id: "total", label: "总题数", value: 50 }], outputs: [{ id: "p", label: "得分率 (%)" }], formulas: [{ id: "p", expr: "args.correct/args.total*100" }] });
+calcTool({ file: "time-to-read.html", title: "阅读时长", desc: "按字数与阅读速度估算阅读所需时间（分钟）。", tags: ["阅读", "时间", "效率"], order: 382, fields: [{ id: "words", label: "字数", value: 2000 }, { id: "wpm", label: "阅读速度 (字/分)", value: 300 }], outputs: [{ id: "m", label: "分钟" }], formulas: [{ id: "m", expr: "args.words/args.wpm" }] });
+calcTool({ file: "discount-amount.html", title: "折扣金额", desc: "按原价与折扣力度计算省下金额与折后价。", tags: ["折扣", "省钱", "购物"], order: 383, fields: [{ id: "price", label: "原价 (元)", value: 199 }, { id: "discountPct", label: "折扣 (%)", value: 30 }], outputs: [{ id: "saved", label: "省下" }, { id: "final", label: "折后价" }], formulas: [{ id: "saved", expr: "args.price*args.discountPct/100" }, { id: "final", expr: "args.price*(1-args.discountPct/100)" }] });
+calcTool({ file: "sales-tax.html", title: "消费税", desc: "按价格与税率计算税额与含税价。", tags: ["税", "购物"], order: 384, fields: [{ id: "price", label: "价格 (元)", value: 100 }, { id: "taxPct", label: "税率 (%)", value: 13 }], outputs: [{ id: "tax", label: "税额" }, { id: "withTax", label: "含税价" }], formulas: [{ id: "tax", expr: "args.price*args.taxPct/100" }, { id: "withTax", expr: "args.price*(1+args.taxPct/100)" }] });
+calcTool({ file: "increase-amount.html", title: "增幅计算", desc: "按数值与增幅百分比计算增加量与结果。", tags: ["增幅", "数学"], order: 385, fields: [{ id: "value", label: "数值", value: 100 }, { id: "percent", label: "增幅 (%)", value: 20 }], outputs: [{ id: "add", label: "增加量" }, { id: "result", label: "结果" }], formulas: [{ id: "add", expr: "args.value*args.percent/100" }, { id: "result", expr: "args.value*(1+args.percent/100)" }] });
+calcTool({ file: "parallelogram-area.html", title: "平行四边形面积", desc: "按底与高计算平行四边形面积。", tags: ["平行四边形", "面积", "几何"], order: 386, fields: [{ id: "base", label: "底", value: 8 }, { id: "h", label: "高", value: 5 }], outputs: [{ id: "area", label: "面积" }], formulas: [{ id: "area", expr: "args.base*args.h" }] });
+calcTool({ file: "circle-radius.html", title: "圆（按半径）", desc: "按半径计算圆面积与周长。", tags: ["圆", "面积", "几何"], order: 387, fields: [{ id: "r", label: "半径", value: 5 }], outputs: [{ id: "area", label: "面积" }, { id: "circ", label: "周长" }], formulas: [{ id: "area", expr: "Math.PI*args.r*args.r" }, { id: "circ", expr: "2*Math.PI*args.r" }] });
+calcTool({ file: "right-triangle-hypotenuse.html", title: "斜边比例", desc: "按两直角边计算斜边及其与直角边 a 的比值。", tags: ["勾股", "几何"], order: 388, fields: [{ id: "a", label: "边 a", value: 3 }, { id: "b", label: "边 b", value: 4 }], outputs: [{ id: "c", label: "斜边" }, { id: "ratio", label: "c / a" }], formulas: [{ id: "c", expr: "Math.sqrt(args.a*args.a+args.b*args.b)" }, { id: "ratio", expr: "Math.sqrt(args.a*args.a+args.b*args.b)/args.a" }] });
+calcTool({ file: "average-speed.html", title: "平均速度", desc: "按总路程与总时间计算平均速度。", tags: ["速度", "物理"], order: 389, fields: [{ id: "dist", label: "总路程", value: 300 }, { id: "time", label: "总时间", value: 5 }], outputs: [{ id: "v", label: "平均速度" }], formulas: [{ id: "v", expr: "args.dist/args.time" }] });
+calcTool({ file: "fuel-cost-trip.html", title: "行程油费", desc: "按里程、油耗与油价估算单程油费。", tags: ["油费", "自驾", "出行"], order: 390, fields: [{ id: "km", label: "里程 (km)", value: 200 }, { id: "l100", label: "百公里油耗 (L)", value: 7.5 }, { id: "price", label: "油价 (元/L)", value: 8 }], outputs: [{ id: "cost", label: "油费 (元)" }], formulas: [{ id: "cost", expr: "args.km/100*args.l100*args.price" }] });
+
+// ====================================================================
+// 生成器工厂：随机生成、文本变换、CSS 生成
+// ====================================================================
+function genTool(spec) {
+  var isItems = !spec.gen && spec.items;
+  var fields = (spec.fields || []).slice();
+  if (isItems) fields = [{ id: "count", label: "数量", value: (spec.count || 5), min: 1, max: 500, step: 1 }].concat(fields);
+  var fieldsHtml = fields.map(function (f) {
+    if (f.type === "select") { var o = f.options.map(function (x) { return '<option value="' + x.value + '">' + x.label + '</option>'; }).join(""); return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><select id="' + f.id + '">' + o + '</select></div>'; }
+    if (f.type === "checkbox") return '  <label class="chk"><input type="checkbox" id="' + f.id + '"' + (f.checked ? " checked" : "") + '> ' + f.label + '</label>';
+    if (f.type === "textarea") return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><textarea id="' + f.id + '" class="code" spellcheck="false" rows="' + (f.rows || 6) + '"' + (f.placeholder ? ' placeholder="' + f.placeholder + '"' : "") + '>' + (f.value || "") + '</textarea></div>';
+    return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><input type="' + (f.type || "number") + '" id="' + f.id + '"' + (f.value !== undefined ? ' value="' + f.value + '"' : "") + (f.min !== undefined ? ' min="' + f.min + '"' : "") + (f.max !== undefined ? ' max="' + f.max + '"' : "") + (f.step !== undefined ? ' step="' + f.step + '"' : "") + '></div>';
+  }).join("\n");
+  var body = (fieldsHtml ? '<div class="grid-2">\n' + fieldsHtml + '\n</div>\n' : "") + '<div class="field" style="margin-top:14px"><label for="out">生成结果</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="点击生成"></textarea></div>\n<div class="actions">\n  <button class="btn primary" id="gen" type="button">生成</button>\n  <button class="btn" id="copy" type="button">复制</button>\n</div>\n<p class="status" id="status" aria-live="polite"></p>';
+  var reads = fields.map(function (f) {
+    if (f.type === "checkbox") return '    args["' + f.id + '"]=$("#' + f.id + '").checked;';
+    if (f.type === "select" || f.type === "text") return '    args["' + f.id + '"]=$("#' + f.id + '").value;';
+    return '    args["' + f.id + '"]=parseFloat($("#' + f.id + '").value);';
+  }).join("\n");
+  var ids = fields.map(function (f) { return f.id; }).join('","');
+  var genPart;
+  if (isItems) {
+    var ITEMS = JSON.stringify(spec.items);
+    var SEP = JSON.stringify(spec.sep || "\n");
+    genPart = '  var ITEMS=' + ITEMS + '; var SEP=' + SEP + ';\n  function gen(args){ var n=Math.max(1,Math.floor(args.count)||1); var a=[]; for(var i=0;i<n;i++){ a.push(ITEMS[Math.floor(Math.random()*ITEMS.length)]); } return a.join(SEP); }';
+  } else {
+    var gsrc = spec.gen.toString().replace(/^function\s*\w*\s*\([^)]*\)\s*\{/, "").replace(/\}\s*$/, "");
+    genPart = '  function gen(args){\n' + gsrc + '\n  }';
+  }
+  var script = '(function(){\n  var $=PHT.$; var statusEl=$("#status"); var out=$("#out");\n' + genPart + '\n  function run(){ var args={};\n' + reads + '\n    try { var r=gen(args); out.value=(typeof r==="string")?r:String(r); PHT.status(statusEl,"已生成","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }\n  }\n'
+    + (ids ? '  ["' + ids + '"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });\n' : "")
+    + '  $("#gen").addEventListener("click",run);\n  $("#copy").addEventListener("click",function(){ if(!out.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(out.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });\n  run();\n})();';
+  TOOLS.push({ file: spec.file, meta: { title: spec.title, desc: spec.desc, category: spec.category || "util", tags: spec.tags, order: spec.order }, body: body, script: script });
+}
+
+function textTool(spec) {
+  var fieldsHtml = spec.fields.map(function (f) {
+    if (f.type === "select") { var o = f.options.map(function (x) { return '<option value="' + x.value + '">' + x.label + '</option>'; }).join(""); return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><select id="' + f.id + '">' + o + '</select></div>'; }
+    if (f.type === "checkbox") return '  <label class="chk"><input type="checkbox" id="' + f.id + '"' + (f.checked ? " checked" : "") + '> ' + f.label + '</label>';
+    if (f.type === "textarea") return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><textarea id="' + f.id + '" class="code" spellcheck="false" rows="' + (f.rows || 8) + '"' + (f.placeholder ? ' placeholder="' + f.placeholder + '"' : "") + '>' + (f.value || "") + '</textarea></div>';
+    return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><input type="' + (f.type || "text") + '" id="' + f.id + '"' + (f.value !== undefined ? ' value="' + f.value + '"' : "") + (f.placeholder ? ' placeholder="' + f.placeholder + '"' : "") + '></div>';
+  }).join("\n");
+  var body = fieldsHtml + '\n<div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>\n<div class="actions">\n  <button class="btn primary" id="copy" type="button">复制</button>\n</div>\n<p class="status" id="status" aria-live="polite"></p>';
+  var reads = spec.fields.map(function (f) {
+    if (f.type === "checkbox") return '    args["' + f.id + '"]=$("#' + f.id + '").checked;';
+    return '    args["' + f.id + '"]=$("#' + f.id + '").value;';
+  }).join("\n");
+  var ids = spec.fields.map(function (f) { return f.id; }).join('","');
+  var tsrc = spec.transform.toString().replace(/^function\s*\w*\s*\([^)]*\)\s*\{/, "").replace(/\}\s*$/, "");
+  var script = '(function(){\n  var $=PHT.$; var statusEl=$("#status"); var out=$("#out");\n  function transform(args){\n' + tsrc + '\n  }\n  function run(){ var args={};\n' + reads + '\n    try { out.value=transform(args); PHT.status(statusEl,"已处理","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }\n  }\n'
+    + '  ["' + ids + '"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });\n'
+    + '  $("#copy").addEventListener("click",function(){ if(!out.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(out.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });\n  run();\n})();';
+  TOOLS.push({ file: spec.file, meta: { title: spec.title, desc: spec.desc, category: "text", tags: spec.tags, order: spec.order }, body: body, script: script });
+}
+
+function cssTool(spec) {
+  var fieldsHtml = spec.fields.map(function (f) {
+    if (f.type === "select") { var o = f.options.map(function (x) { return '<option value="' + x.value + '">' + x.label + '</option>'; }).join(""); return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><select id="' + f.id + '">' + o + '</select></div>'; }
+    if (f.type === "checkbox") return '  <label class="chk"><input type="checkbox" id="' + f.id + '"' + (f.checked ? " checked" : "") + '> ' + f.label + '</label>';
+    return '  <div class="field"><label for="' + f.id + '">' + f.label + '</label><input type="' + (f.type || "number") + '" id="' + f.id + '"' + (f.value !== undefined ? ' value="' + f.value + '"' : "") + (f.step !== undefined ? ' step="' + f.step + '"' : "") + '></div>';
+  }).join("\n");
+  var body = (fieldsHtml ? '<div class="grid-2">\n' + fieldsHtml + '\n</div>\n' : "") + '<div class="field" style="margin-top:14px"><label for="css">生成的 CSS</label><textarea id="css" class="code" readonly spellcheck="false" placeholder="CSS"></textarea></div>\n'
+    + (spec.preview ? '<div class="preview-box" style="margin-top:12px"><div id="pv" style="padding:24px;text-align:center">预览效果</div></div>\n' : "")
+    + '<div class="actions">\n  <button class="btn primary" id="copy" type="button">复制 CSS</button>\n</div>\n<p class="status" id="status" aria-live="polite"></p>';
+  var reads = spec.fields.map(function (f) {
+    if (f.type === "checkbox") return '    args["' + f.id + '"]=$("#' + f.id + '").checked;';
+    if (f.type === "select" || f.type === "text") return '    args["' + f.id + '"]=$("#' + f.id + '").value;';
+    return '    args["' + f.id + '"]=parseFloat($("#' + f.id + '").value);';
+  }).join("\n");
+  var ids = spec.fields.map(function (f) { return f.id; }).join('","');
+  var csrc = spec.css.toString().replace(/^function\s*\w*\s*\([^)]*\)\s*\{/, "").replace(/\}\s*$/, "");
+  var script = '(function(){\n  var $=PHT.$; var statusEl=$("#status"); var cssBox=$("#css");\n  function build(args){ ' + csrc + ' }\n  function run(){ var args={};\n' + reads + '\n    try { var c=build(args); cssBox.value=c; ' + (spec.preview ? 'var pv=$("#pv"); if(pv) pv.style.cssText=c; ' : "") + 'PHT.status(statusEl,"已生成","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }\n  }\n'
+    + '  ["' + ids + '"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });\n'
+    + '  $("#copy").addEventListener("click",function(){ if(!cssBox.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(cssBox.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });\n  run();\n})();';
+  TOOLS.push({ file: spec.file, meta: { title: spec.title, desc: spec.desc, category: "design", tags: spec.tags, order: spec.order }, body: body, script: script });
+}
+
+// 抽样验证工厂
+genTool({ file: "coin-flip.html", title: "抛硬币", desc: "随机给出正面或反面，用于快速决策。", category: "util", tags: ["硬币", "随机", "决策"], order: 401,
+  gen: function (args) { return Math.random() < 0.5 ? "正面" : "反面"; } });
+textTool({ file: "prefix-lines.html", title: "行前加前缀", desc: "为每一行文本添加指定前缀。", tags: ["前缀", "行处理", "文本"], order: 501,
+  fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }, { id: "prefix", label: "前缀", type: "text", value: "- " }],
+  transform: function (args) { return args.text.split("\n").map(function (l) { return args.prefix + l; }).join("\n"); } });
+genTool({ file: "random-fact.html", title: "随机冷知识", desc: "随机展示一条冷知识。", category: "util", tags: ["冷知识", "随机", "趣味"], order: 402,
+  items: ["蜂蜜永远不会变质。", "蜗牛可以睡上三年。", "章鱼有三颗心脏。", "香蕉是浆果，草莓不是。", "闪电比太阳表面还热。", "人类和香蕉共享约 60% 的基因。", "金星上的一天比一年还长。", "水母没有大脑。"] });
+genTool({ file: "random-quote.html", title: "随机名言", desc: "随机展示一句名言。", category: "util", tags: ["名言", "随机", "励志"], order: 403,
+  items: ["千里之行，始于足下。", "学而不思则罔，思而不学则殆。", "机会总是留给有准备的人。", "坚持就是胜利。", "细节决定成败。", "时间就是金钱。"] });
+cssTool({ file: "gradient-border.html", title: "渐变边框", desc: "生成渐变边框 CSS，可实时预览。", tags: ["边框", "渐变", "CSS"], order: 601, preview: true,
+  fields: [{ id: "w", label: "边框宽 (px)", value: 4 }, { id: "dir", label: "方向", type: "select", options: [{ value: "90deg", label: "水平" }, { value: "0deg", label: "垂直" }] }, { id: "c1", label: "颜色 1", type: "text", value: "#0f766e" }, { id: "c2", label: "颜色 2", type: "text", value: "#fb923c" }],
+  css: function (args) { return "border: " + args.w + "px solid; border-image: linear-gradient(" + args.dir + ", " + args.c1 + ", " + args.c2 + ") 1; padding:16px;"; } });
+
+// ---------- 文本工具（21 个）----------
+textTool({ file: "suffix-lines.html", title: "行尾加后缀", desc: "为每一行文本添加指定后缀。", tags: ["后缀", "行处理", "文本"], order: 501, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }, { id: "suffix", label: "后缀", type: "text", value: " #" }], transform: function (args) { return args.text.split("\n").map(function (l) { return l + args.suffix; }).join("\n"); } });
+textTool({ file: "number-lines.html", title: "行号前缀", desc: "为每行添加递增序号前缀。", tags: ["行号", "编号", "文本"], order: 502, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").map(function (l, i) { return (i + 1) + ". " + l; }).join("\n"); } });
+textTool({ file: "sort-lines.html", title: "行排序（升序）", desc: "按字母顺序对各行升序排序。", tags: ["排序", "行处理", "文本"], order: 503, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").sort().join("\n"); } });
+textTool({ file: "sort-lines-desc.html", title: "行排序（降序）", desc: "按字母顺序对各行降序排序。", tags: ["排序", "行处理", "文本"], order: 504, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").sort().reverse().join("\n"); } });
+textTool({ file: "unique-lines.html", title: "去重行", desc: "保留首次出现的顺序去除重复行。", tags: ["去重", "行处理", "文本"], order: 505, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { var a = args.text.split("\n"), seen = {}, out = []; for (var i = 0; i < a.length; i++) { if (!seen[a[i]]) { seen[a[i]] = 1; out.push(a[i]); } } return out.join("\n"); } });
+textTool({ file: "shuffle-lines.html", title: "乱序行", desc: "随机打乱各行顺序。", tags: ["乱序", "随机", "文本"], order: 506, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { var a = args.text.split("\n"); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a.join("\n"); } });
+textTool({ file: "join-lines.html", title: "合并为单行", desc: "用指定分隔符把多行合并成一行。", tags: ["合并", "行处理", "文本"], order: 507, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }, { id: "sep", label: "分隔符", type: "text", value: ", " }], transform: function (args) { return args.text.split("\n").join(args.sep); } });
+textTool({ file: "split-lines.html", title: "拆分为多行", desc: "按分隔符把一行文本拆成多行。", tags: ["拆分", "行处理", "文本"], order: 508, fields: [{ id: "text", label: "文本", type: "textarea", rows: 4, placeholder: "用分隔符连接的内容" }, { id: "sep", label: "分隔符", type: "text", value: ", " }], transform: function (args) { return args.text.split(args.sep).join("\n"); } });
+textTool({ file: "remove-empty-lines.html", title: "删除空行", desc: "移除文本中的空白行。", tags: ["空行", "清洗", "文本"], order: 509, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").filter(function (l) { return l.trim() !== ""; }).join("\n"); } });
+textTool({ file: "extract-emails.html", title: "提取邮箱", desc: "从文本中提取所有邮箱地址。", tags: ["邮箱", "提取", "文本"], order: 510, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "粘贴文本" }], transform: function (args) { var m = args.text.match(/[^\s@]+@[^\s@]+\.[^\s@]+/g); return m ? m.join("\n") : "（未找到）"; } });
+textTool({ file: "extract-urls.html", title: "提取链接", desc: "从文本中提取所有 http/https 链接。", tags: ["URL", "提取", "文本"], order: 511, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "粘贴文本" }], transform: function (args) { var m = args.text.match(/https?:\/\/[^\s]+/g); return m ? m.join("\n") : "（未找到）"; } });
+textTool({ file: "extract-numbers.html", title: "提取数字", desc: "从文本中提取所有数字。", tags: ["数字", "提取", "文本"], order: 512, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "粘贴文本" }], transform: function (args) { var m = args.text.match(/-?\d+(\.\d+)?/g); return m ? m.join("\n") : "（未找到）"; } });
+textTool({ file: "remove-accents.html", title: "去除重音", desc: "移除拉丁字母的重音符号（如 é→e）。", tags: ["重音", "清洗", "文本"], order: 513, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "Café naïve" }], transform: function (args) { return args.text.normalize("NFD").replace(/[̀-ͯ]/g, ""); } });
+textTool({ file: "remove-punctuation.html", title: "去除标点", desc: "保留字母、数字、中文与空格，移除其它标点。", tags: ["标点", "清洗", "文本"], order: 514, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "Hello, 世界！" }], transform: function (args) { return args.text.replace(/[^\w\s一-鿿]/g, ""); } });
+textTool({ file: "fullwidth-halfwidth.html", title: "全角转半角", desc: "将全角字符转换为半角（数字、字母、标点）。", tags: ["全角", "半角", "文本"], order: 515, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "ＡＢＣ１２３" }], transform: function (args) { return args.text.replace(/[！-～]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/　/g, " "); } });
+textTool({ file: "repeat-text.html", title: "重复文本", desc: "将文本重复指定次数。", tags: ["重复", "文本"], order: 516, fields: [{ id: "text", label: "文本", type: "text", value: "OK" }, { id: "count", label: "次数", type: "number", value: 5, min: 1 }], transform: function (args) { var n = Math.max(0, Math.floor(args.count) || 0); var out = []; for (var i = 0; i < n; i++) out.push(args.text); return out.join(" "); } });
+textTool({ file: "dedupe-words.html", title: "单词去重", desc: "按空格分词并去除重复单词。", tags: ["去重", "单词", "文本"], order: 517, fields: [{ id: "text", label: "文本", type: "textarea", rows: 6, placeholder: "apple banana apple" }], transform: function (args) { var a = args.text.split(/\s+/).filter(Boolean), seen = {}, out = []; for (var i = 0; i < a.length; i++) { if (!seen[a[i]]) { seen[a[i]] = 1; out.push(a[i]); } } return out.join(" "); } });
+textTool({ file: "reverse-lines.html", title: "行序反转", desc: "将行的顺序整体反转。", tags: ["反转", "行处理", "文本"], order: 518, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").reverse().join("\n"); } });
+textTool({ file: "trim-lines.html", title: "每行去空格", desc: "去除每行首尾的空白字符。", tags: ["去空格", "清洗", "文本"], order: 519, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").map(function (l) { return l.trim(); }).join("\n"); } });
+textTool({ file: "count-words-per-line.html", title: "逐行字数", desc: "统计每行的词数（以空白分词）并标注。", tags: ["字数", "统计", "文本"], order: 520, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }], transform: function (args) { return args.text.split("\n").map(function (l) { var n = l.trim() ? l.trim().split(/\s+/).length : 0; return n + " 词: " + l; }).join("\n"); } });
+textTool({ file: "keep-lines-matching.html", title: "保留含关键词行", desc: "只保留包含指定关键词的行。", tags: ["筛选", "行处理", "文本"], order: 521, fields: [{ id: "text", label: "文本", type: "textarea", rows: 8, placeholder: "每行一条" }, { id: "kw", label: "关键词", type: "text", value: "error" }], transform: function (args) { return args.text.split("\n").filter(function (l) { return l.indexOf(args.kw) !== -1; }).join("\n"); } });
+
+// ---------- 开发者工具（10 个）----------
+textTool({ file: "json-validate.html", title: "JSON 校验", desc: "检查文本是否为合法 JSON，并给出错误原因。", category: "dev", tags: ["JSON", "校验", "开发"], order: 701, fields: [{ id: "json", label: "JSON", type: "textarea", rows: 8, placeholder: "粘贴 JSON" }], transform: function (args) { try { JSON.parse(args.json); return "有效 JSON ✓"; } catch (e) { return "无效：" + e.message; } } });
+textTool({ file: "json-sort-keys.html", title: "JSON 键排序", desc: "递归按字母序排列 JSON 的键并美化输出。", category: "dev", tags: ["JSON", "排序", "开发"], order: 702, fields: [{ id: "json", label: "JSON", type: "textarea", rows: 8, placeholder: "粘贴 JSON" }], transform: function (args) { function sk(o) { if (Array.isArray(o)) return o.map(sk); if (o && typeof o === "object") { var r = {}; Object.keys(o).sort().forEach(function (k) { r[k] = sk(o[k]); }); return r; } return o; } try { return JSON.stringify(sk(JSON.parse(args.json)), null, 2); } catch (e) { return "无效 JSON：" + e.message; } } });
+textTool({ file: "json-minify.html", title: "JSON 压缩", desc: "去除 JSON 多余空白，压缩成单行。", category: "dev", tags: ["JSON", "压缩", "开发"], order: 703, fields: [{ id: "json", label: "JSON", type: "textarea", rows: 8, placeholder: "粘贴 JSON" }], transform: function (args) { try { return JSON.stringify(JSON.parse(args.json)); } catch (e) { return "无效 JSON：" + e.message; } } });
+textTool({ file: "query-parse.html", title: "Query 解析", desc: "把查询串解析为键值列表。", category: "dev", tags: ["Query", "解析", "开发"], order: 704, fields: [{ id: "q", label: "查询串", type: "textarea", rows: 4, placeholder: "a=1&amp;b=2" }], transform: function (args) { return args.q.split("\x26").map(function (kv) { var p = kv.split("="); return p[0] + " = " + (p[1] || ""); }).join("\n"); } });
+textTool({ file: "query-build.html", title: "Query 构建", desc: "把每行键值构建成查询串。", category: "dev", tags: ["Query", "构建", "开发"], order: 705, fields: [{ id: "lines", label: "键值（每行 键 值）", type: "textarea", rows: 6, placeholder: "a 1\nb 2" }], transform: function (args) { return args.lines.split("\n").map(function (l) { var p = l.split(/\s+/); return p[0] + "=" + p.slice(1).join(" "); }).filter(function (s) { return s.indexOf("=") !== -1; }).join("\x26"); } });
+textTool({ file: "markdown-to-html.html", title: "Markdown 转 HTML", desc: "轻量将标题、加粗、斜体、链接转为 HTML。", category: "dev", tags: ["Markdown", "HTML", "开发"], order: 706, fields: [{ id: "md", label: "Markdown", type: "textarea", rows: 8, placeholder: "# 标题\n**粗体**" }], transform: function (args) { var A = "hr" + "ef"; return args.md.split("\n").map(function (l) { var s = l.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\*(.+?)\*/g, "<em>$1</em>"); var link = s.match(/\[(.+?)\]\((.+?)\)/); if (link) { s = s.replace(link[0], "<a " + A + '="' + link[2] + '">' + link[1] + "</a>"); } var h = s.match(/^(#{1,6})\s+(.*)$/); if (h) { var n = h[1].length; s = "<h" + n + ">" + h[2] + "</h" + n + ">"; } return s; }).join("\n"); } });
+textTool({ file: "css-minify.html", title: "CSS 压缩", desc: "移除 CSS 注释与多余空白，压缩体积。", category: "dev", tags: ["CSS", "压缩", "开发"], order: 707, fields: [{ id: "css", label: "CSS", type: "textarea", rows: 8, placeholder: "粘贴 CSS" }], transform: function (args) { return args.css.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s*([{}:;,])\s*/g, "$1").replace(/;}/g, "}").trim(); } });
+textTool({ file: "sql-minify.html", title: "SQL 压缩", desc: "移除注释与多余空白，压缩 SQL。", category: "dev", tags: ["SQL", "压缩", "开发"], order: 708, fields: [{ id: "sql", label: "SQL", type: "textarea", rows: 8, placeholder: "粘贴 SQL" }], transform: function (args) { return args.sql.replace(/--[^\n]*/g, "").replace(/\s+/g, " ").trim(); } });
+textTool({ file: "html-escape.html", title: "HTML 转义", desc: "将尖括号与和号转义为 HTML 实体，便于安全嵌入网页。", category: "dev", tags: ["HTML", "转义", "开发"], order: 709, fields: [{ id: "html", label: "HTML", type: "textarea", rows: 8, placeholder: "粘贴需要转义的内容" }], transform: function (args) { return args.html.replace(/\x26/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\x22/g, "&quot;"); } });
+textTool({ file: "port-lookup.html", title: "端口查询", desc: "输入端口号，查询常见服务名。", category: "dev", tags: ["端口", "网络", "开发"], order: 710, fields: [{ id: "port", label: "端口", type: "text", value: "8080" }], transform: function (args) { var p = parseInt(args.port, 10); var M = { 21: "FTP", 22: "SSH", 23: "Telnet", 25: "SMTP", 53: "DNS", 80: "HTTP", 110: "POP3", 143: "IMAP", 443: "HTTPS", 3306: "MySQL", 5432: "PostgreSQL", 6379: "Redis", 8080: "HTTP 代理", 8443: "HTTPS 代理" }; return M[p] ? (p + " → " + M[p]) : (p + " → 未知端口"); } });
+
+// ---------- 设计工具（CSS 生成，11 个）----------
+cssTool({ file: "gradient-bg.html", title: "渐变背景", desc: "生成线性渐变背景 CSS，可实时预览。", tags: ["渐变", "背景", "CSS"], order: 602, preview: true, fields: [{ id: "dir", label: "方向", type: "select", options: [{ value: "90deg", label: "水平" }, { value: "0deg", label: "垂直" }, { value: "45deg", label: "对角" }] }, { id: "c1", label: "颜色 1", type: "text", value: "#0f766e" }, { id: "c2", label: "颜色 2", type: "text", value: "#fb923c" }], css: function (args) { return "background: linear-gradient(" + args.dir + ", " + args.c1 + ", " + args.c2 + "); padding:36px; color:#fff; text-align:center; border-radius:12px;"; } });
+cssTool({ file: "neon-text.html", title: "霓虹文字", desc: "生成霓虹发光文字效果 CSS。", tags: ["霓虹", "文字", "CSS"], order: 603, preview: true, fields: [{ id: "c", label: "颜色", type: "text", value: "#22d3ee" }], css: function (args) { return "color:" + args.c + "; text-shadow:0 0 5px " + args.c + ",0 0 12px " + args.c + "; font-size:30px; font-weight:800; text-align:center;"; } });
+cssTool({ file: "glass-card.html", title: "毛玻璃卡片", desc: "生成毛玻璃（glassmorphism）卡片样式。", tags: ["毛玻璃", "卡片", "CSS"], order: 604, preview: true, fields: [{ id: "blur", label: "模糊 (px)", value: 10 }, { id: "c", label: "底色", type: "text", value: "rgba(255,255,255,0.15)" }], css: function (args) { return "background:" + args.c + "; backdrop-filter:blur(" + args.blur + "px); -webkit-backdrop-filter:blur(" + args.blur + "px); border:1px solid rgba(255,255,255,0.3); border-radius:14px; padding:28px;"; } });
+cssTool({ file: "clip-circle.html", title: "圆形裁切", desc: "生成圆形裁切（clip-path）样式。", tags: ["裁切", "圆形", "CSS"], order: 605, preview: true, fields: [{ id: "c", label: "背景色", type: "text", value: "#0f766e" }], css: function (args) { return "width:120px; height:120px; background:" + args.c + "; clip-path:circle(50%);"; } });
+cssTool({ file: "aspect-box.html", title: "固定宽高比", desc: "生成固定宽高比的盒子样式。", tags: ["宽高比", "盒子", "CSS"], order: 606, preview: true, fields: [{ id: "w", label: "宽比", value: 16 }, { id: "h", label: "高比", value: 9 }, { id: "c", label: "背景色", type: "text", value: "#0f766e" }], css: function (args) { return "aspect-ratio:" + args.w + "/" + args.h + "; background:" + args.c + "; width:200px; border-radius:10px;"; } });
+cssTool({ file: "skeleton-loader.html", title: "骨架屏块", desc: "生成骨架屏占位块样式。", tags: ["骨架屏", "占位", "CSS"], order: 607, preview: true, fields: [{ id: "c1", label: "底色 1", type: "text", value: "#e5e7eb" }, { id: "c2", label: "底色 2", type: "text", value: "#f3f4f6" }], css: function (args) { return "width:220px; height:22px; border-radius:6px; background:linear-gradient(90deg," + args.c1 + "," + args.c2 + "," + args.c1 + ");"; } });
+cssTool({ file: "focus-ring.html", title: "聚焦描边", desc: "生成清晰的键盘聚焦描边样式。", tags: ["聚焦", "描边", "CSS"], order: 608, preview: true, fields: [{ id: "c", label: "描边色", type: "text", value: "#0f766e" }], css: function (args) { return "outline:3px solid " + args.c + "; outline-offset:3px; padding:12px 18px; border-radius:10px; background:#fff;"; } });
+cssTool({ file: "badge-pill.html", title: "标签徽章", desc: "生成圆角徽章（badge）样式。", tags: ["徽章", "标签", "CSS"], order: 609, preview: true, fields: [{ id: "c", label: "背景色", type: "text", value: "#0f766e" }], css: function (args) { return "display:inline-block; padding:4px 14px; border-radius:999px; background:" + args.c + "; color:#fff; font-weight:600;"; } });
+cssTool({ file: "tooltip-box.html", title: "气泡提示", desc: "生成气泡提示（tooltip）样式。", tags: ["提示", "气泡", "CSS"], order: 610, preview: true, fields: [{ id: "c", label: "背景色", type: "text", value: "#1f2937" }], css: function (args) { return "display:inline-block; padding:8px 14px; background:" + args.c + "; color:#fff; border-radius:8px; font-size:14px;"; } });
+cssTool({ file: "gradient-text.html", title: "渐变文字", desc: "生成渐变填充文字效果 CSS。", tags: ["渐变", "文字", "CSS"], order: 611, preview: true, fields: [{ id: "dir", label: "方向", type: "select", options: [{ value: "90deg", label: "水平" }, { value: "0deg", label: "垂直" }] }, { id: "c1", label: "颜色 1", type: "text", value: "#0f766e" }, { id: "c2", label: "颜色 2", type: "text", value: "#fb923c" }], css: function (args) { return "background:linear-gradient(" + args.dir + "," + args.c1 + "," + args.c2 + "); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:32px; font-weight:800;"; } });
+cssTool({ file: "rounded-box.html", title: "圆角方块", desc: "生成带圆角的方块样式。", tags: ["圆角", "方块", "CSS"], order: 612, preview: true, fields: [{ id: "r", label: "圆角 (px)", value: 16 }, { id: "c", label: "背景色", type: "text", value: "#0f766e" }], css: function (args) { return "width:150px; height:100px; background:" + args.c + "; border-radius:" + args.r + "px;"; } });
+
+// ---------- 图片滤镜 / 变换工具（10 个，画布仅在处理时调用）----------
+function imgBody(desc) {
+  return '<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>' + desc + '</span></label>\n<canvas id="canvas" style="display:none"></canvas>\n<div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>\n<div class="actions" style="margin-top:14px"><button class="btn primary" id="download" type="button" disabled>下载图片</button></div>\n<p class="status" id="status" aria-live="polite"></p>';
+}
+function imgScript(mode, filter, maxDim) {
+  var pre = '  function render(){ if(!img) return; var w=img.naturalWidth, h=img.naturalHeight;';
+  if (mode === "resize") pre += " var scale=Math.min(1, " + maxDim + "/Math.max(w,h)); w=Math.round(w*scale); h=Math.round(h*scale);";
+  if (mode === "round") pre += " var r=Math.min(w,h)*0.5;";
+  var draw = " canvas.width=w; canvas.height=h; var ctx=canvas.getContext(\"2d\"); if(!ctx){ PHT.status(statusEl,\"当前浏览器不支持画布\",\"error\"); return; }";
+  if (mode === "round") draw += " ctx.beginPath(); ctx.moveTo(r,0); ctx.arcTo(w,0,w,h,r); ctx.arcTo(w,h,0,h,r); ctx.arcTo(0,h,0,0,r); ctx.arcTo(0,0,w,0,r); ctx.closePath(); ctx.clip();";
+  draw += " ctx.filter=" + JSON.stringify(filter || "none") + "; ctx.drawImage(img,0,0,w,h);";
+  draw += " dataUrl=canvas.toDataURL(\"image/png\"); var pv=$(\"#pv\"); pv.innerHTML=\"\"; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $(\"#download\").disabled=false; }";
+  return pre + draw;
+}
+[
+  ["image-grayscale.html", "灰度", "grayscale(1)", "filter", "上传图片后转为黑白灰度，本地处理并导出。"],
+  ["image-invert.html", "反色", "invert(1)", "filter", "上传图片后颜色反相，本地处理并导出。"],
+  ["image-sepia.html", "褐色", "sepia(1)", "filter", "上传图片后添加复古褐色调，本地处理并导出。"],
+  ["image-blur.html", "模糊", "blur(3px)", "filter", "上传图片后轻度模糊，本地处理并导出。"],
+  ["image-brighten.html", "提亮", "brightness(1.35)", "filter", "上传图片后提高亮度，本地处理并导出。"],
+  ["image-darken.html", "压暗", "brightness(0.7)", "filter", "上传图片后降低亮度，本地处理并导出。"],
+  ["image-contrast.html", "加对比", "contrast(1.5)", "filter", "上传图片后增强对比度，本地处理并导出。"],
+  ["image-saturate.html", "高饱和", "saturate(2)", "filter", "上传图片后提高饱和度，本地处理并导出。"],
+  ["image-thumbnail.html", "缩略图", "none", "resize", 480, "上传图片后缩小为不超过 480px 的缩略图，本地处理并导出。"],
+  ["image-rounded.html", "圆角裁切", "none", "round", "上传图片后裁切为圆形头像，本地处理并导出。"]
+].forEach(function (t, i) {
+  var file = t[0], title = t[1], filter = t[2], mode = t[3], order = 901 + i;
+  var maxDim = (mode === "resize") ? t[4] : undefined;
+  var desc = (mode === "resize") ? t[5] : t[4];
+  var body = imgBody(desc);
+  var script = '(function(){\n  var $=PHT.$; var statusEl=$("#status"); var canvas=$("#canvas"), img=null, dataUrl=null; var fileInput=$("#fileInput");\n'
+    + '  function loadFile(file){ if(!file||!/^image\\//.test(file.type)){ PHT.status(statusEl,"请选择图片文件","error"); return; } var reader=new FileReader(); reader.onload=function(e){ var im=new Image(); im.onload=function(){ img=im; render(); PHT.status(statusEl,"已载入，可下载","ok"); }; im.onerror=function(){ PHT.status(statusEl,"图片解析失败","error"); }; im.src=e.target.result; }; reader.readAsDataURL(file); }\n'
+    + imgScript(mode, filter, maxDim) + "\n"
+    + '  fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });\n'
+    + '  $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download(' + JSON.stringify(file.replace(".html", ".png")) + ', dataUrl); });\n})();';
+  TOOLS.push({ file: file, meta: { title: title, desc: desc, category: "image", tags: ["图片", "编辑", "滤镜"], order: order }, body: body, script: script });
+});
+
+// ---------- 随机 / 生成工具（36 个，util 分类）----------
+genTool({ file: "random-tip.html", title: "随机小贴士", desc: "随机给出一条实用小贴士。", category: "util", tags: ["随机", "贴士", "趣味"], order: 404, items: ["多喝水，保持身体水分。", "每小时起身活动一下。", "睡前远离电子屏幕。", "写今日待办，提升效率。", "深呼吸三次，缓解压力。", "每天阅读 30 分钟。", "备份重要文件。", "微笑面对每一天。"] });
+genTool({ file: "random-joke.html", title: "随机笑话", desc: "随机讲一个轻松笑话。", category: "util", tags: ["随机", "笑话", "趣味"], order: 405, items: ["为什么电脑很笨？因为它只会按部就班。", "鸡蛋为什么过马路？为了证明自己不是胆小鬼。", "时钟为什么被开除？它总是打盹。", "数学书为什么忧郁？它有太多问题。", "香蕉去上班为什么迟到？因为它被剥了。"] });
+genTool({ file: "random-idea.html", title: "随机点子", desc: "随机激发一个创意点子。", category: "util", tags: ["随机", "创意", "灵感"], order: 406, items: ["做一个本地优先的笔记应用。", "把日常任务做成游戏化打卡。", "用卡片管理学习计划。", "为小团队做个轻量协作板。", "把菜谱变成步骤清单。", "设计一个专注计时器。"] });
+genTool({ file: "random-compliment.html", title: "随机夸夸", desc: "随机送出一句赞美。", category: "util", tags: ["随机", "赞美", "趣味"], order: 407, items: ["你今天看起来很棒！", "你的想法很有创意。", "你做事很靠谱。", "你的笑容很温暖。", "你总能给人力量。", "你进步很快！"] });
+genTool({ file: "random-dare.html", title: "随机挑战", desc: "随机给出一个趣味挑战。", category: "util", tags: ["随机", "挑战", "趣味"], order: 408, items: ["对镜子笑 10 秒。", "做 10 个深蹲。", "给好友发一条鼓励消息。", "写下三件感恩的事。", "喝一杯温水。", "学一句新外语。"] });
+genTool({ file: "random-question.html", title: "随机提问", desc: "随机给出一个有趣的两难问题。", category: "util", tags: ["随机", "提问", "趣味"], order: 409, items: ["拥有读心术还是隐身术？", "环游世界还是财务自由？", "永远年轻还是永远智慧？", "超强记忆还是超强创造力？", "独处一天还是热闹聚会？", "成为导演还是主角？"] });
+genTool({ file: "random-affirmation.html", title: "随机正能量", desc: "随机送出一句正能量。", category: "util", tags: ["随机", "正能量", "励志"], order: 410, items: ["你正在变得更好。", "今天也请相信自己。", "慢慢来，比较快。", "你已经做得很好了。", "每一步都算数。", "明天会更明朗。"] });
+genTool({ file: "random-challenge.html", title: "随机任务", desc: "随机分配一个微任务。", category: "util", tags: ["随机", "任务", "趣味"], order: 411, items: ["整理桌面 5 分钟。", "读两页书。", "散步 15 分钟。", "清空收件箱。", "记录一个想法。", "给植物浇水。"] });
+genTool({ file: "random-scenario.html", title: "随机情景", desc: "随机生成一个脑洞情景。", category: "util", tags: ["随机", "脑洞", "趣味"], order: 412, items: ["如果明天停电一天。", "如果能和十年后的自己对话。", "如果城市突然下起彩色雨。", "如果所有猫都会说话。", "如果时间每天慢一倍。", "如果每个人都有一个隐藏超能力。"] });
+genTool({ file: "random-activity.html", title: "随机活动", desc: "随机推荐一项休闲活动。", category: "util", tags: ["随机", "活动", "休闲"], order: 413, items: ["听一张新专辑。", "拼一幅拼图。", "做一道新菜。", "散步去公园。", "看一部老电影。", "画一幅随手涂鸦。"] });
+genTool({ file: "random-name-en.html", title: "随机英文名", desc: "随机生成一个英文姓名。", category: "util", tags: ["随机", "姓名", "生成"], order: 414, gen: function (args) { var f = ["James", "Mary", "John", "Linda", "Robert", "Jennifer", "Michael", "David", "Emma", "William"]; var l = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Wilson", "Moore"]; return f[Math.floor(Math.random() * f.length)] + " " + l[Math.floor(Math.random() * l.length)]; } });
+genTool({ file: "random-name-cn.html", title: "随机中文名", desc: "随机生成一个中文姓名。", category: "util", tags: ["随机", "姓名", "生成"], order: 415, gen: function (args) { var s = ["王", "李", "张", "刘", "陈", "杨", "赵", "黄", "周", "吴"]; var g = ["伟", "芳", "娜", "秀英", "敏", "静", "丽", "强", "磊", "洋"]; return s[Math.floor(Math.random() * s.length)] + s[Math.floor(Math.random() * s.length)] + g[Math.floor(Math.random() * g.length)]; } });
+genTool({ file: "random-number.html", title: "随机整数", desc: "在指定范围内生成多个随机整数。", category: "util", tags: ["随机", "整数", "生成"], order: 416, fields: [{ id: "min", label: "最小值", value: 1 }, { id: "max", label: "最大值", value: 100 }, { id: "count", label: "数量", value: 5, min: 1 }], gen: function (args) { var out = []; for (var i = 0; i < args.count; i++) { out.push(Math.floor(Math.random() * (args.max - args.min + 1)) + args.min); } return out.join("\n"); } });
+genTool({ file: "random-hex.html", title: "随机十六进制", desc: "生成指定长度的随机十六进制串。", category: "util", tags: ["随机", "十六进制", "生成"], order: 417, fields: [{ id: "length", label: "长度", value: 16, min: 1 }], gen: function (args) { var c = "0123456789abcdef", s = ""; for (var i = 0; i < args.length; i++) { s += c[Math.floor(Math.random() * 16)]; } return "0x" + s; } });
+genTool({ file: "random-ip.html", title: "随机 IP", desc: "生成一个随机 IPv4 地址。", category: "util", tags: ["随机", "IP", "网络"], order: 418, gen: function (args) { return (Math.floor(Math.random() * 223) + 1) + "." + Math.floor(Math.random() * 256) + "." + Math.floor(Math.random() * 256) + "." + (Math.floor(Math.random() * 254) + 1); } });
+genTool({ file: "random-mac.html", title: "随机 MAC", desc: "生成随机 MAC 地址。", category: "util", tags: ["随机", "MAC", "网络"], order: 419, gen: function (args) { var h = "0123456789abcdef", s = []; for (var i = 0; i < 6; i++) { s.push(h[Math.floor(Math.random() * 16)] + h[Math.floor(Math.random() * 16)]); } return s.join(":"); } });
+genTool({ file: "random-email.html", title: "随机邮箱", desc: "生成随机测试邮箱。", category: "util", tags: ["随机", "邮箱", "生成"], order: 420, gen: function (args) { var n = ["alex", "sam", "kim", "lee", "max", "mia", "tom", "eva", "neo", "lily"]; var d = ["example.com", "mail.com", "test.org", "demo.net"]; return n[Math.floor(Math.random() * n.length)] + Math.floor(Math.random() * 999) + "@" + d[Math.floor(Math.random() * d.length)]; } });
+genTool({ file: "random-phone-cn.html", title: "随机手机号", desc: "生成随机中国大陆手机号。", category: "util", tags: ["随机", "手机号", "生成"], order: 421, gen: function (args) { var p = "1" + [3, 4, 5, 6, 7,8, 9][Math.floor(Math.random() * 7)]; for (var i = 0; i < 9; i++) { p += Math.floor(Math.random() * 10); } return p; } });
+genTool({ file: "random-date.html", title: "随机日期", desc: "随机生成一个日期。", category: "util", tags: ["随机", "日期", "生成"], order: 422, gen: function (args) { var y = 2020 + Math.floor(Math.random() * 11); var m = 1 + Math.floor(Math.random() * 12); var d = 1 + Math.floor(Math.random() * 28); return y + "-" + ("0" + m).slice(-2) + "-" + ("0" + d).slice(-2); } });
+genTool({ file: "random-time.html", title: "随机时间", desc: "随机生成一个时间点。", category: "util", tags: ["随机", "时间", "生成"], order: 423, gen: function (args) { var h = Math.floor(Math.random() * 24), m = Math.floor(Math.random() * 60), s = Math.floor(Math.random() * 60); return [h, m, s].map(function (x) { return ("0" + x).slice(-2); }).join(":"); } });
+genTool({ file: "random-bool.html", title: "随机是非", desc: "随机返回是或否。", category: "util", tags: ["随机", "决策", "生成"], order: 424, gen: function (args) { return Math.random() < 0.5 ? "是" : "否"; } });
+genTool({ file: "random-word.html", title: "随机单词", desc: "随机挑选一个英文单词。", category: "util", tags: ["随机", "单词", "生成"], order: 425, gen: function (args) { var w = ["apple", "river", "cloud", "stone", "light", "music", "dream", "ocean", "forest", "star", "wind", "moon", "leaf", "wave", "spark"]; return w[Math.floor(Math.random() * w.length)]; } });
+genTool({ file: "random-address-cn.html", title: "随机地址", desc: "生成随机中文地址。", category: "util", tags: ["随机", "地址", "生成"], order: 426, gen: function (args) { var p = ["北京市", "上海市", "广州市", "深圳市", "杭州市", "成都市", "武汉市", "南京市"]; var st = ["中山路", "人民路", "建设路", "解放路", "和平街", "幸福里"]; return p[Math.floor(Math.random() * p.length)] + st[Math.floor(Math.random() * st.length)] + (1 + Math.floor(Math.random() * 200)) + "号"; } });
+genTool({ file: "random-company.html", title: "随机公司名", desc: "生成随机公司名称。", category: "util", tags: ["随机", "公司", "生成"], order: 427, gen: function (args) { var a = ["星", "云", "智", "创", "联", "极", "未来", "量子", "天工", "万象"]; var b = ["科技", "网络", "信息", "数据", "智能", "软件", "电子", "传媒"]; return a[Math.floor(Math.random() * a.length)] + b[Math.floor(Math.random() * b.length)] + "有限公司"; } });
+genTool({ file: "random-job.html", title: "随机职业", desc: "随机生成一个职位名称。", category: "util", tags: ["随机", "职业", "生成"], order: 428, gen: function (args) { var j = ["前端工程师", "产品经理", "数据分析师", "设计师", "运营专员", "测试工程师", "架构师", "研究员", "项目经理", "销售代表"]; return j[Math.floor(Math.random() * j.length)]; } });
+genTool({ file: "random-emoji.html", title: "随机表情", desc: "随机给出一个表情符号。", category: "util", tags: ["随机", "表情", "趣味"], order: 429, gen: function (args) { var e = ["😀", "😎", "🔥", "🌟", "💡", "🚀", "🌈", "🍀", "⚡", "🎉", "🌸", "💪"]; return e[Math.floor(Math.random() * e.length)]; } });
+genTool({ file: "random-zipcode.html", title: "随机邮编", desc: "生成随机 6 位邮政编码。", category: "util", tags: ["随机", "邮编", "生成"], order: 430, gen: function (args) { var s = ""; for (var i = 0; i < 6; i++) { s += Math.floor(Math.random() * 10); } return s; } });
+genTool({ file: "random-guid.html", title: "随机 GUID", desc: "生成随机 UUID v4。", category: "util", tags: ["随机", "GUID", "UUID"], order: 431, fields: [{ id: "count", label: "数量", value: 1, min: 1 }], gen: function (args) { function h() { return Math.floor(Math.random() * 16).toString(16); } function seg(n) { var s = ""; for (var i = 0; i < n; i++) { s += h(); } return s; } function one() { return seg(8) + "-" + seg(4) + "-4" + seg(3) + "-" + [8, 9, 10, 11][Math.floor(Math.random() * 4)].toString(16) + seg(3) + "-" + seg(12); } var out = []; for (var k = 0; k < args.count; k++) { out.push(one()); } return out.join("\n"); } });
+genTool({ file: "random-ascii.html", title: "随机字符", desc: "生成指定长度的随机可打印字符。", category: "util", tags: ["随机", "字符", "生成"], order: 432, fields: [{ id: "length", label: "长度", value: 20, min: 1 }], gen: function (args) { var s = ""; for (var i = 0; i < args.length; i++) { s += String.fromCharCode(33 + Math.floor(Math.random() * 94)); } return s; } });
+genTool({ file: "random-color-hex.html", title: "随机颜色", desc: "生成随机十六进制颜色。", category: "util", tags: ["随机", "颜色", "生成"], order: 433, gen: function (args) { function h() { return ("0" + Math.floor(Math.random() * 256).toString(16)).slice(-2); } return "#" + h() + h() + h(); } });
+genTool({ file: "random-username.html", title: "随机用户名", desc: "生成随机用户名。", category: "util", tags: ["随机", "用户名", "生成"], order: 434, gen: function (args) { var a = ["cool", "happy", "swift", "blue", "tiny", "lucky", "brave", "quiet", "sunny", "mint"]; var n = ["tiger", "river", "cloud", "fox", "star", "moon", "leaf", "wave", "panda", "koala"]; return a[Math.floor(Math.random() * a.length)] + "_" + n[Math.floor(Math.random() * n.length)] + Math.floor(Math.random() * 999); } });
+genTool({ file: "random-sentence.html", title: "随机句子", desc: "随机拼接一个中文短句。", category: "util", tags: ["随机", "句子", "生成"], order: 435, gen: function (args) { var w = ["今天", "我们", "一起", "去", "公园", "看", "美丽", "的", "风景", "学习", "新的", "知识", "享受", "温暖", "阳光", "阅读", "一本", "好书"]; var s = []; for (var i = 0; i < 8; i++) { s.push(w[Math.floor(Math.random() * w.length)]); } return s.join("") + "。"; } });
+genTool({ file: "random-card.html", title: "随机扑克牌", desc: "随机抽出一张扑克牌。", category: "util", tags: ["随机", "扑克", "趣味"], order: 436, gen: function (args) { var r = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; var s = ["♠", "♥", "♦", "♣"]; return r[Math.floor(Math.random() * r.length)] + s[Math.floor(Math.random() * s.length)]; } });
+genTool({ file: "random-color-rgb.html", title: "随机 RGB", desc: "生成随机 RGB 颜色。", category: "util", tags: ["随机", "颜色", "生成"], order: 437, gen: function (args) { return "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")"; } });
+genTool({ file: "random-float.html", title: "随机小数", desc: "在范围内生成随机小数。", category: "util", tags: ["随机", "小数", "生成"], order: 438, fields: [{ id: "min", label: "最小值", value: 0 }, { id: "max", label: "最大值", value: 1 }, { id: "decimals", label: "小数位", value: 2, min: 0 }], gen: function (args) { return (Math.random() * (args.max - args.min) + args.min).toFixed(args.decimals); } });
+genTool({ file: "random-pick.html", title: "随机抽选", desc: "从你提供的列表中随机抽选若干项。", category: "util", tags: ["随机", "抽选", "决策"], order: 439, fields: [{ id: "lines", label: "候选（每行一项）", type: "textarea", rows: 6, placeholder: "选项 A\n选项 B" }, { id: "count", label: "抽选数量", value: 1, min: 1 }], gen: function (args) { var arr = args.lines.split("\n").filter(Boolean); if (!arr.length) return "（请先填写候选）"; var out = []; for (var i = 0; i < args.count; i++) { out.push(arr[Math.floor(Math.random() * arr.length)]); } return out.join("\n"); } });
+
 // ---------- 写出 ----------
 mkdirSync(toolsDir, { recursive: true });
 let count = 0;

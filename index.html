@@ -47,7 +47,7 @@
 <main class="wrap" id="tools">
   <section class="hero">
     <p class="eyebrow">Pure HTML · Zero Dependency</p>
-    <h1>浏览器里的<em><!-- build:count:start -->100<!-- build:count:end --></em>个纯 HTML 小工具</h1>
+    <h1>浏览器里的<em><!-- build:count:start -->300<!-- build:count:end --></em>个纯 HTML 小工具</h1>
     <p class="lede">每个工具都是独立的单个 HTML 文件：不装依赖、不连后端、不收集数据。断网可用，也可以直接下载到本地长期使用。全部源码开放，欢迎按同一套结构继续添加新工具。</p>
 
     <div class="search-row">
@@ -60,7 +60,7 @@
     </div>
 
     <ul class="stats">
-      <li><b><!-- build:count:start -->100<!-- build:count:end --></b> 个工具</li>
+      <li><b><!-- build:count:start -->300<!-- build:count:end --></b> 个工具</li>
       <li><b>0</b> 个外部依赖</li>
       <li><b>100%</b> 浏览器本地处理</li>
       <li><b>MIT</b> 开源协议</li>
@@ -69,13 +69,13 @@
 
   <div class="chips" role="group" aria-label="按分类筛选">
     <!-- build:chips:start -->
-    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>100</span></button>
-    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>17</span></button>
+    <button class="chip" type="button" data-cat="all" aria-pressed="true">全部 <span>300</span></button>
+    <button class="chip" type="button" data-cat="text" aria-pressed="false">文本处理 <span>49</span></button>
     <button class="chip" type="button" data-cat="dev" aria-pressed="false">开发者 <span>29</span></button>
-    <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>15</span></button>
-    <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>6</span></button>
-    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>15</span></button>
-    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>18</span></button>
+    <button class="chip" type="button" data-cat="design" aria-pressed="false">设计 <span>26</span></button>
+    <button class="chip" type="button" data-cat="image" aria-pressed="false">图片 <span>16</span></button>
+    <button class="chip" type="button" data-cat="calc" aria-pressed="false">计算 <span>123</span></button>
+    <button class="chip" type="button" data-cat="util" aria-pressed="false">小工具 <span>57</span></button>
     <!-- build:chips:end -->
     <button class="clear-btn" id="clearSearch" type="button" hidden>清除筛选</button>
   </div>
@@ -236,6 +236,294 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">按指定宽度对文本自动换行，可选长单词强制断行，适合整理代码注释与邮件。</span>
       <span class="card-tags"><i>换行</i><i>宽度</i><i>排版</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/prefix-lines.html" data-cat="text" data-search="行前加前缀 为每一行文本添加指定前缀。 文本处理 prefix-lines 前缀 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行前加前缀</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">为每一行文本添加指定前缀。</span>
+      <span class="card-tags"><i>前缀</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/suffix-lines.html" data-cat="text" data-search="行尾加后缀 为每一行文本添加指定后缀。 文本处理 suffix-lines 后缀 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行尾加后缀</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">为每一行文本添加指定后缀。</span>
+      <span class="card-tags"><i>后缀</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/number-lines.html" data-cat="text" data-search="行号前缀 为每行添加递增序号前缀。 文本处理 number-lines 行号 编号 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行号前缀</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">为每行添加递增序号前缀。</span>
+      <span class="card-tags"><i>行号</i><i>编号</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/sort-lines.html" data-cat="text" data-search="行排序（升序） 按字母顺序对各行升序排序。 文本处理 sort-lines 排序 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行排序（升序）</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按字母顺序对各行升序排序。</span>
+      <span class="card-tags"><i>排序</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/sort-lines-desc.html" data-cat="text" data-search="行排序（降序） 按字母顺序对各行降序排序。 文本处理 sort-lines-desc 排序 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行排序（降序）</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按字母顺序对各行降序排序。</span>
+      <span class="card-tags"><i>排序</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/unique-lines.html" data-cat="text" data-search="去重行 保留首次出现的顺序去除重复行。 文本处理 unique-lines 去重 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">去重行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">保留首次出现的顺序去除重复行。</span>
+      <span class="card-tags"><i>去重</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/shuffle-lines.html" data-cat="text" data-search="乱序行 随机打乱各行顺序。 文本处理 shuffle-lines 乱序 随机 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">乱序行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机打乱各行顺序。</span>
+      <span class="card-tags"><i>乱序</i><i>随机</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/join-lines.html" data-cat="text" data-search="合并为单行 用指定分隔符把多行合并成一行。 文本处理 join-lines 合并 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">合并为单行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">用指定分隔符把多行合并成一行。</span>
+      <span class="card-tags"><i>合并</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/split-lines.html" data-cat="text" data-search="拆分为多行 按分隔符把一行文本拆成多行。 文本处理 split-lines 拆分 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">拆分为多行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按分隔符把一行文本拆成多行。</span>
+      <span class="card-tags"><i>拆分</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/remove-empty-lines.html" data-cat="text" data-search="删除空行 移除文本中的空白行。 文本处理 remove-empty-lines 空行 清洗 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">删除空行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">移除文本中的空白行。</span>
+      <span class="card-tags"><i>空行</i><i>清洗</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/extract-emails.html" data-cat="text" data-search="提取邮箱 从文本中提取所有邮箱地址。 文本处理 extract-emails 邮箱 提取 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">提取邮箱</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从文本中提取所有邮箱地址。</span>
+      <span class="card-tags"><i>邮箱</i><i>提取</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/extract-urls.html" data-cat="text" data-search="提取链接 从文本中提取所有 http/https 链接。 文本处理 extract-urls url 提取 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">提取链接</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从文本中提取所有 http/https 链接。</span>
+      <span class="card-tags"><i>URL</i><i>提取</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/extract-numbers.html" data-cat="text" data-search="提取数字 从文本中提取所有数字。 文本处理 extract-numbers 数字 提取 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">提取数字</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从文本中提取所有数字。</span>
+      <span class="card-tags"><i>数字</i><i>提取</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/remove-accents.html" data-cat="text" data-search="去除重音 移除拉丁字母的重音符号（如 é→e）。 文本处理 remove-accents 重音 清洗 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">去除重音</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">移除拉丁字母的重音符号（如 é→e）。</span>
+      <span class="card-tags"><i>重音</i><i>清洗</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/remove-punctuation.html" data-cat="text" data-search="去除标点 保留字母、数字、中文与空格，移除其它标点。 文本处理 remove-punctuation 标点 清洗 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">去除标点</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">保留字母、数字、中文与空格，移除其它标点。</span>
+      <span class="card-tags"><i>标点</i><i>清洗</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/fullwidth-halfwidth.html" data-cat="text" data-search="全角转半角 将全角字符转换为半角（数字、字母、标点）。 文本处理 fullwidth-halfwidth 全角 半角 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">全角转半角</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将全角字符转换为半角（数字、字母、标点）。</span>
+      <span class="card-tags"><i>全角</i><i>半角</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/repeat-text.html" data-cat="text" data-search="重复文本 将文本重复指定次数。 文本处理 repeat-text 重复 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">重复文本</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将文本重复指定次数。</span>
+      <span class="card-tags"><i>重复</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/dedupe-words.html" data-cat="text" data-search="单词去重 按空格分词并去除重复单词。 文本处理 dedupe-words 去重 单词 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">单词去重</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按空格分词并去除重复单词。</span>
+      <span class="card-tags"><i>去重</i><i>单词</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/reverse-lines.html" data-cat="text" data-search="行序反转 将行的顺序整体反转。 文本处理 reverse-lines 反转 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">行序反转</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将行的顺序整体反转。</span>
+      <span class="card-tags"><i>反转</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/trim-lines.html" data-cat="text" data-search="每行去空格 去除每行首尾的空白字符。 文本处理 trim-lines 去空格 清洗 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">每行去空格</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">去除每行首尾的空白字符。</span>
+      <span class="card-tags"><i>去空格</i><i>清洗</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/count-words-per-line.html" data-cat="text" data-search="逐行字数 统计每行的词数（以空白分词）并标注。 文本处理 count-words-per-line 字数 统计 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">逐行字数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">统计每行的词数（以空白分词）并标注。</span>
+      <span class="card-tags"><i>字数</i><i>统计</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/keep-lines-matching.html" data-cat="text" data-search="保留含关键词行 只保留包含指定关键词的行。 文本处理 keep-lines-matching 筛选 行处理 文本">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">保留含关键词行</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">只保留包含指定关键词的行。</span>
+      <span class="card-tags"><i>筛选</i><i>行处理</i><i>文本</i></span>
+    </a>
+    <a class="card" href="tools/json-validate.html" data-cat="text" data-search="json 校验 检查文本是否为合法 json，并给出错误原因。 文本处理 json-validate json 校验 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">JSON 校验</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">检查文本是否为合法 JSON，并给出错误原因。</span>
+      <span class="card-tags"><i>JSON</i><i>校验</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/json-sort-keys.html" data-cat="text" data-search="json 键排序 递归按字母序排列 json 的键并美化输出。 文本处理 json-sort-keys json 排序 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">JSON 键排序</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">递归按字母序排列 JSON 的键并美化输出。</span>
+      <span class="card-tags"><i>JSON</i><i>排序</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/json-minify.html" data-cat="text" data-search="json 压缩 去除 json 多余空白，压缩成单行。 文本处理 json-minify json 压缩 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">JSON 压缩</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">去除 JSON 多余空白，压缩成单行。</span>
+      <span class="card-tags"><i>JSON</i><i>压缩</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/query-parse.html" data-cat="text" data-search="query 解析 把查询串解析为键值列表。 文本处理 query-parse query 解析 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">Query 解析</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把查询串解析为键值列表。</span>
+      <span class="card-tags"><i>Query</i><i>解析</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/query-build.html" data-cat="text" data-search="query 构建 把每行键值构建成查询串。 文本处理 query-build query 构建 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">Query 构建</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">把每行键值构建成查询串。</span>
+      <span class="card-tags"><i>Query</i><i>构建</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/markdown-to-html.html" data-cat="text" data-search="markdown 转 html 轻量将标题、加粗、斜体、链接转为 html。 文本处理 markdown-to-html markdown html 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">Markdown 转 HTML</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">轻量将标题、加粗、斜体、链接转为 HTML。</span>
+      <span class="card-tags"><i>Markdown</i><i>HTML</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/css-minify.html" data-cat="text" data-search="css 压缩 移除 css 注释与多余空白，压缩体积。 文本处理 css-minify css 压缩 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">CSS 压缩</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">移除 CSS 注释与多余空白，压缩体积。</span>
+      <span class="card-tags"><i>CSS</i><i>压缩</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/sql-minify.html" data-cat="text" data-search="sql 压缩 移除注释与多余空白，压缩 sql。 文本处理 sql-minify sql 压缩 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">SQL 压缩</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">移除注释与多余空白，压缩 SQL。</span>
+      <span class="card-tags"><i>SQL</i><i>压缩</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/html-escape.html" data-cat="text" data-search="html 转义 将尖括号与和号转义为 html 实体，便于安全嵌入网页。 文本处理 html-escape html 转义 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">HTML 转义</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将尖括号与和号转义为 HTML 实体，便于安全嵌入网页。</span>
+      <span class="card-tags"><i>HTML</i><i>转义</i><i>开发</i></span>
+    </a>
+    <a class="card" href="tools/port-lookup.html" data-cat="text" data-search="端口查询 输入端口号，查询常见服务名。 文本处理 port-lookup 端口 网络 开发">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h11M4 16h14M4 21h8"/></svg></span>
+        <span class="card-title">端口查询</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入端口号，查询常见服务名。</span>
+      <span class="card-tags"><i>端口</i><i>网络</i><i>开发</i></span>
     </a>
     <a class="card" href="tools/json-formatter.html" data-cat="dev" data-search="json 格式化 格式化、压缩并校验 json，语法错误会精确提示行号和列号，支持键排序与缩进选择。 开发者 json-formatter json 格式化 校验">
       <span class="card-head">
@@ -615,15 +903,6 @@
       <span class="card-desc">可视化选择主轴对齐、交叉轴对齐、方向与换行，实时预览并复制 flex 布局 CSS。</span>
       <span class="card-tags"><i>flexbox</i><i>flex</i><i>布局</i><i>css</i></span>
     </a>
-    <a class="card" href="tools/gradient-text.html" data-cat="design" data-search="渐变文字 把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 css。 设计 gradient-text gradient 渐变 文字 css">
-      <span class="card-head">
-        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
-        <span class="card-title">渐变文字</span>
-      </span>
-      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      <span class="card-desc">把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。</span>
-      <span class="card-tags"><i>gradient</i><i>渐变</i><i>文字</i><i>css</i></span>
-    </a>
     <a class="card" href="tools/css-grid-pattern.html" data-cat="design" data-search="网格背景图案 生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 css 背景代码。 设计 css-grid-pattern grid 背景 图案 css">
       <span class="card-head">
         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
@@ -632,6 +911,114 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 CSS 背景代码。</span>
       <span class="card-tags"><i>grid</i><i>背景</i><i>图案</i><i>css</i></span>
+    </a>
+    <a class="card" href="tools/gradient-border.html" data-cat="design" data-search="渐变边框 生成渐变边框 css，可实时预览。 设计 gradient-border 边框 渐变 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">渐变边框</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成渐变边框 CSS，可实时预览。</span>
+      <span class="card-tags"><i>边框</i><i>渐变</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/gradient-bg.html" data-cat="design" data-search="渐变背景 生成线性渐变背景 css，可实时预览。 设计 gradient-bg 渐变 背景 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">渐变背景</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成线性渐变背景 CSS，可实时预览。</span>
+      <span class="card-tags"><i>渐变</i><i>背景</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/neon-text.html" data-cat="design" data-search="霓虹文字 生成霓虹发光文字效果 css。 设计 neon-text 霓虹 文字 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">霓虹文字</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成霓虹发光文字效果 CSS。</span>
+      <span class="card-tags"><i>霓虹</i><i>文字</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/glass-card.html" data-cat="design" data-search="毛玻璃卡片 生成毛玻璃（glassmorphism）卡片样式。 设计 glass-card 毛玻璃 卡片 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">毛玻璃卡片</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成毛玻璃（glassmorphism）卡片样式。</span>
+      <span class="card-tags"><i>毛玻璃</i><i>卡片</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/clip-circle.html" data-cat="design" data-search="圆形裁切 生成圆形裁切（clip-path）样式。 设计 clip-circle 裁切 圆形 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">圆形裁切</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成圆形裁切（clip-path）样式。</span>
+      <span class="card-tags"><i>裁切</i><i>圆形</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/aspect-box.html" data-cat="design" data-search="固定宽高比 生成固定宽高比的盒子样式。 设计 aspect-box 宽高比 盒子 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">固定宽高比</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成固定宽高比的盒子样式。</span>
+      <span class="card-tags"><i>宽高比</i><i>盒子</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/skeleton-loader.html" data-cat="design" data-search="骨架屏块 生成骨架屏占位块样式。 设计 skeleton-loader 骨架屏 占位 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">骨架屏块</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成骨架屏占位块样式。</span>
+      <span class="card-tags"><i>骨架屏</i><i>占位</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/focus-ring.html" data-cat="design" data-search="聚焦描边 生成清晰的键盘聚焦描边样式。 设计 focus-ring 聚焦 描边 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">聚焦描边</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成清晰的键盘聚焦描边样式。</span>
+      <span class="card-tags"><i>聚焦</i><i>描边</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/badge-pill.html" data-cat="design" data-search="标签徽章 生成圆角徽章（badge）样式。 设计 badge-pill 徽章 标签 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">标签徽章</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成圆角徽章（badge）样式。</span>
+      <span class="card-tags"><i>徽章</i><i>标签</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/tooltip-box.html" data-cat="design" data-search="气泡提示 生成气泡提示（tooltip）样式。 设计 tooltip-box 提示 气泡 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">气泡提示</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成气泡提示（tooltip）样式。</span>
+      <span class="card-tags"><i>提示</i><i>气泡</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/gradient-text.html" data-cat="design" data-search="渐变文字 生成渐变填充文字效果 css。 设计 gradient-text 渐变 文字 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">渐变文字</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成渐变填充文字效果 CSS。</span>
+      <span class="card-tags"><i>渐变</i><i>文字</i><i>CSS</i></span>
+    </a>
+    <a class="card" href="tools/rounded-box.html" data-cat="design" data-search="圆角方块 生成带圆角的方块样式。 设计 rounded-box 圆角 方块 css">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 5.6 6 10a6 6 0 0 1-12 0c0-4.4 6-10 6-10Z"/></svg></span>
+        <span class="card-title">圆角方块</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成带圆角的方块样式。</span>
+      <span class="card-tags"><i>圆角</i><i>方块</i><i>CSS</i></span>
     </a>
     <a class="card" href="tools/image-resize.html" data-cat="image" data-search="图片尺寸调整 上传图片后按目标宽度等比缩放（或指定高宽），导出为 png/jpeg/webp，全部在本地完成。 图片 image-resize 图片 缩放 尺寸 导出">
       <span class="card-head">
@@ -686,6 +1073,96 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">上传图片后水平 / 垂直翻转，或顺时针 / 逆时针旋转 90 度，本地处理并导出。</span>
       <span class="card-tags"><i>图片</i><i>翻转</i><i>旋转</i><i>编辑</i></span>
+    </a>
+    <a class="card" href="tools/image-grayscale.html" data-cat="image" data-search="灰度 上传图片后转为黑白灰度，本地处理并导出。 图片 image-grayscale 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">灰度</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后转为黑白灰度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-invert.html" data-cat="image" data-search="反色 上传图片后颜色反相，本地处理并导出。 图片 image-invert 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">反色</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后颜色反相，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-sepia.html" data-cat="image" data-search="褐色 上传图片后添加复古褐色调，本地处理并导出。 图片 image-sepia 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">褐色</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后添加复古褐色调，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-blur.html" data-cat="image" data-search="模糊 上传图片后轻度模糊，本地处理并导出。 图片 image-blur 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">模糊</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后轻度模糊，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-brighten.html" data-cat="image" data-search="提亮 上传图片后提高亮度，本地处理并导出。 图片 image-brighten 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">提亮</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后提高亮度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-darken.html" data-cat="image" data-search="压暗 上传图片后降低亮度，本地处理并导出。 图片 image-darken 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">压暗</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后降低亮度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-contrast.html" data-cat="image" data-search="加对比 上传图片后增强对比度，本地处理并导出。 图片 image-contrast 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">加对比</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后增强对比度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-saturate.html" data-cat="image" data-search="高饱和 上传图片后提高饱和度，本地处理并导出。 图片 image-saturate 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">高饱和</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后提高饱和度，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-thumbnail.html" data-cat="image" data-search="缩略图 上传图片后缩小为不超过 480px 的缩略图，本地处理并导出。 图片 image-thumbnail 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">缩略图</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后缩小为不超过 480px 的缩略图，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
+    </a>
+    <a class="card" href="tools/image-rounded.html" data-cat="image" data-search="圆角裁切 上传图片后裁切为圆形头像，本地处理并导出。 图片 image-rounded 图片 编辑 滤镜">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4.5 4.5L17 13l3 3"/></svg></span>
+        <span class="card-title">圆角裁切</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">上传图片后裁切为圆形头像，本地处理并导出。</span>
+      <span class="card-tags"><i>图片</i><i>编辑</i><i>滤镜</i></span>
     </a>
     <a class="card" href="tools/percentage-calculator.html" data-cat="calc" data-search="百分比计算器 求百分之几、求占比、算增长率、按比例增减，四种常用百分比计算即时出结果并给出公式。 计算 percentage-calculator 百分比 计算 增长率">
       <span class="card-head">
@@ -821,6 +1298,978 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">计算两个日期相差的天数，或在某日期上加减天数，结果含星期。</span>
       <span class="card-tags"><i>date</i><i>日期</i><i>天数</i></span>
+    </a>
+    <a class="card" href="tools/length-converter.html" data-cat="calc" data-search="长度换算 在毫米、厘米、米、千米、英寸、英尺、码、英里、海里之间即时换算。 计算 length-converter 长度 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">长度换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫米、厘米、米、千米、英寸、英尺、码、英里、海里之间即时换算。</span>
+      <span class="card-tags"><i>长度</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/mass-converter.html" data-cat="calc" data-search="质量换算 在毫克、克、千克、吨、盎司、磅、英石之间即时换算。 计算 mass-converter 质量 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">质量换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫克、克、千克、吨、盎司、磅、英石之间即时换算。</span>
+      <span class="card-tags"><i>质量</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/area-converter.html" data-cat="calc" data-search="面积换算 在平方毫米、平方厘米、平方米、公顷、平方公里、平方英寸、平方英尺、英亩、平方英里之间换算。 计算 area-converter 面积 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">面积换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在平方毫米、平方厘米、平方米、公顷、平方公里、平方英寸、平方英尺、英亩、平方英里之间换算。</span>
+      <span class="card-tags"><i>面积</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/volume-converter.html" data-cat="calc" data-search="体积换算 在毫升、升、立方米、加仑、夸脱、品脱、杯、液量盎司、立方英寸、立方英尺之间换算。 计算 volume-converter 体积 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">体积换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫升、升、立方米、加仑、夸脱、品脱、杯、液量盎司、立方英寸、立方英尺之间换算。</span>
+      <span class="card-tags"><i>体积</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/speed-converter.html" data-cat="calc" data-search="速度换算 在米/秒、千米/时、英里/时、节、英尺/秒之间即时换算。 计算 speed-converter 速度 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">速度换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在米/秒、千米/时、英里/时、节、英尺/秒之间即时换算。</span>
+      <span class="card-tags"><i>速度</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/time-converter.html" data-cat="calc" data-search="时间换算 在毫秒、秒、分、时、天、周、年之间换算。 计算 time-converter 时间 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">时间换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫秒、秒、分、时、天、周、年之间换算。</span>
+      <span class="card-tags"><i>时间</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/data-converter.html" data-cat="calc" data-search="数据存储换算 在字节、kb、mb、gb、tb、pb 与 kib、mib、gib、tib 之间换算。 计算 data-converter 数据 存储 换算">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">数据存储换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在字节、KB、MB、GB、TB、PB 与 KiB、MiB、GiB、TiB 之间换算。</span>
+      <span class="card-tags"><i>数据</i><i>存储</i><i>换算</i></span>
+    </a>
+    <a class="card" href="tools/angle-converter.html" data-cat="calc" data-search="角度换算 在度、弧度、梯度、角分、角秒、圈之间换算。 计算 angle-converter 角度 弧度 换算">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">角度换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在度、弧度、梯度、角分、角秒、圈之间换算。</span>
+      <span class="card-tags"><i>角度</i><i>弧度</i><i>换算</i></span>
+    </a>
+    <a class="card" href="tools/pressure-converter.html" data-cat="calc" data-search="压强换算 在帕、千帕、兆帕、巴、标准大气压、磅力/平方英寸、毫米汞柱之间换算。 计算 pressure-converter 压强 压力 换算">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">压强换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在帕、千帕、兆帕、巴、标准大气压、磅力/平方英寸、毫米汞柱之间换算。</span>
+      <span class="card-tags"><i>压强</i><i>压力</i><i>换算</i></span>
+    </a>
+    <a class="card" href="tools/energy-converter.html" data-cat="calc" data-search="能量换算 在焦耳、千焦、卡、千卡、瓦时、千瓦时、电子伏特之间换算。 计算 energy-converter 能量 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">能量换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在焦耳、千焦、卡、千卡、瓦时、千瓦时、电子伏特之间换算。</span>
+      <span class="card-tags"><i>能量</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/power-converter.html" data-cat="calc" data-search="功率换算 在瓦、千瓦、兆瓦、马力、英尺·磅/秒之间换算。 计算 power-converter 功率 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">功率换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在瓦、千瓦、兆瓦、马力、英尺·磅/秒之间换算。</span>
+      <span class="card-tags"><i>功率</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/frequency-converter.html" data-cat="calc" data-search="频率换算 在赫兹、千赫、兆赫、吉赫、转/分之间换算。 计算 frequency-converter 频率 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">频率换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在赫兹、千赫、兆赫、吉赫、转/分之间换算。</span>
+      <span class="card-tags"><i>频率</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/force-converter.html" data-cat="calc" data-search="力换算 在牛、千牛、达因、磅力、千克力之间换算。 计算 force-converter 力 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">力换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在牛、千牛、达因、磅力、千克力之间换算。</span>
+      <span class="card-tags"><i>力</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/current-converter.html" data-cat="calc" data-search="电流换算 在毫安、安、千安之间换算。 计算 current-converter 电流 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">电流换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫安、安、千安之间换算。</span>
+      <span class="card-tags"><i>电流</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/voltage-converter.html" data-cat="calc" data-search="电压换算 在毫伏、伏、千伏之间换算。 计算 voltage-converter 电压 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">电压换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫伏、伏、千伏之间换算。</span>
+      <span class="card-tags"><i>电压</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/resistance-converter.html" data-cat="calc" data-search="电阻换算 在毫欧、欧、千欧、兆欧之间换算。 计算 resistance-converter 电阻 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">电阻换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在毫欧、欧、千欧、兆欧之间换算。</span>
+      <span class="card-tags"><i>电阻</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/fuel-economy-converter.html" data-cat="calc" data-search="油耗换算 在升/百公里、公里/升、英里/加仑(美/英)之间换算燃油经济性。 计算 fuel-economy-converter 油耗 换算 汽车">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">油耗换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在升/百公里、公里/升、英里/加仑(美/英)之间换算燃油经济性。</span>
+      <span class="card-tags"><i>油耗</i><i>换算</i><i>汽车</i></span>
+    </a>
+    <a class="card" href="tools/temperature-converter.html" data-cat="calc" data-search="温度换算 在摄氏度、华氏度、开尔文之间即时换算。 计算 temperature-converter 温度 换算 单位">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">温度换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在摄氏度、华氏度、开尔文之间即时换算。</span>
+      <span class="card-tags"><i>温度</i><i>换算</i><i>单位</i></span>
+    </a>
+    <a class="card" href="tools/bmi-calc.html" data-cat="calc" data-search="bmi 体重指数 输入体重与身高，计算 bmi 并给出偏瘦 / 正常 / 超重 / 肥胖分类。 计算 bmi-calc bmi 健康 体重">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">BMI 体重指数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入体重与身高，计算 BMI 并给出偏瘦 / 正常 / 超重 / 肥胖分类。</span>
+      <span class="card-tags"><i>BMI</i><i>健康</i><i>体重</i></span>
+    </a>
+    <a class="card" href="tools/body-fat-calc.html" data-cat="calc" data-search="体脂率估算 用 bmi、年龄与性别粗略估算体脂率，仅供参考。 计算 body-fat-calc 体脂 健康 健身">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">体脂率估算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">用 BMI、年龄与性别粗略估算体脂率，仅供参考。</span>
+      <span class="card-tags"><i>体脂</i><i>健康</i><i>健身</i></span>
+    </a>
+    <a class="card" href="tools/ideal-weight-calc.html" data-cat="calc" data-search="理想体重 按 devine 公式根据身高与性别估算理想体重。 计算 ideal-weight-calc 理想体重 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">理想体重</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按 Devine 公式根据身高与性别估算理想体重。</span>
+      <span class="card-tags"><i>理想体重</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/bmr-calc.html" data-cat="calc" data-search="基础代谢率 按 mifflin-st jeor 公式估算每日基础代谢（bmr）。 计算 bmr-calc bmr 代谢 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">基础代谢率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按 Mifflin-St Jeor 公式估算每日基础代谢（BMR）。</span>
+      <span class="card-tags"><i>BMR</i><i>代谢</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/tdee-calc.html" data-cat="calc" data-search="每日消耗估算 在 bmr 基础上按活动量估算每日总能量消耗（tdee）。 计算 tdee-calc tdee 消耗 健身">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">每日消耗估算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在 BMR 基础上按活动量估算每日总能量消耗（TDEE）。</span>
+      <span class="card-tags"><i>TDEE</i><i>消耗</i><i>健身</i></span>
+    </a>
+    <a class="card" href="tools/water-calc.html" data-cat="calc" data-search="每日饮水量 按体重粗略估算每日建议饮水量。 计算 water-calc 饮水 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">每日饮水量</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按体重粗略估算每日建议饮水量。</span>
+      <span class="card-tags"><i>饮水</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/margin-calc.html" data-cat="calc" data-search="利润与利润率 输入成本与售价，计算利润、利润率与加价率。 计算 margin-calc 利润 利润率 商业">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">利润与利润率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入成本与售价，计算利润、利润率与加价率。</span>
+      <span class="card-tags"><i>利润</i><i>利润率</i><i>商业</i></span>
+    </a>
+    <a class="card" href="tools/roi-calc.html" data-cat="calc" data-search="投资回报率 输入收益与成本，计算投资回报率 roi。 计算 roi-calc roi 投资 回报">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">投资回报率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入收益与成本，计算投资回报率 ROI。</span>
+      <span class="card-tags"><i>ROI</i><i>投资</i><i>回报</i></span>
+    </a>
+    <a class="card" href="tools/cagr-calc.html" data-cat="calc" data-search="复合年增长率 输入期初、期末值与年数，计算复合年均增长率 cagr。 计算 cagr-calc cagr 增长率 投资">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">复合年增长率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入期初、期末值与年数，计算复合年均增长率 CAGR。</span>
+      <span class="card-tags"><i>CAGR</i><i>增长率</i><i>投资</i></span>
+    </a>
+    <a class="card" href="tools/pythagoras-calc.html" data-cat="calc" data-search="勾股定理 输入直角边 a、b，求斜边 c。 计算 pythagoras-calc 勾股 几何 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">勾股定理</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入直角边 a、b，求斜边 c。</span>
+      <span class="card-tags"><i>勾股</i><i>几何</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/kinetic-energy-calc.html" data-cat="calc" data-search="动能计算 输入质量与速度，计算动能 e = ½mv²。 计算 kinetic-energy-calc 动能 物理 能量">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">动能计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入质量与速度，计算动能 E = ½mv²。</span>
+      <span class="card-tags"><i>动能</i><i>物理</i><i>能量</i></span>
+    </a>
+    <a class="card" href="tools/factorial-calc.html" data-cat="calc" data-search="阶乘计算 计算非负整数 n 的阶乘 n!。 计算 factorial-calc 阶乘 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">阶乘计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算非负整数 n 的阶乘 n!。</span>
+      <span class="card-tags"><i>阶乘</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/calorie-burn.html" data-cat="calc" data-search="运动消耗 按体重、时长与运动强度（met）估算热量消耗。 计算 calorie-burn 卡路里 运动 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">运动消耗</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按体重、时长与运动强度（MET）估算热量消耗。</span>
+      <span class="card-tags"><i>卡路里</i><i>运动</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/whr.html" data-cat="calc" data-search="腰臀比 输入腰围与臀围，计算腰臀比 whr。 计算 whr 腰臀比 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">腰臀比</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入腰围与臀围，计算腰臀比 WHR。</span>
+      <span class="card-tags"><i>腰臀比</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/bac.html" data-cat="calc" data-search="血液酒精估算 按饮酒量、体重、时间与性别粗略估算血液酒精浓度 bac。 计算 bac bac 酒精 估算">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">血液酒精估算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按饮酒量、体重、时间与性别粗略估算血液酒精浓度 BAC。</span>
+      <span class="card-tags"><i>BAC</i><i>酒精</i><i>估算</i></span>
+    </a>
+    <a class="card" href="tools/sleep-needed.html" data-cat="calc" data-search="推荐睡眠 按年龄粗略给出每日推荐睡眠时长。 计算 sleep-needed 睡眠 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">推荐睡眠</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按年龄粗略给出每日推荐睡眠时长。</span>
+      <span class="card-tags"><i>睡眠</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/step-distance.html" data-cat="calc" data-search="步数换算距离 按步数与步幅估算行走距离。 计算 step-distance 步数 距离 健身">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">步数换算距离</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按步数与步幅估算行走距离。</span>
+      <span class="card-tags"><i>步数</i><i>距离</i><i>健身</i></span>
+    </a>
+    <a class="card" href="tools/macro-split.html" data-cat="calc" data-search="三大营养素 按每日热量与目标比例拆分蛋白质、脂肪与碳水的克数。 计算 macro-split 营养 健身 饮食">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">三大营养素</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按每日热量与目标比例拆分蛋白质、脂肪与碳水的克数。</span>
+      <span class="card-tags"><i>营养</i><i>健身</i><i>饮食</i></span>
+    </a>
+    <a class="card" href="tools/heart-rate-zones.html" data-cat="calc" data-search="心率区间 按年龄估算最大心率与常见训练区间。 计算 heart-rate-zones 心率 健身 运动">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">心率区间</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按年龄估算最大心率与常见训练区间。</span>
+      <span class="card-tags"><i>心率</i><i>健身</i><i>运动</i></span>
+    </a>
+    <a class="card" href="tools/waist-height.html" data-cat="calc" data-search="腰高比 计算腰围与身高之比，评估中心性肥胖风险。 计算 waist-height 腰高比 健康">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">腰高比</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算腰围与身高之比，评估中心性肥胖风险。</span>
+      <span class="card-tags"><i>腰高比</i><i>健康</i></span>
+    </a>
+    <a class="card" href="tools/simple-interest.html" data-cat="calc" data-search="单利计算 输入本金、年利率与年限，计算单利与到期总额。 计算 simple-interest 单利 利息 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">单利计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入本金、年利率与年限，计算单利与到期总额。</span>
+      <span class="card-tags"><i>单利</i><i>利息</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/fv-annuity.html" data-cat="calc" data-search="年金终值 按每期供款、利率与期限计算年金复利终值。 计算 fv-annuity 年金 终值 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">年金终值</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按每期供款、利率与期限计算年金复利终值。</span>
+      <span class="card-tags"><i>年金</i><i>终值</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/pv.html" data-cat="calc" data-search="现值计算 按未来金额、贴现率与年限计算现值 pv。 计算 pv 现值 贴现 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">现值计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按未来金额、贴现率与年限计算现值 PV。</span>
+      <span class="card-tags"><i>现值</i><i>贴现</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/savings-goal.html" data-cat="calc" data-search="储蓄目标 按当前余额、每月存入与利率估算达成目标所需月数。 计算 savings-goal 储蓄 目标 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">储蓄目标</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按当前余额、每月存入与利率估算达成目标所需月数。</span>
+      <span class="card-tags"><i>储蓄</i><i>目标</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/net-worth.html" data-cat="calc" data-search="净资产 输入总资产与总负债，计算净资产。 计算 net-worth 净资产 资产 负债">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">净资产</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">输入总资产与总负债，计算净资产。</span>
+      <span class="card-tags"><i>净资产</i><i>资产</i><i>负债</i></span>
+    </a>
+    <a class="card" href="tools/split-bill.html" data-cat="calc" data-search="账单分摊 含税含小费后将账单按人数分摊。 计算 split-bill 分摊 聚餐 aa">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">账单分摊</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">含税含小费后将账单按人数分摊。</span>
+      <span class="card-tags"><i>分摊</i><i>聚餐</i><i>AA</i></span>
+    </a>
+    <a class="card" href="tools/commission.html" data-cat="calc" data-search="佣金计算 按销售额与佣金比例计算佣金。 计算 commission 佣金 销售 提成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">佣金计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按销售额与佣金比例计算佣金。</span>
+      <span class="card-tags"><i>佣金</i><i>销售</i><i>提成</i></span>
+    </a>
+    <a class="card" href="tools/hourly-to-salary.html" data-cat="calc" data-search="时薪转月薪 按时薪与每周工时估算年收入和月收入。 计算 hourly-to-salary 时薪 月薪 工资">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">时薪转月薪</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按时薪与每周工时估算年收入和月收入。</span>
+      <span class="card-tags"><i>时薪</i><i>月薪</i><i>工资</i></span>
+    </a>
+    <a class="card" href="tools/inflation.html" data-cat="calc" data-search="通胀折算 按通胀率估算未来 equivalent 金额。 计算 inflation 通胀 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">通胀折算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按通胀率估算未来 equivalent 金额。</span>
+      <span class="card-tags"><i>通胀</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/rule-of-72.html" data-cat="calc" data-search="72 法则 估算本金翻倍所需年数：72 ÷ 年利率。 计算 rule-of-72 72法则 理财 翻倍">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">72 法则</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">估算本金翻倍所需年数：72 ÷ 年利率。</span>
+      <span class="card-tags"><i>72法则</i><i>理财</i><i>翻倍</i></span>
+    </a>
+    <a class="card" href="tools/dividend-yield.html" data-cat="calc" data-search="股息率 按每股股息与股价计算股息率。 计算 dividend-yield 股息 股票 理财">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">股息率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按每股股息与股价计算股息率。</span>
+      <span class="card-tags"><i>股息</i><i>股票</i><i>理财</i></span>
+    </a>
+    <a class="card" href="tools/profit-margin.html" data-cat="calc" data-search="利润率 按利润与营收计算利润率。 计算 profit-margin 利润率 商业">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">利润率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按利润与营收计算利润率。</span>
+      <span class="card-tags"><i>利润率</i><i>商业</i></span>
+    </a>
+    <a class="card" href="tools/interest-only.html" data-cat="calc" data-search="仅息月供 按本金与年利率估算仅还息的每月利息。 计算 interest-only 贷款 利息">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">仅息月供</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按本金与年利率估算仅还息的每月利息。</span>
+      <span class="card-tags"><i>贷款</i><i>利息</i></span>
+    </a>
+    <a class="card" href="tools/break-even.html" data-cat="calc" data-search="盈亏平衡 按固定成本、单价与单位变动成本计算盈亏平衡销量与营收。 计算 break-even 盈亏平衡 商业">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">盈亏平衡</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按固定成本、单价与单位变动成本计算盈亏平衡销量与营收。</span>
+      <span class="card-tags"><i>盈亏平衡</i><i>商业</i></span>
+    </a>
+    <a class="card" href="tools/salary-to-hourly.html" data-cat="calc" data-search="月薪转时薪 按月薪与每周工时反推时薪。 计算 salary-to-hourly 月薪 时薪 工资">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">月薪转时薪</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按月薪与每周工时反推时薪。</span>
+      <span class="card-tags"><i>月薪</i><i>时薪</i><i>工资</i></span>
+    </a>
+    <a class="card" href="tools/tax-estimate.html" data-cat="calc" data-search="税额估算 按收入与税率估算税额与税后金额。 计算 tax-estimate 税 估算 工资">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">税额估算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按收入与税率估算税额与税后金额。</span>
+      <span class="card-tags"><i>税</i><i>估算</i><i>工资</i></span>
+    </a>
+    <a class="card" href="tools/area-rectangle.html" data-cat="calc" data-search="矩形面积 计算矩形的面积与周长。 计算 area-rectangle 面积 矩形 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">矩形面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算矩形的面积与周长。</span>
+      <span class="card-tags"><i>面积</i><i>矩形</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/area-triangle.html" data-cat="calc" data-search="三角形面积 按底与高计算三角形面积。 计算 area-triangle 面积 三角形 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">三角形面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按底与高计算三角形面积。</span>
+      <span class="card-tags"><i>面积</i><i>三角形</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/volume-cylinder.html" data-cat="calc" data-search="圆柱体积 按半径与高计算圆柱体积与表面积。 计算 volume-cylinder 圆柱 体积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">圆柱体积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按半径与高计算圆柱体积与表面积。</span>
+      <span class="card-tags"><i>圆柱</i><i>体积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/volume-sphere.html" data-cat="calc" data-search="球体体积 按半径计算球体体积与表面积。 计算 volume-sphere 球 体积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">球体体积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按半径计算球体体积与表面积。</span>
+      <span class="card-tags"><i>球</i><i>体积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/volume-cube.html" data-cat="calc" data-search="正方体体积 按边长计算正方体体积与表面积。 计算 volume-cube 正方体 体积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">正方体体积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按边长计算正方体体积与表面积。</span>
+      <span class="card-tags"><i>正方体</i><i>体积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/volume-cone.html" data-cat="calc" data-search="圆锥体积 按半径与高计算圆锥体积。 计算 volume-cone 圆锥 体积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">圆锥体积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按半径与高计算圆锥体积。</span>
+      <span class="card-tags"><i>圆锥</i><i>体积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/polygon-area.html" data-cat="calc" data-search="正多边形面积 按边数与边长计算正多边形面积。 计算 polygon-area 多边形 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">正多边形面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按边数与边长计算正多边形面积。</span>
+      <span class="card-tags"><i>多边形</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/slope.html" data-cat="calc" data-search="斜率与距离 按两点坐标计算直线斜率与两点间距离。 计算 slope 斜率 坐标 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">斜率与距离</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按两点坐标计算直线斜率与两点间距离。</span>
+      <span class="card-tags"><i>斜率</i><i>坐标</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/circle-diameter.html" data-cat="calc" data-search="圆（按直径） 按直径计算圆面积与周长。 计算 circle-diameter 圆 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">圆（按直径）</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按直径计算圆面积与周长。</span>
+      <span class="card-tags"><i>圆</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/triangle-angle.html" data-cat="calc" data-search="三角形第三角 已知两角求第三个内角。 计算 triangle-angle 三角形 角度 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">三角形第三角</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">已知两角求第三个内角。</span>
+      <span class="card-tags"><i>三角形</i><i>角度</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/ellipse-area.html" data-cat="calc" data-search="椭圆面积 按长半轴与短半轴计算椭圆面积。 计算 ellipse-area 椭圆 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">椭圆面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按长半轴与短半轴计算椭圆面积。</span>
+      <span class="card-tags"><i>椭圆</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/trapezoid-area.html" data-cat="calc" data-search="梯形面积 按上底、下底与高计算梯形面积。 计算 trapezoid-area 梯形 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">梯形面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按上底、下底与高计算梯形面积。</span>
+      <span class="card-tags"><i>梯形</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/speed.html" data-cat="calc" data-search="速度计算 按距离与时间计算速度。 计算 speed 速度 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">速度计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按距离与时间计算速度。</span>
+      <span class="card-tags"><i>速度</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/density.html" data-cat="calc" data-search="密度计算 按质量与体积计算密度。 计算 density 密度 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">密度计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量与体积计算密度。</span>
+      <span class="card-tags"><i>密度</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/ohm.html" data-cat="calc" data-search="欧姆定律 按电压与电流计算电阻与功率。 计算 ohm 欧姆 电学 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">欧姆定律</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按电压与电流计算电阻与功率。</span>
+      <span class="card-tags"><i>欧姆</i><i>电学</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/potential-energy.html" data-cat="calc" data-search="重力势能 按质量与高度计算重力势能。 计算 potential-energy 势能 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">重力势能</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量与高度计算重力势能。</span>
+      <span class="card-tags"><i>势能</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/force-newton.html" data-cat="calc" data-search="牛顿第二定律 按质量与加速度计算合力 f = ma。 计算 force-newton 力 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">牛顿第二定律</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量与加速度计算合力 F = ma。</span>
+      <span class="card-tags"><i>力</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/work-energy.html" data-cat="calc" data-search="功计算 按力与位移计算做功 w = fd。 计算 work-energy 功 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">功计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按力与位移计算做功 W = Fd。</span>
+      <span class="card-tags"><i>功</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/wavelength.html" data-cat="calc" data-search="波长计算 按频率与波速计算波长 λ = v / f。 计算 wavelength 波长 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">波长计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按频率与波速计算波长 λ = v / f。</span>
+      <span class="card-tags"><i>波长</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/decibel.html" data-cat="calc" data-search="分贝换算 按功率比计算分贝值 db = 10·log10(比值)。 计算 decibel 分贝 声学 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">分贝换算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按功率比计算分贝值 dB = 10·log10(比值)。</span>
+      <span class="card-tags"><i>分贝</i><i>声学</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/heat-energy.html" data-cat="calc" data-search="热量计算 按质量、比热容与温差计算热量 q = mcδt。 计算 heat-energy 热量 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">热量计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量、比热容与温差计算热量 Q = mcΔT。</span>
+      <span class="card-tags"><i>热量</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/pressure-from-force.html" data-cat="calc" data-search="压强计算 按力与面积计算压强 p = f / a。 计算 pressure-from-force 压强 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">压强计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按力与面积计算压强 P = F / A。</span>
+      <span class="card-tags"><i>压强</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/gravity.html" data-cat="calc" data-search="万有引力 按两物体质量与距离计算引力。 计算 gravity 引力 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">万有引力</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按两物体质量与距离计算引力。</span>
+      <span class="card-tags"><i>引力</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/projectile-range.html" data-cat="calc" data-search="抛射射程 按初速度与仰角计算水平射程。 计算 projectile-range 抛体 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">抛射射程</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按初速度与仰角计算水平射程。</span>
+      <span class="card-tags"><i>抛体</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/pendulum.html" data-cat="calc" data-search="单摆周期 按摆长计算单摆周期 t = 2π√(l/g)。 计算 pendulum 单摆 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">单摆周期</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按摆长计算单摆周期 T = 2π√(L/g)。</span>
+      <span class="card-tags"><i>单摆</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/spring-force.html" data-cat="calc" data-search="胡克定律 按劲度系数与形变量计算弹力 f = kx。 计算 spring-force 弹簧 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">胡克定律</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按劲度系数与形变量计算弹力 F = kx。</span>
+      <span class="card-tags"><i>弹簧</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/power-physics.html" data-cat="calc" data-search="功率计算 按力与速度计算功率 p = fv。 计算 power-physics 功率 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">功率计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按力与速度计算功率 P = Fv。</span>
+      <span class="card-tags"><i>功率</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/momentum.html" data-cat="calc" data-search="动量计算 按质量与速度计算动量 p = mv。 计算 momentum 动量 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">动量计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量与速度计算动量 p = mv。</span>
+      <span class="card-tags"><i>动量</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/torque.html" data-cat="calc" data-search="力矩计算 按力与力臂计算力矩 τ = fr。 计算 torque 力矩 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">力矩计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按力与力臂计算力矩 τ = Fr。</span>
+      <span class="card-tags"><i>力矩</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/centripetal.html" data-cat="calc" data-search="向心力 按质量、速度与半径计算向心力。 计算 centripetal 向心力 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">向心力</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按质量、速度与半径计算向心力。</span>
+      <span class="card-tags"><i>向心力</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/percent-change.html" data-cat="calc" data-search="百分比变化 计算从旧值到新值的百分比增减。 计算 percent-change 百分比 变化 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">百分比变化</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算从旧值到新值的百分比增减。</span>
+      <span class="card-tags"><i>百分比</i><i>变化</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/log-calc.html" data-cat="calc" data-search="对数计算 按底数与真数计算对数值。 计算 log-calc 对数 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">对数计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按底数与真数计算对数值。</span>
+      <span class="card-tags"><i>对数</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/power-calc.html" data-cat="calc" data-search="幂运算 计算底数的指定次幂。 计算 power-calc 幂 指数 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">幂运算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算底数的指定次幂。</span>
+      <span class="card-tags"><i>幂</i><i>指数</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/modulo.html" data-cat="calc" data-search="取模运算 计算两数相除的余数。 计算 modulo 取模 余数 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">取模运算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">计算两数相除的余数。</span>
+      <span class="card-tags"><i>取模</i><i>余数</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/round-to.html" data-cat="calc" data-search="保留小数 将数值四舍五入保留指定小数位。 计算 round-to 四舍五入 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">保留小数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将数值四舍五入保留指定小数位。</span>
+      <span class="card-tags"><i>四舍五入</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/scientific-notation.html" data-cat="calc" data-search="科学计数法 将数值转换为科学计数法表示。 计算 scientific-notation 科学计数法 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">科学计数法</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">将数值转换为科学计数法表示。</span>
+      <span class="card-tags"><i>科学计数法</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/paint-needed.html" data-cat="calc" data-search="涂料用量 按面积与单位覆盖率估算涂料升数。 计算 paint-needed 涂料 装修 家居">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">涂料用量</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按面积与单位覆盖率估算涂料升数。</span>
+      <span class="card-tags"><i>涂料</i><i>装修</i><i>家居</i></span>
+    </a>
+    <a class="card" href="tools/tile-needed.html" data-cat="calc" data-search="瓷砖数量 按房间面积与瓷砖边长估算所需瓷砖数（含 10% 损耗）。 计算 tile-needed 瓷砖 装修 家居">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">瓷砖数量</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按房间面积与瓷砖边长估算所需瓷砖数（含 10% 损耗）。</span>
+      <span class="card-tags"><i>瓷砖</i><i>装修</i><i>家居</i></span>
+    </a>
+    <a class="card" href="tools/flooring-cost.html" data-cat="calc" data-search="地板费用 按面积与单价估算地板费用。 计算 flooring-cost 地板 装修 家居">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">地板费用</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按面积与单价估算地板费用。</span>
+      <span class="card-tags"><i>地板</i><i>装修</i><i>家居</i></span>
+    </a>
+    <a class="card" href="tools/concrete-slab.html" data-cat="calc" data-search="混凝土用量 按长、宽、厚估算混凝土体积（米制）。 计算 concrete-slab 混凝土 装修 家居">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">混凝土用量</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按长、宽、厚估算混凝土体积（米制）。</span>
+      <span class="card-tags"><i>混凝土</i><i>装修</i><i>家居</i></span>
+    </a>
+    <a class="card" href="tools/wallpaper.html" data-cat="calc" data-search="壁纸卷数 按面积与单卷覆盖率估算所需壁纸卷数。 计算 wallpaper 壁纸 装修 家居">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">壁纸卷数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按面积与单卷覆盖率估算所需壁纸卷数。</span>
+      <span class="card-tags"><i>壁纸</i><i>装修</i><i>家居</i></span>
+    </a>
+    <a class="card" href="tools/cooking-scale.html" data-cat="calc" data-search="配方缩放 按目标份数缩放食材用量。 计算 cooking-scale 食谱 缩放 厨房">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">配方缩放</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按目标份数缩放食材用量。</span>
+      <span class="card-tags"><i>食谱</i><i>缩放</i><i>厨房</i></span>
+    </a>
+    <a class="card" href="tools/unit-price.html" data-cat="calc" data-search="单价计算 按总价与数量计算单位价格。 计算 unit-price 单价 比价 购物">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">单价计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按总价与数量计算单位价格。</span>
+      <span class="card-tags"><i>单价</i><i>比价</i><i>购物</i></span>
+    </a>
+    <a class="card" href="tools/grade-needed.html" data-cat="calc" data-search="目标均分 按当前平均分与期末权重，计算期末需拿到的分数。 计算 grade-needed 成绩 均分 教育">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">目标均分</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按当前平均分与期末权重，计算期末需拿到的分数。</span>
+      <span class="card-tags"><i>成绩</i><i>均分</i><i>教育</i></span>
+    </a>
+    <a class="card" href="tools/exam-score.html" data-cat="calc" data-search="得分率 按答对题数与总题数计算得分百分比。 计算 exam-score 得分 考试 教育">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">得分率</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按答对题数与总题数计算得分百分比。</span>
+      <span class="card-tags"><i>得分</i><i>考试</i><i>教育</i></span>
+    </a>
+    <a class="card" href="tools/time-to-read.html" data-cat="calc" data-search="阅读时长 按字数与阅读速度估算阅读所需时间（分钟）。 计算 time-to-read 阅读 时间 效率">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">阅读时长</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按字数与阅读速度估算阅读所需时间（分钟）。</span>
+      <span class="card-tags"><i>阅读</i><i>时间</i><i>效率</i></span>
+    </a>
+    <a class="card" href="tools/discount-amount.html" data-cat="calc" data-search="折扣金额 按原价与折扣力度计算省下金额与折后价。 计算 discount-amount 折扣 省钱 购物">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">折扣金额</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按原价与折扣力度计算省下金额与折后价。</span>
+      <span class="card-tags"><i>折扣</i><i>省钱</i><i>购物</i></span>
+    </a>
+    <a class="card" href="tools/sales-tax.html" data-cat="calc" data-search="消费税 按价格与税率计算税额与含税价。 计算 sales-tax 税 购物">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">消费税</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按价格与税率计算税额与含税价。</span>
+      <span class="card-tags"><i>税</i><i>购物</i></span>
+    </a>
+    <a class="card" href="tools/increase-amount.html" data-cat="calc" data-search="增幅计算 按数值与增幅百分比计算增加量与结果。 计算 increase-amount 增幅 数学">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">增幅计算</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按数值与增幅百分比计算增加量与结果。</span>
+      <span class="card-tags"><i>增幅</i><i>数学</i></span>
+    </a>
+    <a class="card" href="tools/parallelogram-area.html" data-cat="calc" data-search="平行四边形面积 按底与高计算平行四边形面积。 计算 parallelogram-area 平行四边形 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">平行四边形面积</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按底与高计算平行四边形面积。</span>
+      <span class="card-tags"><i>平行四边形</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/circle-radius.html" data-cat="calc" data-search="圆（按半径） 按半径计算圆面积与周长。 计算 circle-radius 圆 面积 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">圆（按半径）</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按半径计算圆面积与周长。</span>
+      <span class="card-tags"><i>圆</i><i>面积</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/right-triangle-hypotenuse.html" data-cat="calc" data-search="斜边比例 按两直角边计算斜边及其与直角边 a 的比值。 计算 right-triangle-hypotenuse 勾股 几何">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">斜边比例</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按两直角边计算斜边及其与直角边 a 的比值。</span>
+      <span class="card-tags"><i>勾股</i><i>几何</i></span>
+    </a>
+    <a class="card" href="tools/average-speed.html" data-cat="calc" data-search="平均速度 按总路程与总时间计算平均速度。 计算 average-speed 速度 物理">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">平均速度</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按总路程与总时间计算平均速度。</span>
+      <span class="card-tags"><i>速度</i><i>物理</i></span>
+    </a>
+    <a class="card" href="tools/fuel-cost-trip.html" data-cat="calc" data-search="行程油费 按里程、油耗与油价估算单程油费。 计算 fuel-cost-trip 油费 自驾 出行">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></span>
+        <span class="card-title">行程油费</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">按里程、油耗与油价估算单程油费。</span>
+      <span class="card-tags"><i>油费</i><i>自驾</i><i>出行</i></span>
     </a>
     <a class="card" href="tools/password-generator.html" data-cat="util" data-search="密码生成器 加密级随机数生成密码，可调长度与字符集、排除易混淆字符、批量生成并估算熵值，全程本地。 小工具 password-generator 密码 随机 安全">
       <span class="card-head">
@@ -983,6 +2432,357 @@
       <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       <span class="card-desc">从名单中随机抽取若干名中奖者，自动去重不重复，适合活动抽奖。</span>
       <span class="card-tags"><i>抽奖</i><i>抽签</i><i>随机</i><i>中奖</i></span>
+    </a>
+    <a class="card" href="tools/coin-flip.html" data-cat="util" data-search="抛硬币 随机给出正面或反面，用于快速决策。 小工具 coin-flip 硬币 随机 决策">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">抛硬币</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机给出正面或反面，用于快速决策。</span>
+      <span class="card-tags"><i>硬币</i><i>随机</i><i>决策</i></span>
+    </a>
+    <a class="card" href="tools/random-fact.html" data-cat="util" data-search="随机冷知识 随机展示一条冷知识。 小工具 random-fact 冷知识 随机 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机冷知识</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机展示一条冷知识。</span>
+      <span class="card-tags"><i>冷知识</i><i>随机</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-quote.html" data-cat="util" data-search="随机名言 随机展示一句名言。 小工具 random-quote 名言 随机 励志">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机名言</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机展示一句名言。</span>
+      <span class="card-tags"><i>名言</i><i>随机</i><i>励志</i></span>
+    </a>
+    <a class="card" href="tools/random-tip.html" data-cat="util" data-search="随机小贴士 随机给出一条实用小贴士。 小工具 random-tip 随机 贴士 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机小贴士</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机给出一条实用小贴士。</span>
+      <span class="card-tags"><i>随机</i><i>贴士</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-joke.html" data-cat="util" data-search="随机笑话 随机讲一个轻松笑话。 小工具 random-joke 随机 笑话 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机笑话</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机讲一个轻松笑话。</span>
+      <span class="card-tags"><i>随机</i><i>笑话</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-idea.html" data-cat="util" data-search="随机点子 随机激发一个创意点子。 小工具 random-idea 随机 创意 灵感">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机点子</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机激发一个创意点子。</span>
+      <span class="card-tags"><i>随机</i><i>创意</i><i>灵感</i></span>
+    </a>
+    <a class="card" href="tools/random-compliment.html" data-cat="util" data-search="随机夸夸 随机送出一句赞美。 小工具 random-compliment 随机 赞美 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机夸夸</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机送出一句赞美。</span>
+      <span class="card-tags"><i>随机</i><i>赞美</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-dare.html" data-cat="util" data-search="随机挑战 随机给出一个趣味挑战。 小工具 random-dare 随机 挑战 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机挑战</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机给出一个趣味挑战。</span>
+      <span class="card-tags"><i>随机</i><i>挑战</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-question.html" data-cat="util" data-search="随机提问 随机给出一个有趣的两难问题。 小工具 random-question 随机 提问 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机提问</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机给出一个有趣的两难问题。</span>
+      <span class="card-tags"><i>随机</i><i>提问</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-affirmation.html" data-cat="util" data-search="随机正能量 随机送出一句正能量。 小工具 random-affirmation 随机 正能量 励志">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机正能量</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机送出一句正能量。</span>
+      <span class="card-tags"><i>随机</i><i>正能量</i><i>励志</i></span>
+    </a>
+    <a class="card" href="tools/random-challenge.html" data-cat="util" data-search="随机任务 随机分配一个微任务。 小工具 random-challenge 随机 任务 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机任务</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机分配一个微任务。</span>
+      <span class="card-tags"><i>随机</i><i>任务</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-scenario.html" data-cat="util" data-search="随机情景 随机生成一个脑洞情景。 小工具 random-scenario 随机 脑洞 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机情景</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个脑洞情景。</span>
+      <span class="card-tags"><i>随机</i><i>脑洞</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-activity.html" data-cat="util" data-search="随机活动 随机推荐一项休闲活动。 小工具 random-activity 随机 活动 休闲">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机活动</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机推荐一项休闲活动。</span>
+      <span class="card-tags"><i>随机</i><i>活动</i><i>休闲</i></span>
+    </a>
+    <a class="card" href="tools/random-name-en.html" data-cat="util" data-search="随机英文名 随机生成一个英文姓名。 小工具 random-name-en 随机 姓名 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机英文名</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个英文姓名。</span>
+      <span class="card-tags"><i>随机</i><i>姓名</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-name-cn.html" data-cat="util" data-search="随机中文名 随机生成一个中文姓名。 小工具 random-name-cn 随机 姓名 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机中文名</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个中文姓名。</span>
+      <span class="card-tags"><i>随机</i><i>姓名</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-number.html" data-cat="util" data-search="随机整数 在指定范围内生成多个随机整数。 小工具 random-number 随机 整数 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机整数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在指定范围内生成多个随机整数。</span>
+      <span class="card-tags"><i>随机</i><i>整数</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-hex.html" data-cat="util" data-search="随机十六进制 生成指定长度的随机十六进制串。 小工具 random-hex 随机 十六进制 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机十六进制</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成指定长度的随机十六进制串。</span>
+      <span class="card-tags"><i>随机</i><i>十六进制</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-ip.html" data-cat="util" data-search="随机 ip 生成一个随机 ipv4 地址。 小工具 random-ip 随机 ip 网络">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机 IP</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成一个随机 IPv4 地址。</span>
+      <span class="card-tags"><i>随机</i><i>IP</i><i>网络</i></span>
+    </a>
+    <a class="card" href="tools/random-mac.html" data-cat="util" data-search="随机 mac 生成随机 mac 地址。 小工具 random-mac 随机 mac 网络">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机 MAC</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机 MAC 地址。</span>
+      <span class="card-tags"><i>随机</i><i>MAC</i><i>网络</i></span>
+    </a>
+    <a class="card" href="tools/random-email.html" data-cat="util" data-search="随机邮箱 生成随机测试邮箱。 小工具 random-email 随机 邮箱 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机邮箱</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机测试邮箱。</span>
+      <span class="card-tags"><i>随机</i><i>邮箱</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-phone-cn.html" data-cat="util" data-search="随机手机号 生成随机中国大陆手机号。 小工具 random-phone-cn 随机 手机号 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机手机号</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机中国大陆手机号。</span>
+      <span class="card-tags"><i>随机</i><i>手机号</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-date.html" data-cat="util" data-search="随机日期 随机生成一个日期。 小工具 random-date 随机 日期 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机日期</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个日期。</span>
+      <span class="card-tags"><i>随机</i><i>日期</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-time.html" data-cat="util" data-search="随机时间 随机生成一个时间点。 小工具 random-time 随机 时间 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机时间</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个时间点。</span>
+      <span class="card-tags"><i>随机</i><i>时间</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-bool.html" data-cat="util" data-search="随机是非 随机返回是或否。 小工具 random-bool 随机 决策 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机是非</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机返回是或否。</span>
+      <span class="card-tags"><i>随机</i><i>决策</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-word.html" data-cat="util" data-search="随机单词 随机挑选一个英文单词。 小工具 random-word 随机 单词 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机单词</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机挑选一个英文单词。</span>
+      <span class="card-tags"><i>随机</i><i>单词</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-address-cn.html" data-cat="util" data-search="随机地址 生成随机中文地址。 小工具 random-address-cn 随机 地址 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机地址</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机中文地址。</span>
+      <span class="card-tags"><i>随机</i><i>地址</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-company.html" data-cat="util" data-search="随机公司名 生成随机公司名称。 小工具 random-company 随机 公司 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机公司名</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机公司名称。</span>
+      <span class="card-tags"><i>随机</i><i>公司</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-job.html" data-cat="util" data-search="随机职业 随机生成一个职位名称。 小工具 random-job 随机 职业 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机职业</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机生成一个职位名称。</span>
+      <span class="card-tags"><i>随机</i><i>职业</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-emoji.html" data-cat="util" data-search="随机表情 随机给出一个表情符号。 小工具 random-emoji 随机 表情 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机表情</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机给出一个表情符号。</span>
+      <span class="card-tags"><i>随机</i><i>表情</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-zipcode.html" data-cat="util" data-search="随机邮编 生成随机 6 位邮政编码。 小工具 random-zipcode 随机 邮编 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机邮编</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机 6 位邮政编码。</span>
+      <span class="card-tags"><i>随机</i><i>邮编</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-guid.html" data-cat="util" data-search="随机 guid 生成随机 uuid v4。 小工具 random-guid 随机 guid uuid">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机 GUID</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机 UUID v4。</span>
+      <span class="card-tags"><i>随机</i><i>GUID</i><i>UUID</i></span>
+    </a>
+    <a class="card" href="tools/random-ascii.html" data-cat="util" data-search="随机字符 生成指定长度的随机可打印字符。 小工具 random-ascii 随机 字符 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机字符</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成指定长度的随机可打印字符。</span>
+      <span class="card-tags"><i>随机</i><i>字符</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-color-hex.html" data-cat="util" data-search="随机颜色 生成随机十六进制颜色。 小工具 random-color-hex 随机 颜色 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机颜色</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机十六进制颜色。</span>
+      <span class="card-tags"><i>随机</i><i>颜色</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-username.html" data-cat="util" data-search="随机用户名 生成随机用户名。 小工具 random-username 随机 用户名 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机用户名</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机用户名。</span>
+      <span class="card-tags"><i>随机</i><i>用户名</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-sentence.html" data-cat="util" data-search="随机句子 随机拼接一个中文短句。 小工具 random-sentence 随机 句子 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机句子</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机拼接一个中文短句。</span>
+      <span class="card-tags"><i>随机</i><i>句子</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-card.html" data-cat="util" data-search="随机扑克牌 随机抽出一张扑克牌。 小工具 random-card 随机 扑克 趣味">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机扑克牌</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">随机抽出一张扑克牌。</span>
+      <span class="card-tags"><i>随机</i><i>扑克</i><i>趣味</i></span>
+    </a>
+    <a class="card" href="tools/random-color-rgb.html" data-cat="util" data-search="随机 rgb 生成随机 rgb 颜色。 小工具 random-color-rgb 随机 颜色 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机 RGB</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">生成随机 RGB 颜色。</span>
+      <span class="card-tags"><i>随机</i><i>颜色</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-float.html" data-cat="util" data-search="随机小数 在范围内生成随机小数。 小工具 random-float 随机 小数 生成">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机小数</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">在范围内生成随机小数。</span>
+      <span class="card-tags"><i>随机</i><i>小数</i><i>生成</i></span>
+    </a>
+    <a class="card" href="tools/random-pick.html" data-cat="util" data-search="随机抽选 从你提供的列表中随机抽选若干项。 小工具 random-pick 随机 抽选 决策">
+      <span class="card-head">
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z"/></svg></span>
+        <span class="card-title">随机抽选</span>
+      </span>
+      <span class="card-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="card-desc">从你提供的列表中随机抽选若干项。</span>
+      <span class="card-tags"><i>随机</i><i>抽选</i><i>决策</i></span>
     </a>
     <!-- build:tools:end -->
   </div>

@@ -1,12 +1,12 @@
 {
   "name": "纯 HTML 工具箱",
   "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/",
-  "count": 100,
+  "count": 300,
   "categories": [
     {
       "id": "text",
       "name": "文本处理",
-      "count": 17
+      "count": 49
     },
     {
       "id": "dev",
@@ -16,22 +16,22 @@
     {
       "id": "design",
       "name": "设计",
-      "count": 15
+      "count": 26
     },
     {
       "id": "image",
       "name": "图片",
-      "count": 6
+      "count": 16
     },
     {
       "id": "calc",
       "name": "计算",
-      "count": 15
+      "count": 123
     },
     {
       "id": "util",
       "name": "小工具",
-      "count": 18
+      "count": 57
     }
   ],
   "tools": [
@@ -249,6 +249,389 @@
         "文本"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/text-wrap.html"
+    },
+    {
+      "slug": "prefix-lines",
+      "title": "行前加前缀",
+      "desc": "为每一行文本添加指定前缀。",
+      "category": "text",
+      "tags": [
+        "前缀",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/prefix-lines.html"
+    },
+    {
+      "slug": "suffix-lines",
+      "title": "行尾加后缀",
+      "desc": "为每一行文本添加指定后缀。",
+      "category": "text",
+      "tags": [
+        "后缀",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/suffix-lines.html"
+    },
+    {
+      "slug": "number-lines",
+      "title": "行号前缀",
+      "desc": "为每行添加递增序号前缀。",
+      "category": "text",
+      "tags": [
+        "行号",
+        "编号",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/number-lines.html"
+    },
+    {
+      "slug": "sort-lines",
+      "title": "行排序（升序）",
+      "desc": "按字母顺序对各行升序排序。",
+      "category": "text",
+      "tags": [
+        "排序",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sort-lines.html"
+    },
+    {
+      "slug": "sort-lines-desc",
+      "title": "行排序（降序）",
+      "desc": "按字母顺序对各行降序排序。",
+      "category": "text",
+      "tags": [
+        "排序",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sort-lines-desc.html"
+    },
+    {
+      "slug": "unique-lines",
+      "title": "去重行",
+      "desc": "保留首次出现的顺序去除重复行。",
+      "category": "text",
+      "tags": [
+        "去重",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unique-lines.html"
+    },
+    {
+      "slug": "shuffle-lines",
+      "title": "乱序行",
+      "desc": "随机打乱各行顺序。",
+      "category": "text",
+      "tags": [
+        "乱序",
+        "随机",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/shuffle-lines.html"
+    },
+    {
+      "slug": "join-lines",
+      "title": "合并为单行",
+      "desc": "用指定分隔符把多行合并成一行。",
+      "category": "text",
+      "tags": [
+        "合并",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/join-lines.html"
+    },
+    {
+      "slug": "split-lines",
+      "title": "拆分为多行",
+      "desc": "按分隔符把一行文本拆成多行。",
+      "category": "text",
+      "tags": [
+        "拆分",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/split-lines.html"
+    },
+    {
+      "slug": "remove-empty-lines",
+      "title": "删除空行",
+      "desc": "移除文本中的空白行。",
+      "category": "text",
+      "tags": [
+        "空行",
+        "清洗",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/remove-empty-lines.html"
+    },
+    {
+      "slug": "extract-emails",
+      "title": "提取邮箱",
+      "desc": "从文本中提取所有邮箱地址。",
+      "category": "text",
+      "tags": [
+        "邮箱",
+        "提取",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/extract-emails.html"
+    },
+    {
+      "slug": "extract-urls",
+      "title": "提取链接",
+      "desc": "从文本中提取所有 http/https 链接。",
+      "category": "text",
+      "tags": [
+        "URL",
+        "提取",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/extract-urls.html"
+    },
+    {
+      "slug": "extract-numbers",
+      "title": "提取数字",
+      "desc": "从文本中提取所有数字。",
+      "category": "text",
+      "tags": [
+        "数字",
+        "提取",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/extract-numbers.html"
+    },
+    {
+      "slug": "remove-accents",
+      "title": "去除重音",
+      "desc": "移除拉丁字母的重音符号（如 é→e）。",
+      "category": "text",
+      "tags": [
+        "重音",
+        "清洗",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/remove-accents.html"
+    },
+    {
+      "slug": "remove-punctuation",
+      "title": "去除标点",
+      "desc": "保留字母、数字、中文与空格，移除其它标点。",
+      "category": "text",
+      "tags": [
+        "标点",
+        "清洗",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/remove-punctuation.html"
+    },
+    {
+      "slug": "fullwidth-halfwidth",
+      "title": "全角转半角",
+      "desc": "将全角字符转换为半角（数字、字母、标点）。",
+      "category": "text",
+      "tags": [
+        "全角",
+        "半角",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fullwidth-halfwidth.html"
+    },
+    {
+      "slug": "repeat-text",
+      "title": "重复文本",
+      "desc": "将文本重复指定次数。",
+      "category": "text",
+      "tags": [
+        "重复",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/repeat-text.html"
+    },
+    {
+      "slug": "dedupe-words",
+      "title": "单词去重",
+      "desc": "按空格分词并去除重复单词。",
+      "category": "text",
+      "tags": [
+        "去重",
+        "单词",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/dedupe-words.html"
+    },
+    {
+      "slug": "reverse-lines",
+      "title": "行序反转",
+      "desc": "将行的顺序整体反转。",
+      "category": "text",
+      "tags": [
+        "反转",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/reverse-lines.html"
+    },
+    {
+      "slug": "trim-lines",
+      "title": "每行去空格",
+      "desc": "去除每行首尾的空白字符。",
+      "category": "text",
+      "tags": [
+        "去空格",
+        "清洗",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/trim-lines.html"
+    },
+    {
+      "slug": "count-words-per-line",
+      "title": "逐行字数",
+      "desc": "统计每行的词数（以空白分词）并标注。",
+      "category": "text",
+      "tags": [
+        "字数",
+        "统计",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/count-words-per-line.html"
+    },
+    {
+      "slug": "keep-lines-matching",
+      "title": "保留含关键词行",
+      "desc": "只保留包含指定关键词的行。",
+      "category": "text",
+      "tags": [
+        "筛选",
+        "行处理",
+        "文本"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/keep-lines-matching.html"
+    },
+    {
+      "slug": "json-validate",
+      "title": "JSON 校验",
+      "desc": "检查文本是否为合法 JSON，并给出错误原因。",
+      "category": "text",
+      "tags": [
+        "JSON",
+        "校验",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-validate.html"
+    },
+    {
+      "slug": "json-sort-keys",
+      "title": "JSON 键排序",
+      "desc": "递归按字母序排列 JSON 的键并美化输出。",
+      "category": "text",
+      "tags": [
+        "JSON",
+        "排序",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-sort-keys.html"
+    },
+    {
+      "slug": "json-minify",
+      "title": "JSON 压缩",
+      "desc": "去除 JSON 多余空白，压缩成单行。",
+      "category": "text",
+      "tags": [
+        "JSON",
+        "压缩",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/json-minify.html"
+    },
+    {
+      "slug": "query-parse",
+      "title": "Query 解析",
+      "desc": "把查询串解析为键值列表。",
+      "category": "text",
+      "tags": [
+        "Query",
+        "解析",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/query-parse.html"
+    },
+    {
+      "slug": "query-build",
+      "title": "Query 构建",
+      "desc": "把每行键值构建成查询串。",
+      "category": "text",
+      "tags": [
+        "Query",
+        "构建",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/query-build.html"
+    },
+    {
+      "slug": "markdown-to-html",
+      "title": "Markdown 转 HTML",
+      "desc": "轻量将标题、加粗、斜体、链接转为 HTML。",
+      "category": "text",
+      "tags": [
+        "Markdown",
+        "HTML",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/markdown-to-html.html"
+    },
+    {
+      "slug": "css-minify",
+      "title": "CSS 压缩",
+      "desc": "移除 CSS 注释与多余空白，压缩体积。",
+      "category": "text",
+      "tags": [
+        "CSS",
+        "压缩",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-minify.html"
+    },
+    {
+      "slug": "sql-minify",
+      "title": "SQL 压缩",
+      "desc": "移除注释与多余空白，压缩 SQL。",
+      "category": "text",
+      "tags": [
+        "SQL",
+        "压缩",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sql-minify.html"
+    },
+    {
+      "slug": "html-escape",
+      "title": "HTML 转义",
+      "desc": "将尖括号与和号转义为 HTML 实体，便于安全嵌入网页。",
+      "category": "text",
+      "tags": [
+        "HTML",
+        "转义",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/html-escape.html"
+    },
+    {
+      "slug": "port-lookup",
+      "title": "端口查询",
+      "desc": "输入端口号，查询常见服务名。",
+      "category": "text",
+      "tags": [
+        "端口",
+        "网络",
+        "开发"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/port-lookup.html"
     },
     {
       "slug": "json-formatter",
@@ -786,19 +1169,6 @@
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/flexbox-generator.html"
     },
     {
-      "slug": "gradient-text",
-      "title": "渐变文字",
-      "desc": "把线性渐变填充到文字上（背景裁剪），调节颜色与角度并复制 CSS。",
-      "category": "design",
-      "tags": [
-        "gradient",
-        "渐变",
-        "文字",
-        "css"
-      ],
-      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-text.html"
-    },
-    {
       "slug": "css-grid-pattern",
       "title": "网格背景图案",
       "desc": "生成网格线或圆点平铺背景，可调尺寸、间距与颜色，复制 CSS 背景代码。",
@@ -810,6 +1180,150 @@
         "css"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/css-grid-pattern.html"
+    },
+    {
+      "slug": "gradient-border",
+      "title": "渐变边框",
+      "desc": "生成渐变边框 CSS，可实时预览。",
+      "category": "design",
+      "tags": [
+        "边框",
+        "渐变",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-border.html"
+    },
+    {
+      "slug": "gradient-bg",
+      "title": "渐变背景",
+      "desc": "生成线性渐变背景 CSS，可实时预览。",
+      "category": "design",
+      "tags": [
+        "渐变",
+        "背景",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-bg.html"
+    },
+    {
+      "slug": "neon-text",
+      "title": "霓虹文字",
+      "desc": "生成霓虹发光文字效果 CSS。",
+      "category": "design",
+      "tags": [
+        "霓虹",
+        "文字",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/neon-text.html"
+    },
+    {
+      "slug": "glass-card",
+      "title": "毛玻璃卡片",
+      "desc": "生成毛玻璃（glassmorphism）卡片样式。",
+      "category": "design",
+      "tags": [
+        "毛玻璃",
+        "卡片",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/glass-card.html"
+    },
+    {
+      "slug": "clip-circle",
+      "title": "圆形裁切",
+      "desc": "生成圆形裁切（clip-path）样式。",
+      "category": "design",
+      "tags": [
+        "裁切",
+        "圆形",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/clip-circle.html"
+    },
+    {
+      "slug": "aspect-box",
+      "title": "固定宽高比",
+      "desc": "生成固定宽高比的盒子样式。",
+      "category": "design",
+      "tags": [
+        "宽高比",
+        "盒子",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/aspect-box.html"
+    },
+    {
+      "slug": "skeleton-loader",
+      "title": "骨架屏块",
+      "desc": "生成骨架屏占位块样式。",
+      "category": "design",
+      "tags": [
+        "骨架屏",
+        "占位",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/skeleton-loader.html"
+    },
+    {
+      "slug": "focus-ring",
+      "title": "聚焦描边",
+      "desc": "生成清晰的键盘聚焦描边样式。",
+      "category": "design",
+      "tags": [
+        "聚焦",
+        "描边",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/focus-ring.html"
+    },
+    {
+      "slug": "badge-pill",
+      "title": "标签徽章",
+      "desc": "生成圆角徽章（badge）样式。",
+      "category": "design",
+      "tags": [
+        "徽章",
+        "标签",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/badge-pill.html"
+    },
+    {
+      "slug": "tooltip-box",
+      "title": "气泡提示",
+      "desc": "生成气泡提示（tooltip）样式。",
+      "category": "design",
+      "tags": [
+        "提示",
+        "气泡",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tooltip-box.html"
+    },
+    {
+      "slug": "gradient-text",
+      "title": "渐变文字",
+      "desc": "生成渐变填充文字效果 CSS。",
+      "category": "design",
+      "tags": [
+        "渐变",
+        "文字",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gradient-text.html"
+    },
+    {
+      "slug": "rounded-box",
+      "title": "圆角方块",
+      "desc": "生成带圆角的方块样式。",
+      "category": "design",
+      "tags": [
+        "圆角",
+        "方块",
+        "CSS"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/rounded-box.html"
     },
     {
       "slug": "image-resize",
@@ -886,6 +1400,126 @@
         "编辑"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-flip-rotate.html"
+    },
+    {
+      "slug": "image-grayscale",
+      "title": "灰度",
+      "desc": "上传图片后转为黑白灰度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-grayscale.html"
+    },
+    {
+      "slug": "image-invert",
+      "title": "反色",
+      "desc": "上传图片后颜色反相，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-invert.html"
+    },
+    {
+      "slug": "image-sepia",
+      "title": "褐色",
+      "desc": "上传图片后添加复古褐色调，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-sepia.html"
+    },
+    {
+      "slug": "image-blur",
+      "title": "模糊",
+      "desc": "上传图片后轻度模糊，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-blur.html"
+    },
+    {
+      "slug": "image-brighten",
+      "title": "提亮",
+      "desc": "上传图片后提高亮度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-brighten.html"
+    },
+    {
+      "slug": "image-darken",
+      "title": "压暗",
+      "desc": "上传图片后降低亮度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-darken.html"
+    },
+    {
+      "slug": "image-contrast",
+      "title": "加对比",
+      "desc": "上传图片后增强对比度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-contrast.html"
+    },
+    {
+      "slug": "image-saturate",
+      "title": "高饱和",
+      "desc": "上传图片后提高饱和度，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-saturate.html"
+    },
+    {
+      "slug": "image-thumbnail",
+      "title": "缩略图",
+      "desc": "上传图片后缩小为不超过 480px 的缩略图，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-thumbnail.html"
+    },
+    {
+      "slug": "image-rounded",
+      "title": "圆角裁切",
+      "desc": "上传图片后裁切为圆形头像，本地处理并导出。",
+      "category": "image",
+      "tags": [
+        "图片",
+        "编辑",
+        "滤镜"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/image-rounded.html"
     },
     {
       "slug": "percentage-calculator",
@@ -1079,6 +1713,1269 @@
         "天数"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/date-calculator.html"
+    },
+    {
+      "slug": "length-converter",
+      "title": "长度换算",
+      "desc": "在毫米、厘米、米、千米、英寸、英尺、码、英里、海里之间即时换算。",
+      "category": "calc",
+      "tags": [
+        "长度",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/length-converter.html"
+    },
+    {
+      "slug": "mass-converter",
+      "title": "质量换算",
+      "desc": "在毫克、克、千克、吨、盎司、磅、英石之间即时换算。",
+      "category": "calc",
+      "tags": [
+        "质量",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/mass-converter.html"
+    },
+    {
+      "slug": "area-converter",
+      "title": "面积换算",
+      "desc": "在平方毫米、平方厘米、平方米、公顷、平方公里、平方英寸、平方英尺、英亩、平方英里之间换算。",
+      "category": "calc",
+      "tags": [
+        "面积",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/area-converter.html"
+    },
+    {
+      "slug": "volume-converter",
+      "title": "体积换算",
+      "desc": "在毫升、升、立方米、加仑、夸脱、品脱、杯、液量盎司、立方英寸、立方英尺之间换算。",
+      "category": "calc",
+      "tags": [
+        "体积",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/volume-converter.html"
+    },
+    {
+      "slug": "speed-converter",
+      "title": "速度换算",
+      "desc": "在米/秒、千米/时、英里/时、节、英尺/秒之间即时换算。",
+      "category": "calc",
+      "tags": [
+        "速度",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/speed-converter.html"
+    },
+    {
+      "slug": "time-converter",
+      "title": "时间换算",
+      "desc": "在毫秒、秒、分、时、天、周、年之间换算。",
+      "category": "calc",
+      "tags": [
+        "时间",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/time-converter.html"
+    },
+    {
+      "slug": "data-converter",
+      "title": "数据存储换算",
+      "desc": "在字节、KB、MB、GB、TB、PB 与 KiB、MiB、GiB、TiB 之间换算。",
+      "category": "calc",
+      "tags": [
+        "数据",
+        "存储",
+        "换算"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/data-converter.html"
+    },
+    {
+      "slug": "angle-converter",
+      "title": "角度换算",
+      "desc": "在度、弧度、梯度、角分、角秒、圈之间换算。",
+      "category": "calc",
+      "tags": [
+        "角度",
+        "弧度",
+        "换算"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/angle-converter.html"
+    },
+    {
+      "slug": "pressure-converter",
+      "title": "压强换算",
+      "desc": "在帕、千帕、兆帕、巴、标准大气压、磅力/平方英寸、毫米汞柱之间换算。",
+      "category": "calc",
+      "tags": [
+        "压强",
+        "压力",
+        "换算"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pressure-converter.html"
+    },
+    {
+      "slug": "energy-converter",
+      "title": "能量换算",
+      "desc": "在焦耳、千焦、卡、千卡、瓦时、千瓦时、电子伏特之间换算。",
+      "category": "calc",
+      "tags": [
+        "能量",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/energy-converter.html"
+    },
+    {
+      "slug": "power-converter",
+      "title": "功率换算",
+      "desc": "在瓦、千瓦、兆瓦、马力、英尺·磅/秒之间换算。",
+      "category": "calc",
+      "tags": [
+        "功率",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/power-converter.html"
+    },
+    {
+      "slug": "frequency-converter",
+      "title": "频率换算",
+      "desc": "在赫兹、千赫、兆赫、吉赫、转/分之间换算。",
+      "category": "calc",
+      "tags": [
+        "频率",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/frequency-converter.html"
+    },
+    {
+      "slug": "force-converter",
+      "title": "力换算",
+      "desc": "在牛、千牛、达因、磅力、千克力之间换算。",
+      "category": "calc",
+      "tags": [
+        "力",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/force-converter.html"
+    },
+    {
+      "slug": "current-converter",
+      "title": "电流换算",
+      "desc": "在毫安、安、千安之间换算。",
+      "category": "calc",
+      "tags": [
+        "电流",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/current-converter.html"
+    },
+    {
+      "slug": "voltage-converter",
+      "title": "电压换算",
+      "desc": "在毫伏、伏、千伏之间换算。",
+      "category": "calc",
+      "tags": [
+        "电压",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/voltage-converter.html"
+    },
+    {
+      "slug": "resistance-converter",
+      "title": "电阻换算",
+      "desc": "在毫欧、欧、千欧、兆欧之间换算。",
+      "category": "calc",
+      "tags": [
+        "电阻",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/resistance-converter.html"
+    },
+    {
+      "slug": "fuel-economy-converter",
+      "title": "油耗换算",
+      "desc": "在升/百公里、公里/升、英里/加仑(美/英)之间换算燃油经济性。",
+      "category": "calc",
+      "tags": [
+        "油耗",
+        "换算",
+        "汽车"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fuel-economy-converter.html"
+    },
+    {
+      "slug": "temperature-converter",
+      "title": "温度换算",
+      "desc": "在摄氏度、华氏度、开尔文之间即时换算。",
+      "category": "calc",
+      "tags": [
+        "温度",
+        "换算",
+        "单位"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/temperature-converter.html"
+    },
+    {
+      "slug": "bmi-calc",
+      "title": "BMI 体重指数",
+      "desc": "输入体重与身高，计算 BMI 并给出偏瘦 / 正常 / 超重 / 肥胖分类。",
+      "category": "calc",
+      "tags": [
+        "BMI",
+        "健康",
+        "体重"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/bmi-calc.html"
+    },
+    {
+      "slug": "body-fat-calc",
+      "title": "体脂率估算",
+      "desc": "用 BMI、年龄与性别粗略估算体脂率，仅供参考。",
+      "category": "calc",
+      "tags": [
+        "体脂",
+        "健康",
+        "健身"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/body-fat-calc.html"
+    },
+    {
+      "slug": "ideal-weight-calc",
+      "title": "理想体重",
+      "desc": "按 Devine 公式根据身高与性别估算理想体重。",
+      "category": "calc",
+      "tags": [
+        "理想体重",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/ideal-weight-calc.html"
+    },
+    {
+      "slug": "bmr-calc",
+      "title": "基础代谢率",
+      "desc": "按 Mifflin-St Jeor 公式估算每日基础代谢（BMR）。",
+      "category": "calc",
+      "tags": [
+        "BMR",
+        "代谢",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/bmr-calc.html"
+    },
+    {
+      "slug": "tdee-calc",
+      "title": "每日消耗估算",
+      "desc": "在 BMR 基础上按活动量估算每日总能量消耗（TDEE）。",
+      "category": "calc",
+      "tags": [
+        "TDEE",
+        "消耗",
+        "健身"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tdee-calc.html"
+    },
+    {
+      "slug": "water-calc",
+      "title": "每日饮水量",
+      "desc": "按体重粗略估算每日建议饮水量。",
+      "category": "calc",
+      "tags": [
+        "饮水",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/water-calc.html"
+    },
+    {
+      "slug": "margin-calc",
+      "title": "利润与利润率",
+      "desc": "输入成本与售价，计算利润、利润率与加价率。",
+      "category": "calc",
+      "tags": [
+        "利润",
+        "利润率",
+        "商业"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/margin-calc.html"
+    },
+    {
+      "slug": "roi-calc",
+      "title": "投资回报率",
+      "desc": "输入收益与成本，计算投资回报率 ROI。",
+      "category": "calc",
+      "tags": [
+        "ROI",
+        "投资",
+        "回报"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/roi-calc.html"
+    },
+    {
+      "slug": "cagr-calc",
+      "title": "复合年增长率",
+      "desc": "输入期初、期末值与年数，计算复合年均增长率 CAGR。",
+      "category": "calc",
+      "tags": [
+        "CAGR",
+        "增长率",
+        "投资"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/cagr-calc.html"
+    },
+    {
+      "slug": "pythagoras-calc",
+      "title": "勾股定理",
+      "desc": "输入直角边 a、b，求斜边 c。",
+      "category": "calc",
+      "tags": [
+        "勾股",
+        "几何",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pythagoras-calc.html"
+    },
+    {
+      "slug": "kinetic-energy-calc",
+      "title": "动能计算",
+      "desc": "输入质量与速度，计算动能 E = ½mv²。",
+      "category": "calc",
+      "tags": [
+        "动能",
+        "物理",
+        "能量"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/kinetic-energy-calc.html"
+    },
+    {
+      "slug": "factorial-calc",
+      "title": "阶乘计算",
+      "desc": "计算非负整数 n 的阶乘 n!。",
+      "category": "calc",
+      "tags": [
+        "阶乘",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/factorial-calc.html"
+    },
+    {
+      "slug": "calorie-burn",
+      "title": "运动消耗",
+      "desc": "按体重、时长与运动强度（MET）估算热量消耗。",
+      "category": "calc",
+      "tags": [
+        "卡路里",
+        "运动",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/calorie-burn.html"
+    },
+    {
+      "slug": "whr",
+      "title": "腰臀比",
+      "desc": "输入腰围与臀围，计算腰臀比 WHR。",
+      "category": "calc",
+      "tags": [
+        "腰臀比",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/whr.html"
+    },
+    {
+      "slug": "bac",
+      "title": "血液酒精估算",
+      "desc": "按饮酒量、体重、时间与性别粗略估算血液酒精浓度 BAC。",
+      "category": "calc",
+      "tags": [
+        "BAC",
+        "酒精",
+        "估算"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/bac.html"
+    },
+    {
+      "slug": "sleep-needed",
+      "title": "推荐睡眠",
+      "desc": "按年龄粗略给出每日推荐睡眠时长。",
+      "category": "calc",
+      "tags": [
+        "睡眠",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sleep-needed.html"
+    },
+    {
+      "slug": "step-distance",
+      "title": "步数换算距离",
+      "desc": "按步数与步幅估算行走距离。",
+      "category": "calc",
+      "tags": [
+        "步数",
+        "距离",
+        "健身"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/step-distance.html"
+    },
+    {
+      "slug": "macro-split",
+      "title": "三大营养素",
+      "desc": "按每日热量与目标比例拆分蛋白质、脂肪与碳水的克数。",
+      "category": "calc",
+      "tags": [
+        "营养",
+        "健身",
+        "饮食"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/macro-split.html"
+    },
+    {
+      "slug": "heart-rate-zones",
+      "title": "心率区间",
+      "desc": "按年龄估算最大心率与常见训练区间。",
+      "category": "calc",
+      "tags": [
+        "心率",
+        "健身",
+        "运动"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/heart-rate-zones.html"
+    },
+    {
+      "slug": "waist-height",
+      "title": "腰高比",
+      "desc": "计算腰围与身高之比，评估中心性肥胖风险。",
+      "category": "calc",
+      "tags": [
+        "腰高比",
+        "健康"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/waist-height.html"
+    },
+    {
+      "slug": "simple-interest",
+      "title": "单利计算",
+      "desc": "输入本金、年利率与年限，计算单利与到期总额。",
+      "category": "calc",
+      "tags": [
+        "单利",
+        "利息",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/simple-interest.html"
+    },
+    {
+      "slug": "fv-annuity",
+      "title": "年金终值",
+      "desc": "按每期供款、利率与期限计算年金复利终值。",
+      "category": "calc",
+      "tags": [
+        "年金",
+        "终值",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fv-annuity.html"
+    },
+    {
+      "slug": "pv",
+      "title": "现值计算",
+      "desc": "按未来金额、贴现率与年限计算现值 PV。",
+      "category": "calc",
+      "tags": [
+        "现值",
+        "贴现",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pv.html"
+    },
+    {
+      "slug": "savings-goal",
+      "title": "储蓄目标",
+      "desc": "按当前余额、每月存入与利率估算达成目标所需月数。",
+      "category": "calc",
+      "tags": [
+        "储蓄",
+        "目标",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/savings-goal.html"
+    },
+    {
+      "slug": "net-worth",
+      "title": "净资产",
+      "desc": "输入总资产与总负债，计算净资产。",
+      "category": "calc",
+      "tags": [
+        "净资产",
+        "资产",
+        "负债"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/net-worth.html"
+    },
+    {
+      "slug": "split-bill",
+      "title": "账单分摊",
+      "desc": "含税含小费后将账单按人数分摊。",
+      "category": "calc",
+      "tags": [
+        "分摊",
+        "聚餐",
+        "AA"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/split-bill.html"
+    },
+    {
+      "slug": "commission",
+      "title": "佣金计算",
+      "desc": "按销售额与佣金比例计算佣金。",
+      "category": "calc",
+      "tags": [
+        "佣金",
+        "销售",
+        "提成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/commission.html"
+    },
+    {
+      "slug": "hourly-to-salary",
+      "title": "时薪转月薪",
+      "desc": "按时薪与每周工时估算年收入和月收入。",
+      "category": "calc",
+      "tags": [
+        "时薪",
+        "月薪",
+        "工资"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/hourly-to-salary.html"
+    },
+    {
+      "slug": "inflation",
+      "title": "通胀折算",
+      "desc": "按通胀率估算未来 equivalent 金额。",
+      "category": "calc",
+      "tags": [
+        "通胀",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/inflation.html"
+    },
+    {
+      "slug": "rule-of-72",
+      "title": "72 法则",
+      "desc": "估算本金翻倍所需年数：72 ÷ 年利率。",
+      "category": "calc",
+      "tags": [
+        "72法则",
+        "理财",
+        "翻倍"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/rule-of-72.html"
+    },
+    {
+      "slug": "dividend-yield",
+      "title": "股息率",
+      "desc": "按每股股息与股价计算股息率。",
+      "category": "calc",
+      "tags": [
+        "股息",
+        "股票",
+        "理财"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/dividend-yield.html"
+    },
+    {
+      "slug": "profit-margin",
+      "title": "利润率",
+      "desc": "按利润与营收计算利润率。",
+      "category": "calc",
+      "tags": [
+        "利润率",
+        "商业"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/profit-margin.html"
+    },
+    {
+      "slug": "interest-only",
+      "title": "仅息月供",
+      "desc": "按本金与年利率估算仅还息的每月利息。",
+      "category": "calc",
+      "tags": [
+        "贷款",
+        "利息"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/interest-only.html"
+    },
+    {
+      "slug": "break-even",
+      "title": "盈亏平衡",
+      "desc": "按固定成本、单价与单位变动成本计算盈亏平衡销量与营收。",
+      "category": "calc",
+      "tags": [
+        "盈亏平衡",
+        "商业"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/break-even.html"
+    },
+    {
+      "slug": "salary-to-hourly",
+      "title": "月薪转时薪",
+      "desc": "按月薪与每周工时反推时薪。",
+      "category": "calc",
+      "tags": [
+        "月薪",
+        "时薪",
+        "工资"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/salary-to-hourly.html"
+    },
+    {
+      "slug": "tax-estimate",
+      "title": "税额估算",
+      "desc": "按收入与税率估算税额与税后金额。",
+      "category": "calc",
+      "tags": [
+        "税",
+        "估算",
+        "工资"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tax-estimate.html"
+    },
+    {
+      "slug": "area-rectangle",
+      "title": "矩形面积",
+      "desc": "计算矩形的面积与周长。",
+      "category": "calc",
+      "tags": [
+        "面积",
+        "矩形",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/area-rectangle.html"
+    },
+    {
+      "slug": "area-triangle",
+      "title": "三角形面积",
+      "desc": "按底与高计算三角形面积。",
+      "category": "calc",
+      "tags": [
+        "面积",
+        "三角形",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/area-triangle.html"
+    },
+    {
+      "slug": "volume-cylinder",
+      "title": "圆柱体积",
+      "desc": "按半径与高计算圆柱体积与表面积。",
+      "category": "calc",
+      "tags": [
+        "圆柱",
+        "体积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/volume-cylinder.html"
+    },
+    {
+      "slug": "volume-sphere",
+      "title": "球体体积",
+      "desc": "按半径计算球体体积与表面积。",
+      "category": "calc",
+      "tags": [
+        "球",
+        "体积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/volume-sphere.html"
+    },
+    {
+      "slug": "volume-cube",
+      "title": "正方体体积",
+      "desc": "按边长计算正方体体积与表面积。",
+      "category": "calc",
+      "tags": [
+        "正方体",
+        "体积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/volume-cube.html"
+    },
+    {
+      "slug": "volume-cone",
+      "title": "圆锥体积",
+      "desc": "按半径与高计算圆锥体积。",
+      "category": "calc",
+      "tags": [
+        "圆锥",
+        "体积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/volume-cone.html"
+    },
+    {
+      "slug": "polygon-area",
+      "title": "正多边形面积",
+      "desc": "按边数与边长计算正多边形面积。",
+      "category": "calc",
+      "tags": [
+        "多边形",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/polygon-area.html"
+    },
+    {
+      "slug": "slope",
+      "title": "斜率与距离",
+      "desc": "按两点坐标计算直线斜率与两点间距离。",
+      "category": "calc",
+      "tags": [
+        "斜率",
+        "坐标",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/slope.html"
+    },
+    {
+      "slug": "circle-diameter",
+      "title": "圆（按直径）",
+      "desc": "按直径计算圆面积与周长。",
+      "category": "calc",
+      "tags": [
+        "圆",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/circle-diameter.html"
+    },
+    {
+      "slug": "triangle-angle",
+      "title": "三角形第三角",
+      "desc": "已知两角求第三个内角。",
+      "category": "calc",
+      "tags": [
+        "三角形",
+        "角度",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/triangle-angle.html"
+    },
+    {
+      "slug": "ellipse-area",
+      "title": "椭圆面积",
+      "desc": "按长半轴与短半轴计算椭圆面积。",
+      "category": "calc",
+      "tags": [
+        "椭圆",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/ellipse-area.html"
+    },
+    {
+      "slug": "trapezoid-area",
+      "title": "梯形面积",
+      "desc": "按上底、下底与高计算梯形面积。",
+      "category": "calc",
+      "tags": [
+        "梯形",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/trapezoid-area.html"
+    },
+    {
+      "slug": "speed",
+      "title": "速度计算",
+      "desc": "按距离与时间计算速度。",
+      "category": "calc",
+      "tags": [
+        "速度",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/speed.html"
+    },
+    {
+      "slug": "density",
+      "title": "密度计算",
+      "desc": "按质量与体积计算密度。",
+      "category": "calc",
+      "tags": [
+        "密度",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/density.html"
+    },
+    {
+      "slug": "ohm",
+      "title": "欧姆定律",
+      "desc": "按电压与电流计算电阻与功率。",
+      "category": "calc",
+      "tags": [
+        "欧姆",
+        "电学",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/ohm.html"
+    },
+    {
+      "slug": "potential-energy",
+      "title": "重力势能",
+      "desc": "按质量与高度计算重力势能。",
+      "category": "calc",
+      "tags": [
+        "势能",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/potential-energy.html"
+    },
+    {
+      "slug": "force-newton",
+      "title": "牛顿第二定律",
+      "desc": "按质量与加速度计算合力 F = ma。",
+      "category": "calc",
+      "tags": [
+        "力",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/force-newton.html"
+    },
+    {
+      "slug": "work-energy",
+      "title": "功计算",
+      "desc": "按力与位移计算做功 W = Fd。",
+      "category": "calc",
+      "tags": [
+        "功",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/work-energy.html"
+    },
+    {
+      "slug": "wavelength",
+      "title": "波长计算",
+      "desc": "按频率与波速计算波长 λ = v / f。",
+      "category": "calc",
+      "tags": [
+        "波长",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/wavelength.html"
+    },
+    {
+      "slug": "decibel",
+      "title": "分贝换算",
+      "desc": "按功率比计算分贝值 dB = 10·log10(比值)。",
+      "category": "calc",
+      "tags": [
+        "分贝",
+        "声学",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/decibel.html"
+    },
+    {
+      "slug": "heat-energy",
+      "title": "热量计算",
+      "desc": "按质量、比热容与温差计算热量 Q = mcΔT。",
+      "category": "calc",
+      "tags": [
+        "热量",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/heat-energy.html"
+    },
+    {
+      "slug": "pressure-from-force",
+      "title": "压强计算",
+      "desc": "按力与面积计算压强 P = F / A。",
+      "category": "calc",
+      "tags": [
+        "压强",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pressure-from-force.html"
+    },
+    {
+      "slug": "gravity",
+      "title": "万有引力",
+      "desc": "按两物体质量与距离计算引力。",
+      "category": "calc",
+      "tags": [
+        "引力",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/gravity.html"
+    },
+    {
+      "slug": "projectile-range",
+      "title": "抛射射程",
+      "desc": "按初速度与仰角计算水平射程。",
+      "category": "calc",
+      "tags": [
+        "抛体",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/projectile-range.html"
+    },
+    {
+      "slug": "pendulum",
+      "title": "单摆周期",
+      "desc": "按摆长计算单摆周期 T = 2π√(L/g)。",
+      "category": "calc",
+      "tags": [
+        "单摆",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/pendulum.html"
+    },
+    {
+      "slug": "spring-force",
+      "title": "胡克定律",
+      "desc": "按劲度系数与形变量计算弹力 F = kx。",
+      "category": "calc",
+      "tags": [
+        "弹簧",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/spring-force.html"
+    },
+    {
+      "slug": "power-physics",
+      "title": "功率计算",
+      "desc": "按力与速度计算功率 P = Fv。",
+      "category": "calc",
+      "tags": [
+        "功率",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/power-physics.html"
+    },
+    {
+      "slug": "momentum",
+      "title": "动量计算",
+      "desc": "按质量与速度计算动量 p = mv。",
+      "category": "calc",
+      "tags": [
+        "动量",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/momentum.html"
+    },
+    {
+      "slug": "torque",
+      "title": "力矩计算",
+      "desc": "按力与力臂计算力矩 τ = Fr。",
+      "category": "calc",
+      "tags": [
+        "力矩",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/torque.html"
+    },
+    {
+      "slug": "centripetal",
+      "title": "向心力",
+      "desc": "按质量、速度与半径计算向心力。",
+      "category": "calc",
+      "tags": [
+        "向心力",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/centripetal.html"
+    },
+    {
+      "slug": "percent-change",
+      "title": "百分比变化",
+      "desc": "计算从旧值到新值的百分比增减。",
+      "category": "calc",
+      "tags": [
+        "百分比",
+        "变化",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/percent-change.html"
+    },
+    {
+      "slug": "log-calc",
+      "title": "对数计算",
+      "desc": "按底数与真数计算对数值。",
+      "category": "calc",
+      "tags": [
+        "对数",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/log-calc.html"
+    },
+    {
+      "slug": "power-calc",
+      "title": "幂运算",
+      "desc": "计算底数的指定次幂。",
+      "category": "calc",
+      "tags": [
+        "幂",
+        "指数",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/power-calc.html"
+    },
+    {
+      "slug": "modulo",
+      "title": "取模运算",
+      "desc": "计算两数相除的余数。",
+      "category": "calc",
+      "tags": [
+        "取模",
+        "余数",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/modulo.html"
+    },
+    {
+      "slug": "round-to",
+      "title": "保留小数",
+      "desc": "将数值四舍五入保留指定小数位。",
+      "category": "calc",
+      "tags": [
+        "四舍五入",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/round-to.html"
+    },
+    {
+      "slug": "scientific-notation",
+      "title": "科学计数法",
+      "desc": "将数值转换为科学计数法表示。",
+      "category": "calc",
+      "tags": [
+        "科学计数法",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/scientific-notation.html"
+    },
+    {
+      "slug": "paint-needed",
+      "title": "涂料用量",
+      "desc": "按面积与单位覆盖率估算涂料升数。",
+      "category": "calc",
+      "tags": [
+        "涂料",
+        "装修",
+        "家居"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/paint-needed.html"
+    },
+    {
+      "slug": "tile-needed",
+      "title": "瓷砖数量",
+      "desc": "按房间面积与瓷砖边长估算所需瓷砖数（含 10% 损耗）。",
+      "category": "calc",
+      "tags": [
+        "瓷砖",
+        "装修",
+        "家居"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/tile-needed.html"
+    },
+    {
+      "slug": "flooring-cost",
+      "title": "地板费用",
+      "desc": "按面积与单价估算地板费用。",
+      "category": "calc",
+      "tags": [
+        "地板",
+        "装修",
+        "家居"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/flooring-cost.html"
+    },
+    {
+      "slug": "concrete-slab",
+      "title": "混凝土用量",
+      "desc": "按长、宽、厚估算混凝土体积（米制）。",
+      "category": "calc",
+      "tags": [
+        "混凝土",
+        "装修",
+        "家居"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/concrete-slab.html"
+    },
+    {
+      "slug": "wallpaper",
+      "title": "壁纸卷数",
+      "desc": "按面积与单卷覆盖率估算所需壁纸卷数。",
+      "category": "calc",
+      "tags": [
+        "壁纸",
+        "装修",
+        "家居"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/wallpaper.html"
+    },
+    {
+      "slug": "cooking-scale",
+      "title": "配方缩放",
+      "desc": "按目标份数缩放食材用量。",
+      "category": "calc",
+      "tags": [
+        "食谱",
+        "缩放",
+        "厨房"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/cooking-scale.html"
+    },
+    {
+      "slug": "unit-price",
+      "title": "单价计算",
+      "desc": "按总价与数量计算单位价格。",
+      "category": "calc",
+      "tags": [
+        "单价",
+        "比价",
+        "购物"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/unit-price.html"
+    },
+    {
+      "slug": "grade-needed",
+      "title": "目标均分",
+      "desc": "按当前平均分与期末权重，计算期末需拿到的分数。",
+      "category": "calc",
+      "tags": [
+        "成绩",
+        "均分",
+        "教育"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/grade-needed.html"
+    },
+    {
+      "slug": "exam-score",
+      "title": "得分率",
+      "desc": "按答对题数与总题数计算得分百分比。",
+      "category": "calc",
+      "tags": [
+        "得分",
+        "考试",
+        "教育"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/exam-score.html"
+    },
+    {
+      "slug": "time-to-read",
+      "title": "阅读时长",
+      "desc": "按字数与阅读速度估算阅读所需时间（分钟）。",
+      "category": "calc",
+      "tags": [
+        "阅读",
+        "时间",
+        "效率"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/time-to-read.html"
+    },
+    {
+      "slug": "discount-amount",
+      "title": "折扣金额",
+      "desc": "按原价与折扣力度计算省下金额与折后价。",
+      "category": "calc",
+      "tags": [
+        "折扣",
+        "省钱",
+        "购物"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/discount-amount.html"
+    },
+    {
+      "slug": "sales-tax",
+      "title": "消费税",
+      "desc": "按价格与税率计算税额与含税价。",
+      "category": "calc",
+      "tags": [
+        "税",
+        "购物"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/sales-tax.html"
+    },
+    {
+      "slug": "increase-amount",
+      "title": "增幅计算",
+      "desc": "按数值与增幅百分比计算增加量与结果。",
+      "category": "calc",
+      "tags": [
+        "增幅",
+        "数学"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/increase-amount.html"
+    },
+    {
+      "slug": "parallelogram-area",
+      "title": "平行四边形面积",
+      "desc": "按底与高计算平行四边形面积。",
+      "category": "calc",
+      "tags": [
+        "平行四边形",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/parallelogram-area.html"
+    },
+    {
+      "slug": "circle-radius",
+      "title": "圆（按半径）",
+      "desc": "按半径计算圆面积与周长。",
+      "category": "calc",
+      "tags": [
+        "圆",
+        "面积",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/circle-radius.html"
+    },
+    {
+      "slug": "right-triangle-hypotenuse",
+      "title": "斜边比例",
+      "desc": "按两直角边计算斜边及其与直角边 a 的比值。",
+      "category": "calc",
+      "tags": [
+        "勾股",
+        "几何"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/right-triangle-hypotenuse.html"
+    },
+    {
+      "slug": "average-speed",
+      "title": "平均速度",
+      "desc": "按总路程与总时间计算平均速度。",
+      "category": "calc",
+      "tags": [
+        "速度",
+        "物理"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/average-speed.html"
+    },
+    {
+      "slug": "fuel-cost-trip",
+      "title": "行程油费",
+      "desc": "按里程、油耗与油价估算单程油费。",
+      "category": "calc",
+      "tags": [
+        "油费",
+        "自驾",
+        "出行"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/fuel-cost-trip.html"
     },
     {
       "slug": "password-generator",
@@ -1310,6 +3207,474 @@
         "中奖"
       ],
       "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/lottery-draw.html"
+    },
+    {
+      "slug": "coin-flip",
+      "title": "抛硬币",
+      "desc": "随机给出正面或反面，用于快速决策。",
+      "category": "util",
+      "tags": [
+        "硬币",
+        "随机",
+        "决策"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/coin-flip.html"
+    },
+    {
+      "slug": "random-fact",
+      "title": "随机冷知识",
+      "desc": "随机展示一条冷知识。",
+      "category": "util",
+      "tags": [
+        "冷知识",
+        "随机",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-fact.html"
+    },
+    {
+      "slug": "random-quote",
+      "title": "随机名言",
+      "desc": "随机展示一句名言。",
+      "category": "util",
+      "tags": [
+        "名言",
+        "随机",
+        "励志"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-quote.html"
+    },
+    {
+      "slug": "random-tip",
+      "title": "随机小贴士",
+      "desc": "随机给出一条实用小贴士。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "贴士",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-tip.html"
+    },
+    {
+      "slug": "random-joke",
+      "title": "随机笑话",
+      "desc": "随机讲一个轻松笑话。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "笑话",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-joke.html"
+    },
+    {
+      "slug": "random-idea",
+      "title": "随机点子",
+      "desc": "随机激发一个创意点子。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "创意",
+        "灵感"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-idea.html"
+    },
+    {
+      "slug": "random-compliment",
+      "title": "随机夸夸",
+      "desc": "随机送出一句赞美。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "赞美",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-compliment.html"
+    },
+    {
+      "slug": "random-dare",
+      "title": "随机挑战",
+      "desc": "随机给出一个趣味挑战。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "挑战",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-dare.html"
+    },
+    {
+      "slug": "random-question",
+      "title": "随机提问",
+      "desc": "随机给出一个有趣的两难问题。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "提问",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-question.html"
+    },
+    {
+      "slug": "random-affirmation",
+      "title": "随机正能量",
+      "desc": "随机送出一句正能量。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "正能量",
+        "励志"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-affirmation.html"
+    },
+    {
+      "slug": "random-challenge",
+      "title": "随机任务",
+      "desc": "随机分配一个微任务。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "任务",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-challenge.html"
+    },
+    {
+      "slug": "random-scenario",
+      "title": "随机情景",
+      "desc": "随机生成一个脑洞情景。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "脑洞",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-scenario.html"
+    },
+    {
+      "slug": "random-activity",
+      "title": "随机活动",
+      "desc": "随机推荐一项休闲活动。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "活动",
+        "休闲"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-activity.html"
+    },
+    {
+      "slug": "random-name-en",
+      "title": "随机英文名",
+      "desc": "随机生成一个英文姓名。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "姓名",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-name-en.html"
+    },
+    {
+      "slug": "random-name-cn",
+      "title": "随机中文名",
+      "desc": "随机生成一个中文姓名。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "姓名",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-name-cn.html"
+    },
+    {
+      "slug": "random-number",
+      "title": "随机整数",
+      "desc": "在指定范围内生成多个随机整数。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "整数",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-number.html"
+    },
+    {
+      "slug": "random-hex",
+      "title": "随机十六进制",
+      "desc": "生成指定长度的随机十六进制串。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "十六进制",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-hex.html"
+    },
+    {
+      "slug": "random-ip",
+      "title": "随机 IP",
+      "desc": "生成一个随机 IPv4 地址。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "IP",
+        "网络"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-ip.html"
+    },
+    {
+      "slug": "random-mac",
+      "title": "随机 MAC",
+      "desc": "生成随机 MAC 地址。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "MAC",
+        "网络"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-mac.html"
+    },
+    {
+      "slug": "random-email",
+      "title": "随机邮箱",
+      "desc": "生成随机测试邮箱。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "邮箱",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-email.html"
+    },
+    {
+      "slug": "random-phone-cn",
+      "title": "随机手机号",
+      "desc": "生成随机中国大陆手机号。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "手机号",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-phone-cn.html"
+    },
+    {
+      "slug": "random-date",
+      "title": "随机日期",
+      "desc": "随机生成一个日期。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "日期",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-date.html"
+    },
+    {
+      "slug": "random-time",
+      "title": "随机时间",
+      "desc": "随机生成一个时间点。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "时间",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-time.html"
+    },
+    {
+      "slug": "random-bool",
+      "title": "随机是非",
+      "desc": "随机返回是或否。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "决策",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-bool.html"
+    },
+    {
+      "slug": "random-word",
+      "title": "随机单词",
+      "desc": "随机挑选一个英文单词。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "单词",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-word.html"
+    },
+    {
+      "slug": "random-address-cn",
+      "title": "随机地址",
+      "desc": "生成随机中文地址。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "地址",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-address-cn.html"
+    },
+    {
+      "slug": "random-company",
+      "title": "随机公司名",
+      "desc": "生成随机公司名称。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "公司",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-company.html"
+    },
+    {
+      "slug": "random-job",
+      "title": "随机职业",
+      "desc": "随机生成一个职位名称。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "职业",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-job.html"
+    },
+    {
+      "slug": "random-emoji",
+      "title": "随机表情",
+      "desc": "随机给出一个表情符号。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "表情",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-emoji.html"
+    },
+    {
+      "slug": "random-zipcode",
+      "title": "随机邮编",
+      "desc": "生成随机 6 位邮政编码。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "邮编",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-zipcode.html"
+    },
+    {
+      "slug": "random-guid",
+      "title": "随机 GUID",
+      "desc": "生成随机 UUID v4。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "GUID",
+        "UUID"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-guid.html"
+    },
+    {
+      "slug": "random-ascii",
+      "title": "随机字符",
+      "desc": "生成指定长度的随机可打印字符。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "字符",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-ascii.html"
+    },
+    {
+      "slug": "random-color-hex",
+      "title": "随机颜色",
+      "desc": "生成随机十六进制颜色。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "颜色",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-color-hex.html"
+    },
+    {
+      "slug": "random-username",
+      "title": "随机用户名",
+      "desc": "生成随机用户名。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "用户名",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-username.html"
+    },
+    {
+      "slug": "random-sentence",
+      "title": "随机句子",
+      "desc": "随机拼接一个中文短句。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "句子",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-sentence.html"
+    },
+    {
+      "slug": "random-card",
+      "title": "随机扑克牌",
+      "desc": "随机抽出一张扑克牌。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "扑克",
+        "趣味"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-card.html"
+    },
+    {
+      "slug": "random-color-rgb",
+      "title": "随机 RGB",
+      "desc": "生成随机 RGB 颜色。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "颜色",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-color-rgb.html"
+    },
+    {
+      "slug": "random-float",
+      "title": "随机小数",
+      "desc": "在范围内生成随机小数。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "小数",
+        "生成"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-float.html"
+    },
+    {
+      "slug": "random-pick",
+      "title": "随机抽选",
+      "desc": "从你提供的列表中随机抽选若干项。",
+      "category": "util",
+      "tags": [
+        "随机",
+        "抽选",
+        "决策"
+      ],
+      "url": "https://technologysauce.github.io/Pure-HTML-Tools-Collection/tools/random-pick.html"
     }
   ]
 }
