@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>随机 HSL 颜色 - 纯 HTML 工具箱</title>
-<meta name="description" content="生成随机的 HSL 颜色。">
+<meta name="description" content="生成随机 HSL 颜色。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"随机 HSL 颜色","desc":"生成随机的 HSL 颜色。","category":"util","tags":["颜色","随机","设计"],"order":1719}</script>
+<script type="application/json" id="tool-meta">{"title":"随机 HSL 颜色","desc":"生成随机 HSL 颜色。","category":"util","tags":["随机","HSL","颜色"],"order":2372}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,10 +595,13 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">小工具 · 本地处理</span>
     <h1>随机 HSL 颜色</h1>
-    <p>生成随机的 HSL 颜色。</p>
+    <p>生成随机 HSL 颜色。</p>
   </div>
 
   <section class="panel">
+<div class="grid-2">
+  <div class="field"><label for="n">数量</label><input type="number" id="n" value="5" min="1" max="50"></div>
+</div>
 <div class="field" style="margin-top:14px"><label for="out">生成结果</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="点击生成"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="gen" type="button">生成</button>
@@ -777,12 +780,13 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function gen(args){
- var h = Math.floor(Math.random() * 360), s = 40 + Math.floor(Math.random() * 50), l = 35 + Math.floor(Math.random() * 35); return "hsl(" + h + ", " + s + "%, " + l + "%)"; 
+ var n = Math.min(50, Math.max(1, a.n | 0)), out = []; for (var i = 0; i < n; i++) out.push("hsl(" + Math.floor(Math.random() * 360) + ", " + Math.floor(Math.random() * 60 + 40) + "%, " + Math.floor(Math.random() * 40 + 40) + "%)"); return out.join("\n"); 
   }
   function run(){ var args={};
-
+    args["n"]=parseFloat($("#n").value);
     try { var r=gen(args); out.value=(typeof r==="string")?r:String(r); PHT.status(statusEl,"已生成","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
   }
+  ["n"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
   $("#gen").addEventListener("click",run);
   $("#copy").addEventListener("click",function(){ if(!out.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(out.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });
   run();

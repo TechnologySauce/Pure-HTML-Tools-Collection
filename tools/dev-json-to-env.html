@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JSON 转环境变量 - 纯 HTML 工具箱</title>
-<meta name="description" content="把扁平 JSON 转为 KEY=VALUE 形式。">
+<title>JSON 转 .env - 纯 HTML 工具箱</title>
+<meta name="description" content="把扁平或嵌套 JSON 展开为 KEY=VALUE 的环境变量。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"JSON 转环境变量","desc":"把扁平 JSON 转为 KEY=VALUE 形式。","category":"dev","tags":["JSON","环境变量","开发"],"order":1244}</script>
+<script type="application/json" id="tool-meta">{"title":"JSON 转 .env","desc":"把扁平或嵌套 JSON 展开为 KEY=VALUE 的环境变量。","category":"dev","tags":["JSON",".env","环境变量"],"order":2111}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,12 +594,12 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">开发者 · 本地处理</span>
-    <h1>JSON 转环境变量</h1>
-    <p>把扁平 JSON 转为 KEY=VALUE 形式。</p>
+    <h1>JSON 转 .env</h1>
+    <p>把扁平或嵌套 JSON 展开为 KEY=VALUE 的环境变量。</p>
   </div>
 
   <section class="panel">
-  <div class="field"><label for="json">JSON</label><textarea id="json" class="code" spellcheck="false" rows="8" placeholder="{&quot;API_KEY&quot;:&quot;abc&quot;,&quot;PORT&quot;:8080}"></textarea></div>
+  <div class="field"><label for="json">JSON</label><textarea id="json" class="code" spellcheck="false" rows="8" placeholder="{&quot;API_KEY&quot;:&quot;abc&quot;,&quot;db&quot;:{&quot;host&quot;:&quot;localhost&quot;,&quot;port&quot;:5432}}"></textarea></div>
 <div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制</button>
@@ -777,7 +777,7 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function transform(args){
- try { var o = JSON.parse(args.json); return Object.keys(o).map(function (k) { return k + "=" + o[k]; }).join("\n"); } catch (e) { return "无效 JSON：" + e.message; } 
+ var o; try { o = JSON.parse(args.json); } catch (e) { return "无效 JSON：" + e.message; } var out = []; function walk(p, val) { if (val !== null && typeof val === "object" && !Array.isArray(val)) Object.keys(val).forEach(function (k) { walk(p ? p + "_" + k : k, val[k]); }); else if (Array.isArray(val)) out.push(p + "=" + JSON.stringify(val)); else out.push(p + "=" + val); } walk("", o); return out.join("\n"); 
   }
   function run(){ var args={};
     args["json"]=$("#json").value;

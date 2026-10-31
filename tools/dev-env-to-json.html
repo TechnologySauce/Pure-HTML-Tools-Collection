@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>环境变量转 JSON - 纯 HTML 工具箱</title>
-<meta name="description" content="把 KEY=VALUE 形式的环境变量转为 JSON。">
+<title>.env 转 JSON - 纯 HTML 工具箱</title>
+<meta name="description" content="把 KEY=VALUE 形式的环境变量解析为 JSON。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"环境变量转 JSON","desc":"把 KEY=VALUE 形式的环境变量转为 JSON。","category":"dev","tags":["环境变量","JSON","开发"],"order":1243}</script>
+<script type="application/json" id="tool-meta">{"title":".env 转 JSON","desc":"把 KEY=VALUE 形式的环境变量解析为 JSON。","category":"dev","tags":[".env","JSON","环境变量"],"order":2110}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,13 +594,14 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">开发者 · 本地处理</span>
-    <h1>环境变量转 JSON</h1>
-    <p>把 KEY=VALUE 形式的环境变量转为 JSON。</p>
+    <h1>.env 转 JSON</h1>
+    <p>把 KEY=VALUE 形式的环境变量解析为 JSON。</p>
   </div>
 
   <section class="panel">
-  <div class="field"><label for="text">环境变量</label><textarea id="text" class="code" spellcheck="false" rows="8" placeholder="API_KEY=abc
-PORT=8080"></textarea></div>
+  <div class="field"><label for="text">.env 文本</label><textarea id="text" class="code" spellcheck="false" rows="8" placeholder="API_KEY=&quot;abc&quot;
+PORT=8080
+DEBUG=true"></textarea></div>
 <div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制</button>
@@ -778,7 +779,7 @@ PORT=8080"></textarea></div>
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function transform(args){
- var o = {}; args.text.split("\n").forEach(function (l) { var i = l.indexOf("="); if (i > 0) o[l.slice(0, i).trim()] = l.slice(i + 1).trim(); }); return JSON.stringify(o, null, 2); 
+ var lines = args.text.split("\n"), o = {}; lines.forEach(function (l) { l = l.trim(); if (!l || l[0] === "#") return; var i = l.indexOf("="); if (i < 0) return; var k = l.slice(0, i).trim(), v = l.slice(i + 1).trim(); if ((v[0] === '"' && v[v.length - 1] === '"') || (v[0] === "'" && v[v.length - 1] === "'")) v = v.slice(1, -1); o[k] = v; }); return JSON.stringify(o, null, 2); 
   }
   function run(){ var args={};
     args["text"]=$("#text").value;

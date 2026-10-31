@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>色调分层 - 纯 HTML 工具箱</title>
-<meta name="description" content="减少每通道色阶，得到海报化效果。">
+<title>色阶量化 - 纯 HTML 工具箱</title>
+<meta name="description" content="减少颜色层次，做出海报化效果。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"色调分层","desc":"减少每通道色阶，得到海报化效果。","category":"image","tags":["图片","编辑","特效","分层","特效"],"order":1408}</script>
+<script type="application/json" id="tool-meta">{"title":"色阶量化","desc":"减少颜色层次，做出海报化效果。","category":"image","tags":["图片","编辑","特效","量化","posterize","艺术"],"order":2189}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,12 +594,12 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
-    <h1>色调分层</h1>
-    <p>减少每通道色阶，得到海报化效果。</p>
+    <h1>色阶量化</h1>
+    <p>减少颜色层次，做出海报化效果。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>减少每通道色阶，得到海报化效果。</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>减少颜色层次，做出海报化效果。</span></label>
 <div class="grid-2" style="margin-top:14px">
   <div class="field"><label for="levels">色阶数</label><input type="number" id="levels" value="4" min="2" max="16"></div>
 </div>
@@ -787,7 +787,7 @@ pre.out:empty::before {
     if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
     var levels=parseFloat($("#levels").value);
     try{
-          var idt=ctx.getImageData(0,0,w,h); (function(d,w,h,args){ var ls=args.levels||4; var step=255/(ls-1); for(var i=0;i<d.length;i+=4){ d[i]=Math.round(d[i]/step)*step; d[i+1]=Math.round(d[i+1]/step)*step; d[i+2]=Math.round(d[i+2]/step)*step; } })(idt.data,w,h,{levels:levels}); ctx.putImageData(idt,0,0);
+          var idt=ctx.getImageData(0,0,w,h); (function(d,w,h,args){ var step=255/(args.levels-1); for(var i=0;i<d.length;i+=4){ d[i]=Math.round(d[i]/step)*step; d[i+1]=Math.round(d[i+1]/step)*step; d[i+2]=Math.round(d[i+2]/step)*step; } })(idt.data,w,h,{levels:levels}); ctx.putImageData(idt,0,0);
       dataUrl=canvas.toDataURL("image/png");
       var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
       PHT.status(statusEl,"已处理，可下载","ok");

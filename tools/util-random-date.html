@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>随机日期 - 纯 HTML 工具箱</title>
-<meta name="description" content="在起止日期之间生成随机日期。">
+<meta name="description" content="在指定年份范围内生成随机日期。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"随机日期","desc":"在起止日期之间生成随机日期。","category":"util","tags":["日期","随机","生成"],"order":1743}</script>
+<script type="application/json" id="tool-meta">{"title":"随机日期","desc":"在指定年份范围内生成随机日期。","category":"util","tags":["随机","日期","生成"],"order":2320}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,13 +595,14 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">小工具 · 本地处理</span>
     <h1>随机日期</h1>
-    <p>在起止日期之间生成随机日期。</p>
+    <p>在指定年份范围内生成随机日期。</p>
   </div>
 
   <section class="panel">
 <div class="grid-2">
-  <div class="field"><label for="from">起始</label><input type="date" id="from" value="2020-01-01"></div>
-  <div class="field"><label for="to">结束</label><input type="date" id="to" value="2026-12-31"></div>
+  <div class="field"><label for="y1">起始年</label><input type="number" id="y1" value="2020"></div>
+  <div class="field"><label for="y2">结束年</label><input type="number" id="y2" value="2026"></div>
+  <div class="field"><label for="n">数量</label><input type="number" id="n" value="5" min="1" max="100"></div>
 </div>
 <div class="field" style="margin-top:14px"><label for="out">生成结果</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="点击生成"></textarea></div>
 <div class="actions">
@@ -781,14 +782,15 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function gen(args){
- var a = new Date(args.from).getTime(), b = new Date(args.to).getTime(); if (b < a) return "日期范围无效"; var t = a + Math.floor(Math.random() * (b - a)); return new Date(t).toISOString().slice(0, 10); 
+ var n = Math.min(100, Math.max(1, a.n | 0)), out = [], s = new Date(a.y1, 0, 1), e = new Date(a.y2 + 1, 0, 1), span = e - s; for (var i = 0; i < n; i++) out.push(new Date(s.getTime() + Math.random() * span).toISOString().slice(0, 10)); return out.join("\n"); 
   }
   function run(){ var args={};
-    args["from"]=parseFloat($("#from").value);
-    args["to"]=parseFloat($("#to").value);
+    args["y1"]=parseFloat($("#y1").value);
+    args["y2"]=parseFloat($("#y2").value);
+    args["n"]=parseFloat($("#n").value);
     try { var r=gen(args); out.value=(typeof r==="string")?r:String(r); PHT.status(statusEl,"已生成","ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
   }
-  ["from","to"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  ["y1","y2","n"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
   $("#gen").addEventListener("click",run);
   $("#copy").addEventListener("click",function(){ if(!out.value){ PHT.status(statusEl,"没有内容","error"); return; } PHT.copy(out.value).then(function(ok){ PHT.flash($("#copy"),"已复制"); PHT.status(statusEl,ok?"已复制":"复制失败",ok?"ok":"error"); }); });
   run();

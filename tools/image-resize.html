@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>图片尺寸调整 - 纯 HTML 工具箱</title>
-<meta name="description" content="上传图片后按目标宽度等比缩放（或指定高宽），导出为 PNG/JPEG/WebP，全部在本地完成。">
+<title>缩放尺寸 - 纯 HTML 工具箱</title>
+<meta name="description" content="按指定宽度等比缩放图片。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"图片尺寸调整","desc":"上传图片后按目标宽度等比缩放（或指定高宽），导出为 PNG/JPEG/WebP，全部在本地完成。","category":"image","tags":["图片","缩放","尺寸","导出"],"order":1}</script>
+<script type="application/json" id="tool-meta">{"title":"缩放尺寸","desc":"按指定宽度等比缩放图片。","category":"image","tags":["图片","编辑","特效","缩放","resize","尺寸"],"order":2191}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,25 +594,18 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
-    <h1>图片尺寸调整</h1>
-    <p>上传图片后按目标宽度等比缩放（或指定高宽），导出为 PNG/JPEG/WebP，全部在本地完成。</p>
+    <h1>缩放尺寸</h1>
+    <p>按指定宽度等比缩放图片。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>选择后可在右侧设置尺寸并预览</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>按指定宽度等比缩放图片。</span></label>
 <div class="grid-2" style="margin-top:14px">
-  <div class="field"><label for="width">目标宽度 (px)</label><input type="number" id="width" min="1" step="1"></div>
-  <div class="field"><label for="height">目标高度 (px)</label><input type="number" id="height" min="1" step="1"></div>
-  <div class="field"><label class="chk"><input type="checkbox" id="keepRatio" checked> 锁定宽高比</label></div>
-  <div class="field"><label for="format">导出格式</label><select id="format"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div>
-  <div class="field" id="qField" style="display:none"><label for="quality">质量 (%)</label><input type="number" id="quality" value="92" min="1" max="100" step="1"></div>
+  <div class="field"><label for="width">目标宽度 px</label><input type="number" id="width" value="400" min="16" max="4000"></div>
 </div>
 <canvas id="canvas" style="display:none"></canvas>
 <div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>
-<div class="actions">
-  <button class="btn primary" id="apply" type="button" disabled>生成预览</button>
-  <button class="btn" id="download" type="button" disabled>下载图片</button>
-</div>
+<div class="actions" style="margin-top:14px"><button class="btn primary" id="download" type="button" disabled>下载图片</button></div>
 <p class="status" id="status" aria-live="polite"></p>
   </section>
 
@@ -784,54 +777,25 @@ pre.out:empty::before {
 </script>
 <script>
 (function(){
-  var $ = PHT.$;
-  var statusEl=$("#status");
-  var canvas=$("#canvas"), img=null;
-  var fileInput=$("#fileInput");
-  function showQuality(){ $("#qField").style.display = $("#format").value==="image/png" ? "none":"block"; }
-  function loadFile(file){
-    if(!file||!/^image\//.test(file.type)){ PHT.status(statusEl,"请选择图片文件","error"); return; }
-    var reader=new FileReader();
-    reader.onload=function(e){
-      var im=new Image();
-      im.onload=function(){
-        img=im;
-        $("#width").value=im.naturalWidth;
-        $("#height").value=im.naturalHeight;
-        $("#apply").disabled=false;
-        PHT.status(statusEl,"已载入，设置尺寸后点击生成","ok");
-      };
-      im.onerror=function(){ PHT.status(statusEl,"图片解析失败","error"); };
-      im.src=e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+  var $=PHT.$; var statusEl=$("#status"); var canvas=$("#canvas"), img=null, dataUrl=null; var fileInput=$("#fileInput");
+  function loadFile(file){ if(!file||!/^image\//.test(file.type)){ PHT.status(statusEl,"请选择图片文件","error"); return; } var reader=new FileReader(); reader.onload=function(e){ var im=new Image(); im.onload=function(){ img=im; render(); PHT.status(statusEl,"已载入，可下载","ok"); }; im.onerror=function(){ PHT.status(statusEl,"图片解析失败","error"); }; im.src=e.target.result; }; reader.readAsDataURL(file); }
   function render(){
     if(!img) return;
-    var w=parseInt($("#width").value,10), h=parseInt($("#height").value,10);
-    if(!(w>0)||!(h>0)){ PHT.status(statusEl,"请输入有效尺寸","error"); return; }
+    var w=img.naturalWidth, h=img.naturalHeight;
     canvas.width=w; canvas.height=h;
     var ctx=canvas.getContext("2d");
     if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
-    ctx.drawImage(img,0,0,w,h);
-    var fmt=$("#format").value;
-    var data = fmt==="image/png" ? canvas.toDataURL(fmt) : canvas.toDataURL(fmt, parseFloat($("#quality").value)/100);
-    var pv=$("#pv"); pv.innerHTML="";
-    var out=new Image(); out.src=data; pv.appendChild(out);
-    $("#download").disabled=false;
-    $("#download").onclick=function(){ PHT.download("resized."+(fmt==="image/png"?"png":fmt==="image/jpeg"?"jpg":"webp"), data); };
-    PHT.status(statusEl,"已生成预览，可下载","ok");
+    var width=parseFloat($("#width").value);
+    try{
+          (function(ctx,w,h,img,args){ var nw=args.width||w; var nh=Math.round(nw*h/w); ctx.canvas.width=nw; ctx.canvas.height=nh; ctx.drawImage(img,0,0,nw,nh); })(ctx,w,h,img,{width:width});
+      dataUrl=canvas.toDataURL("image/png");
+      var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
+      PHT.status(statusEl,"已处理，可下载","ok");
+    }catch(e){ PHT.status(statusEl,"处理失败："+e.message,"error"); }
   }
   fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });
-  $("#keepRatio").addEventListener("change",function(){
-    if($("#keepRatio").checked && img){ var w=parseInt($("#width").value,10); if(w>0){ $("#height").value=Math.round(w*img.naturalHeight/img.naturalWidth); } }
-  });
-  $("#width").addEventListener("input",function(){
-    if($("#keepRatio").checked && img){ var w=parseInt($("#width").value,10); if(w>0){ $("#height").value=Math.round(w*img.naturalHeight/img.naturalWidth); } }
-  });
-  ["format","quality"].forEach(function(k){ $("#"+k).addEventListener("change",showQuality); $("#"+k).addEventListener("input",showQuality); });
-  $("#apply").addEventListener("click",render);
-  showQuality();
+  ["width"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
+  $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download("image-resize.png", dataUrl); });
 })();
 </script>
 </body>

@@ -3,13 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文本对比 Diff - 纯 HTML 工具箱</title>
-<meta name="description" content="在线文本差异对比工具，逐行高亮新增、删除和未变化的内容，显示行号与差异统计，支持忽略空白和大小写。">
+<title>文本对比 - 纯 HTML 工具箱</title>
+<meta name="description" content="对两段文本做逐行对比，标记新增与删除的行。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">
-{"title":"文本对比 Diff","desc":"逐行比较两段文本的差异，标出新增与删除行，支持忽略空白和大小写，可直接导出 diff 文件。","category":"text","tags":["diff","对比","版本"],"order":4}
-</script>
+<script type="application/json" id="tool-meta">{"title":"文本对比","desc":"对两段文本做逐行对比，标记新增与删除的行。","category":"text","tags":["对比","diff","文本"],"order":2485}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -581,36 +579,7 @@ pre.out:empty::before {
 }
 /* inline:assets/tool-base.css:end */
 </style>
-<style>
-  #textA, #textB { min-height: 220px; }
-  .diff-view {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: auto;
-    max-height: 520px;
-    background: var(--surface-2);
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    line-height: 1.7;
-  }
-  .dl { display: flex; gap: 0; min-width: 100%; white-space: pre; }
-  .dl .ln { flex: none; width: 44px; text-align: right; padding-right: 8px; color: var(--muted); opacity: 0.7; user-select: none; border-right: 1px solid var(--border); }
-  .dl .sign { flex: none; width: 22px; text-align: center; user-select: none; }
-  .dl .txt { flex: 1; padding-right: 12px; }
-  .dl.add { background: color-mix(in srgb, var(--ok) 14%, transparent); }
-  .dl.add .sign { color: var(--ok); }
-  .dl.del { background: color-mix(in srgb, var(--danger) 12%, transparent); }
-  .dl.del .sign { color: var(--danger); }
-  .dl.equal .sign { color: var(--muted); opacity: 0.4; }
-  .diff-empty { padding: 20px; color: var(--muted); font-family: var(--sans); font-size: 0.88rem; }
-  .opts { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0; }
-  .opts label { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; color: var(--muted); }
-  .opts input { accent-color: var(--accent); width: 16px; height: 16px; }
-  .diff-stats { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.82rem; margin-bottom: 10px; }
-  .diff-stats .plus { color: var(--ok); }
-  .diff-stats .minus { color: var(--danger); }
-  .diff-stats .same { color: var(--muted); }
-</style>
+<style></style>
 </head>
 <body>
 <header class="toolbar">
@@ -618,59 +587,19 @@ pre.out:empty::before {
     <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
     <span class="spacer"></span>
     <a class="btn ghost" href="../index.html">返回首页</a>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false">
-      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg>
-      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg>
-    </button>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg></button>
   </div>
 </header>
 
 <main class="shell">
   <div class="page-head">
     <span class="badge">文本处理 · 本地处理</span>
-    <h1>文本对比 Diff</h1>
-    <p>把两个版本的文本粘进来，逐行比对差异。右侧红色为删除行，绿色为新增行，适合检查配置改动、文案修订和代码片段差异。</p>
+    <h1>文本对比</h1>
+    <p>对两段文本做逐行对比，标记新增与删除的行。</p>
   </div>
 
   <section class="panel">
-    <div class="split">
-      <div class="field">
-        <label for="textA">原始文本（A）</label>
-        <textarea id="textA" class="code" spellcheck="false" placeholder="第一行&#10;第二行&#10;第三行"></textarea>
-      </div>
-      <div class="field">
-        <label for="textB">修改后文本（B）</label>
-        <textarea id="textB" class="code" spellcheck="false" placeholder="第一行&#10;第二行（已修改）&#10;第三行"></textarea>
-      </div>
-    </div>
-
-    <div class="opts">
-      <label><input type="checkbox" id="ignoreSpace"> 忽略行尾空白</label>
-      <label><input type="checkbox" id="ignoreCase"> 忽略大小写</label>
-      <label><input type="checkbox" id="autoDiff" checked> 输入时自动对比</label>
-    </div>
-
-    <div class="actions">
-      <button class="btn primary" id="diffBtn" type="button">对比</button>
-      <button class="btn" id="swapBtn" type="button">交换 A / B</button>
-      <button class="btn" id="copyBtn" type="button">复制差异</button>
-      <button class="btn" id="downloadBtn" type="button">下载 .diff</button>
-      <button class="btn" id="sampleBtn" type="button">载入示例</button>
-      <button class="btn ghost danger" id="clearBtn" type="button">清空</button>
-    </div>
-    <p class="status" id="status" aria-live="polite"></p>
-  </section>
-
-  <section class="panel">
-    <p class="panel-title">差异结果</p>
-    <div class="diff-stats" id="diffStats" hidden>
-      <span class="plus" id="statAdd">+0 新增</span>
-      <span class="minus" id="statDel">-0 删除</span>
-      <span class="same" id="statSame">0 相同</span>
-    </div>
-    <div class="diff-view" id="diffView" aria-live="polite">
-      <div class="diff-empty">在上方输入两段文本后点击“对比”。</div>
-    </div>
+<div class="field"><label>原文本（旧）</label><textarea id="a" rows="7" placeholder="旧文本，每行一行"></textarea></div><div class="field"><label>新文本</label><textarea id="b" rows="7" placeholder="新文本，每行一行"></textarea></div><div class="field"><button id="go" class="btn">对比</button></div><div class="field"><label>差异（−删除 / +新增 / 空格相同）</label><pre id="out"></pre></div>
   </section>
 
   <footer class="foot">
@@ -840,219 +769,7 @@ pre.out:empty::before {
 /* inline:assets/tool-base.js:end */
 </script>
 <script>
-(function () {
-  "use strict";
-  var $ = PHT.$;
-  var textA = $("#textA");
-  var textB = $("#textB");
-  var view = $("#diffView");
-  var statusEl = $("#status");
-  var statsWrap = $("#diffStats");
-  var ignoreSpace = $("#ignoreSpace");
-  var ignoreCase = $("#ignoreCase");
-  var autoDiff = $("#autoDiff");
-  var MAX_CELLS = 6000000;
-  var lastDiffText = "";
-
-  function splitLines(text) {
-    if (text === "") return [];
-    var lines = text.split(/\r\n|\n|\r/);
-    if (lines.length && lines[lines.length - 1] === "") lines.pop();
-    return lines;
-  }
-
-  function normalize(line) {
-    var s = line;
-    if (ignoreSpace.checked) s = s.replace(/[ \t]+$/, "");
-    if (ignoreCase.checked) s = s.toLowerCase();
-    return s;
-  }
-
-  function diffLines(a, b) {
-    var n = a.length;
-    var m = b.length;
-    if ((n + 1) * (m + 1) > MAX_CELLS) {
-      throw new Error("文本太长（" + n + " 行 × " + m + " 行），请缩小对比范围");
-    }
-    var W = m + 1;
-    var dp = new Uint32Array((n + 1) * W);
-    var i;
-    var j;
-    for (i = n - 1; i >= 0; i--) {
-      for (j = m - 1; j >= 0; j--) {
-        dp[i * W + j] =
-          a[i] === b[j] ? dp[(i + 1) * W + j + 1] + 1 : Math.max(dp[(i + 1) * W + j], dp[i * W + j + 1]);
-      }
-    }
-    var out = [];
-    i = 0;
-    j = 0;
-    while (i < n && j < m) {
-      if (a[i] === b[j]) {
-        out.push({ type: "equal", text: a[i] });
-        i++;
-        j++;
-      } else if (dp[(i + 1) * W + j] >= dp[i * W + j + 1]) {
-        out.push({ type: "del", text: a[i] });
-        i++;
-      } else {
-        out.push({ type: "add", text: b[j] });
-        j++;
-      }
-    }
-    while (i < n) out.push({ type: "del", text: a[i++] });
-    while (j < m) out.push({ type: "add", text: b[j++] });
-    return out;
-  }
-
-  function renderDiff() {
-    var rawA = splitLines(textA.value);
-    var rawB = splitLines(textB.value);
-    var a = rawA.map(normalize);
-    var b = rawB.map(normalize);
-
-    if (rawA.length === 0 && rawB.length === 0) {
-      view.innerHTML = '<div class="diff-empty">在上方输入两段文本后点击“对比”。</div>';
-      statsWrap.hidden = true;
-      lastDiffText = "";
-      PHT.status(statusEl, "");
-      return;
-    }
-
-    var ops;
-    try {
-      ops = diffLines(a, b);
-    } catch (e) {
-      view.innerHTML = "";
-      var err = document.createElement("div");
-      err.className = "diff-empty";
-      err.textContent = e.message;
-      view.appendChild(err);
-      statsWrap.hidden = true;
-      lastDiffText = "";
-      PHT.status(statusEl, e.message, "error");
-      return;
-    }
-
-    view.textContent = "";
-    var frag = document.createDocumentFragment();
-    var oldNo = 0;
-    var newNo = 0;
-    var add = 0;
-    var del = 0;
-    var same = 0;
-    var plain = [];
-
-    ops.forEach(function (op) {
-      var row = document.createElement("div");
-      var lnOld = document.createElement("span");
-      var lnNew = document.createElement("span");
-      var sign = document.createElement("span");
-      var txt = document.createElement("span");
-      lnOld.className = "ln";
-      lnNew.className = "ln";
-      sign.className = "sign";
-      txt.className = "txt";
-
-      if (op.type === "equal") {
-        oldNo++;
-        newNo++;
-        same++;
-        row.className = "dl equal";
-        lnOld.textContent = oldNo;
-        lnNew.textContent = newNo;
-        sign.textContent = " ";
-        plain.push("  " + op.text);
-      } else if (op.type === "del") {
-        oldNo++;
-        del++;
-        row.className = "dl del";
-        lnOld.textContent = oldNo;
-        lnNew.textContent = "";
-        sign.textContent = "-";
-        plain.push("- " + op.text);
-      } else {
-        newNo++;
-        add++;
-        row.className = "dl add";
-        lnOld.textContent = "";
-        lnNew.textContent = newNo;
-        sign.textContent = "+";
-        plain.push("+ " + op.text);
-      }
-      txt.textContent = op.text === "" ? "\u00a0" : op.text;
-      row.appendChild(lnOld);
-      row.appendChild(lnNew);
-      row.appendChild(sign);
-      row.appendChild(txt);
-      frag.appendChild(row);
-    });
-
-    view.appendChild(frag);
-    statsWrap.hidden = false;
-    $("#statAdd").textContent = "+" + add + " 新增";
-    $("#statDel").textContent = "-" + del + " 删除";
-    $("#statSame").textContent = same + " 相同";
-    lastDiffText = plain.join("\n");
-
-    if (add === 0 && del === 0) {
-      PHT.status(statusEl, "两段文本完全一致", "ok");
-    } else {
-      PHT.status(statusEl, "对比完成：新增 " + add + " 行，删除 " + del + " 行，相同 " + same + " 行", "ok");
-    }
-  }
-
-  var debounced = PHT.debounce(renderDiff, 220);
-  [textA, textB].forEach(function (el) {
-    el.addEventListener("input", function () {
-      if (autoDiff.checked) debounced();
-    });
-  });
-  ignoreSpace.addEventListener("change", renderDiff);
-  ignoreCase.addEventListener("change", renderDiff);
-  $("#diffBtn").addEventListener("click", renderDiff);
-
-  $("#swapBtn").addEventListener("click", function () {
-    var tmp = textA.value;
-    textA.value = textB.value;
-    textB.value = tmp;
-    renderDiff();
-  });
-
-  $("#copyBtn").addEventListener("click", function () {
-    if (!lastDiffText) {
-      PHT.status(statusEl, "还没有可复制的差异", "error");
-      return;
-    }
-    PHT.copy(lastDiffText).then(function (ok) {
-      if (ok) PHT.flash($("#copyBtn"), "已复制");
-      PHT.status(statusEl, ok ? "差异已复制" : "复制失败，请手动选择", ok ? "ok" : "error");
-    });
-  });
-
-  $("#downloadBtn").addEventListener("click", function () {
-    if (!lastDiffText) {
-      PHT.status(statusEl, "还没有可下载的差异", "error");
-      return;
-    }
-    PHT.download("diff.diff", lastDiffText + "\n", "text/plain;charset=utf-8");
-  });
-
-  $("#sampleBtn").addEventListener("click", function () {
-    textA.value = "纯 HTML 工具箱\n版本 1.0.0\n支持 24 个工具\n所有数据本地处理";
-    textB.value = "纯 HTML 工具箱\n版本 1.1.0\n支持 26 个工具\n所有数据只在本地处理\n新增文本对比功能";
-    renderDiff();
-  });
-
-  $("#clearBtn").addEventListener("click", function () {
-    textA.value = "";
-    textB.value = "";
-    renderDiff();
-    textA.focus();
-  });
-
-  textA.focus();
-})();
+(function(){var $=PHT.$;var a=$("#a"),b=$("#b"),out=$("#out"),go=$("#go");function diff(x,y){var n=x.length,m=y.length;var dp=[];for(var i=0;i<=n;i++){dp[i]=[];for(var j=0;j<=m;j++)dp[i][j]=0;}for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--){dp[i][j]=x[i]===y[j]?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);}var i=0,j=0,res=[];while(i<n&&j<m){if(x[i]===y[j]){res.push("  "+x[i]);i++;j++;}else if(dp[i+1][j]>=dp[i][j+1]){res.push("- "+x[i]);i++;}else{res.push("+ "+y[j]);j++;}}while(i<n){res.push("- "+x[i]);i++;}while(j<m){res.push("+ "+y[j]);j++;}return res.join("\n");}function run(){var x=a.value.split("\n"),y=b.value.split("\n");out.textContent=diff(x,y);}go.addEventListener("click",run);a.addEventListener("input",run);b.addEventListener("input",run);run();})();
 </script>
 </body>
 </html>

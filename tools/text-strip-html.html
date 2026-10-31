@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>去除 HTML 标签 - 纯 HTML 工具箱</title>
-<meta name="description" content="移除文本中的 HTML 标签，保留纯文本。">
+<meta name="description" content="移除所有 HTML 标签并还原实体，仅保留纯文本。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"去除 HTML 标签","desc":"移除文本中的 HTML 标签，保留纯文本。","category":"text","tags":["HTML","去标签","清洗"],"order":1114}</script>
+<script type="application/json" id="tool-meta">{"title":"去除 HTML 标签","desc":"移除所有 HTML 标签并还原实体，仅保留纯文本。","category":"text","tags":["HTML","纯文本","清洗"],"order":2009}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,11 +595,11 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">文本处理 · 本地处理</span>
     <h1>去除 HTML 标签</h1>
-    <p>移除文本中的 HTML 标签，保留纯文本。</p>
+    <p>移除所有 HTML 标签并还原实体，仅保留纯文本。</p>
   </div>
 
   <section class="panel">
-  <div class="field"><label for="text">文本</label><textarea id="text" class="code" spellcheck="false" rows="8" placeholder="&lt;p&gt;你好 &lt;b&gt;世界&lt;/b&gt;&lt;/p&gt;"></textarea></div>
+  <div class="field"><label for="text">HTML</label><textarea id="text" class="code" spellcheck="false" rows="8" placeholder="&lt;p&gt;你好 &lt;b&gt;世界&lt;/b&gt;&lt;/p&gt;"></textarea></div>
 <div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制</button>
@@ -777,7 +777,7 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function transform(args){
- return args.text.replace(/<[^>]*>/g, ""); 
+ var d = document.createElement("div"); d.innerHTML = args.text; return d.textContent; 
   }
   function run(){ var args={};
     args["text"]=$("#text").value;

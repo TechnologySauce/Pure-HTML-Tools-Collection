@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>左右镜像 - 纯 HTML 工具箱</title>
-<meta name="description" content="以中线为轴生成左右对称的镜像图。">
+<title>镜像翻转 - 纯 HTML 工具箱</title>
+<meta name="description" content="水平或垂直镜像翻转图片。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"左右镜像","desc":"以中线为轴生成左右对称的镜像图。","category":"image","tags":["图片","编辑","特效","镜像","编辑"],"order":1425}</script>
+<script type="application/json" id="tool-meta">{"title":"镜像翻转","desc":"水平或垂直镜像翻转图片。","category":"image","tags":["图片","编辑","特效","镜像","翻转","mirror"],"order":2196}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,12 +594,15 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
-    <h1>左右镜像</h1>
-    <p>以中线为轴生成左右对称的镜像图。</p>
+    <h1>镜像翻转</h1>
+    <p>水平或垂直镜像翻转图片。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>以中线为轴生成左右对称的镜像图。</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>水平或垂直镜像翻转图片。</span></label>
+<div class="grid-2" style="margin-top:14px">
+  <div class="field"><label for="dir">方向</label><input type="select" id="dir"></div>
+</div>
 <canvas id="canvas" style="display:none"></canvas>
 <div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>
 <div class="actions" style="margin-top:14px"><button class="btn primary" id="download" type="button" disabled>下载图片</button></div>
@@ -782,14 +785,16 @@ pre.out:empty::before {
     canvas.width=w; canvas.height=h;
     var ctx=canvas.getContext("2d");
     if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
+    var dir=parseFloat($("#dir").value);
     try{
-          (function(ctx,w,h,img,args){ var hw=Math.floor(w/2); ctx.drawImage(img,0,0,hw,h,0,0,hw,h); ctx.save(); ctx.translate(w,0); ctx.scale(-1,1); ctx.drawImage(img,0,0,hw,h,0,0,hw,h); ctx.restore(); })(ctx,w,h,img,{});
+          (function(ctx,w,h,img,args){ if(args.dir==="v"){ ctx.translate(0,h); ctx.scale(1,-1); } else { ctx.translate(w,0); ctx.scale(-1,1); } ctx.drawImage(img,0,0,w,h); })(ctx,w,h,img,{dir:dir});
       dataUrl=canvas.toDataURL("image/png");
       var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
       PHT.status(statusEl,"已处理，可下载","ok");
     }catch(e){ PHT.status(statusEl,"处理失败："+e.message,"error"); }
   }
   fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });
+  ["dir"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
   $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download("image-mirror.png", dataUrl); });
 })();
 </script>

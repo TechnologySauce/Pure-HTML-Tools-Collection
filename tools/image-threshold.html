@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>黑白阈值 - 纯 HTML 工具箱</title>
-<meta name="description" content="按亮度阈值把图片转为纯黑白。">
+<meta name="description" content="按亮度阈值把图片转换为纯黑白。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"黑白阈值","desc":"按亮度阈值把图片转为纯黑白。","category":"image","tags":["图片","编辑","特效","阈值","黑白"],"order":1409}</script>
+<script type="application/json" id="tool-meta">{"title":"黑白阈值","desc":"按亮度阈值把图片转换为纯黑白。","category":"image","tags":["图片","编辑","特效","阈值","黑白","二值化"],"order":2190}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,13 +595,13 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
     <h1>黑白阈值</h1>
-    <p>按亮度阈值把图片转为纯黑白。</p>
+    <p>按亮度阈值把图片转换为纯黑白。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>按亮度阈值把图片转为纯黑白。</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>按亮度阈值把图片转换为纯黑白。</span></label>
 <div class="grid-2" style="margin-top:14px">
-  <div class="field"><label for="threshold">阈值 (0-255)</label><input type="number" id="threshold" value="128" min="0" max="255"></div>
+  <div class="field"><label for="t">阈值 0-255</label><input type="number" id="t" value="128" min="0" max="255"></div>
 </div>
 <canvas id="canvas" style="display:none"></canvas>
 <div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>
@@ -785,16 +785,16 @@ pre.out:empty::before {
     canvas.width=w; canvas.height=h;
     var ctx=canvas.getContext("2d");
     if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
-    var threshold=parseFloat($("#threshold").value);
+    var t=parseFloat($("#t").value);
     try{
-          var idt=ctx.getImageData(0,0,w,h); (function(d,w,h,args){ var t=args.threshold||128; for(var i=0;i<d.length;i+=4){ var l=0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]; var v=l>t?255:0; d[i]=d[i+1]=d[i+2]=v; } })(idt.data,w,h,{threshold:threshold}); ctx.putImageData(idt,0,0);
+          var idt=ctx.getImageData(0,0,w,h); (function(d,w,h,args){ for(var i=0;i<d.length;i+=4){ var v=(d[i]+d[i+1]+d[i+2])/3; var c=v>=args.t?255:0; d[i]=d[i+1]=d[i+2]=c; } })(idt.data,w,h,{t:t}); ctx.putImageData(idt,0,0);
       dataUrl=canvas.toDataURL("image/png");
       var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
       PHT.status(statusEl,"已处理，可下载","ok");
     }catch(e){ PHT.status(statusEl,"处理失败："+e.message,"error"); }
   }
   fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });
-  ["threshold"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
+  ["t"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
   $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download("image-threshold.png", dataUrl); });
 })();
 </script>

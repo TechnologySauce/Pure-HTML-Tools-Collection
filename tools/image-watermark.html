@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>添加水印 - 纯 HTML 工具箱</title>
-<meta name="description" content="在图片右下角叠加文字水印。">
+<meta name="description" content="在图片右下角叠加半透明文字水印。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"添加水印","desc":"在图片右下角叠加文字水印。","category":"image","tags":["图片","编辑","特效","水印","编辑"],"order":1424}</script>
+<script type="application/json" id="tool-meta">{"title":"添加水印","desc":"在图片右下角叠加半透明文字水印。","category":"image","tags":["图片","编辑","特效","水印","watermark","文字"],"order":2194}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,15 +595,14 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
     <h1>添加水印</h1>
-    <p>在图片右下角叠加文字水印。</p>
+    <p>在图片右下角叠加半透明文字水印。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>在图片右下角叠加文字水印。</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>在图片右下角叠加半透明文字水印。</span></label>
 <div class="grid-2" style="margin-top:14px">
-  <div class="field"><label for="text">水印文字</label><input type="text" id="text" value="watermark"></div>
-  <div class="field"><label for="size">字号 px</label><input type="number" id="size" value="24" min="8"></div>
-  <div class="field"><label for="color">文字颜色</label><input type="text" id="color" value="#ffffff"></div>
+  <div class="field"><label for="text">水印文字</label><input type="text" id="text" value="SAMPLE"></div>
+  <div class="field"><label for="size">字号 px</label><input type="number" id="size" value="28" min="8" max="120"></div>
 </div>
 <canvas id="canvas" style="display:none"></canvas>
 <div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>
@@ -789,16 +788,15 @@ pre.out:empty::before {
     if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
     var text=($("#text").value);
     var size=parseFloat($("#size").value);
-    var color=($("#color").value);
     try{
-          (function(ctx,w,h,img,args){ ctx.drawImage(img,0,0,w,h); ctx.font=(args.size||24)+"px sans-serif"; ctx.fillStyle=args.color||"#ffffff"; ctx.textBaseline="bottom"; var txt=args.text||"watermark"; var m=ctx.measureText(txt); ctx.fillText(txt, w-m.width-10, h-10); })(ctx,w,h,img,{text:text,size:size,color:color});
+          (function(ctx,w,h,img,args){ ctx.drawImage(img,0,0,w,h); var fs=args.size||28; ctx.font=fs+"px sans-serif"; ctx.fillStyle="rgba(255,255,255,0.55)"; ctx.textAlign="right"; ctx.textBaseline="bottom"; ctx.fillText(args.text||"SAMPLE", w-fs/4, h-fs/4); })(ctx,w,h,img,{text:text,size:size});
       dataUrl=canvas.toDataURL("image/png");
       var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
       PHT.status(statusEl,"已处理，可下载","ok");
     }catch(e){ PHT.status(statusEl,"处理失败："+e.message,"error"); }
   }
   fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });
-  ["text","size","color"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
+  ["text","size"].forEach(function(k){ $("#"+k).addEventListener("input",render); $("#"+k).addEventListener("change",render); });
   $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download("image-watermark.png", dataUrl); });
 })();
 </script>

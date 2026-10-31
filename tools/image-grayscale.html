@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>灰度 - 纯 HTML 工具箱</title>
-<meta name="description" content="上传图片后转为黑白灰度，本地处理并导出。">
+<title>灰度化 - 纯 HTML 工具箱</title>
+<meta name="description" content="把图片转为黑白灰度图。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"灰度","desc":"上传图片后转为黑白灰度，本地处理并导出。","category":"image","tags":["图片","编辑","滤镜"],"order":901}</script>
+<script type="application/json" id="tool-meta">{"title":"灰度化","desc":"把图片转为黑白灰度图。","category":"image","tags":["图片","编辑","特效","灰度","黑白","滤镜"],"order":2181}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,12 +594,12 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">图片 · 本地处理</span>
-    <h1>灰度</h1>
-    <p>上传图片后转为黑白灰度，本地处理并导出。</p>
+    <h1>灰度化</h1>
+    <p>把图片转为黑白灰度图。</p>
   </div>
 
   <section class="panel">
-<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>上传图片后转为黑白灰度，本地处理并导出。</span></label>
+<label class="drop" id="drop"><input type="file" id="fileInput" accept="image/*"><strong>拖入图片或点击选择</strong><span>把图片转为黑白灰度图。</span></label>
 <canvas id="canvas" style="display:none"></canvas>
 <div class="preview-box" id="pv" style="margin-top:14px"><span class="empty">预览会显示在这里</span></div>
 <div class="actions" style="margin-top:14px"><button class="btn primary" id="download" type="button" disabled>下载图片</button></div>
@@ -776,7 +776,19 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var canvas=$("#canvas"), img=null, dataUrl=null; var fileInput=$("#fileInput");
   function loadFile(file){ if(!file||!/^image\//.test(file.type)){ PHT.status(statusEl,"请选择图片文件","error"); return; } var reader=new FileReader(); reader.onload=function(e){ var im=new Image(); im.onload=function(){ img=im; render(); PHT.status(statusEl,"已载入，可下载","ok"); }; im.onerror=function(){ PHT.status(statusEl,"图片解析失败","error"); }; im.src=e.target.result; }; reader.readAsDataURL(file); }
-  function render(){ if(!img) return; var w=img.naturalWidth, h=img.naturalHeight; canvas.width=w; canvas.height=h; var ctx=canvas.getContext("2d"); if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; } ctx.filter="grayscale(1)"; ctx.drawImage(img,0,0,w,h); dataUrl=canvas.toDataURL("image/png"); var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false; }
+  function render(){
+    if(!img) return;
+    var w=img.naturalWidth, h=img.naturalHeight;
+    canvas.width=w; canvas.height=h;
+    var ctx=canvas.getContext("2d");
+    if(!ctx){ PHT.status(statusEl,"当前浏览器不支持画布","error"); return; }
+    try{
+          ctx.filter="grayscale(1)"; ctx.drawImage(img,0,0,w,h); ctx.filter="none";
+      dataUrl=canvas.toDataURL("image/png");
+      var pv=$("#pv"); pv.innerHTML=""; var o=new Image(); o.src=dataUrl; pv.appendChild(o); $("#download").disabled=false;
+      PHT.status(statusEl,"已处理，可下载","ok");
+    }catch(e){ PHT.status(statusEl,"处理失败："+e.message,"error"); }
+  }
   fileInput.addEventListener("change",function(){ loadFile(fileInput.files[0]); });
   $("#download").addEventListener("click",function(){ if(dataUrl) PHT.download("image-grayscale.png", dataUrl); });
 })();

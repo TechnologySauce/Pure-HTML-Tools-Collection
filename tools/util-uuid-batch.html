@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UUID 批量生成 - 纯 HTML 工具箱</title>
-<meta name="description" content="一次生成多个随机 UUID v4。">
+<title>批量 UUID - 纯 HTML 工具箱</title>
+<meta name="description" content="批量生成 v4 UUID（依赖浏览器 crypto）。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"UUID 批量生成","desc":"一次生成多个随机 UUID v4。","category":"util","tags":["UUID","随机","批量"],"order":1749}</script>
+<script type="application/json" id="tool-meta">{"title":"批量 UUID","desc":"批量生成 v4 UUID（依赖浏览器 crypto）。","category":"util","tags":["UUID","批量","生成"],"order":2322}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -594,13 +594,13 @@ pre.out:empty::before {
 <main class="shell">
   <div class="page-head">
     <span class="badge">小工具 · 本地处理</span>
-    <h1>UUID 批量生成</h1>
-    <p>一次生成多个随机 UUID v4。</p>
+    <h1>批量 UUID</h1>
+    <p>批量生成 v4 UUID（依赖浏览器 crypto）。</p>
   </div>
 
   <section class="panel">
 <div class="grid-2">
-  <div class="field"><label for="n">数量</label><input type="number" id="n" value="5" min="1" max="50"></div>
+  <div class="field"><label for="n">数量</label><input type="number" id="n" value="10" min="1" max="500"></div>
 </div>
 <div class="field" style="margin-top:14px"><label for="out">生成结果</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="点击生成"></textarea></div>
 <div class="actions">
@@ -780,7 +780,7 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function gen(args){
- function uuid() { var b = []; for (var i = 0; i < 16; i++) b.push(Math.floor(Math.random() * 256)); b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80; var h = function (x) { var s = x.toString(16); return s.length < 2 ? "0" + s : s; }; return h(b[0]) + h(b[1]) + h(b[2]) + h(b[3]) + "-" + h(b[4]) + h(b[5]) + "-" + h(b[6]) + h(b[7]) + "-" + h(b[8]) + h(b[9]) + "-" + h(b[10]) + h(b[11]) + h(b[12]) + h(b[13]) + h(b[14]) + h(b[15]); } var out = []; for (var i = 0; i < args.n; i++) out.push(uuid()); return out.join("\n"); 
+ var n = Math.min(500, Math.max(1, a.n | 0)), out = []; for (var i = 0; i < n; i++) out.push((crypto.randomUUID ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16); }))); return out.join("\n"); 
   }
   function run(){ var args={};
     args["n"]=parseFloat($("#n").value);

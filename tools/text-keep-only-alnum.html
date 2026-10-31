@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>仅保留字母数字 - 纯 HTML 工具箱</title>
-<meta name="description" content="保留英文字母与数字，移除标点与空格。">
+<meta name="description" content="移除所有非字母数字字符（保留中英文与数字）。">
 <meta name="theme-color" content="#f6f5f1">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<script type="application/json" id="tool-meta">{"title":"仅保留字母数字","desc":"保留英文字母与数字，移除标点与空格。","category":"text","tags":["字母","数字","清洗"],"order":1127}</script>
+<script type="application/json" id="tool-meta">{"title":"仅保留字母数字","desc":"移除所有非字母数字字符（保留中英文与数字）。","category":"text","tags":["清洗","字母数字"],"order":2023}</script>
 <script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
 <style>
 /* inline:assets/tool-base.css:start */
@@ -595,11 +595,11 @@ pre.out:empty::before {
   <div class="page-head">
     <span class="badge">文本处理 · 本地处理</span>
     <h1>仅保留字母数字</h1>
-    <p>保留英文字母与数字，移除标点与空格。</p>
+    <p>移除所有非字母数字字符（保留中英文与数字）。</p>
   </div>
 
   <section class="panel">
-  <div class="field"><label for="text">文本</label><textarea id="text" class="code" spellcheck="false" rows="8" placeholder="a1!b2@c3"></textarea></div>
+  <div class="field"><label for="text">文本</label><textarea id="text" class="code" spellcheck="false" rows="6" placeholder="User_2024 名称!"></textarea></div>
 <div class="field" style="margin-top:14px"><label for="out">输出</label><textarea id="out" class="code" readonly spellcheck="false" placeholder="处理结果"></textarea></div>
 <div class="actions">
   <button class="btn primary" id="copy" type="button">复制</button>
@@ -777,7 +777,7 @@ pre.out:empty::before {
 (function(){
   var $=PHT.$; var statusEl=$("#status"); var out=$("#out");
   function transform(args){
- return args.text.replace(/[^a-zA-Z0-9]/g, ""); 
+ return args.text.replace(/[^a-zA-Z0-9一-鿿]/g, ""); 
   }
   function run(){ var args={};
     args["text"]=$("#text").value;
