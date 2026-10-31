@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>赫芬达尔指数 HHI - 纯 HTML 工具箱</title>
+<meta name="description" content="HHI = 各企业市场份额(%)的平方和（最多 4 家）。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">{"title":"赫芬达尔指数 HHI","desc":"HHI = 各企业市场份额(%)的平方和（最多 4 家）。","category":"calc","tags":["HHI","集中度","经济学"],"order":5421}</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style data-inline="assets/tool-base.css"></style>
+<style></style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg></button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>赫芬达尔指数 HHI</h1>
+    <p>HHI = 各企业市场份额(%)的平方和（最多 4 家）。</p>
+  </div>
+
+  <section class="panel">
+<div class="grid-2">
+  <div class="field"><label for="s1">份额1 (%)</label><input type="number" id="s1" value="40"></div>
+  <div class="field"><label for="s2">份额2 (%)</label><input type="number" id="s2" value="30"></div>
+  <div class="field"><label for="s3">份额3 (%)</label><input type="number" id="s3" value="20"></div>
+  <div class="field"><label for="s4">份额4 (%)</label><input type="number" id="s4" value="10"></div>
+</div>
+<dl class="stat-row" style="margin-top:16px">
+  <div class="stat"><dt>HHI</dt><dd id="hhi">—</dd></div>
+</dl>
+<p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script data-inline="assets/tool-base.js"></script>
+<script>
+(function(){
+  var $=PHT.$; var statusEl=$("#status");
+  function fnum(n){ if(n===null||n===undefined||!isFinite(n)) return "—"; var a=Math.round(n*1e6)/1e6; return a.toLocaleString("zh-CN",{maximumFractionDigits:6}); }
+  var compute = function compute(args){  return { hhi: fnum(a.s1 * a.s1 + a.s2 * a.s2 + a.s3 * a.s3 + a.s4 * a.s4) };  };
+  function run(){ var args={};
+    args["s1"]=parseFloat($("#s1").value);
+    args["s2"]=parseFloat($("#s2").value);
+    args["s3"]=parseFloat($("#s3").value);
+    args["s4"]=parseFloat($("#s4").value);
+    try { var r=compute(args);
+    if(r&&r["hhi"]!==undefined){ var v=r["hhi"]; $("#hhi").textContent=(typeof v==="number")?fnum(v):v; }
+      PHT.status(statusEl,(r&&r.__msg)||"计算完成",(r&&r.__type)||"ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
+  }
+  ["s1","s2","s3","s4"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  run();
+})();
+</script>
+</body>
+</html>

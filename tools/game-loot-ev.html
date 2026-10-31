@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>战利品期望价值 - 纯 HTML 工具箱</title>
+<meta name="description" content="EV = Σ(概率 × 价值)。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">{"title":"战利品期望价值","desc":"EV = Σ(概率 × 价值)。","category":"calc","tags":["期望","战利品","游戏"],"order":6310}</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style data-inline="assets/tool-base.css"></style>
+<style></style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg></button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>战利品期望价值</h1>
+    <p>EV = Σ(概率 × 价值)。</p>
+  </div>
+
+  <section class="panel">
+<div class="grid-2">
+  <div class="field"><label for="p1">概率1</label><input type="number" id="p1" value="0.5"></div>
+  <div class="field"><label for="v1">价值1</label><input type="number" id="v1" value="10"></div>
+  <div class="field"><label for="p2">概率2</label><input type="number" id="p2" value="0.3"></div>
+  <div class="field"><label for="v2">价值2</label><input type="number" id="v2" value="50"></div>
+  <div class="field"><label for="p3">概率3</label><input type="number" id="p3" value="0.2"></div>
+  <div class="field"><label for="v3">价值3</label><input type="number" id="v3" value="200"></div>
+</div>
+<dl class="stat-row" style="margin-top:16px">
+  <div class="stat"><dt>EV</dt><dd id="ev">—</dd></div>
+</dl>
+<p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script data-inline="assets/tool-base.js"></script>
+<script>
+(function(){
+  var $=PHT.$; var statusEl=$("#status");
+  function fnum(n){ if(n===null||n===undefined||!isFinite(n)) return "—"; var a=Math.round(n*1e6)/1e6; return a.toLocaleString("zh-CN",{maximumFractionDigits:6}); }
+  var compute = function compute(args){  return { ev: fnum(a.p1 * a.v1 + a.p2 * a.v2 + a.p3 * a.v3) };  };
+  function run(){ var args={};
+    args["p1"]=parseFloat($("#p1").value);
+    args["v1"]=parseFloat($("#v1").value);
+    args["p2"]=parseFloat($("#p2").value);
+    args["v2"]=parseFloat($("#v2").value);
+    args["p3"]=parseFloat($("#p3").value);
+    args["v3"]=parseFloat($("#v3").value);
+    try { var r=compute(args);
+    if(r&&r["ev"]!==undefined){ var v=r["ev"]; $("#ev").textContent=(typeof v==="number")?fnum(v):v; }
+      PHT.status(statusEl,(r&&r.__msg)||"计算完成",(r&&r.__type)||"ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
+  }
+  ["p1","v1","p2","v2","p3","v3"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  run();
+})();
+</script>
+</body>
+</html>

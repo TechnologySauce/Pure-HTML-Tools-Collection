@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2×2 矩阵乘法 - 纯 HTML 工具箱</title>
+<meta name="description" content="计算两个 2×2 矩阵的乘积 C = A·B。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">{"title":"2×2 矩阵乘法","desc":"计算两个 2×2 矩阵的乘积 C = A·B。","category":"calc","tags":["矩阵","乘法","线性代数"],"order":3110}</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style data-inline="assets/tool-base.css"></style>
+<style></style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg></button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>2×2 矩阵乘法</h1>
+    <p>计算两个 2×2 矩阵的乘积 C = A·B。</p>
+  </div>
+
+  <section class="panel">
+<div class="grid-2">
+  <div class="field"><label for="a11">A₁₁</label><input type="number" id="a11" value="1"></div>
+  <div class="field"><label for="a12">A₁₂</label><input type="number" id="a12" value="2"></div>
+  <div class="field"><label for="a21">A₂₁</label><input type="number" id="a21" value="3"></div>
+  <div class="field"><label for="a22">A₂₂</label><input type="number" id="a22" value="4"></div>
+  <div class="field"><label for="b11">B₁₁</label><input type="number" id="b11" value="2"></div>
+  <div class="field"><label for="b12">B₁₂</label><input type="number" id="b12" value="0"></div>
+  <div class="field"><label for="b21">B₂₁</label><input type="number" id="b21" value="1"></div>
+  <div class="field"><label for="b22">B₂₂</label><input type="number" id="b22" value="2"></div>
+</div>
+<dl class="stat-row" style="margin-top:16px">
+  <div class="stat"><dt>C₁₁</dt><dd id="c11">—</dd></div>
+  <div class="stat"><dt>C₁₂</dt><dd id="c12">—</dd></div>
+  <div class="stat"><dt>C₂₁</dt><dd id="c21">—</dd></div>
+  <div class="stat"><dt>C₂₂</dt><dd id="c22">—</dd></div>
+</dl>
+<p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script data-inline="assets/tool-base.js"></script>
+<script>
+(function(){
+  var $=PHT.$; var statusEl=$("#status");
+  function fnum(n){ if(n===null||n===undefined||!isFinite(n)) return "—"; var a=Math.round(n*1e6)/1e6; return a.toLocaleString("zh-CN",{maximumFractionDigits:6}); }
+  var compute = function compute(args){  return { c11: a.a11 * a.b11 + a.a12 * a.b21, c12: a.a11 * a.b12 + a.a12 * a.b22, c21: a.a21 * a.b11 + a.a22 * a.b21, c22: a.a21 * a.b12 + a.a22 * a.b22 };  };
+  function run(){ var args={};
+    args["a11"]=parseFloat($("#a11").value);
+    args["a12"]=parseFloat($("#a12").value);
+    args["a21"]=parseFloat($("#a21").value);
+    args["a22"]=parseFloat($("#a22").value);
+    args["b11"]=parseFloat($("#b11").value);
+    args["b12"]=parseFloat($("#b12").value);
+    args["b21"]=parseFloat($("#b21").value);
+    args["b22"]=parseFloat($("#b22").value);
+    try { var r=compute(args);
+    if(r&&r["c11"]!==undefined){ var v=r["c11"]; $("#c11").textContent=(typeof v==="number")?fnum(v):v; }
+    if(r&&r["c12"]!==undefined){ var v=r["c12"]; $("#c12").textContent=(typeof v==="number")?fnum(v):v; }
+    if(r&&r["c21"]!==undefined){ var v=r["c21"]; $("#c21").textContent=(typeof v==="number")?fnum(v):v; }
+    if(r&&r["c22"]!==undefined){ var v=r["c22"]; $("#c22").textContent=(typeof v==="number")?fnum(v):v; }
+      PHT.status(statusEl,(r&&r.__msg)||"计算完成",(r&&r.__type)||"ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
+  }
+  ["a11","a12","a21","a22","b11","b12","b21","b22"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  run();
+})();
+</script>
+</body>
+</html>

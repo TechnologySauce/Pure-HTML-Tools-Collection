@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>韦伯数 - 纯 HTML 工具箱</title>
+<meta name="description" content="We = ρ·v²·L/σ（σ 表面张力）。">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="application/json" id="tool-meta">{"title":"韦伯数","desc":"We = ρ·v²·L/σ（σ 表面张力）。","category":"calc","tags":["韦伯数","流体"],"order":4715}</script>
+<script>try{var t=localStorage.getItem("pht-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}</script>
+<style data-inline="assets/tool-base.css"></style>
+<style></style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="toolbar-inner">
+    <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24"><span>纯 HTML 工具箱</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost" href="../index.html">返回首页</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深色主题" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path></svg></button>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="page-head">
+    <span class="badge">计算 · 本地处理</span>
+    <h1>韦伯数</h1>
+    <p>We = ρ·v²·L/σ（σ 表面张力）。</p>
+  </div>
+
+  <section class="panel">
+<div class="grid-2">
+  <div class="field"><label for="rho">密度 ρ (kg/m³)</label><input type="number" id="rho" value="1000"></div>
+  <div class="field"><label for="v">速度 v (m/s)</label><input type="number" id="v" value="2"></div>
+  <div class="field"><label for="L">特征长度 L (m)</label><input type="number" id="L" value="0.01"></div>
+  <div class="field"><label for="sig">表面张力 σ (N/m)</label><input type="number" id="sig" value="0.0728"></div>
+</div>
+<dl class="stat-row" style="margin-top:16px">
+  <div class="stat"><dt>We</dt><dd id="We">—</dd></div>
+</dl>
+<p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot">
+    <span>所有处理都在浏览器本地完成，数据不会上传。</span>
+    <a href="../index.html">返回全部工具</a>
+  </footer>
+</main>
+
+<script data-inline="assets/tool-base.js"></script>
+<script>
+(function(){
+  var $=PHT.$; var statusEl=$("#status");
+  function fnum(n){ if(n===null||n===undefined||!isFinite(n)) return "—"; var a=Math.round(n*1e6)/1e6; return a.toLocaleString("zh-CN",{maximumFractionDigits:6}); }
+  var compute = function compute(args){  return { We: fnum(a.rho * a.v * a.v * a.L / a.sig) };  };
+  function run(){ var args={};
+    args["rho"]=parseFloat($("#rho").value);
+    args["v"]=parseFloat($("#v").value);
+    args["L"]=parseFloat($("#L").value);
+    args["sig"]=parseFloat($("#sig").value);
+    try { var r=compute(args);
+    if(r&&r["We"]!==undefined){ var v=r["We"]; $("#We").textContent=(typeof v==="number")?fnum(v):v; }
+      PHT.status(statusEl,(r&&r.__msg)||"计算完成",(r&&r.__type)||"ok"); } catch(e){ PHT.status(statusEl,"出错了："+e.message,"error"); }
+  }
+  ["rho","v","L","sig"].forEach(function(k){ $("#"+k).addEventListener("input",run); $("#"+k).addEventListener("change",run); });
+  run();
+})();
+</script>
+</body>
+</html>
